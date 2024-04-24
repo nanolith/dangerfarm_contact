@@ -3,6 +3,10 @@
 
 typedef struct contact_form contact_form;
 
+/**
+ * The contact form data used for storing, retrieving, and serializing contact
+ * forms.
+ */
 struct contact_form
 {
     uint64_t name_size;
