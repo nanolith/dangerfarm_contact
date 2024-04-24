@@ -3,7 +3,7 @@
 
 GCOV=gcov
 
-COMMON_CFLAGS=$(COMMON_INCLUDES) -Wall -Werror -Wextra -Wpedantic
+COMMON_CFLAGS=-std=c18 $(COMMON_INCLUDES) -Wall -Werror -Wextra -Wpedantic
 
 CHECKED_CC=$(CC)
 CHECKED_CFLAGS=$(COMMON_CFLAGS) -fPIC -O0 --coverage
