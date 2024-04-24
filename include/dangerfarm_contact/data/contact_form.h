@@ -16,7 +16,7 @@ struct contact_form
 };
 
 /**
- * \brief Create a contact form instance given a name, email, and comment.
+ * \brief Create a \ref contact_form instance given a name, email, and comment.
  *
  * \param form          Pointer to the pointer to receive the form on success.
  * \param name          The name for this contact.
@@ -30,3 +30,14 @@ struct contact_form
 int contact_form_create(
     contact_form** form, const char* name, const char* email,
     const char* comment);
+
+/**
+ * \brief Release a \ref contact_form instance.
+ *
+ * \param form          The \ref contact_form instance to release.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contact_form_release(contact_form* form);
