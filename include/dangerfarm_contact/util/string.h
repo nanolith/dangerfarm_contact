@@ -3,7 +3,7 @@
 /**
  * \brief Create a string from a data pointer and size.
  *
- * \note Any null bytes in the data will be changed to '@' to ensure that the
+ * \note Any null bytes in the data will be changed to ' ' to ensure that the
  * string can be fully read.
  *
  * \param str           Pointer to the character pointer for this string to set
@@ -16,6 +16,18 @@
  *      - non-zero on failure.
  */
 int string_create(char** str, const void* data, size_t size);
+
+/**
+ * \brief Filter a string, replacing any invalid UTF-8 sequences or HTML /
+ * commandline unsafe sequences with spaces.
+ *
+ * \param str           The string to filter.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int string_filter(char* str);
 
 /**
  * \brief Given an allocated string, clear and release it.
