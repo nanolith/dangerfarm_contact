@@ -114,3 +114,12 @@ int contact_form_extract_email(char** email, const contact_form* form);
  *      - non-zero on failure.
  */
 int contact_form_extract_comment(char** comment, const contact_form* form);
+
+/**
+ * \brief Given a \ref contact_form, return its complete size.
+ *
+ * \param form          The \ref contact_form instance for this operation.
+ *
+ * \returns the size of the \ref contact_form in bytes.
+ */
+size_t contact_form_size(const contact_form* form);
