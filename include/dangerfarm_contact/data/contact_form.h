@@ -1,6 +1,10 @@
 #pragma once
 #include <stdint.h>
 
+#ifdef   __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
+
 typedef struct contact_form contact_form;
 
 /**
@@ -123,3 +127,7 @@ int contact_form_extract_comment(char** comment, const contact_form* form);
  * \returns the size of the \ref contact_form in bytes.
  */
 size_t contact_form_size(const contact_form* form);
+
+#ifdef   __cplusplus
+}
+#endif /*__cplusplus*/
