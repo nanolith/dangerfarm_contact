@@ -43,6 +43,18 @@ int contact_form_create(
 int contact_form_release(contact_form* form);
 
 /**
+ * \brief Read a \ref contact_form from the given descriptor.
+ *
+ * \param form          Pointer to the pointer to receive the form on success.
+ * \param s             The descriptor from which this form is read.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contact_form_read(contact_form** form, int s);
+
+/**
  * \brief Given a \ref contact_form, extract the name as a string.
  *
  * \note This string is owned by the caller and must be reclaimed using \ref
