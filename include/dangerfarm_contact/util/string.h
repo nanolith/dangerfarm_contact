@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stddef.h>
+
 /**
  * \brief Create a string from a data pointer and size.
  *
