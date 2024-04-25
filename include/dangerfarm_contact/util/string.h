@@ -2,6 +2,10 @@
 
 #include <stddef.h>
 
+#ifdef   __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
+
 /**
  * \brief Create a string from a data pointer and size.
  *
@@ -41,3 +45,7 @@ int string_filter(char* str);
  *      - non-zero on failure.
  */
 int string_release(char* str);
+
+#ifdef   __cplusplus
+}
+#endif /*__cplusplus*/
