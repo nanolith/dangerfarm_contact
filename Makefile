@@ -1,5 +1,5 @@
 .PHONY: ALL clean CHECKED_TARGETS RELEASE_TARGETS test test.contact
-.PHONY: testreport.contact
+.PHONY: testreport testreport.contact
 
 GCOV=gcov
 
@@ -72,6 +72,8 @@ test: $(TEST_DIRS) CHECKED_TARGETS test.contact
 test.contact: CHECKED_TARGETS $(TESTCONTACT)
 	find $(BUILD_DIR) -type f -name "*.gcda" -exec rm {} \; -print
 	$(TESTCONTACT)
+
+testreport: testreport.contact
 
 testreport.contact: $(TEST_DIRS) test.contact $(REPORT_FILES)
 
