@@ -1,1 +1,5 @@
 build
+
+#cscope artifacts
+cscope.*
+tags
