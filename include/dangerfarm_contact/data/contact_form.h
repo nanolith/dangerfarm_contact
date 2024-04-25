@@ -55,6 +55,19 @@ int contact_form_release(contact_form* form);
 int contact_form_read(contact_form** form, int s);
 
 /**
+ * \brief Write a \ref contact_form to the given descriptor.
+ *
+ * \param s             The descriptor to which the \ref contact_form is
+ *                      written.
+ * \param form          The \ref contact_form to write.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contact_form_write(int s, const contact_form* form);
+
+/**
  * \brief Given a \ref contact_form, extract the name as a string.
  *
  * \note This string is owned by the caller and must be reclaimed using \ref
