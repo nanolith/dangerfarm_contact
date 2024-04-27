@@ -9,14 +9,17 @@ int main(int argc, char* argv[])
     const char* INPUT = "foo bar b";
     const size_t INPUT_SIZE = strlen(INPUT);
 
+    /* basic exercise of string creation. */
     retval = string_create(&str, INPUT, INPUT_SIZE);
     if (STATUS_SUCCESS != retval)
     {
         return 0;
     }
 
+    /* the string is ASCIIZ as expected. */
     MODEL_ASSERT(0 == str[INPUT_SIZE]);
 
+    /* basic exercise of string release. */
     retval = string_release(str);
     if (STATUS_SUCCESS != retval)
     {
