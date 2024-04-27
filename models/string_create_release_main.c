@@ -1,3 +1,4 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
 
@@ -13,6 +14,8 @@ int main(int argc, char* argv[])
     {
         return 0;
     }
+
+    MODEL_ASSERT(0 == str[INPUT_SIZE]);
 
     retval = string_release(str);
     if (STATUS_SUCCESS != retval)
