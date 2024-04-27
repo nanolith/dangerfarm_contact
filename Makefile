@@ -1,5 +1,5 @@
 .PHONY: ALL clean CHECKED_TARGETS RELEASE_TARGETS test test.contact
-.PHONY: testreport testreport.contact
+.PHONY: testreport testreport.contact model-checks
 
 GCOV=gcov
 
@@ -66,6 +66,9 @@ ALL: CHECKED_TARGETS RELEASE_TARGETS
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+model-checks:
+	(cd models && $(MAKE))
 
 test: $(TEST_DIRS) CHECKED_TARGETS test.contact
 
