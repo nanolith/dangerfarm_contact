@@ -1,4 +1,5 @@
 #include <minunit/minunit.h>
+#include <dangerfarm_contact/macro_tricks.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
 #include <string.h>
@@ -30,117 +31,23 @@ TEST(string_create_release)
     TEST_ASSERT(STATUS_SUCCESS == string_release(str));
 }
 
-/**
- * string_filter filters out 0x01.
- */
-TEST(string_filter_0x01)
-{
-    char* str = nullptr;
-    const char* INPUT = "\x01xxx";
-    const size_t INPUT_SIZE = strlen(INPUT);
-    const char* EXPECTED_OUTPUT = " xxx";
+#define STRING_FILTER_TEST(val) \
+    TEST(string_filter_ ## val) \
+    { \
+        char* str = nullptr; \
+        char INPUT[] = "xxxx"; \
+        const size_t INPUT_SIZE = strlen(INPUT); \
+        const char* EXPECTED_OUTPUT = " xxx"; \
+        INPUT[0] = val; \
+        TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE)); \
+        TEST_ASSERT(STATUS_SUCCESS == string_filter(str)); \
+        TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT)); \
+        TEST_ASSERT(STATUS_SUCCESS == string_release(str)); \
+    } \
+    REQUIRE_SEMICOLON_HERE
 
-    /* we can create a string from data. */
-    TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE));
-
-    /* we can filter the string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_filter(str));
-
-    /* the string matches the expected output. */
-    TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT));
-
-    /* we can release this string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_release(str));
-}
-
-/**
- * string_filter filters out 0x02.
- */
-TEST(string_filter_0x02)
-{
-    char* str = nullptr;
-    const char* INPUT = "\x02xxx";
-    const size_t INPUT_SIZE = strlen(INPUT);
-    const char* EXPECTED_OUTPUT = " xxx";
-
-    /* we can create a string from data. */
-    TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE));
-
-    /* we can filter the string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_filter(str));
-
-    /* the string matches the expected output. */
-    TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT));
-
-    /* we can release this string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_release(str));
-}
-
-/**
- * string_filter filters out 0x03.
- */
-TEST(string_filter_0x03)
-{
-    char* str = nullptr;
-    const char* INPUT = "\x03xxx";
-    const size_t INPUT_SIZE = strlen(INPUT);
-    const char* EXPECTED_OUTPUT = " xxx";
-
-    /* we can create a string from data. */
-    TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE));
-
-    /* we can filter the string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_filter(str));
-
-    /* the string matches the expected output. */
-    TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT));
-
-    /* we can release this string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_release(str));
-}
-
-/**
- * string_filter filters out 0x04.
- */
-TEST(string_filter_0x04)
-{
-    char* str = nullptr;
-    const char* INPUT = "\x04xxx";
-    const size_t INPUT_SIZE = strlen(INPUT);
-    const char* EXPECTED_OUTPUT = " xxx";
-
-    /* we can create a string from data. */
-    TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE));
-
-    /* we can filter the string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_filter(str));
-
-    /* the string matches the expected output. */
-    TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT));
-
-    /* we can release this string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_release(str));
-}
-
-/**
- * string_filter filters out 0x05.
- */
-TEST(string_filter_0x05)
-{
-    char* str = nullptr;
-    const char* INPUT = "\x05xxx";
-    const size_t INPUT_SIZE = strlen(INPUT);
-    const char* EXPECTED_OUTPUT = " xxx";
-
-    /* we can create a string from data. */
-    TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE));
-
-    /* we can filter the string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_filter(str));
-
-    /* the string matches the expected output. */
-    TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT));
-
-    /* we can release this string. */
-    TEST_ASSERT(STATUS_SUCCESS == string_release(str));
-}
+STRING_FILTER_TEST(0x01);
+STRING_FILTER_TEST(0x02);
+STRING_FILTER_TEST(0x03);
+STRING_FILTER_TEST(0x04);
+STRING_FILTER_TEST(0x05);
