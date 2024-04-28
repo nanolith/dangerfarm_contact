@@ -29,3 +29,26 @@ TEST(string_create_release)
     /* we can release this string. */
     TEST_ASSERT(STATUS_SUCCESS == string_release(str));
 }
+
+/**
+ * The string filter filters out 0x01.
+ */
+TEST(string_filter_0x01)
+{
+    char* str = nullptr;
+    const char* INPUT = "\x01xxx";
+    const size_t INPUT_SIZE = strlen(INPUT);
+    const char* EXPECTED_OUTPUT = " xxx";
+
+    /* we can create a string from data. */
+    TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE));
+
+    /* we can filter the string. */
+    TEST_ASSERT(STATUS_SUCCESS == string_filter(str));
+
+    /* the string matches the expected output. */
+    TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT));
+
+    /* we can release this string. */
+    TEST_ASSERT(STATUS_SUCCESS == string_release(str));
+}
