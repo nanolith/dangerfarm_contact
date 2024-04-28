@@ -31,7 +31,7 @@ TEST(string_create_release)
 }
 
 /**
- * The string filter filters out 0x01.
+ * string_filter filters out 0x01.
  */
 TEST(string_filter_0x01)
 {
@@ -54,12 +54,35 @@ TEST(string_filter_0x01)
 }
 
 /**
- * The string filter filters out 0x02.
+ * string_filter filters out 0x02.
  */
 TEST(string_filter_0x02)
 {
     char* str = nullptr;
     const char* INPUT = "\x02xxx";
+    const size_t INPUT_SIZE = strlen(INPUT);
+    const char* EXPECTED_OUTPUT = " xxx";
+
+    /* we can create a string from data. */
+    TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE));
+
+    /* we can filter the string. */
+    TEST_ASSERT(STATUS_SUCCESS == string_filter(str));
+
+    /* the string matches the expected output. */
+    TEST_EXPECT(0 == strcmp(str, EXPECTED_OUTPUT));
+
+    /* we can release this string. */
+    TEST_ASSERT(STATUS_SUCCESS == string_release(str));
+}
+
+/**
+ * string_filter filters out 0x03.
+ */
+TEST(string_filter_0x03)
+{
+    char* str = nullptr;
+    const char* INPUT = "\x03xxx";
     const size_t INPUT_SIZE = strlen(INPUT);
     const char* EXPECTED_OUTPUT = " xxx";
 
