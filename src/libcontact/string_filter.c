@@ -9,6 +9,8 @@ static bool is_lower_control_character(const char* str);
 static bool is_high_bit_character(const char* str);
 static int read_multibyte(
     uint32_t* codepoint, size_t* codepoint_size, const char* str);
+static int read_two_byte_sequence(
+    uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str);
 static bool is_codepoint_control_character(uint32_t codepoint);
 
 /**
@@ -161,10 +163,15 @@ static int read_multibyte(
         return ERROR_READ_MULTIBYTE_EOF;
     }
     /* if this is a raw continuation byte, then that's an error. */
-    else if ((hdr & 0x8C) == 0x80)
+    else if ((hdr & 0xC0) == 0x80)
     {
         *codepoint_size = 1;
         return ERROR_READ_MULTIBYTE_RAW_CONTINUATION;
+    }
+    /* is this a two byte sequence? */
+    else if ((hdr & 0xE0) == 0xC0)
+    {
+        return read_two_byte_sequence(codepoint, codepoint_size, hdr, str + 1);
     }
     else
     {
@@ -172,4 +179,42 @@ static int read_multibyte(
         *codepoint_size = 1;
         return STATUS_SUCCESS;
     }
+}
+
+/**
+ * \brief Attempt to read the continuation byte of a two byte sequence and
+ * convert this to a codepoint.
+ *
+ * \note If this read fails, \p codepoint_size will be set to the length of the
+ * failing sequence to blank or skip over.
+ *
+ * \param codepoint         Pointer to receive the codepoint on success.
+ * \param codepoint_size    The size of the multibyte sequence in the input
+ *                          string that represents this codepoint.
+ * \param hdr               The header byte for this sequence.
+ * \param str               The input string to read.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+static int read_two_byte_sequence(
+    uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str)
+{
+    uint8_t byte2 = *str;
+
+    /* if this is ASCII-NUL, then the read failed. */
+    if (0 == byte2)
+    {
+        *codepoint_size = 1;
+        return ERROR_READ_MULTIBYTE_EOF;
+    }
+
+    /* compute the codepoint. */
+    uint32_t point = (hdr & 0x1F) << 6 | (byte2 & 0x3F);
+
+    /* TODO - handle edge cases. */
+    *codepoint = point;
+    *codepoint_size = 2;
+    return STATUS_SUCCESS;
 }
