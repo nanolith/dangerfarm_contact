@@ -42,7 +42,7 @@ int string_filter(char* str)
  */
 static bool is_lower_control_character(const char* str)
 {
-    if (*str > 0x00 && *str <= 0x1F)
+    if ((*str > 0x00 && *str <= 0x1F) || *str == 0x7F)
     {
         return true;
     }
