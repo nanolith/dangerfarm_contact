@@ -78,3 +78,20 @@ STRING_FILTER_TEST(0x1D);
 STRING_FILTER_TEST(0x1E);
 STRING_FILTER_TEST(0x1F);
 STRING_FILTER_TEST(0x7F);
+
+#define INVALID_SEQUENCE_TEST(name, val, length) \
+    TEST(invalid_sequence_ ## name) \
+    { \
+        char* str = nullptr; \
+        const char INPUT[] = val; \
+        const size_t INPUT_SIZE = length; \
+        const char* EXPECTED_OUTPUT = "              "; \
+        TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE)); \
+        TEST_ASSERT(STATUS_SUCCESS == string_filter(str)); \
+        TEST_EXPECT(0 == memcmp(str, EXPECTED_OUTPUT, length)); \
+        TEST_EXPECT(0 == str[length]); \
+        TEST_ASSERT(STATUS_SUCCESS == string_release(str)); \
+    } \
+    REQUIRE_SEMICOLON_HERE
+
+INVALID_SEQUENCE_TEST(naked_continuation, "\x80", 1);
