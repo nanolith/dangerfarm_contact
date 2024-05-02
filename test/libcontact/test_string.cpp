@@ -96,3 +96,4 @@ STRING_FILTER_TEST(0x7F);
 
 INVALID_SEQUENCE_TEST(naked_continuation, "\x80", 1);
 INVALID_SEQUENCE_TEST(truncated_2_byte, "\xD0", 1);
+INVALID_SEQUENCE_TEST(invalid_2_byte_continuation, "\xD0\x01", 2);
