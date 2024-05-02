@@ -12,6 +12,7 @@ static int read_multibyte(
 static int read_two_byte_sequence(
     uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str);
 static bool is_two_byte_sequence_start_byte(uint8_t byte);
+static bool is_continuation_byte(uint8_t byte);
 static bool is_codepoint_control_character(uint32_t codepoint);
 
 /**
@@ -106,6 +107,26 @@ static bool is_two_byte_sequence_start_byte(uint8_t byte)
 }
 
 /**
+ * \brief Check to see if the given byte is a multibyte sequence continuation
+ * byte.
+ *
+ * \param byte          The byte to check.
+ *
+ * \returns true if this is a contination byte and false otherwise.
+ */
+static bool is_continuation_byte(uint8_t byte)
+{
+    if ((byte & 0xC0) == 0x80)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+/**
  * \brief Check to see if the given codepoint is a control character.
  *
  * \param codepoint     The codepoint to check.
@@ -184,7 +205,7 @@ static int read_multibyte(
         return ERROR_READ_MULTIBYTE_EOF;
     }
     /* if this is a raw continuation byte, then that's an error. */
-    else if ((hdr & 0xC0) == 0x80)
+    else if (is_continuation_byte(hdr))
     {
         *codepoint_size = 1;
         return ERROR_READ_MULTIBYTE_RAW_CONTINUATION;
@@ -229,8 +250,7 @@ static int read_two_byte_sequence(
         *codepoint_size = 1;
         return ERROR_READ_MULTIBYTE_EOF;
     }
-    /* if this is not a valid continuation, then the read failed. */
-    else if ((byte2 & 0xC0) != 0x80)
+    else if (!is_continuation_byte(byte2))
     {
         *codepoint_size = 2;
         return ERROR_READ_MULTIBYTE_INVALID_CONTINUATION;
