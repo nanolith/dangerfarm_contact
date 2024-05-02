@@ -258,9 +258,15 @@ static int read_two_byte_sequence(
 
     /* compute the codepoint. */
     uint32_t point = (hdr & 0x1F) << 6 | (byte2 & 0x3F);
-
-    /* TODO - handle edge cases. */
-    *codepoint = point;
     *codepoint_size = 2;
+
+    /* Is this an overlong representation? */
+    if (point < 0x80)
+    {
+        return ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION;
+    }
+
+    /* success. */
+    *codepoint = point;
     return STATUS_SUCCESS;
 }
