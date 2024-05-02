@@ -95,3 +95,4 @@ STRING_FILTER_TEST(0x7F);
     REQUIRE_SEMICOLON_HERE
 
 INVALID_SEQUENCE_TEST(naked_continuation, "\x80", 1);
+INVALID_SEQUENCE_TEST(truncated_2_byte, "\xD0", 1);
