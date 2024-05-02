@@ -209,6 +209,12 @@ static int read_two_byte_sequence(
         *codepoint_size = 1;
         return ERROR_READ_MULTIBYTE_EOF;
     }
+    /* if this is not a valid continuation, then the read failed. */
+    else if ((byte2 & 0xE0) != 0xC0)
+    {
+        *codepoint_size = 2;
+        return ERROR_READ_MULTIBYTE_INVALID_CONTINUATION;
+    }
 
     /* compute the codepoint. */
     uint32_t point = (hdr & 0x1F) << 6 | (byte2 & 0x3F);
