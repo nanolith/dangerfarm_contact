@@ -97,3 +97,19 @@ STRING_FILTER_TEST(0x7F);
 INVALID_SEQUENCE_TEST(naked_continuation, "\x80", 1);
 INVALID_SEQUENCE_TEST(truncated_2_byte, "\xD0", 1);
 INVALID_SEQUENCE_TEST(invalid_2_byte_continuation, "\xD0\x01", 2);
+
+#define VALID_SEQUENCE_TEST(name, val) \
+    TEST(valid_sequence_ ## name) \
+    { \
+        char* str = nullptr; \
+        const char INPUT[] = val; \
+        const size_t INPUT_SIZE = strlen(val); \
+        TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE)); \
+        TEST_ASSERT(STATUS_SUCCESS == string_filter(str)); \
+        TEST_EXPECT(0 == memcmp(str, INPUT, INPUT_SIZE)); \
+        TEST_EXPECT(0 == str[INPUT_SIZE]); \
+        TEST_ASSERT(STATUS_SUCCESS == string_release(str)); \
+    } \
+    REQUIRE_SEMICOLON_HERE
+
+VALID_SEQUENCE_TEST(name, "français");
