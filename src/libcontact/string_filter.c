@@ -210,7 +210,7 @@ static int read_two_byte_sequence(
         return ERROR_READ_MULTIBYTE_EOF;
     }
     /* if this is not a valid continuation, then the read failed. */
-    else if ((byte2 & 0xE0) != 0xC0)
+    else if ((byte2 & 0xC0) != 0x80)
     {
         *codepoint_size = 2;
         return ERROR_READ_MULTIBYTE_INVALID_CONTINUATION;
