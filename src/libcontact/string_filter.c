@@ -11,6 +11,7 @@ static int read_multibyte(
     uint32_t* codepoint, size_t* codepoint_size, const char* str);
 static int read_two_byte_sequence(
     uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str);
+static bool is_two_byte_sequence_start_byte(uint8_t byte);
 static bool is_codepoint_control_character(uint32_t codepoint);
 
 /**
@@ -82,6 +83,26 @@ static bool is_lower_control_character(const char* str)
     }
 
     return false;
+}
+
+/**
+ * \brief Check to see if the given byte is a two byte sequence start byte.
+ *
+ * \param byte          The byte to check.
+ *
+ * \returns true if this is a valid two byte sequence start byte and false
+ * otherwise.
+ */
+static bool is_two_byte_sequence_start_byte(uint8_t byte)
+{
+    if ((byte & 0xE0) == 0xC0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /**
@@ -168,8 +189,7 @@ static int read_multibyte(
         *codepoint_size = 1;
         return ERROR_READ_MULTIBYTE_RAW_CONTINUATION;
     }
-    /* is this a two byte sequence? */
-    else if ((hdr & 0xE0) == 0xC0)
+    else if (is_two_byte_sequence_start_byte(hdr))
     {
         return read_two_byte_sequence(codepoint, codepoint_size, hdr, str + 1);
     }
