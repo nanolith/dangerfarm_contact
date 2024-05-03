@@ -12,6 +12,7 @@ static int read_multibyte(
 static int read_two_byte_sequence(
     uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str);
 static bool is_two_byte_sequence_start_byte(uint8_t byte);
+static bool is_ascii_nul(uint8_t byte);
 static bool is_continuation_byte(uint8_t byte);
 static bool is_codepoint_control_character(uint32_t codepoint);
 
@@ -31,7 +32,7 @@ int string_filter(char* str)
     uint32_t codepoint;
     size_t codepoint_size;
 
-    while (0 != *str)
+    while (!is_ascii_nul(*str))
     {
         /* is this a lower control character? */
         if (is_lower_control_character(str))
@@ -107,6 +108,25 @@ static bool is_two_byte_sequence_start_byte(uint8_t byte)
 }
 
 /**
+ * \brief Check to see if the given byte is an ASCII nul.
+ *
+ * \param byte          The byte to check.
+ *
+ * \returns true if this is an ASCII nul and false otherwise.
+ */
+static bool is_ascii_nul(uint8_t byte)
+{
+    if (0 == byte)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+/**
  * \brief Check to see if the given byte is a multibyte sequence continuation
  * byte.
  *
@@ -168,7 +188,7 @@ static void blank_and_advance(char** str, size_t length)
 {
     while (length--)
     {
-        if (0 != **str)
+        if (!is_ascii_nul(**str))
         {
             **str = ' ';
         }
@@ -198,13 +218,11 @@ static int read_multibyte(
     /* read the first character of this sequence. */
     uint8_t hdr = str[0];
 
-    /* if this is ASCII-NUL, then the read failed. */
-    if (0 == hdr)
+    if (is_ascii_nul(hdr))
     {
         *codepoint_size = 0;
         return ERROR_READ_MULTIBYTE_EOF;
     }
-    /* if this is a raw continuation byte, then that's an error. */
     else if (is_continuation_byte(hdr))
     {
         *codepoint_size = 1;
@@ -244,8 +262,7 @@ static int read_two_byte_sequence(
 {
     uint8_t byte2 = *str;
 
-    /* if this is ASCII-NUL, then the read failed. */
-    if (0 == byte2)
+    if (is_ascii_nul(byte2))
     {
         *codepoint_size = 1;
         return ERROR_READ_MULTIBYTE_EOF;
