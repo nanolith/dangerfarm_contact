@@ -113,4 +113,5 @@ INVALID_SEQUENCE_TEST(overlong_2_byte_sequence, "\xC0\x81", 2);
     } \
     REQUIRE_SEMICOLON_HERE
 
-VALID_SEQUENCE_TEST(name, "français");
+VALID_SEQUENCE_TEST(two_byte_character, "français");
+VALID_SEQUENCE_TEST(three_byte_characters, "x ∈ ℤ");
