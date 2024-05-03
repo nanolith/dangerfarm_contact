@@ -102,6 +102,7 @@ INVALID_SEQUENCE_TEST(truncated_3_byte1, "\xE0", 1);
 INVALID_SEQUENCE_TEST(truncated_3_byte2, "\xE1\x81", 2);
 INVALID_SEQUENCE_TEST(invalid_3_byte_continuation1, "\xE1\x01", 2);
 INVALID_SEQUENCE_TEST(invalid_3_byte_continuation2, "\xE1\x81\x01", 3);
+INVALID_SEQUENCE_TEST(overlong_3_byte_sequence, "\xE0\x80\x81", 3);
 
 #define VALID_SEQUENCE_TEST(name, val) \
     TEST(valid_sequence_ ## name) \
