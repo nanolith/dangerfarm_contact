@@ -98,6 +98,7 @@ INVALID_SEQUENCE_TEST(naked_continuation, "\x80", 1);
 INVALID_SEQUENCE_TEST(truncated_2_byte, "\xD0", 1);
 INVALID_SEQUENCE_TEST(invalid_2_byte_continuation, "\xD0\x01", 2);
 INVALID_SEQUENCE_TEST(overlong_2_byte_sequence, "\xC0\x81", 2);
+INVALID_SEQUENCE_TEST(truncated_3_byte, "\xE0", 1);
 
 #define VALID_SEQUENCE_TEST(name, val) \
     TEST(valid_sequence_ ## name) \
