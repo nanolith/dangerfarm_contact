@@ -262,9 +262,8 @@ static int read_multibyte(
     }
     else
     {
-        *codepoint = hdr;
         *codepoint_size = 1;
-        return STATUS_SUCCESS;
+        return ERROR_READ_MULTIBYTE_UNEXPECTED_CHARACTER;
     }
 }
 
