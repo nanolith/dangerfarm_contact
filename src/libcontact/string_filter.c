@@ -388,7 +388,7 @@ static int read_three_byte_sequence(
     }
 
     /* compute the codepoint. */
-    uint32_t point = (hdr & 0x1F) << 12 | (byte2 & 0x3F) << 6 | (byte3 & 0x3F);
+    uint32_t point = (hdr & 0x0F) << 12 | (byte2 & 0x3F) << 6 | (byte3 & 0x3F);
     *codepoint_size = 3;
 
     /* Is this an overlong representation? */
