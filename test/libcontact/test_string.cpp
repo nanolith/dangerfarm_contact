@@ -120,3 +120,4 @@ INVALID_SEQUENCE_TEST(overlong_3_byte_sequence, "\xE0\x80\x81", 3);
 
 VALID_SEQUENCE_TEST(two_byte_character, "français");
 VALID_SEQUENCE_TEST(three_byte_characters, "x ∈ ℤ");
+VALID_SEQUENCE_TEST(four_byte_characters, "😎");
