@@ -13,8 +13,11 @@ static int read_two_byte_sequence(
     uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str);
 static int read_three_byte_sequence(
     uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str);
+static int read_four_byte_sequence(
+    uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str);
 static bool is_two_byte_sequence_start_byte(uint8_t byte);
 static bool is_three_byte_sequence_start_byte(uint8_t byte);
+static bool is_four_byte_sequence_start_byte(uint8_t byte);
 static bool is_ascii_nul(uint8_t byte);
 static bool is_continuation_byte(uint8_t byte);
 static bool is_codepoint_control_character(uint32_t codepoint);
@@ -115,12 +118,31 @@ static bool is_two_byte_sequence_start_byte(uint8_t byte)
  *
  * \param byte          The byte to check.
  *
- * \returns true if this is a valid two byte sequence start byte and false
+ * \returns true if this is a valid three byte sequence start byte and false
  * otherwise.
  */
 static bool is_three_byte_sequence_start_byte(uint8_t byte)
 {
     if ((byte & 0xF0) == 0xE0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+/**
+ * \brief Check to see if the given byte is a four byte sequence start byte.
+ *
+ * \param byte          The byte to check.
+ *
+ * \returns true if this is a valid four byte sequence start byte and false
+ * otherwise.
+ */
+static bool is_four_byte_sequence_start_byte(uint8_t byte)
+{
+    if ((byte & 0xF8) == 0xF0)
     {
         return true;
     }
@@ -260,6 +282,10 @@ static int read_multibyte(
         return
             read_three_byte_sequence(codepoint, codepoint_size, hdr, str + 1);
     }
+    else if (is_four_byte_sequence_start_byte(hdr))
+    {
+        return read_four_byte_sequence(codepoint, codepoint_size, hdr, str + 1);
+    }
     else
     {
         *codepoint_size = 1;
@@ -369,6 +395,90 @@ static int read_three_byte_sequence(
     if (point < 0x800)
     {
         return ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION;
+    }
+
+    /* success. */
+    *codepoint = point;
+    return STATUS_SUCCESS;
+}
+
+/**
+ * \brief Attempt to read the continuation bytes of a four byte sequence and
+ * convert this to a codepoint.
+ *
+ * \note If this read fails, \p codepoint_size will be set to the length of the
+ * failing sequence to blank or skip over.
+ *
+ * \param codepoint         Pointer to receive the codepoint on success.
+ * \param codepoint_size    The size of the multibyte sequence in the input
+ *                          string that represents this codepoint.
+ * \param hdr               The header byte for this sequence.
+ * \param str               The input string to read.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+static int read_four_byte_sequence(
+    uint32_t* codepoint, size_t* codepoint_size, uint8_t hdr, const char* str)
+{
+    uint8_t byte2 = str[0];
+
+    if (is_ascii_nul(byte2))
+    {
+        *codepoint_size = 1;
+        return ERROR_READ_MULTIBYTE_EOF;
+    }
+    else if (!is_continuation_byte(byte2))
+    {
+        *codepoint_size = 2;
+        return ERROR_READ_MULTIBYTE_INVALID_CONTINUATION;
+    }
+
+    uint8_t byte3 = str[1];
+
+    if (is_ascii_nul(byte3))
+    {
+        *codepoint_size = 2;
+        return ERROR_READ_MULTIBYTE_EOF;
+    }
+    else if (!is_continuation_byte(byte3))
+    {
+        *codepoint_size = 3;
+        return ERROR_READ_MULTIBYTE_INVALID_CONTINUATION;
+    }
+
+    uint8_t byte4 = str[2];
+
+    if (is_ascii_nul(byte4))
+    {
+        *codepoint_size = 3;
+        return ERROR_READ_MULTIBYTE_EOF;
+    }
+    else if (!is_continuation_byte(byte4))
+    {
+        *codepoint_size = 4;
+        return ERROR_READ_MULTIBYTE_INVALID_CONTINUATION;
+    }
+
+    /* compute the codepoint. */
+    uint32_t point =
+          (hdr   & 0x07) << 18
+        | (byte2 & 0x3F) << 12
+        | (byte3 & 0x3F) <<  6
+        | (byte4 & 0x3F);
+    *codepoint_size = 4;
+
+    /* Is this an overlong representation? */
+    if (point < 0x10000)
+    {
+        return ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION;
+    }
+
+    /* Is this representation out of range? */
+    if (point > 0x10FFFF)
+    {
+        return ERROR_READ_MULTIBYTE_CODEPOINT_OUT_OF_RANGE;
     }
 
     /* success. */
