@@ -79,6 +79,25 @@ STRING_FILTER_TEST(0x1E);
 STRING_FILTER_TEST(0x1F);
 STRING_FILTER_TEST(0x7F);
 
+#define STRING_FILTER_HIGH_TEST(name, val) \
+    TEST(string_filter_high_ ## name) \
+    { \
+        char* str = nullptr; \
+        const char* INPUT = val; \
+        const size_t INPUT_SIZE = strlen(INPUT); \
+        TEST_ASSERT(STATUS_SUCCESS == string_create(&str, INPUT, INPUT_SIZE)); \
+        TEST_ASSERT(STATUS_SUCCESS == string_filter(str)); \
+        for (size_t i = 0; i < INPUT_SIZE; ++i) \
+        { \
+            TEST_EXPECT(' ' == str[i]); \
+        } \
+        TEST_EXPECT(0 == str[INPUT_SIZE]); \
+        TEST_ASSERT(STATUS_SUCCESS == string_release(str)); \
+    } \
+    REQUIRE_SEMICOLON_HERE
+
+STRING_FILTER_HIGH_TEST(x80, "\u0080");
+
 #define INVALID_SEQUENCE_TEST(name, val, length) \
     TEST(invalid_sequence_ ## name) \
     { \
