@@ -200,9 +200,14 @@ static bool is_continuation_byte(uint8_t byte)
  */
 static bool is_codepoint_control_character(uint32_t codepoint)
 {
-    /* TODO - implement. */
-    (void)codepoint;
-    return false;
+    if (codepoint >= 0x80 && codepoint <= 0x9F)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /**
