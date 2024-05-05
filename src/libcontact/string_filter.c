@@ -263,12 +263,7 @@ static int read_multibyte(
     /* read the first character of this sequence. */
     uint8_t hdr = str[0];
 
-    if (is_ascii_nul(hdr))
-    {
-        *codepoint_size = 0;
-        return ERROR_READ_MULTIBYTE_EOF;
-    }
-    else if (is_continuation_byte(hdr))
+    if (is_continuation_byte(hdr))
     {
         *codepoint_size = 1;
         return ERROR_READ_MULTIBYTE_RAW_CONTINUATION;
