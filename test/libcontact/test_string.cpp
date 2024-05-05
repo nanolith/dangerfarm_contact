@@ -110,6 +110,7 @@ INVALID_SEQUENCE_TEST(invalid_4_byte_continuation1, "\xF1\x01", 2);
 INVALID_SEQUENCE_TEST(invalid_4_byte_continuation2, "\xF1\x81\x01", 3);
 INVALID_SEQUENCE_TEST(invalid_4_byte_continuation3, "\xF1\x81\x81\x01", 4);
 INVALID_SEQUENCE_TEST(overlong_4_byte_sequence, "\xF0\x80\x80\x81", 4);
+INVALID_SEQUENCE_TEST(out_of_range_4_byte_sequence, "\xF7\xBF\xBF\xBF", 4);
 
 #define VALID_SEQUENCE_TEST(name, val) \
     TEST(valid_sequence_ ## name) \
