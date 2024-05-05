@@ -97,6 +97,7 @@ STRING_FILTER_TEST(0x7F);
     REQUIRE_SEMICOLON_HERE
 
 STRING_FILTER_HIGH_TEST(x80, "\u0080");
+STRING_FILTER_HIGH_TEST(x81, "\u0081");
 
 #define INVALID_SEQUENCE_TEST(name, val, length) \
     TEST(invalid_sequence_ ## name) \
