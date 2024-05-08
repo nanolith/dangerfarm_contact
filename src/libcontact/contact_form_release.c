@@ -15,13 +15,10 @@
  */
 int contact_form_release(contact_form* form)
 {
-    int retval = STATUS_SUCCESS;
     size_t size = 0;
 
     /* this computation always succeeds. */
-    (void)retval;
-    retval = contact_form_compute_size(&size, form);
-    MODEL_ASSERT(STATUS_SUCCESS == retval);
+    size = contact_form_compute_size(form);
 
     /* clear memory. */
     memset(form, 0, size);
