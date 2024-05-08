@@ -72,6 +72,19 @@ int contact_form_read(contact_form** form, int s);
 int contact_form_write(int s, const contact_form* form);
 
 /**
+ * \brief Given a serialized contact form and a size, verify that the contact
+ * form is valid (i.e. that offsets are correct wrt size.)
+ *
+ * \param form          The contact form to verify.
+ * \param size          The size of the contact form to verify.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contact_form_verify(const contact_form* form, size_t size);
+
+/**
  * \brief Given a \ref contact_form, extract the name as a string.
  *
  * \note This string is owned by the caller and must be reclaimed using \ref
