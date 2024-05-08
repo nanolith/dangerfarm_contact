@@ -9,3 +9,4 @@
 #define ERROR_READ_MULTIBYTE_UNEXPECTED_CHARACTER             6
 #define ERROR_READ_MULTIBYTE_CODEPOINT_OUT_OF_RANGE           7
 #define ERROR_CONTACT_FORM_WRITE                              8
+#define ERROR_CONTACT_FORM_READ                               9
