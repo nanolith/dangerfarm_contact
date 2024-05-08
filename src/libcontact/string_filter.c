@@ -6,6 +6,7 @@
 /* forward decls. */
 static void blank_and_advance(char** str, size_t length);
 static bool is_lower_control_character(const char* str);
+static bool is_allowed_control_character(const char* str);
 static bool is_high_bit_character(const char* str);
 static int read_multibyte(
     uint32_t* codepoint, size_t* codepoint_size, const char* str);
@@ -41,7 +42,8 @@ int string_filter(char* str)
     while (!is_ascii_nul(*str))
     {
         /* is this a lower control character? */
-        if (is_lower_control_character(str))
+        if (    is_lower_control_character(str)
+            && !is_allowed_control_character(str))
         {
             blank_and_advance(&str, 1);
         }
@@ -86,6 +88,23 @@ int string_filter(char* str)
 static bool is_lower_control_character(const char* str)
 {
     if ((*str > 0x00 && *str <= 0x1F) || *str == 0x7F)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * \brief Check to see if the control character is allowed to pass the filter.
+ *
+ * \param str           The string to check.
+ *
+ * \returns true if this is an allowable control character and false otherwise.
+ */
+static bool is_allowed_control_character(const char* str)
+{
+    if (*str == '\n' || *str == '\t')
     {
         return true;
     }

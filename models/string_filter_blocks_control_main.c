@@ -63,6 +63,11 @@ bool is_lower_control(uint32_t codepoint)
     return (codepoint >= 0x01 && codepoint <= 0x1F) || (codepoint == 0x7F);
 }
 
+bool is_allowed_control(uint32_t codepoint)
+{
+    return (codepoint == '\t' || codepoint == '\n');
+}
+
 bool is_upper_control(uint32_t codepoint)
 {
     return (codepoint >= 0x80 && codepoint <= 0x9F);
@@ -93,8 +98,9 @@ int main(int argc, char* argv[])
 
     /* this codepoint can't be NULL. */
     MODEL_ASSERT(0 != codepoint);
-    /* this codepoint can't be a lower control character. */
-    MODEL_ASSERT(!is_lower_control(codepoint));
+    /* this codepoint can't be a lower control character unless it is allowed */
+    MODEL_ASSERT(
+        !(is_lower_control(codepoint) && !is_allowed_control(codepoint)));
     /* this codepoint can't be an upper control character. */
     MODEL_ASSERT(!is_upper_control(codepoint));
 
