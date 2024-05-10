@@ -6,6 +6,9 @@
 extern "C" {
 #endif /*__cplusplus*/
 
+/* don't allow contact forms larger than 1 MB. */
+#define MAX_CONTACT_FORM_SIZE  (1024 * 1024)
+
 typedef struct contact_form contact_form;
 
 /**
