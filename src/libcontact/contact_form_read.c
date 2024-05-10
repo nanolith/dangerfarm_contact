@@ -35,7 +35,7 @@ int contact_form_read(contact_form** form, int s)
     }
 
     /* ensure the size is sane. */
-    if (size > MAX_CONTACT_FORM_SIZE)
+    if (size < sizeof(contact_form) || size > MAX_CONTACT_FORM_SIZE)
     {
         retval = ERROR_CONTACT_FORM_INVALID;
         goto done;
