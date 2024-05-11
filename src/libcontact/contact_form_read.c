@@ -17,12 +17,12 @@
  */
 int contact_form_read(contact_form** form, int s)
 {
-#if 0
     int retval, release_retval;
     contact_form* tmp1 = NULL;
     contact_form* tmp2 = NULL;
     char* name = NULL;
     char* email = NULL;
+    char* subject = NULL;
     char* comment = NULL;
     ssize_t read_bytes = 0;
     size_t size = 0;
@@ -79,11 +79,18 @@ int contact_form_read(contact_form** form, int s)
         goto cleanup_name;
     }
 
+    /* extract subject from the contact form. */
+    retval = contact_form_extract_subject(&subject, tmp1);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto cleanup_email;
+    }
+
     /* extract comment from the contact form. */
     retval = contact_form_extract_comment(&comment, tmp1);
     if (STATUS_SUCCESS != retval)
     {
-        goto cleanup_email;
+        goto cleanup_subject;
     }
 
     /* filter name. */
@@ -100,6 +107,13 @@ int contact_form_read(contact_form** form, int s)
         goto cleanup_comment;
     }
 
+    /* filter subject. */
+    retval = string_filter(subject);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto cleanup_comment;
+    }
+
     /* filter comment. */
     retval = string_filter(comment);
     if (STATUS_SUCCESS != retval)
@@ -108,7 +122,7 @@ int contact_form_read(contact_form** form, int s)
     }
 
     /* create a filtered contact form. */
-    retval = contact_form_create(&tmp2, name, email, comment);
+    retval = contact_form_create(&tmp2, name, email, subject, comment);
     if (STATUS_SUCCESS != retval)
     {
         goto cleanup_comment;
@@ -121,6 +135,13 @@ int contact_form_read(contact_form** form, int s)
 
 cleanup_comment:
     release_retval = string_release(comment);
+    if (STATUS_SUCCESS != release_retval)
+    {
+        retval = release_retval;
+    }
+
+cleanup_subject:
+    release_retval = string_release(subject);
     if (STATUS_SUCCESS != release_retval)
     {
         retval = release_retval;
@@ -146,8 +167,4 @@ cleanup_tmp1:
 
 done:
     return retval;
-#endif
-    (void)form;
-    (void)s;
-    return -1;
 }
