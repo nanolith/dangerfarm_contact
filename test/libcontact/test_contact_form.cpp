@@ -6,15 +6,18 @@
 
 TEST_SUITE(contact_form);
 
+namespace {
+    const char* NAME = "Mr. Smith";
+    const char* EMAIL = "smith@example.com";
+    const char* SUBJECT = "Website Security";
+    const char* COMMENT = "I like your website, but is it secure?";
+}
+
 /**
  * We can create a contact form and release it.
  */
 TEST(contact_form_create_release)
 {
-    const char* NAME = "Mr. Smith";
-    const char* EMAIL = "smith@example.com";
-    const char* SUBJECT = "Website Security";
-    const char* COMMENT = "I like your website, but is it secure?";
     contact_form* form;
     char* name;
     char* email;
