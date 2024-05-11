@@ -17,7 +17,7 @@
  */
 int contact_form_extract_comment(char** comment, const contact_form* form)
 {
-    size_t offset = form->name_size + form->email_size;
+    size_t offset = form->name_size + form->email_size + form->subject_size;
 
     return string_create(comment, form->data + offset, form->comment_size);
 }

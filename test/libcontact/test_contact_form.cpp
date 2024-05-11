@@ -13,6 +13,7 @@ TEST(contact_form_create_release)
 {
     const char* NAME = "Mr. Smith";
     const char* EMAIL = "smith@example.com";
+    const char* SUBJECT = "Website Security";
     const char* COMMENT = "I like your website, but is it secure?";
     contact_form* form;
     char* name;
@@ -21,7 +22,8 @@ TEST(contact_form_create_release)
 
     /* We can create a contact_form instance. */
     TEST_ASSERT(
-        STATUS_SUCCESS == contact_form_create(&form, NAME, EMAIL, COMMENT));
+        STATUS_SUCCESS
+            == contact_form_create(&form, NAME, EMAIL, SUBJECT, COMMENT));
 
     /* A created form is always valid. */
     TEST_ASSERT(

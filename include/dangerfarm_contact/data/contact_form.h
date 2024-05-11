@@ -30,6 +30,7 @@ struct contact_form
  * \param form          Pointer to the pointer to receive the form on success.
  * \param name          The name for this contact.
  * \param email         The email for this contact.
+ * \param subject       The subject for this contact.
  * \param comment       The comment for this contact.
  *
  * \returns a status code indicating success or failure.
@@ -38,7 +39,7 @@ struct contact_form
  */
 int contact_form_create(
     contact_form** form, const char* name, const char* email,
-    const char* comment);
+    const char* subject, const char* comment);
 
 /**
  * \brief Release a \ref contact_form instance.
