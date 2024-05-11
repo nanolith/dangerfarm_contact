@@ -132,6 +132,22 @@ int contact_form_extract_name(char** name, const contact_form* form);
 int contact_form_extract_email(char** email, const contact_form* form);
 
 /**
+ * \brief Given a \ref contact_form, extract the subject as a string.
+ *
+ * \note This string is owned by the caller and must be reclaimed using \ref
+ * string_release.
+ *
+ * \param subject       Pointer to the char pointer to receive the subject on
+ *                      success.
+ * \param form          The \ref contact_form instance for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contact_form_extract_subject(char** subject, const contact_form* form);
+
+/**
  * \brief Given a \ref contact_form, extract the comment as a string.
  *
  * \note This string is owned by the caller and must be reclaimed using \ref
