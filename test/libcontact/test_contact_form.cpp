@@ -18,6 +18,7 @@ TEST(contact_form_create_release)
     contact_form* form;
     char* name;
     char* email;
+    char* subject;
     char* comment;
 
     /* We can create a contact_form instance. */
@@ -36,6 +37,9 @@ TEST(contact_form_create_release)
     /* We can extract the email. */
     TEST_ASSERT(STATUS_SUCCESS == contact_form_extract_email(&email, form));
 
+    /* We can extract the subject. */
+    TEST_ASSERT(STATUS_SUCCESS == contact_form_extract_subject(&subject, form));
+
     /* We can extract the comment field. */
     TEST_ASSERT(STATUS_SUCCESS == contact_form_extract_comment(&comment, form));
 
@@ -45,6 +49,9 @@ TEST(contact_form_create_release)
     /* the email matches. */
     TEST_EXPECT(0 == strcmp(email, EMAIL));
 
+    /* the subject matches. */
+    TEST_EXPECT(0 == strcmp(subject, SUBJECT));
+
     /* the comment matches. */
     TEST_EXPECT(0 == strcmp(comment, COMMENT));
 
@@ -52,5 +59,6 @@ TEST(contact_form_create_release)
     TEST_ASSERT(STATUS_SUCCESS == contact_form_release(form));
     TEST_ASSERT(STATUS_SUCCESS == string_release(name));
     TEST_ASSERT(STATUS_SUCCESS == string_release(email));
+    TEST_ASSERT(STATUS_SUCCESS == string_release(subject));
     TEST_ASSERT(STATUS_SUCCESS == string_release(comment));
 }
