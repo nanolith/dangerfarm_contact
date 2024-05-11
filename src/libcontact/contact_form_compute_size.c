@@ -11,5 +11,6 @@
 size_t contact_form_compute_size(const contact_form* form)
 {
     return
-        form->name_size + form->email_size + form->comment_size + sizeof(*form);
+        form->name_size + form->email_size + form->subject_size
+      + form->comment_size + sizeof(*form);
 }

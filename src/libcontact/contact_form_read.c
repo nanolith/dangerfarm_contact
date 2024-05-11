@@ -17,6 +17,7 @@
  */
 int contact_form_read(contact_form** form, int s)
 {
+#if 0
     int retval, release_retval;
     contact_form* tmp1 = NULL;
     contact_form* tmp2 = NULL;
@@ -145,4 +146,8 @@ cleanup_tmp1:
 
 done:
     return retval;
+#endif
+    (void)form;
+    (void)s;
+    return -1;
 }
