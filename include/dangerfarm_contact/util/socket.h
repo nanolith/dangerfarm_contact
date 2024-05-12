@@ -42,3 +42,19 @@ int socket_read_uint64(uint64_t* val, int s);
  *      - non-zero on failure.
  */
 int socket_read_contact_form_header(contact_form* hdr, int s);
+
+/**
+ * \brief Read contact form data from a socket.
+ *
+ * \note This read assumes that the backing buffer was already allocated by the
+ * caller. This convenience method just makes model checking easier.
+ *
+ * \param data          Pointer to the data buffer to be populated by this read.
+ * \param s             The socket from which this data is read.
+ * \param size          The size of the data to read.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int socket_read_contact_form_data(char* data, int s, size_t size);
