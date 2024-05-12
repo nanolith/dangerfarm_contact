@@ -1,6 +1,10 @@
 #pragma once
 #include <stdint.h>
 
+#ifdef   __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
+
 /* forward decls. */
 typedef struct contact_form contact_form;
 
@@ -58,3 +62,7 @@ int socket_read_contact_form_header(contact_form* hdr, int s);
  *      - non-zero on failure.
  */
 int socket_read_contact_form_data(char* data, int s, size_t size);
+
+#ifdef   __cplusplus
+}
+#endif /*__cplusplus*/
