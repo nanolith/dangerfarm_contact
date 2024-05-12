@@ -11,3 +11,4 @@
 #define ERROR_CONTACT_FORM_WRITE                              8
 #define ERROR_CONTACT_FORM_READ                               9
 #define ERROR_CONTACT_FORM_INVALID                           10
+#define ERROR_SOCKET_WRITE                                   11
