@@ -3,6 +3,8 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 
+#include "unix_shadow.h"
+
 int nondet_int();
 
 int socket(int domain, int type, int protocol)
