@@ -1,9 +1,10 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/data/contact_form.h>
+#include <dangerfarm_contact/util/socket.h>
 #include <dangerfarm_contact/util/string.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 /**
  * \brief Read a \ref contact_form from the given descriptor.
@@ -18,20 +19,19 @@
 int contact_form_read(contact_form** form, int s)
 {
     int retval, release_retval;
+    contact_form hdr;
     contact_form* tmp1 = NULL;
     contact_form* tmp2 = NULL;
     char* name = NULL;
     char* email = NULL;
     char* subject = NULL;
     char* comment = NULL;
-    ssize_t read_bytes = 0;
     size_t size = 0;
 
     /* read the size. */
-    read_bytes = read(s, &size, sizeof(size));
-    if (read_bytes < 0 || (size_t)read_bytes != sizeof(size))
+    retval = socket_read_uint64(&size, s);
+    if (STATUS_SUCCESS != retval)
     {
-        retval = ERROR_CONTACT_FORM_READ;
         goto done;
     }
 
@@ -39,6 +39,20 @@ int contact_form_read(contact_form** form, int s)
     if (size < sizeof(contact_form) || size > MAX_CONTACT_FORM_SIZE)
     {
         retval = ERROR_CONTACT_FORM_INVALID;
+        goto done;
+    }
+
+    /* read the contact form header. */
+    retval = socket_read_contact_form_header(&hdr, s);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto done;
+    }
+
+    /* verify the contact form header. */
+    retval = contact_form_verify(&hdr, size);
+    if (STATUS_SUCCESS != retval)
+    {
         goto done;
     }
 
@@ -50,16 +64,22 @@ int contact_form_read(contact_form** form, int s)
         goto done;
     }
 
-    /* read the contact form. */
-    read_bytes = read(s, tmp1, size);
-    if (read_bytes < 0 || (size_t)read_bytes != size)
-    {
-        retval = ERROR_CONTACT_FORM_READ;
-        goto cleanup_tmp1;
-    }
+    /* copy the header to the contact form. */
+    tmp1->name_size = hdr.name_size;
+    tmp1->email_size = hdr.email_size;
+    tmp1->subject_size = hdr.subject_size;
+    tmp1->comment_size = hdr.comment_size;
 
-    /* verify the contact form. */
-    retval = contact_form_verify(tmp1, size);
+    /* compute the data size. */
+    size_t data_size =
+          tmp1->name_size + tmp1->email_size + tmp1->subject_size
+        + tmp1->comment_size;
+
+    /* the data size plus the contact form struct size equals size. */
+    MODEL_ASSERT(size == data_size + sizeof(*tmp1));
+
+    /* read the contact form data. */
+    retval = socket_read_contact_form_data(tmp1->data, s, data_size);
     if (STATUS_SUCCESS != retval)
     {
         goto cleanup_tmp1;
@@ -166,5 +186,7 @@ cleanup_tmp1:
     free(tmp1);
 
 done:
+    memset(&hdr, 0, sizeof(hdr));
+
     return retval;
 }
