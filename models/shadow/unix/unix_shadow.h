@@ -12,4 +12,4 @@ struct fds
 __fds __fd_shadow_list[SHADOW_FD_COUNT];
 
 void unix_shadow_init();
-bool prop_is_open_fd();
+bool prop_is_open_fd(int fd);
