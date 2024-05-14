@@ -1,5 +1,6 @@
 #include <dangerfarm_contact/cbmc/model_assert.h>
 #include <errno.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "unix_shadow.h"
