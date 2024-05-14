@@ -1,7 +1,9 @@
 #include <dangerfarm_contact/cbmc/model_assert.h>
+#include <stddef.h>
+
 #include "unix_shadow.h"
 
-bool prop_is_open_fd()
+bool prop_is_open_fd(int fd)
 {
     MODEL_ASSERT(fd >= 0 && fd <= SHADOW_FD_COUNT);
 
