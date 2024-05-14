@@ -7,12 +7,7 @@
 int close(int fd)
 {
     MODEL_ASSERT(fd >= 0 && fd <= SHADOW_FD_COUNT);
-
-    if (NULL == __fd_shadow_list[fd].desc)
-    {
-        errno = EBADF;
-        return -1;
-    }
+    MODEL_ASSERT(prop_is_open_fd(fd));
 
     free(__fd_shadow_list[fd].desc);
     __fd_shadow_list[fd].desc = NULL;
