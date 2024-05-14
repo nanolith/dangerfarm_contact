@@ -14,6 +14,9 @@ read(int fd, void* buf, size_t nbytes)
 {
     char* cbuf = (char*)buf;
 
+    /* verify that this is an open fd. */
+    MODEL_ASSERT(prop_is_open_fd(fd));
+
     /* does this read succeed? */
     if (0 == nondet_status())
     {
