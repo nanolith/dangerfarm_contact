@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 #include "unix_shadow.h"
 
 void unix_shadow_init()
