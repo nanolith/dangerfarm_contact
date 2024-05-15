@@ -65,7 +65,6 @@ TEST_INCLUDES=$(MINUNIT_INCLUDE)
 DOC_BUILD_DIR=$(BUILD_DIR)/docs
 DOCDIR=$(CURDIR)/docs
 PANDOC?=pandoc
-XELATEX?=pdflatex
 
 ALL: CHECKED_TARGETS RELEASE_TARGETS
 
@@ -129,10 +128,8 @@ docs: $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf
 
 $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf: $(DOC_BUILD_DIR)
 $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf: $(DOCDIR)/dangerform_contact_talk.md
-	$(PANDOC) -f "markdown_strict+yaml_metadata_block" -T beamer \
-	    --slide-level 2 $< -o $(DOC_BUILD_DIR)/dangerform_contact_talk.tex
-	(cd $(DOC_BUILD_DIR) && $(XELATEX) dangerform_contact_talk.tex)
-	(cd $(DOC_BUILD_DIR) && $(XELATEX) dangerform_contact_talk.tex)
+	$(PANDOC) -T beamer $< --slide-level 2 -o \
+	    $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf
 
 $(DOC_BUILD_DIR):
 	mkdir -p $(DOC_BUILD_DIR)
