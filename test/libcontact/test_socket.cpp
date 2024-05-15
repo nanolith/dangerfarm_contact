@@ -73,3 +73,35 @@ TEST(socket_read_contact_form_header)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * We can read contact data.
+ */
+TEST(socket_read_contact_form_data)
+{
+    int sock[2];
+    const char DATA[] = "123456";
+    const size_t DATA_SIZE = strlen(DATA) + 1;
+    char data[7];
+
+    /* clear data. */
+    memset(data, 0, DATA_SIZE);
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the data. */
+    write(sock[0], DATA, DATA_SIZE);
+
+    /* read the data. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == socket_read_contact_form_data(data, sock[1], DATA_SIZE));
+
+    /* verify that the read values match. */
+    TEST_ASSERT(0 == memcmp(data, DATA, DATA_SIZE));
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
