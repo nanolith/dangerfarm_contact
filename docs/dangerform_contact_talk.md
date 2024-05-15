@@ -1,14 +1,6 @@
----
-title:
-- Ode to a Contact Form
-author:
-- Justin Handville
-theme:
-- Berkeley
-date:
-- May 15, 2024
-
----
+% Ode to a Contact Form
+% Justin Handville
+% May 15, 2024
 
 # BCHS and Doing Things the Hard Way
 
