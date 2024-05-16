@@ -9,6 +9,6 @@ ALL:
 	shadow/unix/prop_is_open_fd.c \
 	shadow/unix/socket.c \
 	shadow/unix/unix_shadow_init.c \
-	shadow/util_socket/socket_read_uint64.c \
+	shadow/libcontact/socket/socket_read_uint64.c \
 	../src/libcontact/socket_read_contact_form_header.c \
 	socket_read_contact_form_header_main.c
