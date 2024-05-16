@@ -10,13 +10,16 @@ int string_create(char** str, const void* data, size_t size)
 {
     /* verify that all bytes of data are reachable. */
     const char* bdata = (const char*)data;
-    MODEL_ASSERT(bdata[0] == bdata[0]);
-    MODEL_ASSERT(bdata[size - 1] == bdata[size - 1]);
+    if (size >= 1)
+    {
+        MODEL_ASSERT(bdata[0] == bdata[0]);
+        MODEL_ASSERT(bdata[size - 1] == bdata[size - 1]);
+    }
 
     /* truncate string to work within unroll rules. */
     if (size > 8) size = 8;
 
-    char* tmp = (char*)malloc(size);
+    char* tmp = (char*)malloc(size + 1);
     if (NULL == tmp)
     {
         return ERROR_GENERAL_OUT_OF_MEMORY;
@@ -27,7 +30,7 @@ int string_create(char** str, const void* data, size_t size)
         tmp[i] = nondet_char();
     }
 
-    tmp[size-1] = 0;
+    tmp[size] = 0;
     *str = tmp;
 
     return STATUS_SUCCESS;
