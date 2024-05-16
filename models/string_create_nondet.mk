@@ -6,4 +6,5 @@ ALL:
 	--unwind 10 --unwinding-assertions \
 	-I ../include \
 	shadow/libcontact/string/string_create_nondet.c \
+	shadow/libcontact/string/string_release.c \
 	string_create_nondet_main.c

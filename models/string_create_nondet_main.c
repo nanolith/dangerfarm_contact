@@ -19,5 +19,7 @@ int main(int argc, char* argv[])
     }
 
     /* clean up. */
-    free(str);
+    MODEL_ASSERT(STATUS_SUCCESS == string_release(str));
+
+    return 0;
 }
