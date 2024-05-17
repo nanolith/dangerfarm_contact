@@ -1,6 +1,7 @@
 #include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/status_codes.h>
+#include <dangerfarm_contact/util/string.h>
 
 int nondet_char();
 static void randomize_string(char* str, size_t size)
