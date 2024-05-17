@@ -12,7 +12,7 @@ int socket_write_uint64(int s, uint64_t val)
     MODEL_ASSERT(prop_is_open_fd(s));
 
     /* does this write succeed? */
-    if (0 == nondet_success())
+    if (0 == nondet_status())
     {
         return STATUS_SUCCESS;
     }
