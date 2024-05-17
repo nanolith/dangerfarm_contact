@@ -8,12 +8,25 @@ static void randomize_string(char* str, size_t size)
     for (size_t i = 0; i < size; ++i) str[i] = nondet_char();
 }
 
+size_t nondet_size();
+
+static size_t randomized_size(size_t size)
+{
+    size_t retsize = nondet_size();
+    if (retsize > size)
+    {
+        retsize = size;
+    }
+
+    return size;
+}
+
 int main(int argc, char* argv[])
 {
     int retval;
     char* str = NULL;
     char INPUT[9];
-    const size_t INPUT_SIZE = sizeof(INPUT);
+    const size_t INPUT_SIZE = randomized_size(sizeof(INPUT));
 
     randomize_string(INPUT, INPUT_SIZE);
 
