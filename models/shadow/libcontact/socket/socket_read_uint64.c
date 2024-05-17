@@ -17,7 +17,7 @@ int socket_read_uint64(uint64_t* val, int s)
     *val = nondet_uint64();
 
     /* does this read succeed? */
-    if (0 == nondet_success())
+    if (0 == nondet_status())
     {
         return STATUS_SUCCESS;
     }
