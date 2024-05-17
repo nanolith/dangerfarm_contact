@@ -3,6 +3,9 @@
 #include <dangerfarm_contact/util/socket.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <unistd.h>
+
+#include "shadow/unix/unix_shadow.h"
 
 int main(int argc, char* argv[])
 {
