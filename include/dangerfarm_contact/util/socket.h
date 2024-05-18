@@ -34,6 +34,19 @@ int socket_write_uint64(int s, uint64_t val);
 int socket_read_uint64(uint64_t* val, int s);
 
 /**
+ * \brief Write a contact form header to a socket.
+ *
+ *
+ * \param s             The socket to which the value is written.
+ * \param hdr           Pointer to the \ref contact_form header to write.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int socket_write_contact_form_header(int s, const contact_form* hdr);
+
+/**
  * \brief Read a contact form header from a socket.
  *
  * \note This reads the size data for the contact form, into a stack allocated
