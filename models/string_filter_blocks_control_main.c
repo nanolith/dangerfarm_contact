@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+static int nondet_char();
+
 char random_char()
 {
     char ch = nondet_char();
