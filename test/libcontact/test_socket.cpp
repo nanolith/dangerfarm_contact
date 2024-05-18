@@ -75,6 +75,55 @@ TEST(socket_read_contact_form_header)
 }
 
 /**
+ * We can read and write a contact form header.
+ */
+TEST(socket_read_write_contact_form_header)
+{
+    int sock[2];
+    contact_form write_header;
+    contact_form hdr;
+    const uint64_t NAME_SIZE = 42;
+    const uint64_t EMAIL_SIZE = 17;
+    const uint64_t SUBJECT_SIZE = 31;
+    const uint64_t COMMENT_SIZE = 1503;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* clear and set the write header. */
+    memset(&write_header, 0, sizeof(write_header));
+    write_header.name_size = NAME_SIZE;
+    write_header.email_size = EMAIL_SIZE;
+    write_header.subject_size = SUBJECT_SIZE;
+    write_header.comment_size = COMMENT_SIZE;
+
+    /* clear the header. */
+    memset(&hdr, 0, sizeof(hdr));
+
+    /* write the header. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == socket_write_contact_form_header(sock[0], &write_header));
+
+    /* read the header. */
+    TEST_ASSERT(
+        STATUS_SUCCESS == socket_read_contact_form_header(&hdr, sock[1]));
+
+    /* verify that the read values match. */
+    TEST_ASSERT(NAME_SIZE == hdr.name_size);
+    TEST_ASSERT(EMAIL_SIZE == hdr.email_size);
+    TEST_ASSERT(SUBJECT_SIZE == hdr.subject_size);
+    TEST_ASSERT(COMMENT_SIZE == hdr.comment_size);
+
+    /* verify that the two headers match. */
+    TEST_ASSERT(0 == memcmp(&hdr, &write_header, sizeof(hdr)));
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
+
+/**
  * We can read contact data.
  */
 TEST(socket_read_contact_form_data)
