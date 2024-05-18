@@ -1,5 +1,7 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
+#include <string.h>
 
 int string_filter(char* str)
 {
