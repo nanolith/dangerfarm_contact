@@ -1,5 +1,6 @@
-#include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/data/contact_form.h>
+#include <dangerfarm_contact/status_codes.h>
+#include <dangerfarm_contact/util/socket.h>
 #include <unistd.h>
 
 /**
@@ -15,21 +16,31 @@
  */
 int contact_form_write(int s, const contact_form* form)
 {
-    ssize_t wrote_bytes = 0;
+    int retval;
     size_t size = contact_form_compute_size(form);
 
     /* write the size bytes. */
-    wrote_bytes = write(s, &size, sizeof(size));
-    if (wrote_bytes < 0 || (size_t)wrote_bytes != sizeof(size))
+    retval = socket_write_uint64(s, size);
+    if (STATUS_SUCCESS != retval)
     {
-        return ERROR_CONTACT_FORM_WRITE;
+        return retval;
     }
 
-    /* write the contact form. */
-    wrote_bytes = write(s, form, size);
-    if (wrote_bytes < 0 || (size_t)wrote_bytes != size)
+    /* write the header. */
+    retval = socket_write_contact_form_header(s, form);
+    if (STATUS_SUCCESS != retval)
     {
-        return ERROR_CONTACT_FORM_WRITE;
+        return retval;
+    }
+
+    /* reduce the size by header bytes. */
+    size -= sizeof(*form);
+
+    /* write the data. */
+    retval = socket_write_contact_form_data(s, form->data, size);
+    if (STATUS_SUCCESS != retval)
+    {
+        return retval;
     }
 
     /* success. */
