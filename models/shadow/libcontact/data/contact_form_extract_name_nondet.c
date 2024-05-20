@@ -2,6 +2,7 @@
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
+#include <stdlib.h>
 
 char nondet_char();
 size_t nondet_size();
