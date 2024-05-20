@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 
@@ -162,6 +163,15 @@ int contact_form_extract_subject(char** subject, const contact_form* form);
  *      - non-zero on failure.
  */
 int contact_form_extract_comment(char** comment, const contact_form* form);
+
+/**
+ * \brief Model check helper to determine whether a contact form appears valid.
+ *
+ * \param form          The contact form to check.
+ *
+ * \returns true if the contact form appears valid and false otherwise.
+ */
+bool prop_valid_contact_form(const contact_form* form);
 
 #ifdef   __cplusplus
 }
