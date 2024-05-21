@@ -5,10 +5,12 @@ ALL:
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
 	-I ../include \
+	shadow/libcontact/data/prop_valid_contact_form.c \
 	shadow/libcontact/data/contact_form_create_nondet.c \
 	shadow/libcontact/string/string_create_nondet.c \
 	shadow/libcontact/string/string_release.c \
 	../src/libcontact/contact_form_compute_size.c \
 	../src/libcontact/contact_form_extract_name.c \
 	../src/libcontact/contact_form_release.c \
+	../src/libcontact/contact_form_verify.c \
 	contact_form_extract_name_main.c
