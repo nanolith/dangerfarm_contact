@@ -1,3 +1,4 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/util/string.h>
 
@@ -17,6 +18,8 @@
  */
 int contact_form_extract_name(char** name, const contact_form* form)
 {
+    MODEL_ASSERT(prop_valid_contact_form(form));
+
     size_t offset = 0;
 
     return string_create(name, form->data + offset, form->name_size);
