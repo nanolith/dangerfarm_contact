@@ -1,3 +1,4 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/socket.h>
@@ -16,6 +17,8 @@
  */
 int contact_form_write(int s, const contact_form* form)
 {
+    MODEL_ASSERT(prop_valid_contact_form(form));
+
     int retval;
     size_t size = contact_form_compute_size(form);
 
