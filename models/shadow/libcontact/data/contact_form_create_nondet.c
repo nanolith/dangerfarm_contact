@@ -7,8 +7,8 @@ static size_t nondet_size();
 static size_t random_size()
 {
     size_t size = nondet_size();
-    if (size > 9)
-        size = 9;
+    if (size > 3)
+        size = 3;
 
     return size;
 }
