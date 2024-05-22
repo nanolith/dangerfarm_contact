@@ -15,6 +15,8 @@
  */
 int contact_form_release(contact_form* form)
 {
+    MODEL_ASSERT(prop_valid_contact_form(form));
+
     size_t size = 0;
 
     /* this computation always succeeds. */
