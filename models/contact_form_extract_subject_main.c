@@ -3,49 +3,20 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
 
-int nondet_char();
-size_t nondet_size();
-size_t get_random_size(size_t size)
-{
-    size_t random_size = nondet_size();
-
-    if (random_size > size)
-    {
-        random_size = size;
-    }
-    if (random_size < 1)
-    {
-        random_size = 1;
-    }
-
-    return random_size;
-}
-
-static void randomize_string(char* str, size_t size)
-{
-    for (size_t i = 0; i < size - 1; ++i) str[i] = nondet_char();
-    str[size - 1] = 0;
-}
-
 int main(int argc, char* argv[])
 {
     int retval;
     char* str = NULL;
-    char NAME[9];
-    size_t NAME_SIZE = get_random_size(sizeof(NAME));
-    char EMAIL[9];
-    size_t EMAIL_SIZE = get_random_size(sizeof(EMAIL));
-    char SUBJECT[9];
-    size_t SUBJECT_SIZE = get_random_size(sizeof(SUBJECT));
-    char COMMENT[9];
-    size_t COMMENT_SIZE = get_random_size(sizeof(COMMENT));
+    char NAME[9]; /* ignored by shadow contact_form_create. */
+    size_t NAME_SIZE; /* ignored by shadow contact_form_create. */
+    char EMAIL[9]; /* ignored by shadow contact_form_create. */
+    size_t EMAIL_SIZE; /* ignored by shadow contact_form_create. */
+    char SUBJECT[9]; /* ignored by shadow contact_form_create. */
+    size_t SUBJECT_SIZE; /* ignored by shadow contact_form_create. */
+    char COMMENT[9]; /* ignored by shadow contact_form_create. */
+    size_t COMMENT_SIZE; /* ignored by shadow contact_form_create. */
     contact_form* form = NULL;
     char* subject = NULL;
-
-    randomize_string(NAME, NAME_SIZE);
-    randomize_string(EMAIL, EMAIL_SIZE);
-    randomize_string(SUBJECT, SUBJECT_SIZE);
-    randomize_string(COMMENT, COMMENT_SIZE);
 
     /* Create a contact form. */
     retval = contact_form_create(&form, NAME, EMAIL, SUBJECT, COMMENT);
