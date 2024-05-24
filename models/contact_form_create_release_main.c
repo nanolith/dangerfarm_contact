@@ -14,10 +14,10 @@ int main(int argc, char* argv[])
 {
     int retval;
     char* str = NULL;
-    char NAME[10];
-    char EMAIL[10];
-    char SUBJECT[10];
-    char COMMENT[10];
+    char NAME[6];
+    char EMAIL[6];
+    char SUBJECT[6];
+    char COMMENT[6];
     contact_form* form = NULL;
     char* name = NULL;
     char* email = NULL;

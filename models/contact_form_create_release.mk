@@ -4,6 +4,7 @@ ALL:
 	--div-by-zero-check --pointer-overflow-check --trace --stop-on-fail -DCBMC \
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
+	--unwindset string_create.0:7 \
 	-I ../include \
 	shadow/libcontact/data/prop_valid_contact_form.c \
 	shadow/libcontact/string/string_create_nondet.c \
