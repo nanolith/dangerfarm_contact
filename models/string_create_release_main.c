@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 {
     int retval;
     char* str = NULL;
-    const char* INPUT = "foo bar b";
+    const char* INPUT = "foobar";
     const size_t INPUT_SIZE = strlen(INPUT);
 
     /* basic exercise of string creation. */
