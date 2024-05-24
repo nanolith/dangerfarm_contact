@@ -16,8 +16,8 @@ int string_create(char** str, const void* data, size_t size)
         MODEL_ASSERT(bdata[size - 1] == bdata[size - 1]);
     }
 
-    /* truncate string to work within unroll rules. */
-    if (size > 8) size = 8;
+    /* truncate string to speed up analysis. */
+    if (size > 6) size = 6;
 
     char* tmp = (char*)malloc(size + 1);
     if (NULL == tmp)
