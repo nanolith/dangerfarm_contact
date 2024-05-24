@@ -13,6 +13,5 @@ ALL:
 	shadow/libcontact/data/contact_form_create_nondet.c \
 	shadow/libcontact/data/contact_form_extract_subject_nondet.c \
 	shadow/libcontact/data/prop_valid_contact_form.c \
-	shadow/libcontact/string/string_create_nondet.c \
 	shadow/libcontact/string/string_release.c \
 	contact_form_extract_subject_nondet_main.c
