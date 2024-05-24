@@ -6,6 +6,7 @@ ALL:
 	--unwind 10 --unwinding-assertions \
 	--unwindset contact_form_create.0:4,contact_form_create.1:4 \
 	--unwindset contact_form_create.2:4,contact_form_create.3:4 \
+	--unwindset string_create.0:7 \
 	-I ../include \
 	shadow/libcontact/data/prop_valid_contact_form.c \
 	shadow/libcontact/data/contact_form_create_nondet.c \
