@@ -38,7 +38,6 @@ int database_read_contact_form_append_response(
  * \brief Write a get count request to the socket.
  *
  * \param s         The socket to which this request is written.
- * \param form      The contact form to write.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
