@@ -27,3 +27,15 @@ int database_write_contact_form_append_request(
  */
 int database_read_contact_form_append_response(
     uint32_t* status, int s);
+
+/**
+ * \brief Write a get count request to the database.
+ *
+ * \param s         The socket to which this request is written.
+ * \param form      The contact form to write.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_contact_form_get_count_request(int s);
