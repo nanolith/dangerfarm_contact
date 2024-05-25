@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef   __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
+
 typedef struct contact_form contact_form;
 
 /**
@@ -53,3 +57,7 @@ int database_write_contact_form_get_count_request(int s);
  */
 int database_read_contact_form_get_count_response(
     uint32_t* status, uint64_t* count, int s);
+
+#ifdef   __cplusplus
+}
+#endif /*__cplusplus*/
