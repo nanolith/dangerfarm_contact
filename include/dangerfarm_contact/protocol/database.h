@@ -59,6 +59,17 @@ int database_write_contact_form_get_count_request(int s);
 int database_read_contact_form_get_count_response(
     uint32_t* status, uint64_t* count, int s);
 
+/**
+ * \brief Write a list contact forms request to the socket.
+ *
+ * \param s         The socket to which this request is written.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_contact_form_list_request(int s);
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
