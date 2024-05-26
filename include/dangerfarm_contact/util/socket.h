@@ -10,6 +10,18 @@ extern "C" {
 typedef struct contact_form contact_form;
 
 /**
+ * \brief Write a uint32_t value to a socket.
+ *
+ * \param s             The socket to which the value is written.
+ * \param val           The value to write.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int socket_write_uint32(int s, uint32_t val);
+
+/**
  * \brief Write a uint64_t value to a socket.
  *
  * \param s             The socket to which the value is written.
