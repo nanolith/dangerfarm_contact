@@ -36,6 +36,32 @@ TEST(socket_read_write_uint64)
 }
 
 /**
+ * We can read and write a uint32_t value.
+ */
+TEST(socket_read_write_uint32)
+{
+    int sock[2];
+    uint32_t val_read;
+    const uint32_t VAL_WRITE = 0x4321;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the value. */
+    TEST_ASSERT(STATUS_SUCCESS == socket_write_uint32(sock[0], VAL_WRITE));
+
+    /* read the value. */
+    TEST_ASSERT(STATUS_SUCCESS == socket_read_uint32(&val_read, sock[1]));
+
+    /* the values should match. */
+    TEST_EXPECT(val_read == VAL_WRITE);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
+
+/**
  * We can read a contact form header.
  */
 TEST(socket_read_contact_form_header)
