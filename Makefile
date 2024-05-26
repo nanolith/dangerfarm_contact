@@ -128,7 +128,7 @@ docs: $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf
 
 $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf: $(DOC_BUILD_DIR)
 $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf: $(DOCDIR)/dangerform_contact_talk.md
-	$(PANDOC) -T beamer $< --slide-level 2 -o \
+	$(PANDOC) -t beamer $< --slide-level 2 -o \
 	    $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf
 
 $(DOC_BUILD_DIR):
