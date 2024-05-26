@@ -14,6 +14,18 @@ enum database_protocol_request_id
 };
 
 /**
+ * \brief Read a database request id from the socket.
+ *
+ * \param req       The request to read.
+ * \param s         The socket from which this request is read.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_read_request_id(uint32_t* req, int s);
+
+/**
  * \brief Write a contact form append request to the socket.
  *
  * \param s         The socket to which this request is written.
