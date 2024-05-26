@@ -70,6 +70,24 @@ int database_read_contact_form_get_count_response(
  */
 int database_write_contact_form_list_request(int s);
 
+/**
+ * \brief Read a list contact forms response from the socket.
+ *
+ * \param status    Pointer to receive the status code on success.
+ * \param count     Pointer to receive the count of items to be read.
+ * \param id_list   Pointer to receive the array of contact IDs.
+ * \param s         The socket from which this response is read.
+ *
+ * \note id_list is updated with a dynamically allocated array which is owned
+ * by the caller on success.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_read_contact_form_list_response(
+    uint32_t* status, uint64_t* count, uint64_t** id_list, int s);
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
