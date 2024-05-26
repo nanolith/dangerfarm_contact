@@ -56,6 +56,19 @@ int database_read_contact_form_append_request_payload(
     contact_form** form, int s);
 
 /**
+ * \brief Write a contact form append response to the socket.
+ *
+ * \param s         The socket to which this response is written.
+ * \param status    The status for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_contact_form_append_response(
+    int s, const uint32_t status);
+
+/**
  * \brief Read a contact form append response from the socket.
  *
  * \param status    Pointer to receive the status code on success.
