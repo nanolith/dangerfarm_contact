@@ -19,7 +19,7 @@ int database_write_contact_form_append_request(
     int retval;
 
     /* write the request id. */
-    retval = socket_write_uint64(s, DATABASE_REQUEST_ID_CONTACT_FORM_APPEND);
+    retval = socket_write_uint32(s, DATABASE_REQUEST_ID_CONTACT_FORM_APPEND);
     if (STATUS_SUCCESS != retval)
     {
         return retval;
