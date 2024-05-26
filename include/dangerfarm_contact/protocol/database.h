@@ -8,6 +8,11 @@ extern "C" {
 
 typedef struct contact_form contact_form;
 
+enum database_protocol_request_id
+{
+    DATABASE_REQUEST_ID_CONTACT_FORM_APPEND = 1,
+};
+
 /**
  * \brief Write a contact form append request to the socket.
  *
