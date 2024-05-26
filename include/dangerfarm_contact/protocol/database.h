@@ -39,6 +39,23 @@ int database_write_contact_form_append_request(
     int s, const contact_form* form);
 
 /**
+ * \brief Read a contact form append request payload.
+ *
+ * \note On success, the contact form is owned by the caller and must be
+ * released when no longer needed.
+ *
+ * \param form      Pointer to the contact form append request payload to be
+ *                  updated with the created payload on success.
+ * \param s         The socket from which this request payload is read.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_read_contact_form_append_request_payload(
+    contact_form** form, int s);
+
+/**
  * \brief Read a contact form append response from the socket.
  *
  * \param status    Pointer to receive the status code on success.
