@@ -10,7 +10,8 @@ typedef struct contact_form contact_form;
 
 enum database_protocol_request_id
 {
-    DATABASE_REQUEST_ID_CONTACT_FORM_APPEND = 1,
+    DATABASE_REQUEST_ID_CONTACT_FORM_APPEND                             = 1,
+    DATABASE_REQUEST_ID_CONTACT_FORM_GET_COUNT                          = 2,
 };
 
 /**
