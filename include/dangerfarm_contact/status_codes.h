@@ -13,3 +13,4 @@
 #define ERROR_CONTACT_FORM_INVALID                           10
 #define ERROR_SOCKET_WRITE                                   11
 #define ERROR_SOCKET_READ                                    12
+#define ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID        13
