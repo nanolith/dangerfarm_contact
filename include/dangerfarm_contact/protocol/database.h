@@ -12,6 +12,7 @@ enum database_protocol_request_id
 {
     DATABASE_REQUEST_ID_CONTACT_FORM_APPEND                             = 1,
     DATABASE_REQUEST_ID_CONTACT_FORM_GET_COUNT                          = 2,
+    DATABASE_REQUEST_ID_CONTACT_FORM_GET_LIST                           = 3,
 };
 
 /**
