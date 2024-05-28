@@ -170,6 +170,18 @@ int database_write_contact_form_read_request(int s, uint64_t id);
 int database_read_contact_form_read_response(
     uint32_t* status, contact_form** form, int s);
 
+/**
+ * \brief Write a contact delete request to the socket.
+ *
+ * \param s         The socket to which this request is written.
+ * \param id        The id of the contact form to be deleted.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_contact_form_delete_request(int s, uint64_t id);
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
