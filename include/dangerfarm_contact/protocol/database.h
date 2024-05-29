@@ -183,6 +183,18 @@ int database_read_contact_form_list_response(
 int database_write_contact_form_read_request(int s, uint64_t id);
 
 /**
+ * \brief Read a contact read request payload from the socket.
+ *
+ * \param id        Pointer to receive the contact form id on success.
+ * \param s         The socket to which this request is written.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_read_contact_form_read_request_payload(uint64_t* id, int s);
+
+/**
  * \brief Read a contact read response from the socket.
  *
  * \note The form pointer is populated only if this function returns success AND
