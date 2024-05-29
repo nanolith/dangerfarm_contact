@@ -195,6 +195,20 @@ int database_write_contact_form_read_request(int s, uint64_t id);
 int database_read_contact_form_read_request_payload(uint64_t* id, int s);
 
 /**
+ * \brief Write a contact read response to the socket.
+ *
+ * \param s         The socket to which this response is written.
+ * \param status    The status for this response.
+ * \param form      The contact form to write to the socket.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_contact_form_read_response(
+    int s, const uint32_t status, const contact_form* form);
+
+/**
  * \brief Read a contact read response from the socket.
  *
  * \note The form pointer is populated only if this function returns success AND
