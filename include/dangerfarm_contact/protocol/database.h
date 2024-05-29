@@ -98,6 +98,20 @@ int database_read_contact_form_append_response(
 int database_write_contact_form_get_count_request(int s);
 
 /**
+ * \brief Write a contact form get count response to the socket.
+ *
+ * \param s         The socket to which this response is written.
+ * \param status    The status code to write.
+ * \param count     The count to write.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_contact_form_get_count_response(
+    int s, const uint32_t status, const uint64_t count);
+
+/**
  * \brief Read a contact form get count response from the socket.
  *
  * \param status    Pointer to receive the status code on success.
