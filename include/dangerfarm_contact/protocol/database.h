@@ -137,6 +137,22 @@ int database_read_contact_form_get_count_response(
 int database_write_contact_form_list_request(int s);
 
 /**
+ * \brief Write a list contact forms response to the socket.
+ *
+ * \param s         The socket from which this response is read.
+ * \param status    The status for this response.
+ * \param count     The count of the id list.
+ * \param id_list   The id list to write.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_contact_form_list_response(
+    int s, const uint32_t status, const uint64_t count,
+    const uint64_t* id_list);
+
+/**
  * \brief Read a list contact forms response from the socket.
  *
  * \param status    Pointer to receive the status code on success.
