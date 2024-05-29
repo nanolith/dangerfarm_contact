@@ -139,7 +139,7 @@ int database_write_contact_form_list_request(int s);
 /**
  * \brief Write a list contact forms response to the socket.
  *
- * \param s         The socket from which this response is read.
+ * \param s         The socket to which this response is written.
  * \param status    The status for this response.
  * \param count     The count of the id list.
  * \param id_list   The id list to write.
