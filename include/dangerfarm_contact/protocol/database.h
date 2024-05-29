@@ -194,6 +194,17 @@ int database_write_contact_form_delete_request(int s, uint64_t id);
  */
 int database_read_contact_form_delete_response(uint32_t* status, int s);
 
+/**
+ * \brief Write a database truncate request to the socket.
+ *
+ * \param s         The socket to which this request is written.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_database_truncate_request(int s);
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
