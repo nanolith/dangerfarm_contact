@@ -286,6 +286,18 @@ int database_read_contact_form_delete_response(uint32_t* status, int s);
 int database_write_database_truncate_request(int s);
 
 /**
+ * \brief Write a database truncate response to the socket.
+ *
+ * \param s         The socket to which this response is written.
+ * \param status    The status for this response.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_database_truncate_response(int s, const uint32_t status);
+
+/**
  * \brief Read a database truncate response from the socket.
  *
  * \param status    The status for this request.
