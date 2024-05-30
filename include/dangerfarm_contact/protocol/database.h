@@ -266,7 +266,7 @@ int database_write_contact_form_delete_response(int s, const uint32_t status);
  * \brief Read a contact delete response from the socket.
  *
  * \param status    The status for this request.
- * \param s         The socket to which this request is written.
+ * \param s         The socket from which this request is read.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
