@@ -32,6 +32,12 @@ int database_write_contact_form_get_count_response(
         return retval;
     }
 
+    /* if the status is not success, then we are done. */
+    if (STATUS_SUCCESS != status)
+    {
+        return STATUS_SUCCESS;
+    }
+
     /* write the count. */
     retval = socket_write_uint64(s, count);
     if (STATUS_SUCCESS != retval)
