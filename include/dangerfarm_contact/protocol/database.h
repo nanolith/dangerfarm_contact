@@ -300,8 +300,8 @@ int database_write_database_truncate_response(int s, const uint32_t status);
 /**
  * \brief Read a database truncate response from the socket.
  *
- * \param status    The status for this request.
- * \param s         The socket to which this request is written.
+ * \param status    The status for this response.
+ * \param s         The socket from which this request is read.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
