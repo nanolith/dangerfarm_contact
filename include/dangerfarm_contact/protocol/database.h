@@ -214,10 +214,10 @@ int database_write_contact_form_read_response(
  * \note The form pointer is populated only if this function returns success AND
  * the status is set to success.
  *
- * \param status    The status for this request.
+ * \param status    The status for this response.
  * \param form      Pointer to the form pointer to get a created form instance
  *                  on success.
- * \param s         The socket to which this request is written.
+ * \param s         The socket from which this request is read.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
