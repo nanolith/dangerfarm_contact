@@ -242,7 +242,7 @@ int database_write_contact_form_delete_request(int s, uint64_t id);
  * \brief Read a contact delete request payload from the socket.
  *
  * \param id        Pointer to receive the contact form id on success.
- * \param s         The socket to which this request is written.
+ * \param s         The socket from which this request is read.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
