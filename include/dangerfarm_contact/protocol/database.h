@@ -18,6 +18,8 @@ enum database_protocol_request_id
     DATABASE_REQUEST_ID_TRUNCATE                                        = 7,
 };
 
+#define DATABASE_PROTOCOL_MAX_COUNT         1024
+
 /**
  * \brief Read a database request id from the socket.
  *
