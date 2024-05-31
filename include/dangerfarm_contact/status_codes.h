@@ -14,3 +14,4 @@
 #define ERROR_SOCKET_WRITE                                   11
 #define ERROR_SOCKET_READ                                    12
 #define ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID        13
+#define ERROR_DATABASE_PROTOCOL_INVALID_COUNT                14
