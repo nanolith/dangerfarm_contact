@@ -19,6 +19,13 @@ int database_write_contact_form_read_response(
 {
     int retval;
 
+    /* write the request id. */
+    retval = socket_write_uint32(s, DATABASE_REQUEST_ID_CONTACT_FORM_GET);
+    if (STATUS_SUCCESS != retval)
+    {
+        return retval;
+    }
+
     /* write the status. */
     retval = socket_write_uint32(s, status);
     if (STATUS_SUCCESS != retval)
