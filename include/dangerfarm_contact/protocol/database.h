@@ -309,7 +309,7 @@ int database_write_database_truncate_response(int s, const uint32_t status);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_database_truncate_request(uint32_t* status, int s);
+int database_read_database_truncate_response(uint32_t* status, int s);
 
 #ifdef   __cplusplus
 }
