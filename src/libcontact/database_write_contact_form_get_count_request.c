@@ -13,15 +13,6 @@
  */
 int database_write_contact_form_get_count_request(int s)
 {
-    int retval;
-
     /* write the request id. */
-    retval = socket_write_uint32(s, DATABASE_REQUEST_ID_CONTACT_FORM_GET_COUNT);
-    if (STATUS_SUCCESS != retval)
-    {
-        return retval;
-    }
-
-    /* success. */
-    return STATUS_SUCCESS;
+    return socket_write_uint32(s, DATABASE_REQUEST_ID_CONTACT_FORM_GET_COUNT);
 }
