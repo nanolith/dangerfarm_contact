@@ -214,3 +214,31 @@ TEST(database_read_write_contact_form_get_count_response_not_successful)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * We can write and read a contact form list request.
+ */
+TEST(database_read_write_contact_form_list_request)
+{
+    int sock[2];
+    uint32_t request_id = 1234;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the list request. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_contact_form_list_request(sock[0]));
+
+    /* read the request id. */
+    TEST_ASSERT(
+        STATUS_SUCCESS == database_read_request_id(&request_id, sock[1]));
+
+    /* the request id matches. */
+    TEST_ASSERT(DATABASE_REQUEST_ID_CONTACT_FORM_GET_LIST == request_id);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
