@@ -140,3 +140,39 @@ TEST(database_read_write_contact_form_get_count_request)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * We can write and read a contact form get count response.
+ */
+TEST(database_read_write_contact_form_get_count_response)
+{
+    int sock[2];
+    const uint32_t WRITE_STATUS = STATUS_SUCCESS;
+    const uint64_t WRITE_COUNT = 12;
+    uint32_t request_id = 1234;
+    uint32_t status = 4433;
+    uint64_t count = 0;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the get count response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_contact_form_get_count_response(
+                    sock[0], WRITE_STATUS, WRITE_COUNT));
+
+    /* read the response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_read_contact_form_get_count_response(
+                    &status, &count, sock[1]));
+
+    /* the fields match. */
+    TEST_EXPECT(WRITE_STATUS == status);
+    TEST_EXPECT(WRITE_COUNT == count);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
