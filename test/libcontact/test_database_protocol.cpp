@@ -3,6 +3,7 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
 #include <minunit/minunit.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -241,4 +242,51 @@ TEST(database_read_write_contact_form_list_request)
     /* clean up. */
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
+}
+
+/**
+ * We can write and read a contact form list response.
+ */
+TEST(database_read_write_contact_form_list_response)
+{
+    int sock[2];
+    const uint32_t STATUS = STATUS_SUCCESS;
+    const uint64_t ID_LIST[] = {
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    const uint64_t COUNT = sizeof(ID_LIST) / sizeof(ID_LIST[0]);
+    uint32_t status = 1234;
+    uint64_t count = 0;
+    uint64_t* list = nullptr;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the list response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_contact_form_list_response(
+                    sock[0], STATUS, COUNT, ID_LIST));
+
+    /* read the list response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_read_contact_form_list_response(
+                    &status, &count, &list, sock[1]));
+
+    /* the status should be success. */
+    TEST_ASSERT(STATUS_SUCCESS == status);
+
+    /* the count should be correct. */
+    TEST_ASSERT(COUNT == count);
+
+    /* each list entry should be correct. */
+    for (uint64_t i = 0; i < COUNT; ++i)
+    {
+        TEST_EXPECT(ID_LIST[i] == list[i]);
+    }
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+    free(list);
 }
