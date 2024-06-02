@@ -279,6 +279,9 @@ TEST(database_read_write_contact_form_list_response)
     /* the count should be correct. */
     TEST_ASSERT(COUNT == count);
 
+    /* the list is NOT null. */
+    TEST_ASSERT(nullptr != list);
+
     /* each list entry should be correct. */
     for (uint64_t i = 0; i < COUNT; ++i)
     {
