@@ -176,3 +176,41 @@ TEST(database_read_write_contact_form_get_count_response)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * If the status is not successful, then the count is not updated.
+ */
+TEST(database_read_write_contact_form_get_count_response_not_successful)
+{
+    int sock[2];
+    const uint32_t WRITE_STATUS = 4433;
+    const uint64_t WRITE_COUNT = 12;
+    uint32_t request_id = 1234;
+    uint32_t status = 0;
+    uint64_t count = 0;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the get count response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_contact_form_get_count_response(
+                    sock[0], WRITE_STATUS, WRITE_COUNT));
+
+    /* read the response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_read_contact_form_get_count_response(
+                    &status, &count, sock[1]));
+
+    /* The status matches. */
+    TEST_EXPECT(WRITE_STATUS == status);
+
+    /* the count is NOT updated. */
+    TEST_EXPECT(WRITE_COUNT != count);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
