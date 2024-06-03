@@ -375,3 +375,67 @@ TEST(database_read_write_contact_form_read_request)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * We can read and write a contact form read response.
+ */
+TEST(database_read_write_contact_form_read_response)
+{
+    int sock[2];
+    contact_form* formwrite;
+    contact_form* form = nullptr;
+    const uint32_t STATUS = STATUS_SUCCESS;
+    uint32_t status = 123;
+    char* name;
+    char* email;
+    char* subject;
+    char* comment;
+
+    /* We can create a contact_form instance. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == contact_form_create(&formwrite, NAME, EMAIL, SUBJECT, COMMENT));
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the read response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_contact_form_read_response(
+                    sock[0], STATUS, formwrite));
+
+    /* read the read response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_read_contact_form_read_response(
+                    &status, &form, sock[1]));
+
+    /* verify that the status is successful. */
+    TEST_ASSERT(STATUS_SUCCESS == status);
+
+    /* verify that the form pointer is set. */
+    TEST_ASSERT(nullptr != form);
+
+    /* extract the fields. */
+    TEST_ASSERT(STATUS_SUCCESS == contact_form_extract_name(&name, form));
+    TEST_ASSERT(STATUS_SUCCESS == contact_form_extract_email(&email, form));
+    TEST_ASSERT(STATUS_SUCCESS == contact_form_extract_subject(&subject, form));
+    TEST_ASSERT(STATUS_SUCCESS == contact_form_extract_comment(&comment, form));
+
+    /* the fields match. */
+    TEST_EXPECT(0 == strcmp(name, NAME));
+    TEST_EXPECT(0 == strcmp(email, EMAIL));
+    TEST_EXPECT(0 == strcmp(subject, SUBJECT));
+    TEST_EXPECT(0 == strcmp(comment, COMMENT));
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+    TEST_ASSERT(STATUS_SUCCESS == contact_form_release(formwrite));
+    TEST_ASSERT(STATUS_SUCCESS == contact_form_release(form));
+    TEST_ASSERT(STATUS_SUCCESS == string_release(name));
+    TEST_ASSERT(STATUS_SUCCESS == string_release(email));
+    TEST_ASSERT(STATUS_SUCCESS == string_release(subject));
+    TEST_ASSERT(STATUS_SUCCESS == string_release(comment));
+}
