@@ -574,3 +574,35 @@ TEST(database_read_write_database_truncate_request)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * We can read and write a database truncate response.
+ */
+TEST(database_read_write_database_truncate_response)
+{
+    int sock[2];
+    const uint32_t WRITE_STATUS = 2233;
+    uint32_t status = 9999;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the truncate response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_database_truncate_response(
+                    sock[0], WRITE_STATUS));
+
+    /* read the response payload. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_read_database_truncate_response(
+                    &status, sock[1]));
+
+    /* the statuses match. */
+    TEST_EXPECT(WRITE_STATUS == status);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
