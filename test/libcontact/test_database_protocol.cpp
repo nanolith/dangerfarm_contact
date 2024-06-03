@@ -546,3 +546,31 @@ TEST(database_read_write_contact_form_delete_response)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * We can write and read a database truncate request.
+ */
+TEST(database_read_write_database_truncate_request)
+{
+    int sock[2];
+    uint32_t request_id = 1234;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the truncate request. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_database_truncate_request(sock[0]));
+
+    /* read the request id. */
+    TEST_ASSERT(
+        STATUS_SUCCESS == database_read_request_id(&request_id, sock[1]));
+
+    /* the request id matches. */
+    TEST_ASSERT(DATABASE_REQUEST_ID_TRUNCATE == request_id);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
