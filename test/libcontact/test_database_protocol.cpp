@@ -475,3 +475,42 @@ TEST(database_read_write_contact_form_read_response_error)
     TEST_ASSERT(0 == close(sock[0]));
     TEST_ASSERT(0 == close(sock[1]));
 }
+
+/**
+ * We can write and read a contact form delete request.
+ */
+TEST(database_read_write_contact_form_delete_request)
+{
+    int sock[2];
+    const uint64_t ID = 477;
+    uint32_t request_id = 1234;
+    uint64_t id = 0;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the delete request. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_contact_form_delete_request(sock[0], ID));
+
+    /* read the request id. */
+    TEST_ASSERT(
+        STATUS_SUCCESS == database_read_request_id(&request_id, sock[1]));
+
+    /* the request id matches. */
+    TEST_ASSERT(DATABASE_REQUEST_ID_CONTACT_FORM_DELETE == request_id);
+
+    /* read the delete request payload. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_read_contact_form_delete_request_payload(
+                    &id, sock[1]));
+
+    /* the IDs match. */
+    TEST_EXPECT(ID == id);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
