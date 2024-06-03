@@ -439,3 +439,39 @@ TEST(database_read_write_contact_form_read_response)
     TEST_ASSERT(STATUS_SUCCESS == string_release(subject));
     TEST_ASSERT(STATUS_SUCCESS == string_release(comment));
 }
+
+/**
+ * If there is an error status, then the contact form is not populated.
+ */
+TEST(database_read_write_contact_form_read_response_error)
+{
+    int sock[2];
+    contact_form* form = nullptr;
+    const uint32_t STATUS = 123;
+    uint32_t status = 0;
+
+    /* we can create a socket pair. */
+    TEST_ASSERT(0 == socketpair(AF_UNIX, SOCK_STREAM, 0, sock));
+
+    /* write the read response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_write_contact_form_read_response(
+                    sock[0], STATUS, nullptr));
+
+    /* read the read response. */
+    TEST_ASSERT(
+        STATUS_SUCCESS
+            == database_read_contact_form_read_response(
+                    &status, &form, sock[1]));
+
+    /* verify that the status was NOT successful. */
+    TEST_ASSERT(STATUS_SUCCESS != status);
+
+    /* verify that the form pointer was not set. */
+    TEST_ASSERT(nullptr == form);
+
+    /* clean up. */
+    TEST_ASSERT(0 == close(sock[0]));
+    TEST_ASSERT(0 == close(sock[1]));
+}
