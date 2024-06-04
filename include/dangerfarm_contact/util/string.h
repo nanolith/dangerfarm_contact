@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdbool.h>
 #include <stddef.h>
 
 #ifdef   __cplusplus
@@ -45,6 +46,15 @@ int string_filter(char* str);
  *      - non-zero on failure.
  */
 int string_release(char* str);
+
+/**
+ * \brief Model check helper to determine whether a string appears valid.
+ *
+ * \param str           The string to check.
+ *
+ * \returns true if the string appears valid and false otherwise.
+ */
+bool prop_string_valid(const char* str);
 
 #ifdef   __cplusplus
 }
