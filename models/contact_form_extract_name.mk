@@ -11,6 +11,7 @@ ALL:
 	shadow/libcontact/data/contact_form_create_nondet.c \
 	shadow/libcontact/string/string_create_nondet.c \
 	shadow/libcontact/string/string_release.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	../src/libcontact/contact_form_compute_size.c \
 	../src/libcontact/contact_form_extract_name.c \
 	../src/libcontact/contact_form_release.c \
