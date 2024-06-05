@@ -16,6 +16,7 @@ ALL:
 	shadow/libcontact/socket/socket_read_contact_form_header.c \
 	shadow/libcontact/string/string_filter_no_op.c \
 	shadow/libcontact/string/string_release.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/libcontact/data/contact_form_create_nondet.c \
 	shadow/libcontact/data/contact_form_extract_name_nondet.c \
 	shadow/libcontact/data/contact_form_extract_email_nondet.c \
