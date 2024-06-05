@@ -10,6 +10,7 @@ ALL:
 	shadow/libcontact/data/prop_valid_contact_form.c \
 	shadow/libcontact/data/contact_form_create_nondet.c \
 	shadow/libcontact/socket/socket_write_uint64.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/unix/close.c \
 	shadow/unix/prop_is_open_fd.c \
 	shadow/unix/socket.c \
