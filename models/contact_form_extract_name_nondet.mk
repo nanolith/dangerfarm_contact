@@ -14,4 +14,5 @@ ALL:
 	shadow/libcontact/data/contact_form_extract_name_nondet.c \
 	shadow/libcontact/data/prop_valid_contact_form.c \
 	shadow/libcontact/string/string_release.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	contact_form_extract_name_nondet_main.c
