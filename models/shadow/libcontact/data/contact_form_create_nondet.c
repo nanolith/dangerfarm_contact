@@ -1,5 +1,7 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/status_codes.h>
+#include <dangerfarm_contact/util/string.h>
 #include <stdlib.h>
 
 static char nondet_char();
@@ -13,7 +15,7 @@ static size_t random_size()
     return size;
 }
 
-int contact_form_create(
+int contact_form_create_nondet(
     contact_form** form, const char* name, const char* email,
     const char* subject, const char* comment)
 {
@@ -56,4 +58,18 @@ int contact_form_create(
 
     *form = tmp;
     return STATUS_SUCCESS;
+}
+
+int contact_form_create(
+    contact_form** form, const char* name, const char* email,
+    const char* subject, const char* comment)
+{
+    /* verify that the parameters are valid. */
+    MODEL_ASSERT(prop_string_valid(name));
+    MODEL_ASSERT(prop_string_valid(email));
+    MODEL_ASSERT(prop_string_valid(subject));
+    MODEL_ASSERT(prop_string_valid(comment));
+    MODEL_ASSERT(NULL != form);
+
+    return contact_form_create_nondet(form, name, email, subject, comment);
 }
