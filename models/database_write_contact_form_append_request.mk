@@ -11,6 +11,7 @@ ALL:
 	shadow/libcontact/data/contact_form_create_nondet.c \
 	shadow/libcontact/data/contact_form_write.c \
 	shadow/libcontact/socket/socket_write_uint32.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/unix/close.c \
 	shadow/unix/prop_is_open_fd.c \
 	shadow/unix/socket.c \
