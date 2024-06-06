@@ -16,8 +16,7 @@ static size_t random_size()
 }
 
 int contact_form_create_nondet(
-    contact_form** form, const char* name, const char* email,
-    const char* subject, const char* comment)
+    contact_form** form)
 {
     contact_form* tmp = NULL;
     size_t offset = 0;
@@ -71,5 +70,5 @@ int contact_form_create(
     MODEL_ASSERT(prop_string_valid(comment));
     MODEL_ASSERT(NULL != form);
 
-    return contact_form_create_nondet(form, name, email, subject, comment);
+    return contact_form_create_nondet(form);
 }

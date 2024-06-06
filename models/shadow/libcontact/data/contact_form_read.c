@@ -18,5 +18,5 @@ int contact_form_read(contact_form** form, int s)
         return ERROR_SOCKET_READ;
     }
 
-    return contact_form_create_nondet(form, NULL, NULL, NULL, NULL);
+    return contact_form_create_nondet(form);
 }
