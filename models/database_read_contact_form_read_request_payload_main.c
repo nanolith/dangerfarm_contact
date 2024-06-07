@@ -1,4 +1,5 @@
 #include <dangerfarm_contact/cbmc/model_assert.h>
+#include <dangerfarm_contact/protocol/database.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/socket.h>
 #include <sys/socket.h>
