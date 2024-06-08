@@ -4,7 +4,7 @@
 
 #define DATABASE_CAPABILITY_CONTACT_FORM_APPEND                 1
 #define DATABASE_CAPABILITY_CONTACT_FORM_GET                    2
-#define DATABASE_CAPABILITY_CONTACT_FORM_DELETE                 3
+#define DATABASE_CAPABILITY_CONTACT_FORM_DELETE                 4
 
 typedef struct contactdb_context contactdb_context;
 struct contactdb_context
