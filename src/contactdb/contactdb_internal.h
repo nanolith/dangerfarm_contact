@@ -2,10 +2,10 @@
 
 #include <stdint.h>
 
-#define DATABASE_CAPABILITY_CONTACT_FORM_APPEND                 1
-#define DATABASE_CAPABILITY_CONTACT_FORM_GET                    2
-#define DATABASE_CAPABILITY_CONTACT_FORM_DELETE                 4
-#define DATABASE_CAPABILITY_CONTACT_FORM_COUNT_GET              8
+#define DATABASE_CAPABILITY_CONTACT_FORM_APPEND                 0x0001
+#define DATABASE_CAPABILITY_CONTACT_FORM_GET                    0x0002
+#define DATABASE_CAPABILITY_CONTACT_FORM_DELETE                 0x0004
+#define DATABASE_CAPABILITY_CONTACT_FORM_COUNT_GET              0x0008
 
 typedef struct contactdb_context contactdb_context;
 struct contactdb_context
