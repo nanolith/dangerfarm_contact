@@ -7,12 +7,9 @@
 
 #include "shadow/unix/unix_shadow.h"
 
-uint32_t nondet_uint32();
-
 int main(int argc, char* argv[])
 {
     int retval;
-    uint32_t val = nondet_uint32();
 
     /* initialize the unix shadow interface. */
     unix_shadow_init();
@@ -25,7 +22,7 @@ int main(int argc, char* argv[])
         goto done;
     }
 
-    /* "write" to this socket. */
+    /* "write" the get count request to this socket. */
     retval = database_write_contact_form_get_count_request(sock);
     if (STATUS_SUCCESS != retval)
     {
