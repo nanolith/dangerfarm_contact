@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #define DATABASE_CAPABILITY_CONTACT_FORM_APPEND                 0x0001
@@ -28,6 +29,7 @@ struct contactdb_context
     char* db_path;
     char* socket_path;
     int sock;
+    bool listen_socket;
     uint64_t root_capabilities;
     contactdb_connection* db;
 };
@@ -46,3 +48,14 @@ struct contactdb_context
  */
 int contactdb_context_create_from_arguments(
     contactdb_context* ctx, int argc, char* argv[]);
+
+/**
+ * \brief Release a contactdb context.
+ *
+ * \param ctx           The context to release.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_context_release(contactdb_context* ctx);
