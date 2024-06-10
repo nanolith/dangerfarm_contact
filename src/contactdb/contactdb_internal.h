@@ -47,7 +47,7 @@ struct contactdb_context
  *      - non-zero on failure.
  */
 int contactdb_context_create_from_arguments(
-    contactdb_context* ctx, int argc, char* argv[]);
+    contactdb_context** ctx, int argc, char* argv[]);
 
 /**
  * \brief Release a contactdb context.
