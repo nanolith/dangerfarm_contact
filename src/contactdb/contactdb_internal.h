@@ -7,6 +7,7 @@
 #define DATABASE_CAPABILITY_CONTACT_FORM_DELETE                 0x0004
 #define DATABASE_CAPABILITY_CONTACT_FORM_COUNT_GET              0x0008
 #define DATABASE_CAPABILITY_CONTACT_FORM_LIST_GET               0x0010
+#define DATABASE_CAPABILITY_TRUNCATE                            0x0020
 
 typedef struct contactdb_context contactdb_context;
 struct contactdb_context
