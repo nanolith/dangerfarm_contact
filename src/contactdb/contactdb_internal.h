@@ -20,6 +20,8 @@
       | DATABASE_CAPABILITY_CONTACT_FORM_LIST_GET \
       | DATABASE_CAPABILITY_TRUNCATE)
 
+typedef struct contactdb_connection contactdb_connection;
+
 typedef struct contactdb_context contactdb_context;
 struct contactdb_context
 {
@@ -27,6 +29,7 @@ struct contactdb_context
     char* socket_path;
     int sock;
     uint64_t root_capabilities;
+    contactdb_connection* db;
 };
 
 /**
