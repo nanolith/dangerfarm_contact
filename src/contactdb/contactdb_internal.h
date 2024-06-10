@@ -25,5 +25,6 @@ struct contactdb_context
 {
     char* db_path;
     char* socket_path;
+    int sock;
     uint64_t root_capabilities;
 };
