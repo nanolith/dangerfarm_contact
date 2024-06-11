@@ -8,4 +8,5 @@ struct contactdb_connection
 {
     MDB_env* env;
     MDB_dbi global_db;
+    MDB_dbi contact_db;
 };
