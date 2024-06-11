@@ -23,3 +23,14 @@ struct contactdb_connection
  *      - non-zero on failure.
  */
 int contactdb_connection_create(contactdb_connection** conn, const char* path);
+
+/**
+ * \brief Release a contactdb connection.
+ *
+ * \param conn      The connection to release.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_connection_release(contactdb_connection* conn);
