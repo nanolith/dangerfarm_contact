@@ -31,7 +31,7 @@ struct contactdb_context
     int sock;
     bool listen_socket;
     uint64_t root_capabilities;
-    contactdb_connection* db;
+    contactdb_connection* conn;
 };
 
 /**
