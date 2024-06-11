@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "contactdb_connection.h"
 #include "contactdb_internal.h"
 
 int main(int argc, char* argv[])
