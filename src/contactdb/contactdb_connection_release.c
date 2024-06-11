@@ -21,7 +21,7 @@ int contactdb_connection_release(contactdb_connection* conn)
     retval = mdb_env_sync(conn->env, 1);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        return ERROR_DATABASE_SYNC;
     }
 
     /* close all database connections. */
