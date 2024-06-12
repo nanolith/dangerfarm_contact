@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 #include <sys/un.h>
 #include <unistd.h>
 
@@ -227,6 +228,14 @@ static int bind_local_socket(contactdb_context* ctx)
     if (retval < 0)
     {
         retval = ERROR_CONTACTDB_BIND_FAILURE;
+        goto cleanup_sock;
+    }
+
+    /* make this socket only user / group readable / writeable. */
+    retval = chmod(ctx->socket_path, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+    if (retval < 0)
+    {
+        retval = ERROR_CONTACTDB_CHMOD_FAILURE;
         goto cleanup_sock;
     }
 
