@@ -16,3 +16,4 @@
 #define ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID        13
 #define ERROR_DATABASE_PROTOCOL_INVALID_COUNT                14
 #define ERROR_DATABASE_SYNC                                  15
+#define ERROR_DATABASE_ENV_CREATE                            16
