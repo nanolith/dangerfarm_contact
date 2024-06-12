@@ -20,4 +20,5 @@
 #define ERROR_DATABASE_SET_MAPSIZE                           17
 #define ERROR_DATABASE_SET_MAXDBS                            18
 #define ERROR_DATABASE_ENV_OPEN                              19
-#define ERROR_DATABASE_TXN_BEGIN_ERROR                       20
+#define ERROR_DATABASE_TXN_BEGIN                             20
+#define ERROR_DATABASE_DBI_OPEN                              21
