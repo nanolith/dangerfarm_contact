@@ -22,3 +22,4 @@
 #define ERROR_DATABASE_ENV_OPEN                              19
 #define ERROR_DATABASE_TXN_BEGIN                             20
 #define ERROR_DATABASE_DBI_OPEN                              21
+#define ERROR_DATABASE_TXN_COMMIT                            22
