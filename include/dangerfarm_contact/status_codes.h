@@ -29,3 +29,4 @@
 #define ERROR_CONTACTDB_SOCKET_FAILURE                       26
 #define ERROR_CONTACTDB_BIND_FAILURE                         27
 #define ERROR_CONTACTDB_LISTEN_FAILURE                       28
+#define ERROR_CONTACTDB_CHMOD_FAILURE                        29
