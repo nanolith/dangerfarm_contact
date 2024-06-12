@@ -2,6 +2,9 @@
 
 #include <lmdb.h>
 
+/* 20 MB is the default contact database size. */
+#define CONTACTDB_SIZE      (20 * 1024 * 1024)
+
 typedef struct contactdb_connection contactdb_connection;
 
 struct contactdb_connection
