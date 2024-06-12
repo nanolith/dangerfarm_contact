@@ -26,3 +26,4 @@
 #define ERROR_CONTACTDB_MISSING_PARAMETER                    23
 #define ERROR_CONTACTDB_BAD_PARAMETER                        24
 #define ERROR_CONTACTDB_SOCKET_PATH_TOO_LONG                 25
+#define ERROR_CONTACTDB_SOCKET_FAILURE                       26
