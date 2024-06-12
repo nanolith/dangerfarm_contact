@@ -19,3 +19,4 @@
 #define ERROR_DATABASE_ENV_CREATE                            16
 #define ERROR_DATABASE_SET_MAPSIZE                           17
 #define ERROR_DATABASE_SET_MAXDBS                            18
+#define ERROR_DATABASE_ENV_OPEN                              19
