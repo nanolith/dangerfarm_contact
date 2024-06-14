@@ -30,3 +30,4 @@
 #define ERROR_CONTACTDB_BIND_FAILURE                         27
 #define ERROR_CONTACTDB_LISTEN_FAILURE                       28
 #define ERROR_CONTACTDB_CHMOD_FAILURE                        29
+#define ERROR_CONTACTDB_INVALID_ROLE                         30
