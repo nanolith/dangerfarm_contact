@@ -66,6 +66,8 @@ int contactdb_context_release(contactdb_context* ctx);
  *
  * \brief ctx           The context to check.
  * \brief cap           The capability to check against.
+ *
+ * \returns true if the contactdb has this capability, and false otherwise.
  */
 bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
 
