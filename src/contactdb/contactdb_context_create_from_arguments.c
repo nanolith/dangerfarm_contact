@@ -115,6 +115,7 @@ static int read_args(contactdb_context* ctx, int argc, char* argv[])
     {
         switch (ch)
         {
+            /* database directory option. */
             case 'd':
                 retval = set_string(&ctx->db_path, "-d", optarg);
                 if (STATUS_SUCCESS != retval)
@@ -123,6 +124,7 @@ static int read_args(contactdb_context* ctx, int argc, char* argv[])
                 }
                 break;
 
+            /* listen socket path option. */
             case 'L':
                 retval = set_string(&ctx->socket_path, "-L", optarg);
                 if (STATUS_SUCCESS != retval)
@@ -132,6 +134,7 @@ static int read_args(contactdb_context* ctx, int argc, char* argv[])
                 ctx->listen_socket = true;
                 break;
 
+            /* role option. */
             case 'r':
                 /* set the web app role. */
                 if (!strcmp("app", optarg))
