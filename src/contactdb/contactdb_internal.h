@@ -68,3 +68,14 @@ int contactdb_context_release(contactdb_context* ctx);
  * \brief cap           The capability to check against.
  */
 bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
+
+/**
+ * \brief Accept and dispatch a connection.
+ *
+ * \brief ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on a FATAL error.
+ */
+int contactdb_accept_and_dispatch(contactdb_context* ctx);
