@@ -59,3 +59,11 @@ int contactdb_context_create_from_arguments(
  *      - non-zero on failure.
  */
 int contactdb_context_release(contactdb_context* ctx);
+
+/**
+ * \brief Confirm whether the given capability exists in this context.
+ *
+ * \brief ctx           The context to check.
+ * \brief cap           The capability to check against.
+ */
+bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
