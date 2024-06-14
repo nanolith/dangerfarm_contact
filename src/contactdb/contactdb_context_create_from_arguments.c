@@ -62,6 +62,14 @@ int contactdb_context_create_from_arguments(
         }
     }
 
+    /* connect to the database. */
+    retval = contactdb_connection_create(&tmp->conn, tmp->db_path);
+    if (STATUS_SUCCESS != retval)
+    {
+        fprintf(stderr, "Error connecting to the database.\n");
+        goto cleanup_tmp;
+    }
+
     /* success. */
     retval = STATUS_SUCCESS;
     *ctx = tmp;
