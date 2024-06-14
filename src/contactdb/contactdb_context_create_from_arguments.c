@@ -111,7 +111,7 @@ static int read_args(contactdb_context* ctx, int argc, char* argv[])
     int retval;
     int ch;
 
-    while ((ch = getopt(argc, argv, "d:L:")) != -1)
+    while ((ch = getopt(argc, argv, "r:d:L:")) != -1)
     {
         switch (ch)
         {
@@ -131,6 +131,23 @@ static int read_args(contactdb_context* ctx, int argc, char* argv[])
                 }
                 ctx->listen_socket = true;
                 break;
+
+            case 'r':
+                /* set the web app role. */
+                if (!strcmp("app", optarg))
+                {
+                    ctx->root_capabilities = DATABASE_ROLE_WEB_APPLICATION;
+                }
+                else if (!strcmp("admin", optarg))
+                {
+                    ctx->root_capabilities = DATABASE_ROLE_ADMIN_TOOL;
+                }
+                else
+                {
+                    fprintf(stderr, "error: unsupported role %s.\n", optarg);
+                    retval = ERROR_CONTACTDB_INVALID_ROLE;
+                    goto done;
+                }
         }
     }
 
@@ -149,6 +166,18 @@ static int read_args(contactdb_context* ctx, int argc, char* argv[])
         retval = ERROR_CONTACTDB_MISSING_PARAMETER;
         goto done;
     }
+
+    /* verify that a role was set. */
+    if (0 == ctx->root_capabilities)
+    {
+        fprintf(stderr, "error: -r option is required.\n");
+        retval = ERROR_CONTACTDB_MISSING_PARAMETER;
+        goto done;
+    }
+
+    /* success. */
+    retval = STATUS_SUCCESS;
+    goto done;
 
 done:
     return retval;
