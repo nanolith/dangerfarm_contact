@@ -36,3 +36,4 @@
 #define ERROR_CONTACTDB_SIGACTION_FAILURE                    33
 #define ERROR_CONTACTDB_FORK                                 34
 #define ERROR_CONTACTDB_FORK_PARENT                          35
+#define ERROR_CONTACTDB_SETSID                               36
