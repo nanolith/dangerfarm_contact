@@ -74,7 +74,7 @@ bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
 /**
  * \brief Install a signal handler.
  *
- * \brief ctx           The context to use for this operation.
+ * \param ctx           The context to use for this operation.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
