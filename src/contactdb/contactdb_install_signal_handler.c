@@ -11,7 +11,7 @@ static contactdb_context* global_context = NULL;
 /**
  * \brief Install a signal handler.
  *
- * \brief ctx           The context to use for this operation.
+ * \param ctx           The context to use for this operation.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
