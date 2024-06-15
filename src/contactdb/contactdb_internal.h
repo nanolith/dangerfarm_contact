@@ -103,3 +103,14 @@ int contactdb_install_signal_handler(contactdb_context* ctx);
  *      - non-zero on a FATAL error.
  */
 int contactdb_accept_and_dispatch(contactdb_context* ctx);
+
+/**
+ * \brief Decode and dispatch a contactdb request.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on error.
+ */
+int contactdb_decode_and_dispatch(contactdb_context* ctx);
