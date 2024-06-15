@@ -72,6 +72,17 @@ int contactdb_context_release(contactdb_context* ctx);
 bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
 
 /**
+ * \brief Install a signal handler.
+ *
+ * \brief ctx           The context to use for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_install_signal_handler(contactdb_context* ctx);
+
+/**
  * \brief Accept and dispatch a connection.
  *
  * \brief ctx           The context for this operation.
