@@ -32,3 +32,4 @@
 #define ERROR_CONTACTDB_CHMOD_FAILURE                        29
 #define ERROR_CONTACTDB_INVALID_ROLE                         30
 #define ERROR_CONTACTDB_ACCEPT                               31
+#define ERROR_CONTACTDB_PERMISSION_DENIED                    32
