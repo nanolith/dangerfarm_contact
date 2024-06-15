@@ -17,6 +17,13 @@ int main(int argc, char* argv[])
         goto done;
     }
 
+    /* daemonize. */
+    retval = contactdb_daemonize(ctx);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto cleanup_ctx;
+    }
+
     /* loop while listening for connections. */
     while (!ctx->should_terminate)
     {
