@@ -72,6 +72,17 @@ int contactdb_context_release(contactdb_context* ctx);
 bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
 
 /**
+ * \brief Daemonize the contactdb service.
+ *
+ * \param ctx           The context to use for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_daemonize(contactdb_context* ctx);
+
+/**
  * \brief Install a signal handler.
  *
  * \param ctx           The context to use for this operation.
