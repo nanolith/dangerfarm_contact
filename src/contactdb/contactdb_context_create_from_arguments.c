@@ -19,10 +19,10 @@ static int bind_local_socket(contactdb_context* ctx);
 /**
  * \brief Given an argument count and vector, create a contactdb context.
  *
- * \brief ctx           Pointer to the context pointer to be populated with the
+ * \param ctx           Pointer to the context pointer to be populated with the
  *                      context on success.
- * \brief argc          The argument count.
- * \brief argv          The argument vector.
+ * \param argc          The argument count.
+ * \param argv          The argument vector.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
