@@ -108,9 +108,10 @@ int contactdb_accept_and_dispatch(contactdb_context* ctx);
  * \brief Decode and dispatch a contactdb request.
  *
  * \param ctx           The context for this operation.
+ * \param sock          The socket for this operation.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
  *      - non-zero on error.
  */
-int contactdb_decode_and_dispatch(contactdb_context* ctx);
+int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock);
