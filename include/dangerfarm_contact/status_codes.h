@@ -33,3 +33,4 @@
 #define ERROR_CONTACTDB_INVALID_ROLE                         30
 #define ERROR_CONTACTDB_ACCEPT                               31
 #define ERROR_CONTACTDB_PERMISSION_DENIED                    32
+#define ERROR_CONTACTDB_SIGACTION_FAILURE                    33
