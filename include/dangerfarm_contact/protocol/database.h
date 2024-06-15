@@ -311,6 +311,19 @@ int database_write_database_truncate_response(int s, const uint32_t status);
  */
 int database_read_database_truncate_response(uint32_t* status, int s);
 
+/**
+ * \brief Write a generic response to the socket.
+ *
+ * \param s         The socket from which this request is read.
+ * \param req       The request id for this response.
+ * \param status    The status for this response.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int database_write_generic_response(int s, uint32_t req, uint32_t status);
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
