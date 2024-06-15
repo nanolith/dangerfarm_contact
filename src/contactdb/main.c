@@ -17,6 +17,16 @@ int main(int argc, char* argv[])
         goto done;
     }
 
+    /* loop while listening for connections. */
+    while (!ctx->should_terminate)
+    {
+        retval = contactdb_accept_and_dispatch(ctx);
+        if (STATUS_SUCCESS != retval)
+        {
+            goto cleanup_ctx;
+        }
+    }
+
     /* success. */
     retval = STATUS_SUCCESS;
     goto cleanup_ctx;
