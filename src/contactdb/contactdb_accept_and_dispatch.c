@@ -10,7 +10,7 @@
 /**
  * \brief Accept and dispatch a connection.
  *
- * \brief ctx           The context for this operation.
+ * \param ctx           The context for this operation.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
