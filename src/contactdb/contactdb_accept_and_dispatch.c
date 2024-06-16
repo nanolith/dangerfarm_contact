@@ -36,10 +36,14 @@ int contactdb_accept_and_dispatch(contactdb_context* ctx)
         }
     }
 
-    /* write a dummy response. TODO - replace with decode and dispatch. */
-    retval =
-        database_write_contact_form_get_count_response(
-            sock, ERROR_CONTACTDB_PERMISSION_DENIED, 0);
+    /* decode and dispatch a single request. */
+    retval = contactdb_decode_and_dispatch(ctx, sock);
+    
+    /* ignore the return code for this operation. */
+    (void)retval;
+    retval = STATUS_SUCCESS;
+
+    /* clean up. */
     goto close_sock;
 
 close_sock:
