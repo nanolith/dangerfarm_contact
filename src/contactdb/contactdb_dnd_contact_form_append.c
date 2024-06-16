@@ -44,6 +44,7 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
         goto cleanup_form;
     }
 
+    /* TODO - verify total count. */
     /* TODO - get a unique contact id. */
     uint64_t contact_id = 1;
 
