@@ -15,7 +15,6 @@
  */
 int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock)
 {
-    (void)ctx;
     int retval;
     uint32_t req;
 
@@ -29,6 +28,10 @@ int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock)
     /* decode the request id. */
     switch (req)
     {
+        case DATABASE_REQUEST_ID_CONTACT_FORM_APPEND:
+            retval = contactdb_dnd_contact_form_append(ctx, sock);
+            break;
+
         default:
             retval =
                 database_write_generic_response(
