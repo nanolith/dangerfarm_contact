@@ -17,7 +17,7 @@
  */
 int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
 {
-    int retval;
+    int retval, release_retval;
     contact_form* form = NULL;
     MDB_txn* txn = NULL;
     MDB_val key, val;
@@ -41,7 +41,7 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
     if (STATUS_SUCCESS != retval)
     {
         retval = ERROR_DATABASE_TXN_BEGIN;
-        goto write_response;
+        goto cleanup_form;
     }
 
     /* TODO - get a unique contact id. */
@@ -74,6 +74,13 @@ rollback_txn:
     {
         mdb_txn_abort(txn);
         txn = NULL;
+    }
+
+cleanup_form:
+    release_retval = contact_form_release(form);
+    if (STATUS_SUCCESS != release_retval)
+    {
+        retval = release_retval;
     }
 
 write_response:
