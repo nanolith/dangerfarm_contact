@@ -85,7 +85,5 @@ cleanup_form:
     }
 
 write_response:
-    retval = database_write_contact_form_append_response(sock, retval);
-
-    return retval;
+    return database_write_contact_form_append_response(sock, retval);
 }
