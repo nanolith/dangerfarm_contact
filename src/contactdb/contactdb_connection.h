@@ -5,6 +5,8 @@
 /* 20 MB is the default contact database size. */
 #define CONTACTDB_SIZE      (20 * 1024 * 1024)
 
+#define COUNTER_ID_CONTACT_KEY          0x00000002
+
 typedef struct contactdb_connection contactdb_connection;
 
 struct contactdb_connection
