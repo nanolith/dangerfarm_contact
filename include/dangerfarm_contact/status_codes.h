@@ -40,3 +40,4 @@
 #define ERROR_CONTACTDB_FORK_PARENT                          37
 #define ERROR_CONTACTDB_SETSID                               38
 #define ERROR_CONTACTDB_GET_INVALID_SIZE                     39
+#define ERROR_CONTACTDB_FULL                                 40
