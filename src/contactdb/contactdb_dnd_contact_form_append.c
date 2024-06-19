@@ -78,6 +78,15 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
         goto rollback_txn;
     }
 
+    /* increment the count. */
+    retval =
+        contactdb_connection_counter_get_and_increment(
+            ctx->conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto rollback_txn;
+    }
+
     /* commit this transaction. */
     retval = mdb_txn_commit(txn);
     if (STATUS_SUCCESS != retval)
