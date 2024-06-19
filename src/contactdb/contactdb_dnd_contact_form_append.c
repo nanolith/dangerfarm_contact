@@ -51,14 +51,14 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
             ctx->conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
     if (STATUS_SUCCESS != retval)
     {
-        goto cleanup_form;
+        goto rollback_txn;
     }
 
     /* verify total count. */
     if (count >= DATABASE_PROTOCOL_MAX_COUNT)
     {
         retval = ERROR_CONTACTDB_FULL;
-        goto cleanup_form;
+        goto rollback_txn;
     }
 
     /* get a unique contact id. */
@@ -67,7 +67,7 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
             ctx->conn, txn, COUNTER_ID_CONTACT_KEY, &contact_id);
     if (STATUS_SUCCESS != retval)
     {
-        goto cleanup_form;
+        goto rollback_txn;
     }
 
     /* set up the payload for this transaction. */
