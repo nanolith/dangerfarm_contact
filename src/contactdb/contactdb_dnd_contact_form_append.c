@@ -21,6 +21,7 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
     contact_form* form = NULL;
     MDB_txn* txn = NULL;
     MDB_val key, val;
+    uint64_t count;
 
     /* is this socket allowed to perform this operation? */
     if (!contactdb_has_capability(ctx, DATABASE_CAPABILITY_CONTACT_FORM_APPEND))
@@ -44,7 +45,22 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
         goto cleanup_form;
     }
 
-    /* TODO - verify total count. */
+    /* Get the total count. */
+    retval =
+        contactdb_connection_counter_get(
+            ctx->conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto cleanup_form;
+    }
+
+    /* verify total count. */
+    if (count >= DATABASE_PROTOCOL_MAX_COUNT)
+    {
+        retval = ERROR_CONTACTDB_FULL;
+        goto cleanup_form;
+    }
+
     /* TODO - get a unique contact id. */
     uint64_t contact_id = 1;
 
