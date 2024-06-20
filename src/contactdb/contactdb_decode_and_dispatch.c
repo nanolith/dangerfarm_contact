@@ -40,6 +40,10 @@ int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock)
             retval = contactdb_dnd_contact_form_get_list(ctx, sock);
             break;
 
+        case DATABASE_REQUEST_ID_CONTACT_FORM_GET:
+            retval = contactdb_dnd_contact_form_get(ctx, sock);
+            break;
+
         default:
             retval =
                 database_write_generic_response(
