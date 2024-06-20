@@ -100,6 +100,11 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
         retval = ERROR_DATABASE_TXN_COMMIT;
         goto rollback_txn;
     }
+    txn = NULL;
+
+    /* success. */
+    retval = STATUS_SUCCESS;
+    goto cleanup_form;
 
 rollback_txn:
     if (NULL != txn)
