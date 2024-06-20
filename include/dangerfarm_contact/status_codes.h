@@ -43,3 +43,4 @@
 #define ERROR_CONTACTDB_SETSID                               40
 #define ERROR_CONTACTDB_GET_INVALID_SIZE                     41
 #define ERROR_CONTACTDB_FULL                                 42
+#define ERROR_CONTACTDB_COUNT_MISMATCH                       43
