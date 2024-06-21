@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include "ctool_internal.h"
+
 /**
  * \brief Main entry point for ctool.
  *
