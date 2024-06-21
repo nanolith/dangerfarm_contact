@@ -20,7 +20,7 @@ int contactdb_dnd_contact_form_delete(contactdb_context* ctx, int sock)
     int retval;
     MDB_txn* txn = NULL;
     MDB_val key;
-    uint64_t id = 0;
+    uint64_t count, id = 0;
 
     /* is this socket allowed to perform this operation? */
     if (!contactdb_has_capability(ctx, DATABASE_CAPABILITY_CONTACT_FORM_DELETE))
@@ -53,6 +53,15 @@ int contactdb_dnd_contact_form_delete(contactdb_context* ctx, int sock)
     if (STATUS_SUCCESS != retval)
     {
         retval = ERROR_DATABASE_DELETE;
+        goto rollback_txn;
+    }
+
+    /* decrement the count. */
+    retval =
+        contactdb_connection_counter_get_and_decrement(
+            ctx->conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
+    if (STATUS_SUCCESS != retval)
+    {
         goto rollback_txn;
     }
 
