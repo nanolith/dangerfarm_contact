@@ -62,6 +62,26 @@ int contactdb_connection_counter_get_and_increment(
     uint64_t* value);
 
 /**
+ * \brief Given a connection and a transaction, read and decrement the given
+ * counter id, returning the result.
+ *
+ * \note If the counter is not found, it will be set to 1 and saved in the
+ * database.
+ *
+ * \param conn          The connection for this operation.
+ * \param txn           The transaction for this operation.
+ * \param counter_id    The counter id for this operation.
+ * \param value         Pointer to receive the incremented counter on success.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_connection_counter_get_and_decrement(
+    contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
+    uint64_t* value);
+
+/**
  * \brief Given a connection and a transaction, read the current counter but DO
  * NOT INCREMENT IT.
  *
