@@ -3,6 +3,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+enum ctool_command
+{
+    CTOOL_COMMAND_NONE                                          = 0,
+};
+
 typedef struct ctool_context ctool_context;
 struct ctool_context
 {
