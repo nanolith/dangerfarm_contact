@@ -7,6 +7,7 @@ enum ctool_command
 {
     CTOOL_COMMAND_NONE                                          = 0,
     CTOOL_COMMAND_APPEND                                        = 1,
+    CTOOL_COMMAND_GET_COUNT                                     = 2,
 };
 
 typedef struct ctool_context ctool_context;
