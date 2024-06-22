@@ -6,6 +6,7 @@
 enum ctool_command
 {
     CTOOL_COMMAND_NONE                                          = 0,
+    CTOOL_COMMAND_APPEND                                        = 1,
 };
 
 typedef struct ctool_context ctool_context;
