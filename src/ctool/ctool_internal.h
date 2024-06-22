@@ -10,6 +10,7 @@ enum ctool_command
     CTOOL_COMMAND_GET_COUNT                                     = 2,
     CTOOL_COMMAND_LIST                                          = 3,
     CTOOL_COMMAND_GET                                           = 4,
+    CTOOL_COMMAND_DELETE                                        = 5,
 };
 
 typedef struct ctool_context ctool_context;
