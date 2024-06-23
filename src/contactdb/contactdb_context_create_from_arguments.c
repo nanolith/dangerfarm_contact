@@ -90,10 +90,6 @@ done:
  * \brief Set the defaults for this context.
  *
  * \brief ctx           The context to set up.
- *
- * \returns a status code indicating success or failure.
- *      - zero on success.
- *      - non-zero on failure.
  */
 static void set_defaults(contactdb_context* ctx)
 {
