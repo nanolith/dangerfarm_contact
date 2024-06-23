@@ -24,4 +24,5 @@ struct ctool_context
     char* contact_form_name;
     char* contact_form_email;
     char* contact_form_subject;
+    char* contact_form_comment;
 };
