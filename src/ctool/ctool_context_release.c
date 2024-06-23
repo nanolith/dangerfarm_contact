@@ -6,6 +6,9 @@
 
 #include "ctool_internal.h"
 
+/* forward decls. */
+static void cleanup_string(int* retval, char* string);
+
 /**
  * \brief Release a ctool context.
  *
@@ -17,17 +20,7 @@
  */
 int ctool_context_release(ctool_context* ctx)
 {
-    int retval = STATUS_SUCCESS, release_retval;
-
-    /* release socket_path if set. */
-    if (NULL != ctx->socket_path)
-    {
-        release_retval = string_release(ctx->socket_path);
-        if (STATUS_SUCCESS != release_retval)
-        {
-            retval = release_retval;
-        }
-    }
+    int retval = STATUS_SUCCESS;
 
     /* release sock if set. */
     if (ctx->sock >= 0)
@@ -35,49 +28,36 @@ int ctool_context_release(ctool_context* ctx)
         close(ctx->sock);
     }
 
-    /* release contact_form_name if set. */
-    if (NULL != ctx->contact_form_name)
-    {
-        release_retval = string_release(ctx->contact_form_name);
-        if (STATUS_SUCCESS != release_retval)
-        {
-            retval = release_retval;
-        }
-    }
-
-    /* release contact_form_email if set. */
-    if (NULL != ctx->contact_form_email)
-    {
-        release_retval = string_release(ctx->contact_form_email);
-        if (STATUS_SUCCESS != release_retval)
-        {
-            retval = release_retval;
-        }
-    }
-
-    /* release contact_form_subject if set. */
-    if (NULL != ctx->contact_form_subject)
-    {
-        release_retval = string_release(ctx->contact_form_subject);
-        if (STATUS_SUCCESS != release_retval)
-        {
-            retval = release_retval;
-        }
-    }
-
-    /* release contact_form_comment if set. */
-    if (NULL != ctx->contact_form_comment)
-    {
-        release_retval = string_release(ctx->contact_form_comment);
-        if (STATUS_SUCCESS != release_retval)
-        {
-            retval = release_retval;
-        }
-    }
+    /* release strings. */
+    cleanup_string(&retval, ctx->socket_path);
+    cleanup_string(&retval, ctx->contact_form_name);
+    cleanup_string(&retval, ctx->contact_form_email);
+    cleanup_string(&retval, ctx->contact_form_subject);
+    cleanup_string(&retval, ctx->contact_form_comment);
 
     /* clear and free context. */
     memset(ctx, 0, sizeof(*ctx));
     free(ctx);
 
     return retval;
+}
+
+/**
+ * \brief Clean up a string, setting retval on failure.
+ *
+ * \param retval            Pointer to the return value, set on failure.
+ * \param string            The string to clean up.
+ */
+static void cleanup_string(int* retval, char* string)
+{
+    int release_retval;
+
+    if (NULL != string)
+    {
+        release_retval = string_release(string);
+        if (STATUS_SUCCESS != release_retval)
+        {
+            *retval = release_retval;
+        }
+    }
 }
