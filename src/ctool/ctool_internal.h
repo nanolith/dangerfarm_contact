@@ -21,5 +21,6 @@ struct ctool_context
     int sock;
     uint64_t form_id;
     bool form_id_set;
+    char* contact_form_name;
     char* contact_form_subject;
 };
