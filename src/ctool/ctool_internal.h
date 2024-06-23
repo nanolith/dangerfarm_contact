@@ -41,3 +41,14 @@ struct ctool_context
  */
 int ctool_context_create_from_arguments(
     ctool_context** ctx, int argc, char* argv[]);
+
+/**
+ * \brief Release a ctool context.
+ *
+ * \param ctx           The context to release.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int ctool_context_release(ctool_context* ctx);
