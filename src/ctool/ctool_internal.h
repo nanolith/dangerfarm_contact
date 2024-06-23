@@ -26,3 +26,18 @@ struct ctool_context
     char* contact_form_subject;
     char* contact_form_comment;
 };
+
+/**
+ * \brief Given an argument count and vector, create a ctool context.
+ *
+ * \param ctx               Pointer to the context pointer to be populated with
+ *                          the context on success.
+ * \param argc              The argument count.
+ * \param argv              The argument vector.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int ctool_context_create_from_arguments(
+    ctool_context** ctx, int argc, char* argv[]);
