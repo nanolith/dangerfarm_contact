@@ -404,6 +404,8 @@ static int connect_local_socket(ctool_context* ctx)
     /* verify that the length of the socket path does not exceed sun_path. */
     if (strlen(ctx->socket_path) + 1 > sizeof(addr.sun_path))
     {
+        fprintf(
+            stderr, "%s is too long for a socket path.\n", ctx->socket_path);
         retval = ERROR_CTOOL_SOCKET_PATH_TOO_LONG;
         goto done;
     }
