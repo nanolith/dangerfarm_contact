@@ -46,3 +46,4 @@
 #define ERROR_CONTACTDB_FULL                                 43
 #define ERROR_CONTACTDB_COUNT_MISMATCH                       44
 #define ERROR_CTOOL_BAD_PARAMETER                            45
+#define ERROR_CTOOL_BAD_NUMBER                               46
