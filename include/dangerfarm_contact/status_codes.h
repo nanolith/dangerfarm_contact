@@ -50,3 +50,4 @@
 #define ERROR_CTOOL_NUMBER_OUT_OF_RANGE                      47
 #define ERROR_CTOOL_INVALID_COMMAND                          48
 #define ERROR_CTOOL_SOCKET_PATH_TOO_LONG                     49
+#define ERROR_CTOOL_SOCKET_FAILURE                           50
