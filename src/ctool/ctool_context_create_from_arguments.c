@@ -418,6 +418,7 @@ static int connect_local_socket(ctool_context* ctx)
     ctx->sock = socket(AF_UNIX, SOCK_STREAM, 0);
     if (ctx->sock < 0)
     {
+        fprintf(stderr, "Socket creation failure.\n");
         retval = ERROR_CTOOL_SOCKET_FAILURE;
         goto done;
     }
