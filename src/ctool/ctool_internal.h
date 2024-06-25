@@ -74,3 +74,14 @@ int ctool_run_command(ctool_context* ctx);
  *      - non-zero on failure.
  */
 int ctool_run_append_command(ctool_context* ctx);
+
+/**
+ * \brief Run a get count command.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int ctool_run_get_count_command(ctool_context* ctx);
