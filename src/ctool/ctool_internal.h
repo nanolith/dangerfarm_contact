@@ -62,4 +62,4 @@ int ctool_context_release(ctool_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-void ctool_run_command(ctool_context* ctx);
+int ctool_run_command(ctool_context* ctx);
