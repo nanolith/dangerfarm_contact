@@ -427,6 +427,7 @@ static int connect_local_socket(ctool_context* ctx)
     retval = connect(ctx->sock, (struct sockaddr*)&addr, sizeof(addr));
     if (retval < 0)
     {
+        fprintf(stderr, "Could not connect to %s.\n", ctx->socket_path);
         retval = ERROR_CTOOL_CONNECT_FAILURE;
         goto cleanup_sock;
     }
