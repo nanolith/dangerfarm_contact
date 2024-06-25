@@ -107,3 +107,14 @@ int ctool_run_list_command(ctool_context* ctx);
  *      - non-zero on failure.
  */
 int ctool_run_get_command(ctool_context* ctx);
+
+/**
+ * \brief Run a delete command.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int ctool_run_delete_command(ctool_context* ctx);
