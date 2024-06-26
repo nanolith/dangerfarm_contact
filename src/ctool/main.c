@@ -26,8 +26,16 @@ int main(int argc, char* argv[])
         goto done;
     }
 
-    printf("Not yet implemented.\n");
-    retval = 1;
+    /* run the command. */
+    retval = ctool_run_command(ctx);
+    if (STATUS_SUCCESS != retval)
+    {
+        retval = 1;
+        goto cleanup_ctx;
+    }
+
+    /* success. */
+    retval = 0;
     goto cleanup_ctx;
 
 cleanup_ctx:
