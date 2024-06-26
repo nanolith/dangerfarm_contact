@@ -12,6 +12,9 @@ const char* status_decode(int status)
 {
     switch (status)
     {
+        case STATUS_SUCCESS:
+            return "Success.";
+
         default:
             return "Unknown error.";
     }
