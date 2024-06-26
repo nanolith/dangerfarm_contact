@@ -18,6 +18,8 @@ const char* status_decode(int status)
             return "Out of memory.";
         case ERROR_READ_MULTIBYTE_EOF:
             return "Encountered EOF when reading multi-byte sequence.";
+        case ERROR_READ_MULTIBYTE_RAW_CONTINUATION:
+            return "Encountered raw continuation byte in multi-byte read.";
         default:
             return "Unknown error.";
     }
