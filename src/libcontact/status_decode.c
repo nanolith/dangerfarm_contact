@@ -16,6 +16,8 @@ const char* status_decode(int status)
             return "Success.";
         case ERROR_GENERAL_OUT_OF_MEMORY:
             return "Out of memory.";
+        case ERROR_READ_MULTIBYTE_EOF:
+            return "Encountered EOF when reading multi-byte sequence.";
         default:
             return "Unknown error.";
     }
