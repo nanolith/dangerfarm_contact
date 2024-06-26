@@ -52,3 +52,13 @@
 #define ERROR_CTOOL_SOCKET_PATH_TOO_LONG                     49
 #define ERROR_CTOOL_SOCKET_FAILURE                           50
 #define ERROR_CTOOL_CONNECT_FAILURE                          51
+
+/**
+ * \brief Return a description string for a given status code.
+ *
+ * \param status            The status code to decode.
+ *
+ * \returns a string representing this status code, or an error string if it is
+ * unknown.
+ */
+const char* status_decode(int status);
