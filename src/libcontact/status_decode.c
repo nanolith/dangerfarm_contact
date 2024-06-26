@@ -14,7 +14,8 @@ const char* status_decode(int status)
     {
         case STATUS_SUCCESS:
             return "Success.";
-
+        case ERROR_GENERAL_OUT_OF_MEMORY:
+            return "Out of memory.";
         default:
             return "Unknown error.";
     }
