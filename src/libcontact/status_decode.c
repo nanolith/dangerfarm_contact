@@ -30,6 +30,8 @@ const char* status_decode(int status)
             return "Codepoint out-of-range in multi-byte read.";
         case ERROR_CONTACT_FORM_WRITE:
             return "Contact form write.";
+        case ERROR_CONTACT_FORM_READ:
+            return "Contact form read.";
         default:
             return "Unknown error.";
     }
