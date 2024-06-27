@@ -17,7 +17,7 @@ const char* status_decode(int status)
         case ERROR_GENERAL_OUT_OF_MEMORY:
             return "Out of memory.";
         case ERROR_READ_MULTIBYTE_EOF:
-            return "Encountered EOF when reading multi-byte sequence.";
+            return "EOF reading multi-byte sequence.";
         case ERROR_READ_MULTIBYTE_RAW_CONTINUATION:
             return "Encountered raw continuation byte in multi-byte read.";
         case ERROR_READ_MULTIBYTE_INVALID_CONTINUATION:
