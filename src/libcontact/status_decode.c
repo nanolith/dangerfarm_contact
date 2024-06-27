@@ -28,6 +28,8 @@ const char* status_decode(int status)
             return "Encountered an unexpected multi-byte character.";
         case ERROR_READ_MULTIBYTE_CODEPOINT_OUT_OF_RANGE:
             return "Encountered an out-of-range codepoint.";
+        case ERROR_CONTACT_FORM_WRITE:
+            return "Contact form write.";
         default:
             return "Unknown error.";
     }
