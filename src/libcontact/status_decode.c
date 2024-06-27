@@ -26,6 +26,8 @@ const char* status_decode(int status)
             return "Encountered overlong representation in multi-byte read.";
         case ERROR_READ_MULTIBYTE_UNEXPECTED_CHARACTER:
             return "Encountered an unexpected multi-byte character.";
+        case ERROR_READ_MULTIBYTE_CODEPOINT_OUT_OF_RANGE:
+            return "Encountered an out-of-range codepoint.";
         default:
             return "Unknown error.";
     }
