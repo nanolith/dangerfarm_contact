@@ -24,6 +24,8 @@ const char* status_decode(int status)
             return "Encountered invalid continuation byte in multi-byte read.";
         case ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION:
             return "Encountered overlong representation in multi-byte read.";
+        case ERROR_READ_MULTIBYTE_UNEXPECTED_CHARACTER:
+            return "Encountered an unexpected multi-byte character.";
         default:
             return "Unknown error.";
     }
