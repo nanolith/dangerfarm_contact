@@ -48,6 +48,8 @@ const char* status_decode(int status)
             return "Database create environment.";
         case ERROR_DATABASE_SET_MAPSIZE:
             return "Database set map size.";
+        case ERROR_DATABASE_SET_MAXDBS:
+            return "Set max databases.";
         default:
             return "Unknown error.";
     }
