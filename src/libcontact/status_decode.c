@@ -44,6 +44,8 @@ const char* status_decode(int status)
             return "Invalid count.";
         case ERROR_DATABASE_SYNC:
             return "Database sync.";
+        case ERROR_DATABASE_ENV_CREATE:
+            return "Database create environment.";
         default:
             return "Unknown error.";
     }
