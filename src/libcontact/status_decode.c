@@ -38,6 +38,8 @@ const char* status_decode(int status)
             return "Socket write.";
         case ERROR_SOCKET_READ:
             return "Socket read.";
+        case ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID:
+            return "Unexpected request id.";
         default:
             return "Unknown error.";
     }
