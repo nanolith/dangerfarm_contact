@@ -32,6 +32,8 @@ const char* status_decode(int status)
             return "Contact form write.";
         case ERROR_CONTACT_FORM_READ:
             return "Contact form read.";
+        case ERROR_CONTACT_FORM_INVALID:
+            return "Contact form invalid.";
         default:
             return "Unknown error.";
     }
