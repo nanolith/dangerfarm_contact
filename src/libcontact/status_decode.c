@@ -34,6 +34,8 @@ const char* status_decode(int status)
             return "Contact form read.";
         case ERROR_CONTACT_FORM_INVALID:
             return "Contact form invalid.";
+        case ERROR_SOCKET_WRITE:
+            return "Socket write.";
         default:
             return "Unknown error.";
     }
