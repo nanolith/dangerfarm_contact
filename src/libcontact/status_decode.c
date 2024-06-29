@@ -64,6 +64,8 @@ const char* status_decode(int status)
             return "Database get.";
         case ERROR_DATABASE_DELETE:
             return "Database delete.";
+        case ERROR_DATABASE_CURSOR_OPEN:
+            return "Database open cursor.";
         default:
             return "Unknown error.";
     }
