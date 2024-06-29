@@ -60,6 +60,8 @@ const char* status_decode(int status)
             return "Database commit transaction.";
         case ERROR_DATABASE_PUT:
             return "Database put.";
+        case ERROR_DATABASE_GET:
+            return "Database get.";
         default:
             return "Unknown error.";
     }
