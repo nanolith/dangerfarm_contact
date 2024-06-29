@@ -56,6 +56,8 @@ const char* status_decode(int status)
             return "Database begin transaction.";
         case ERROR_DATABASE_DBI_OPEN:
             return "Database open handle.";
+        case ERROR_DATABASE_TXN_COMMIT:
+            return "Database commit transaction.";
         default:
             return "Unknown error.";
     }
