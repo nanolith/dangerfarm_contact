@@ -58,6 +58,8 @@ const char* status_decode(int status)
             return "Database open handle.";
         case ERROR_DATABASE_TXN_COMMIT:
             return "Database commit transaction.";
+        case ERROR_DATABASE_PUT:
+            return "Database put.";
         default:
             return "Unknown error.";
     }
