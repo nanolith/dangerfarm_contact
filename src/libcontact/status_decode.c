@@ -62,6 +62,8 @@ const char* status_decode(int status)
             return "Database put.";
         case ERROR_DATABASE_GET:
             return "Database get.";
+        case ERROR_DATABASE_DELETE:
+            return "Database delete.";
         default:
             return "Unknown error.";
     }
