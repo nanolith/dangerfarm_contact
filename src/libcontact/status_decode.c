@@ -52,6 +52,8 @@ const char* status_decode(int status)
             return "Set max databases.";
         case ERROR_DATABASE_ENV_OPEN:
             return "Database open environment.";
+        case ERROR_DATABASE_TXN_BEGIN:
+            return "Database begin transaction.";
         default:
             return "Unknown error.";
     }
