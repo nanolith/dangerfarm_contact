@@ -70,6 +70,8 @@ const char* status_decode(int status)
             return "Database cursor get.";
         case ERROR_CONTACTDB_MISSING_PARAMETER:
             return "Missing parameter.";
+        case ERROR_CONTACTDB_BAD_PARAMETER:
+            return "Bad parameter.";
         default:
             return "Unknown error.";
     }
