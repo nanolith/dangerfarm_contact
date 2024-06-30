@@ -84,6 +84,8 @@ const char* status_decode(int status)
             return "chmod failure.";
         case ERROR_CONTACTDB_INVALID_ROLE:
             return "Invalid role.";
+        case ERROR_CONTACTDB_ACCEPT:
+            return "accept failure.";
         default:
             return "Unknown error.";
     }
