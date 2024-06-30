@@ -74,6 +74,8 @@ const char* status_decode(int status)
             return "Bad parameter.";
         case ERROR_CONTACTDB_SOCKET_PATH_TOO_LONG:
             return "Socket path too long.";
+        case ERROR_CONTACTDB_SOCKET_FAILURE:
+            return "Socket failure.";
         default:
             return "Unknown error.";
     }
