@@ -80,6 +80,8 @@ const char* status_decode(int status)
             return "Bind failure.";
         case ERROR_CONTACTDB_LISTEN_FAILURE:
             return "Listen failure.";
+        case ERROR_CONTACTDB_CHMOD_FAILURE:
+            return "chmod failure.";
         default:
             return "Unknown error.";
     }
