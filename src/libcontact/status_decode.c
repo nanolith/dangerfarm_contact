@@ -78,6 +78,8 @@ const char* status_decode(int status)
             return "Socket failure.";
         case ERROR_CONTACTDB_BIND_FAILURE:
             return "Bind failure.";
+        case ERROR_CONTACTDB_LISTEN_FAILURE:
+            return "Listen failure.";
         default:
             return "Unknown error.";
     }
