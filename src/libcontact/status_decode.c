@@ -79,7 +79,7 @@ const char* status_decode(int status)
         case ERROR_CONTACTDB_BIND_FAILURE:
             return "bind failure.";
         case ERROR_CONTACTDB_LISTEN_FAILURE:
-            return "Listen failure.";
+            return "listen failure.";
         case ERROR_CONTACTDB_CHMOD_FAILURE:
             return "chmod failure.";
         default:
