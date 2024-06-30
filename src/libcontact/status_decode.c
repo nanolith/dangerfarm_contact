@@ -77,7 +77,7 @@ const char* status_decode(int status)
         case ERROR_CONTACTDB_SOCKET_FAILURE:
             return "socket failure.";
         case ERROR_CONTACTDB_BIND_FAILURE:
-            return "Bind failure.";
+            return "bind failure.";
         case ERROR_CONTACTDB_LISTEN_FAILURE:
             return "Listen failure.";
         case ERROR_CONTACTDB_CHMOD_FAILURE:
