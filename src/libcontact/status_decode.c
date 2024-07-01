@@ -27,7 +27,7 @@ const char* status_decode(int status)
         case ERROR_READ_MULTIBYTE_UNEXPECTED_CHARACTER:
             return "unexpected character in multi-byte read.";
         case ERROR_READ_MULTIBYTE_CODEPOINT_OUT_OF_RANGE:
-            return "Codepoint out-of-range in multi-byte read.";
+            return "codepoint out-of-range in multi-byte read.";
         case ERROR_CONTACT_FORM_WRITE:
             return "Contact form write.";
         case ERROR_CONTACT_FORM_READ:
