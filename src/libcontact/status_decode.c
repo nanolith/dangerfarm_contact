@@ -13,7 +13,7 @@ const char* status_decode(int status)
     switch (status)
     {
         case STATUS_SUCCESS:
-            return "Success.";
+            return "success.";
         case ERROR_GENERAL_OUT_OF_MEMORY:
             return "Out of memory.";
         case ERROR_READ_MULTIBYTE_EOF:
