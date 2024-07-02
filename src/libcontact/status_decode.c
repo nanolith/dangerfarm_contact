@@ -47,7 +47,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_ENV_CREATE:
             return "database create environment.";
         case ERROR_DATABASE_SET_MAPSIZE:
-            return "Database set map size.";
+            return "database set map size.";
         case ERROR_DATABASE_SET_MAXDBS:
             return "Set max databases.";
         case ERROR_DATABASE_ENV_OPEN:
