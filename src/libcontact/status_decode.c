@@ -33,7 +33,7 @@ const char* status_decode(int status)
         case ERROR_CONTACT_FORM_READ:
             return "contact form read.";
         case ERROR_CONTACT_FORM_INVALID:
-            return "Contact form invalid.";
+            return "contact form invalid.";
         case ERROR_SOCKET_WRITE:
             return "Socket write.";
         case ERROR_SOCKET_READ:
