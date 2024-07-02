@@ -39,7 +39,7 @@ const char* status_decode(int status)
         case ERROR_SOCKET_READ:
             return "socket read.";
         case ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID:
-            return "Unexpected request id.";
+            return "unexpected request id.";
         case ERROR_DATABASE_PROTOCOL_INVALID_COUNT:
             return "Invalid count.";
         case ERROR_DATABASE_SYNC:
