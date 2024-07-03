@@ -53,7 +53,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_ENV_OPEN:
             return "database open environment.";
         case ERROR_DATABASE_TXN_BEGIN:
-            return "Database begin transaction.";
+            return "database begin transaction.";
         case ERROR_DATABASE_DBI_OPEN:
             return "Database open handle.";
         case ERROR_DATABASE_TXN_COMMIT:
