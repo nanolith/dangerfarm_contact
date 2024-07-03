@@ -61,7 +61,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_PUT:
             return "database put.";
         case ERROR_DATABASE_GET:
-            return "Database get.";
+            return "database get.";
         case ERROR_DATABASE_DELETE:
             return "Database delete.";
         case ERROR_DATABASE_CURSOR_OPEN:
