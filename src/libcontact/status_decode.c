@@ -19,7 +19,7 @@ const char* status_decode(int status)
         case ERROR_READ_MULTIBYTE_EOF:
             return "eof reading multi-byte sequence";
         case ERROR_READ_MULTIBYTE_RAW_CONTINUATION:
-            return "raw continuation during multi-byte read.";
+            return "raw continuation during multi-byte read";
         case ERROR_READ_MULTIBYTE_INVALID_CONTINUATION:
             return "invalid continuation in multi-byte read.";
         case ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION:
