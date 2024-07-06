@@ -43,7 +43,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_PROTOCOL_INVALID_COUNT:
             return "invalid count";
         case ERROR_DATABASE_SYNC:
-            return "database sync.";
+            return "database sync";
         case ERROR_DATABASE_ENV_CREATE:
             return "database create environment.";
         case ERROR_DATABASE_SET_MAPSIZE:
