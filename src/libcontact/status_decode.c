@@ -29,7 +29,7 @@ const char* status_decode(int status)
         case ERROR_READ_MULTIBYTE_CODEPOINT_OUT_OF_RANGE:
             return "codepoint out-of-range in multi-byte read";
         case ERROR_CONTACT_FORM_WRITE:
-            return "contact form write.";
+            return "contact form write";
         case ERROR_CONTACT_FORM_READ:
             return "contact form read.";
         case ERROR_CONTACT_FORM_INVALID:
