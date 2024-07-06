@@ -41,7 +41,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID:
             return "unexpected request id";
         case ERROR_DATABASE_PROTOCOL_INVALID_COUNT:
-            return "invalid count.";
+            return "invalid count";
         case ERROR_DATABASE_SYNC:
             return "database sync.";
         case ERROR_DATABASE_ENV_CREATE:
