@@ -65,7 +65,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_DELETE:
             return "database delete";
         case ERROR_DATABASE_CURSOR_OPEN:
-            return "database open cursor.";
+            return "database open cursor";
         case ERROR_DATABASE_CURSOR_GET:
             return "database cursor get.";
         case ERROR_CONTACTDB_MISSING_PARAMETER:
