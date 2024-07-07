@@ -55,7 +55,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_TXN_BEGIN:
             return "database begin transaction";
         case ERROR_DATABASE_DBI_OPEN:
-            return "database open handle.";
+            return "database open handle";
         case ERROR_DATABASE_TXN_COMMIT:
             return "database commit transaction.";
         case ERROR_DATABASE_PUT:
