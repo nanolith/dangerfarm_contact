@@ -59,7 +59,7 @@ const char* status_decode(int status)
         case ERROR_DATABASE_TXN_COMMIT:
             return "database commit transaction";
         case ERROR_DATABASE_PUT:
-            return "database put.";
+            return "database put";
         case ERROR_DATABASE_GET:
             return "database get.";
         case ERROR_DATABASE_DELETE:
