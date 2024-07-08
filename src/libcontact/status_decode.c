@@ -75,7 +75,7 @@ const char* status_decode(int status)
         case ERROR_CONTACTDB_SOCKET_PATH_TOO_LONG:
             return "socket path too long";
         case ERROR_CONTACTDB_SOCKET_FAILURE:
-            return "socket failure.";
+            return "socket failure";
         case ERROR_CONTACTDB_BIND_FAILURE:
             return "bind failure.";
         case ERROR_CONTACTDB_LISTEN_FAILURE:
