@@ -86,6 +86,8 @@ const char* status_decode(int status)
             return "invalid role";
         case ERROR_CONTACTDB_ACCEPT:
             return "accept failure";
+        case ERROR_CONTACTDB_PERMISSION_DENIED:
+            return "permission denied";
         default:
             return "Unknown error.";
     }
