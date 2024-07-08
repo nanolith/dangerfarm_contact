@@ -85,7 +85,7 @@ const char* status_decode(int status)
         case ERROR_CONTACTDB_INVALID_ROLE:
             return "invalid role";
         case ERROR_CONTACTDB_ACCEPT:
-            return "accept failure.";
+            return "accept failure";
         default:
             return "Unknown error.";
     }
