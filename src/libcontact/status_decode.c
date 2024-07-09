@@ -92,6 +92,8 @@ const char* status_decode(int status)
             return "sigaction failure";
         case ERROR_CONTACTDB_FORK:
             return "fork failure";
+        case ERROR_CONTACTDB_FORK_PARENT:
+            return "fork parent exiting";
         default:
             return "unknown error";
     }
