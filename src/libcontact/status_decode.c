@@ -90,6 +90,8 @@ const char* status_decode(int status)
             return "permission denied";
         case ERROR_CONTACTDB_SIGACTION_FAILURE:
             return "sigaction failure";
+        case ERROR_CONTACTDB_FORK:
+            return "fork failure";
         default:
             return "unknown error";
     }
