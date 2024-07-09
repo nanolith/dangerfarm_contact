@@ -98,6 +98,8 @@ const char* status_decode(int status)
             return "setsid error";
         case ERROR_CONTACTDB_GET_INVALID_SIZE:
             return "contactdb get invalid size";
+        case ERROR_CONTACTDB_FULL:
+            return "contactdb full";
         default:
             return "unknown error";
     }
