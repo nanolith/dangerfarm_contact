@@ -94,6 +94,8 @@ const char* status_decode(int status)
             return "fork failure";
         case ERROR_CONTACTDB_FORK_PARENT:
             return "fork parent exiting";
+        case ERROR_CONTACTDB_SETSID:
+            return "setsid error";
         default:
             return "unknown error";
     }
