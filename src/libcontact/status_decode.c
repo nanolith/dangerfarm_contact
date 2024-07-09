@@ -91,6 +91,6 @@ const char* status_decode(int status)
         case ERROR_CONTACTDB_SIGACTION_FAILURE:
             return "sigaction failure";
         default:
-            return "unknown error.";
+            return "unknown error";
     }
 }
