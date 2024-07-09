@@ -96,6 +96,8 @@ const char* status_decode(int status)
             return "fork parent exiting";
         case ERROR_CONTACTDB_SETSID:
             return "setsid error";
+        case ERROR_CONTACTDB_GET_INVALID_SIZE:
+            return "contactdb get invalid size";
         default:
             return "unknown error";
     }
