@@ -88,6 +88,8 @@ const char* status_decode(int status)
             return "accept failure";
         case ERROR_CONTACTDB_PERMISSION_DENIED:
             return "permission denied";
+        case ERROR_CONTACTDB_SIGACTION_FAILURE:
+            return "sigaction failure";
         default:
             return "Unknown error.";
     }
