@@ -100,6 +100,8 @@ const char* status_decode(int status)
             return "contactdb get invalid size";
         case ERROR_CONTACTDB_FULL:
             return "contactdb full";
+        case ERROR_CONTACTDB_COUNT_MISMATCH:
+            return "contactdb count mismatch";
         default:
             return "unknown error";
     }
