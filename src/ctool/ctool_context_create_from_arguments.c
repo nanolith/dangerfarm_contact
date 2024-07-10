@@ -162,7 +162,7 @@ static int read_args(ctool_context* ctx, int argc, char* argv[])
 
             /* contact form comment. */
             case 'c':
-                retval = set_string(&ctx->contact_form_subject, "-c", optarg);
+                retval = set_string(&ctx->contact_form_comment, "-c", optarg);
                 if (STATUS_SUCCESS != retval)
                 {
                     goto done;
