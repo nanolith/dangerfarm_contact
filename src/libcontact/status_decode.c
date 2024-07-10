@@ -111,6 +111,8 @@ const char* status_decode(int status)
             return "number out of range";
         case ERROR_CTOOL_INVALID_COMMAND:
             return "invalid command";
+        case ERROR_CTOOL_CONNECT_FAILURE:
+            return "connect failure";
         default:
             return "unknown error";
     }
