@@ -105,6 +105,8 @@ const char* status_decode(int status)
             return "contactdb count mismatch";
         case ERROR_CTOOL_BAD_NUMBER:
             return "bad number";
+        case ERROR_CTOOL_NUMBER_OUT_OF_RANGE:
+            return "number out of range";
         default:
             return "unknown error";
     }
