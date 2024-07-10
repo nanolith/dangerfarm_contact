@@ -40,9 +40,8 @@ int ctool_run_get_count_command(ctool_context* ctx)
     /* did the request fail? */
     if (STATUS_SUCCESS != status)
     {
-        /* TODO - replace with a decoded error. */
-        const char* error = "unknown";
-        fprintf(stderr, "Get count failed: %s\n", error);
+        const char* error = status_decode(status);
+        fprintf(stderr, "Get count failed: %s.\n", error);
         retval = (int)status;
         goto done;
     }
