@@ -103,6 +103,8 @@ const char* status_decode(int status)
             return "contactdb full";
         case ERROR_CONTACTDB_COUNT_MISMATCH:
             return "contactdb count mismatch";
+        case ERROR_CTOOL_BAD_NUMBER:
+            return "bad number";
         default:
             return "unknown error";
     }
