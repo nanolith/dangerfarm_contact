@@ -74,6 +74,7 @@ const char* status_decode(int status)
         case ERROR_CTOOL_BAD_PARAMETER:
             return "bad parameter";
         case ERROR_CONTACTDB_SOCKET_PATH_TOO_LONG:
+        case ERROR_CTOOL_SOCKET_PATH_TOO_LONG:
             return "socket path too long";
         case ERROR_CONTACTDB_SOCKET_FAILURE:
             return "socket failure";
