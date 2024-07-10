@@ -107,6 +107,8 @@ const char* status_decode(int status)
             return "bad number";
         case ERROR_CTOOL_NUMBER_OUT_OF_RANGE:
             return "number out of range";
+        case ERROR_CTOOL_INVALID_COMMAND:
+            return "invalid command";
         default:
             return "unknown error";
     }
