@@ -5,6 +5,9 @@
 #include "contactdb_connection.h"
 #include "contactdb_internal.h"
 
+/* forward decls. */
+static int verify_max_count(contactdb_context* ctx, MDB_txn* txn);
+
 /**
  * \brief Decode and dispatch a contactdb contact form append request.
  *
@@ -45,19 +48,10 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
         goto cleanup_form;
     }
 
-    /* Get the total count. */
-    retval =
-        contactdb_connection_counter_get(
-            ctx->conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
+    /* verify that appending a record won't exceed max count. */
+    retval = verify_max_count(ctx, txn);
     if (STATUS_SUCCESS != retval)
     {
-        goto rollback_txn;
-    }
-
-    /* verify total count. */
-    if (count >= DATABASE_PROTOCOL_MAX_COUNT)
-    {
-        retval = ERROR_CONTACTDB_FULL;
         goto rollback_txn;
     }
 
@@ -122,4 +116,38 @@ cleanup_form:
 
 write_response:
     return database_write_contact_form_append_response(sock, retval);
+}
+
+/**
+ * \brief Verify the max count, returning an error if we can't append without
+ * exceeding this count.
+ *
+ * \param ctx           The context for this operation.
+ * \param txn           The database transaction for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+static int verify_max_count(contactdb_context* ctx, MDB_txn* txn)
+{
+    int retval;
+    uint64_t count = 0;
+
+    /* Get the total count. */
+    retval =
+        contactdb_connection_counter_get(
+            ctx->conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
+    if (STATUS_SUCCESS != retval)
+    {
+        return retval;
+    }
+
+    /* verify total count. */
+    if (count >= DATABASE_PROTOCOL_MAX_COUNT)
+    {
+        return ERROR_CONTACTDB_FULL;
+    }
+
+    return STATUS_SUCCESS;
 }
