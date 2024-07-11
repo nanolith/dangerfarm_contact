@@ -8,6 +8,9 @@
 #define COUNTER_ID_CONTACT_COUNT        0x00000001
 #define COUNTER_ID_CONTACT_KEY          0x00000002
 
+/* forward decl for contact form. */
+typedef struct contact_form contact_form;
+
 typedef struct contactdb_connection contactdb_connection;
 
 struct contactdb_connection
@@ -99,3 +102,19 @@ int contactdb_connection_counter_get_and_decrement(
 int contactdb_connection_counter_get(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value);
+
+/**
+ * \brief Append a contact form record to the database.
+ *
+ * \note This function increments the KEY and COUNT counters.
+ *
+ * \param conn          The connection for this operation.
+ * \param txn           The transaction for this operation.
+ * \param form          The form to append.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_connection_form_append(
+    contactdb_connection* conn, MDB_txn* txn, const contact_form* form);
