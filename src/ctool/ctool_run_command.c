@@ -34,6 +34,10 @@ int ctool_run_command(ctool_context* ctx)
             retval = ctool_run_get_command(ctx);
             break;
 
+        case CTOOL_COMMAND_DELETE:
+            retval = ctool_run_delete_command(ctx);
+            break;
+
         default:
             fprintf(stderr, "Command not yet implemented.\n");
             retval = ERROR_CTOOL_INVALID_COMMAND;
