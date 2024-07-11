@@ -55,7 +55,7 @@ int ctool_run_list_command(ctool_context* ctx)
     {
         printf("  %lu\n", list[i]);
     }
-    printf("\n\n");
+    printf("\n");
 
     /* clear and free the list. */
     memset(list, 0, count * sizeof(uint64_t));
