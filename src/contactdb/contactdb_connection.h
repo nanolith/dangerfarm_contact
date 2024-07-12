@@ -121,7 +121,7 @@ int contactdb_connection_form_append(
     contactdb_connection* conn, MDB_txn* txn, const contact_form* form);
 
 /**
- * \brief Get the first key associated with the contact database.
+ * \brief Get the first form associated with the contact database.
  *
  * \param cursor        Pointer to receive the cursor for this operation on
  *                      success.
