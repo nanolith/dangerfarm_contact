@@ -7,6 +7,9 @@
 #include "contactdb_connection.h"
 #include "contactdb_internal.h"
 
+/* forward decls. */
+static int id_vector_create(uint64_t** vec, uint64_t count);
+
 /**
  * \brief Decode and dispatch a contactdb contact form get list request.
  *
@@ -53,16 +56,12 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
         goto rollback_txn;
     }
 
-    /* allocate memory for the id list. */
-    id_list = (uint64_t*)malloc(count * sizeof(uint64_t));
-    if (NULL == id_list)
+    /* create the id vector. */
+    retval = id_vector_create(&id_list, count);
+    if (STATUS_SUCCESS != retval)
     {
-        retval = ERROR_GENERAL_OUT_OF_MEMORY;
         goto rollback_txn;
     }
-
-    /* clear this list. */
-    memset(id_list, 0, count * sizeof(id_list));
 
     /* open a cursor on the contact database. */
     retval = mdb_cursor_open(txn, ctx->conn->contact_db, &cursor);
@@ -169,4 +168,30 @@ write_response:
     }
 
     return retval;
+}
+
+/**
+ * \brief Create an id vector.
+ *
+ * \param vec           Pointer to the vector pointer to be set on success.
+ * \param count         The number of entries in the vector.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on error.
+ */
+static int id_vector_create(uint64_t** vec, uint64_t count)
+{
+    /* allocate memory for the id list. */
+    *vec = (uint64_t*)malloc(count * sizeof(uint64_t));
+    if (NULL == *vec)
+    {
+        return ERROR_GENERAL_OUT_OF_MEMORY;
+    }
+
+    /* clear this list. */
+    memset(*vec, 0, count * sizeof(uint64_t));
+
+    /* success. */
+    return STATUS_SUCCESS;
 }
