@@ -23,8 +23,6 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
     int retval, release_retval;
     contact_form* form = NULL;
     MDB_txn* txn = NULL;
-    MDB_val key, val;
-    uint64_t count, contact_id;
 
     /* is this socket allowed to perform this operation? */
     if (!contactdb_has_capability(ctx, DATABASE_CAPABILITY_CONTACT_FORM_APPEND))
@@ -55,33 +53,8 @@ int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
         goto rollback_txn;
     }
 
-    /* get a unique contact id. */
-    retval =
-        contactdb_connection_counter_get_and_increment(
-            ctx->conn, txn, COUNTER_ID_CONTACT_KEY, &contact_id);
-    if (STATUS_SUCCESS != retval)
-    {
-        goto rollback_txn;
-    }
-
-    /* set up the payload for this transaction. */
-    key.mv_size = sizeof(contact_id);
-    key.mv_data = &contact_id;
-    val.mv_size = contact_form_compute_size(form);
-    val.mv_data = form;
-
-    /* put this value into the database. */
-    retval = mdb_put(txn, ctx->conn->contact_db, &key, &val, 0);
-    if (STATUS_SUCCESS != retval)
-    {
-        retval = ERROR_DATABASE_PUT;
-        goto rollback_txn;
-    }
-
-    /* increment the count. */
-    retval =
-        contactdb_connection_counter_get_and_increment(
-            ctx->conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
+    /* append this form to the database. */
+    retval = contactdb_connection_form_append(ctx->conn, txn, form);
     if (STATUS_SUCCESS != retval)
     {
         goto rollback_txn;
