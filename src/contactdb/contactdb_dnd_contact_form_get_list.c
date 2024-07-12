@@ -9,6 +9,7 @@
 
 /* forward decls. */
 static int id_vector_create(uint64_t** vec, uint64_t count);
+static void id_vector_release(uint64_t* vec, uint64_t count);
 
 /**
  * \brief Decode and dispatch a contactdb contact form get list request.
@@ -160,12 +161,7 @@ write_response:
         database_write_contact_form_list_response(sock, retval, count, id_list);
 
     /* clean up the id list. */
-    if (NULL != id_list)
-    {
-        memset(id_list, 0, count * sizeof(uint64_t));
-        free(id_list);
-        id_list = NULL;
-    }
+    id_vector_release(id_list, count);
 
     return retval;
 }
@@ -194,4 +190,20 @@ static int id_vector_create(uint64_t** vec, uint64_t count)
 
     /* success. */
     return STATUS_SUCCESS;
+}
+
+/**
+ * \brief Release an id vector.
+ *
+ * \param vec           Pointer to the vector pointer to be set on success.
+ * \param count         The number of entries in the vector.
+ */
+static void id_vector_release(uint64_t* vec, uint64_t count)
+{
+    /* clean up the vector. */
+    if (NULL != vec)
+    {
+        memset(vec, 0, count * sizeof(uint64_t));
+        free(vec);
+    }
 }
