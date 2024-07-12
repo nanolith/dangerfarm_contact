@@ -141,7 +141,7 @@ int contactdb_connection_form_get_first(
     MDB_val* val, bool* found);
 
 /**
- * \brief Get the next key associated with the contact database.
+ * \brief Get the next form associated with the contact database.
  *
  * \param cursor        The cursor for this operation.
  * \param conn          The connection for this operation.
