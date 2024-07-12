@@ -46,6 +46,11 @@ int contactdb_connection_form_get_first(
         goto close_cursor;
     }
 
+    /* success. */
+    *found = true;
+    retval = STATUS_SUCCESS;
+    goto done;
+
 close_cursor:
     mdb_cursor_close(*cursor);
 
