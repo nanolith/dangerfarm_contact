@@ -30,6 +30,7 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
     MDB_txn* txn = NULL;
     MDB_cursor* cursor = NULL;
     MDB_val key, val;
+    bool found = false;
 
     /* is this socket allowed to perform this operation? */
     if (
@@ -64,25 +65,20 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
         goto rollback_txn;
     }
 
-    /* open a cursor on the contact database. */
-    retval = mdb_cursor_open(txn, ctx->conn->contact_db, &cursor);
+    /* get the first key and open the cursor. */
+    retval =
+        contactdb_connection_form_get_first(
+            &cursor, ctx->conn, txn, &key, &val, &found, id_list);
     if (STATUS_SUCCESS != retval)
     {
-        retval = ERROR_DATABASE_CURSOR_OPEN;
         goto rollback_txn;
     }
 
-    /* get the first contact. */
-    retval = mdb_cursor_get(cursor, &key, &val, MDB_FIRST);
-    if (MDB_NOTFOUND == retval)
+    /* Check to see if we found a key. */
+    if (!found)
     {
         count = 0;
         retval = STATUS_SUCCESS;
-        goto close_cursor;
-    }
-    else if (STATUS_SUCCESS != retval)
-    {
-        retval = ERROR_DATABASE_CURSOR_GET;
         goto close_cursor;
     }
 
@@ -93,16 +89,6 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
         retval = ERROR_CONTACTDB_COUNT_MISMATCH;
         goto close_cursor;
     }
-
-    /* verify the key size is correct. */
-    if (key.mv_size != sizeof(uint64_t))
-    {
-        retval = ERROR_CONTACTDB_GET_INVALID_SIZE;
-        goto close_cursor;
-    }
-
-    /* save the first entry. */
-    memcpy(id_list, key.mv_data, sizeof(uint64_t));
 
     /* loop through the remaining entries. */
     while (read_count < count)
