@@ -1,4 +1,5 @@
 #include <dangerfarm_contact/status_codes.h>
+#include <string.h>
 
 #include "contactdb_connection.h"
 
@@ -13,6 +14,7 @@
  * \param val           The value for this operation.
  * \param found         Pointer to the boolean value to be set to true if a
  *                      record was found.
+ * \param p_key         If not NULL, set this pointer to the key value.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
@@ -20,7 +22,7 @@
  */
 int contactdb_connection_form_get_first(
     MDB_cursor** cursor, contactdb_connection* conn, MDB_txn* txn, MDB_val* key,
-    MDB_val* val, bool* found)
+    MDB_val* val, bool* found, uint64_t* p_key)
 {
     int retval;
 
@@ -45,6 +47,16 @@ int contactdb_connection_form_get_first(
         retval = ERROR_DATABASE_CURSOR_GET;
         goto close_cursor;
     }
+
+    /* verify the key size is correct. */
+    if (key->mv_size != sizeof(uint64_t))
+    {
+        retval = ERROR_CONTACTDB_GET_INVALID_SIZE;
+        goto close_cursor;
+    }
+
+    /* copy the key. */
+    memcpy(p_key, key->mv_data, sizeof(uint64_t));
 
     /* success. */
     *found = true;
