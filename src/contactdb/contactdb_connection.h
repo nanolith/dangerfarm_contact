@@ -121,6 +121,22 @@ int contactdb_connection_form_append(
     contactdb_connection* conn, MDB_txn* txn, const contact_form* form);
 
 /**
+ * \brief Get a transaction by name.
+ *
+ * \param conn          The connection for this operation.
+ * \param txn           The transaction for this operation.
+ * \param id            The id of the form to get.
+ * \param form          Pointer to be set to the read-only form value.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_connection_form_get(
+    contactdb_connection* conn, MDB_txn* txn, uint64_t id,
+    const contact_form** form);
+
+/**
  * \brief Get the first form associated with the contact database.
  *
  * \param cursor        Pointer to receive the cursor for this operation on
