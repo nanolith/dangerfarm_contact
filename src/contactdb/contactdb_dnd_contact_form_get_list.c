@@ -110,13 +110,6 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
             goto close_cursor;
         }
 
-        /* verify that we haven't exceeded our counts. */
-        if (read_count + 1 > count)
-        {
-            retval = ERROR_CONTACTDB_COUNT_MISMATCH;
-            goto close_cursor;
-        }
-
         /* increment the read count. */
         ++read_count;
     }
