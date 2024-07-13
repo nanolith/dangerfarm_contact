@@ -21,7 +21,6 @@ int contactdb_dnd_contact_form_get(contactdb_context* ctx, int sock)
     bool response_written = false;
     const contact_form* form = NULL;
     MDB_txn* txn = NULL;
-    MDB_val key, val;
     uint64_t id = 0;
 
     /* is this socket allowed to perform this operation? */
@@ -46,20 +45,12 @@ int contactdb_dnd_contact_form_get(contactdb_context* ctx, int sock)
         goto write_response;
     }
 
-    /* set up the key for the get request. */
-    key.mv_size = sizeof(id);
-    key.mv_data = &id;
-
-    /* get this value from the database. */
-    retval = mdb_get(txn, ctx->conn->contact_db, &key, &val);
+    /* get the form. */
+    retval = contactdb_connection_form_get(ctx->conn, txn, id, &form);
     if (STATUS_SUCCESS != retval)
     {
-        retval = ERROR_DATABASE_GET;
         goto rollback_txn;
     }
-
-    /* copy the returned data. */
-    form = (const contact_form*)val.mv_data;
 
     /* write the response. */
     retval = database_write_contact_form_read_response(sock, retval, form);
