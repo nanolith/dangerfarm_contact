@@ -93,17 +93,20 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
     /* loop through the remaining entries. */
     while (read_count < count)
     {
-        /* get the next contact. */
-        retval = mdb_cursor_get(cursor, &key, &val, MDB_NEXT);
-        if (MDB_NOTFOUND == retval)
+        /* get the next form key. */
+        retval =
+            contactdb_connection_form_get_next(
+                cursor, &key, &val, &found, id_list + read_count);
+        if (STATUS_SUCCESS != retval)
+        {
+            goto close_cursor;
+        }
+
+        /* check to see if we found a key. */
+        if (!found)
         {
             count = read_count;
             retval = STATUS_SUCCESS;
-            goto close_cursor;
-        }
-        else if (STATUS_SUCCESS != retval)
-        {
-            retval = ERROR_DATABASE_CURSOR_GET;
             goto close_cursor;
         }
 
@@ -113,16 +116,6 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
             retval = ERROR_CONTACTDB_COUNT_MISMATCH;
             goto close_cursor;
         }
-
-        /* verify the key size is correct. */
-        if (key.mv_size != sizeof(uint64_t))
-        {
-            retval = ERROR_CONTACTDB_GET_INVALID_SIZE;
-            goto close_cursor;
-        }
-
-        /* save this entry. */
-        memcpy(id_list + read_count, key.mv_data, sizeof(uint64_t));
 
         /* increment the read count. */
         ++read_count;
