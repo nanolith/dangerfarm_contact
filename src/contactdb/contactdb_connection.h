@@ -131,6 +131,7 @@ int contactdb_connection_form_append(
  * \param val           The value for this operation.
  * \param found         Pointer to the boolean value to be set to true if a
  *                      record was found.
+ * \param p_key         If not NULL, set this pointer to the key value.
  *
  * \returns a status code indicating success or failure.
  *      - zero on success.
@@ -138,7 +139,7 @@ int contactdb_connection_form_append(
  */
 int contactdb_connection_form_get_first(
     MDB_cursor** cursor, contactdb_connection* conn, MDB_txn* txn, MDB_val* key,
-    MDB_val* val, bool* found);
+    MDB_val* val, bool* found, uint64_t* p_key);
 
 /**
  * \brief Get the next form associated with the contact database.
