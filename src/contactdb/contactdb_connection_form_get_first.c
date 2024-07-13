@@ -56,7 +56,10 @@ int contactdb_connection_form_get_first(
     }
 
     /* copy the key. */
-    memcpy(p_key, key->mv_data, sizeof(uint64_t));
+    if (NULL != p_key)
+    {
+        memcpy(p_key, key->mv_data, sizeof(uint64_t));
+    }
 
     /* success. */
     *found = true;
