@@ -358,6 +358,10 @@ static int decode_command(ctool_context* ctx, const char* command)
         ctx->command = CTOOL_COMMAND_DELETE;
         verify_argstr(&retval, ctx->socket_path, "-L", "delete");
         verify_id(&retval, ctx->form_id_set, "-k", "delete");
+        verify_not_argstr(&retval, ctx->contact_form_name, "-n", "delete");
+        verify_not_argstr(&retval, ctx->contact_form_email, "-e", "delete");
+        verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "delete");
+        verify_not_argstr(&retval, ctx->contact_form_comment, "-c", "delete");
     }
     else
     {
