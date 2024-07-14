@@ -347,6 +347,10 @@ static int decode_command(ctool_context* ctx, const char* command)
         ctx->command = CTOOL_COMMAND_GET;
         verify_argstr(&retval, ctx->socket_path, "-L", "get");
         verify_id(&retval, ctx->form_id_set, "-k", "get");
+        verify_not_argstr(&retval, ctx->contact_form_name, "-n", "get");
+        verify_not_argstr(&retval, ctx->contact_form_email, "-e", "get");
+        verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "get");
+        verify_not_argstr(&retval, ctx->contact_form_comment, "-c", "get");
     }
     /* is this a delete command? */
     else if (!strcmp(command, "delete"))
