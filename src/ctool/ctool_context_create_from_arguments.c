@@ -19,6 +19,8 @@ static int set_u64(
 static int decode_command(ctool_context* ctx, const char* command);
 static void verify_argstr(
     int* retval, const char* str, const char* opt, const char* command);
+static void verify_not_argstr(
+    int* retval, const char* str, const char* opt, const char* command);
 static void verify_id(
     int* retval, bool field_set, const char* opt, const char* command);
 static int connect_local_socket(ctool_context* ctx);
@@ -324,6 +326,10 @@ static int decode_command(ctool_context* ctx, const char* command)
     {
         ctx->command = CTOOL_COMMAND_GET_COUNT;
         verify_argstr(&retval, ctx->socket_path, "-L", "count");
+        verify_not_argstr(&retval, ctx->contact_form_name, "-n", "append");
+        verify_not_argstr(&retval, ctx->contact_form_email, "-e", "append");
+        verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "append");
+        verify_not_argstr(&retval, ctx->contact_form_comment, "-c", "append");
     }
     /* is this a list command? */
     else if (!strcmp(command, "list"))
@@ -368,6 +374,26 @@ static void verify_argstr(
     if (NULL == str)
     {
         fprintf(stderr, "Error. %s expected with %s command.\n", opt, command);
+        *retval = ERROR_CTOOL_BAD_PARAMETER;
+    }
+}
+
+/**
+ * \brief Verify that a given string argument is NOT set for a given command.
+ *
+ * \param retval            Set this to an error on failure.
+ * \param str               The string field to check.
+ * \param opt               The option required.
+ * \param command           The command being verified.
+ */
+static void verify_not_argstr(
+    int* retval, const char* str, const char* opt, const char* command)
+{
+    if (NULL != str)
+    {
+        fprintf(
+            stderr, "Error. %s specified but not used with %s command.\n",
+            opt, command);
         *retval = ERROR_CTOOL_BAD_PARAMETER;
     }
 }
