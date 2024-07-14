@@ -121,7 +121,7 @@ int contactdb_connection_form_append(
     contactdb_connection* conn, MDB_txn* txn, const contact_form* form);
 
 /**
- * \brief Get a transaction by name.
+ * \brief Get a form by id.
  *
  * \param conn          The connection for this operation.
  * \param txn           The transaction for this operation.
