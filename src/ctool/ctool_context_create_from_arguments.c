@@ -336,6 +336,10 @@ static int decode_command(ctool_context* ctx, const char* command)
     {
         ctx->command = CTOOL_COMMAND_LIST;
         verify_argstr(&retval, ctx->socket_path, "-L", "list");
+        verify_not_argstr(&retval, ctx->contact_form_name, "-n", "list");
+        verify_not_argstr(&retval, ctx->contact_form_email, "-e", "list");
+        verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "list");
+        verify_not_argstr(&retval, ctx->contact_form_comment, "-c", "list");
     }
     /* is this a get command? */
     else if (!strcmp(command, "get"))
