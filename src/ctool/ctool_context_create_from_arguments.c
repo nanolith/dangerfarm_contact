@@ -23,6 +23,8 @@ static void verify_not_argstr(
     int* retval, const char* str, const char* opt, const char* command);
 static void verify_id(
     int* retval, bool field_set, const char* opt, const char* command);
+static void verify_not_id(
+    int* retval, bool field_set, const char* opt, const char* command);
 static int connect_local_socket(ctool_context* ctx);
 
 /**
@@ -315,6 +317,7 @@ static int decode_command(ctool_context* ctx, const char* command)
     if (!strcmp(command, "append"))
     {
         ctx->command = CTOOL_COMMAND_APPEND;
+        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_argstr(&retval, ctx->socket_path, "-L", "append");
         verify_argstr(&retval, ctx->contact_form_name, "-n", "append");
         verify_argstr(&retval, ctx->contact_form_email, "-e", "append");
@@ -424,6 +427,26 @@ static void verify_id(
     if (!field_set)
     {
         fprintf(stderr, "Error. %s expected with %s command.\n", opt, command);
+        *retval = ERROR_CTOOL_BAD_PARAMETER;
+    }
+}
+
+/**
+ * \brief Verify that a given id field argument is NOT set for a given command.
+ *
+ * \param retval            Set this to an error on failure.
+ * \param field_set         Flag indicating whether the field is set.
+ * \param opt               The option required.
+ * \param command           The command being verified.
+ */
+static void verify_not_id(
+    int* retval, bool field_set, const char* opt, const char* command)
+{
+    if (field_set)
+    {
+        fprintf(
+            stderr, "Error. %s specified but not used with %s command.\n", opt,
+            command);
         *retval = ERROR_CTOOL_BAD_PARAMETER;
     }
 }
