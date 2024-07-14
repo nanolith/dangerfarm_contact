@@ -3,7 +3,7 @@
 #include "contactdb_connection.h"
 
 /**
- * \brief Get a transaction by name.
+ * \brief Get a form by id.
  *
  * \param conn          The connection for this operation.
  * \param txn           The transaction for this operation.
