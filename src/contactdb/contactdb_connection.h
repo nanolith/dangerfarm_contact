@@ -137,6 +137,20 @@ int contactdb_connection_form_get(
     const contact_form** form);
 
 /**
+ * \brief Delete a form by id.
+ *
+ * \param conn          The connection for this operation.
+ * \param txn           The transaction for this operation.
+ * \param id            The id of the form to delete.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_connection_form_delete(
+    contactdb_connection* conn, MDB_txn* txn, uint64_t id);
+
+/**
  * \brief Get the first form associated with the contact database.
  *
  * \param cursor        Pointer to receive the cursor for this operation on
