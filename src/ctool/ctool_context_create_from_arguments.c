@@ -326,10 +326,10 @@ static int decode_command(ctool_context* ctx, const char* command)
     {
         ctx->command = CTOOL_COMMAND_GET_COUNT;
         verify_argstr(&retval, ctx->socket_path, "-L", "count");
-        verify_not_argstr(&retval, ctx->contact_form_name, "-n", "append");
-        verify_not_argstr(&retval, ctx->contact_form_email, "-e", "append");
-        verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "append");
-        verify_not_argstr(&retval, ctx->contact_form_comment, "-c", "append");
+        verify_not_argstr(&retval, ctx->contact_form_name, "-n", "count");
+        verify_not_argstr(&retval, ctx->contact_form_email, "-e", "count");
+        verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "count");
+        verify_not_argstr(&retval, ctx->contact_form_comment, "-c", "count");
     }
     /* is this a list command? */
     else if (!strcmp(command, "list"))
