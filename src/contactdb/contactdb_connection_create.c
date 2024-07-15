@@ -56,8 +56,14 @@ int contactdb_connection_create(contactdb_connection** conn, const char* path)
         goto close_env;
     }
 
+    /* set the flags for this database environment. */
+    unsigned int flags = 0;
+#ifdef __OpenBSD__
+    flags |= MDB_WRITEMAP;
+#endif
+
     /* open the environment. */
-    retval = mdb_env_open(tmp->env, path, 0, 0600);
+    retval = mdb_env_open(tmp->env, path, flags, 0600);
     if (STATUS_SUCCESS != retval)
     {
         retval = ERROR_DATABASE_ENV_OPEN;
