@@ -1,5 +1,6 @@
 #include <dangerfarm_contact/protocol/database.h>
 #include <dangerfarm_contact/status_codes.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -50,10 +51,10 @@ int ctool_run_list_command(ctool_context* ctx)
     }
 
     /* list the entries. */
-    printf("Number of entries: %lu.\n", count);
+    printf("Number of entries: %" PRIu64 ".\n", count);
     for (uint64_t i = 0; i < count; ++i)
     {
-        printf("  %lu\n", list[i]);
+        printf("  %" PRIu64 "\n", list[i]);
     }
     printf("\n");
 
