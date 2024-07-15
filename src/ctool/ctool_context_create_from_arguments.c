@@ -339,6 +339,7 @@ static int decode_command(ctool_context* ctx, const char* command)
     else if (!strcmp(command, "list"))
     {
         ctx->command = CTOOL_COMMAND_LIST;
+        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_argstr(&retval, ctx->socket_path, "-L", "list");
         verify_not_argstr(&retval, ctx->contact_form_name, "-n", "list");
         verify_not_argstr(&retval, ctx->contact_form_email, "-e", "list");
