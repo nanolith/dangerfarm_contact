@@ -54,6 +54,17 @@ int ctool_context_create_from_arguments(
 int ctool_context_release(ctool_context* ctx);
 
 /**
+ * \brief Drop privileges before communicating with the database.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int ctool_drop_privileges(ctool_context* ctx);
+
+/**
  * \brief Run a ctool command.
  *
  * \param ctx           The context for this operation.
