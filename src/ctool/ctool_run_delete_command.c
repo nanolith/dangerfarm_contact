@@ -1,6 +1,7 @@
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/protocol/database.h>
 #include <dangerfarm_contact/status_codes.h>
+#include <inttypes.h>
 #include <stdio.h>
 
 #include "ctool_internal.h"
@@ -46,7 +47,7 @@ int ctool_run_delete_command(ctool_context* ctx)
     }
 
     /* Output status. */
-    printf("Delete %lu succeeded.\n", ctx->form_id);
+    printf("Delete %" PRIu64 " succeeded.\n", ctx->form_id);
 
     /* success. */
     retval = STATUS_SUCCESS;
