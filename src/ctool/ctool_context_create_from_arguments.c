@@ -317,8 +317,8 @@ static int decode_command(ctool_context* ctx, const char* command)
     if (!strcmp(command, "append"))
     {
         ctx->command = CTOOL_COMMAND_APPEND;
-        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_argstr(&retval, ctx->socket_path, "-L", "append");
+        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_argstr(&retval, ctx->contact_form_name, "-n", "append");
         verify_argstr(&retval, ctx->contact_form_email, "-e", "append");
         verify_argstr(&retval, ctx->contact_form_subject, "-s", "append");
@@ -328,8 +328,8 @@ static int decode_command(ctool_context* ctx, const char* command)
     else if (!strcmp(command, "count"))
     {
         ctx->command = CTOOL_COMMAND_GET_COUNT;
-        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_argstr(&retval, ctx->socket_path, "-L", "count");
+        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_not_argstr(&retval, ctx->contact_form_name, "-n", "count");
         verify_not_argstr(&retval, ctx->contact_form_email, "-e", "count");
         verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "count");
@@ -339,8 +339,8 @@ static int decode_command(ctool_context* ctx, const char* command)
     else if (!strcmp(command, "list"))
     {
         ctx->command = CTOOL_COMMAND_LIST;
-        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_argstr(&retval, ctx->socket_path, "-L", "list");
+        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_not_argstr(&retval, ctx->contact_form_name, "-n", "list");
         verify_not_argstr(&retval, ctx->contact_form_email, "-e", "list");
         verify_not_argstr(&retval, ctx->contact_form_subject, "-s", "list");
