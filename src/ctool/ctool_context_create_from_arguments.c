@@ -328,6 +328,7 @@ static int decode_command(ctool_context* ctx, const char* command)
     else if (!strcmp(command, "count"))
     {
         ctx->command = CTOOL_COMMAND_GET_COUNT;
+        verify_not_id(&retval, ctx->form_id_set, "-k", "append");
         verify_argstr(&retval, ctx->socket_path, "-L", "count");
         verify_not_argstr(&retval, ctx->contact_form_name, "-n", "count");
         verify_not_argstr(&retval, ctx->contact_form_email, "-e", "count");
