@@ -26,7 +26,7 @@ int contact_form_read(contact_form** form, int s)
     char* email = NULL;
     char* subject = NULL;
     char* comment = NULL;
-    size_t size = 0;
+    uint64_t size = 0;
 
     /* read the size. */
     retval = socket_read_uint64(&size, s);
