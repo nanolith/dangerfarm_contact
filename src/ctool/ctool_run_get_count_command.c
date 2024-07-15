@@ -1,5 +1,6 @@
 #include <dangerfarm_contact/protocol/database.h>
 #include <dangerfarm_contact/status_codes.h>
+#include <inttypes.h>
 #include <stdio.h>
 
 #include "ctool_internal.h"
@@ -46,7 +47,7 @@ int ctool_run_get_count_command(ctool_context* ctx)
         goto done;
     }
 
-    printf("Contact form count: %lu.\n", count);
+    printf("Contact form count: %" PRIu64 ".\n", count);
 
     /* success. */
     retval = STATUS_SUCCESS;
