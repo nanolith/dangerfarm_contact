@@ -52,6 +52,7 @@
 #define ERROR_CTOOL_SOCKET_PATH_TOO_LONG                     49
 #define ERROR_CTOOL_SOCKET_FAILURE                           50
 #define ERROR_CTOOL_CONNECT_FAILURE                          51
+#define ERROR_CTOOL_DROP_PRIVILEGES                          52
 
 /**
  * \brief Return a description string for a given status code.
