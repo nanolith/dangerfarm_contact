@@ -19,6 +19,14 @@ int contactdb_drop_privileges(contactdb_context* ctx)
     (void)ctx;
     (void)retval;
 
+    #ifdef __OpenBSD__
+    retval = pledge("flock error stdio unix", "");
+    if (STATUS_SUCCESS != retval)
+    {
+        return ERROR_CONTACTDB_DROP_PRIVILEGES;
+    }
+    #endif
+
     /* by default, return success. */
     return STATUS_SUCCESS;
 }
