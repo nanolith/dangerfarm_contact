@@ -70,6 +70,13 @@ int ctool_context_create_from_arguments(
         goto cleanup_tmp;
     }
 
+    /* drop privileges. */
+    retval = ctool_drop_privileges(tmp);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto cleanup_tmp;
+    }
+
     /* success. */
     retval = STATUS_SUCCESS;
     *ctx = tmp;
