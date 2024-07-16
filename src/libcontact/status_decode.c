@@ -113,6 +113,7 @@ const char* status_decode(int status)
             return "invalid command";
         case ERROR_CTOOL_CONNECT_FAILURE:
             return "connect failure";
+        case ERROR_CONTACTDB_DROP_PRIVILEGES:
         case ERROR_CTOOL_DROP_PRIVILEGES:
             return "drop privileges";
         default:
