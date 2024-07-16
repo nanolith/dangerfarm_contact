@@ -83,6 +83,17 @@ bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
 int contactdb_daemonize(contactdb_context* ctx);
 
 /**
+ * \brief Drop privileges to only those needed for database communication.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_drop_privileges(contactdb_context* ctx);
+
+/**
  * \brief Install a signal handler.
  *
  * \param ctx           The context to use for this operation.
