@@ -45,14 +45,15 @@
 #define ERROR_CONTACTDB_GET_INVALID_SIZE                     42
 #define ERROR_CONTACTDB_FULL                                 43
 #define ERROR_CONTACTDB_COUNT_MISMATCH                       44
-#define ERROR_CTOOL_BAD_PARAMETER                            45
-#define ERROR_CTOOL_BAD_NUMBER                               46
-#define ERROR_CTOOL_NUMBER_OUT_OF_RANGE                      47
-#define ERROR_CTOOL_INVALID_COMMAND                          48
-#define ERROR_CTOOL_SOCKET_PATH_TOO_LONG                     49
-#define ERROR_CTOOL_SOCKET_FAILURE                           50
-#define ERROR_CTOOL_CONNECT_FAILURE                          51
-#define ERROR_CTOOL_DROP_PRIVILEGES                          52
+#define ERROR_CONTACTDB_DROP_PRIVILEGES                      45
+#define ERROR_CTOOL_BAD_PARAMETER                            46
+#define ERROR_CTOOL_BAD_NUMBER                               47
+#define ERROR_CTOOL_NUMBER_OUT_OF_RANGE                      48
+#define ERROR_CTOOL_INVALID_COMMAND                          49
+#define ERROR_CTOOL_SOCKET_PATH_TOO_LONG                     50
+#define ERROR_CTOOL_SOCKET_FAILURE                           51
+#define ERROR_CTOOL_CONNECT_FAILURE                          52
+#define ERROR_CTOOL_DROP_PRIVILEGES                          53
 
 /**
  * \brief Return a description string for a given status code.
