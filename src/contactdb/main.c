@@ -23,6 +23,13 @@ int main(int argc, char* argv[])
         goto cleanup_ctx;
     }
 
+    /* drop privileges. */
+    retval = contactdb_drop_privileges(ctx);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto cleanup_ctx;
+    }
+
     /* loop while listening for connections. */
     while (!ctx->should_terminate)
     {
