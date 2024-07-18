@@ -1,5 +1,9 @@
 #include <dangerfarm_contact/status_codes.h>
 
+#ifdef __FreeBSD__
+#include <sys/capsicum.h>
+#endif
+
 #include "contactform_internal.h"
 
 /* forward decls. */
@@ -51,5 +55,17 @@ static int drop_privileges_for_parse(void)
  */
 static int drop_all_privileges(void)
 {
+    int retval;
+
+    (void)retval;
+
+    #ifdef __FreeBSD__
+    retval = cap_enter();
+    if (STATUS_SUCCESS != retval)
+    {
+        return ERROR_CONTACTFORM_DROP_PRIVILEGES;
+    }
+    #endif
+
     return STATUS_SUCCESS;
 }
