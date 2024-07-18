@@ -116,6 +116,8 @@ const char* status_decode(int status)
         case ERROR_CONTACTDB_DROP_PRIVILEGES:
         case ERROR_CTOOL_DROP_PRIVILEGES:
             return "drop privileges";
+        case ERROR_CONTACTFORM_INVALID_DROP_PRIVILEGES_STEP:
+            return "invalid drop privileges step";
         default:
             return "unknown error";
     }
