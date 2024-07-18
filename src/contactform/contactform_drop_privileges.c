@@ -1,4 +1,5 @@
 #include <dangerfarm_contact/status_codes.h>
+#include <unistd.h>
 
 #ifdef __FreeBSD__
 #include <sys/capsicum.h>
@@ -43,6 +44,18 @@ int contactform_drop_privileges(int step)
  */
 static int drop_privileges_for_parse(void)
 {
+    int retval;
+
+    (void)retval;
+
+    #ifdef __OpenBSD__
+    retval = pledge("stdio proc", NULL);
+    if (STATUS_SUCCESS != retval)
+    {
+        return ERROR_CONTACTFORM_DROP_PRIVILEGES;
+    }
+    #endif
+
     return STATUS_SUCCESS;
 }
 
@@ -61,6 +74,14 @@ static int drop_all_privileges(void)
 
     #ifdef __FreeBSD__
     retval = cap_enter();
+    if (STATUS_SUCCESS != retval)
+    {
+        return ERROR_CONTACTFORM_DROP_PRIVILEGES;
+    }
+    #endif
+
+    #ifdef __OpenBSD__
+    retval = pledge("stdio", NULL);
     if (STATUS_SUCCESS != retval)
     {
         return ERROR_CONTACTFORM_DROP_PRIVILEGES;
