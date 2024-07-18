@@ -55,6 +55,7 @@
 #define ERROR_CTOOL_CONNECT_FAILURE                          52
 #define ERROR_CTOOL_DROP_PRIVILEGES                          53
 #define ERROR_CONTACTFORM_INVALID_DROP_PRIVILEGES_STEP       54
+#define ERROR_CONTACTFORM_DROP_PRIVILEGES                    55
 
 /**
  * \brief Return a description string for a given status code.
