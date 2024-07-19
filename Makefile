@@ -183,11 +183,17 @@ $(RELEASE_BUILD_DIR)/%.o : $(SRCDIR)/%.c $(INCLUDES)
 	$(RELEASE_CC) $(RELEASE_CFLAGS) -c -o $@ $<
 
 docs: $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf
+docs: $(DOC_BUILD_DIR)/model_checking_talk.pdf
 
 $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf: $(DOC_BUILD_DIR)
 $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf: $(DOCDIR)/dangerform_contact_talk.md
 	$(PANDOC) -t beamer $< --slide-level 2 -o \
 	    $(DOC_BUILD_DIR)/dangerform_contact_talk.pdf
+
+$(DOC_BUILD_DIR)/model_checking_talk.pdf: $(DOC_BUILD_DIR)
+$(DOC_BUILD_DIR)/model_checking_talk.pdf: $(DOCDIR)/model_checking_talk.md
+	$(PANDOC) -t beamer $< --slide-level 2 -o \
+	    $(DOC_BUILD_DIR)/model_checking_talk.pdf
 
 $(DOC_BUILD_DIR):
 	mkdir -p $(DOC_BUILD_DIR)
