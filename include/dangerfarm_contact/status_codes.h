@@ -59,6 +59,7 @@
 #define ERROR_CONTACTFORM_SOCKETPAIR                         56
 #define ERROR_CONTACTFORM_FORK                               57
 #define ERROR_CONTACTFORM_SOCKET                             58
+#define ERROR_CONTACTFORM_CONNECT                            59
 
 /**
  * \brief Return a description string for a given status code.
