@@ -23,7 +23,7 @@
   known as GOTO.
 - This intermediate representation is compiled into a SMT solver program.
 - The SMT solver program looks for counter-examples that would fail the rules
-  and assetions defined.
+  and assertions defined.
 
 ## What about other languages like Rust or C++?
 
