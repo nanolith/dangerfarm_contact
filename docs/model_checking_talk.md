@@ -60,14 +60,29 @@
 
 ## Practical Development Process
 
+- Use macros / compile-time options to create model assertions.
 - Build up function contracts and data structure / class invariants.
 - Model check individual functions, replacing called functions with _shadow
   methods_.
+- Audit function contracts as part of code review, and capture them as reusable
+  functions where possible.
+- Build reporting to determine what percentage of code is covered by model
+  checks and what specific code should be covered by model checks.
+
+## Shadow Methods
+
 - A shadow method upholds and checks the function contract of the function it
-  shadows, but uses nondeterministic behavior to return every possible output
-  from the function as it makes sense based on the contract.
-- For instance, `read` would return a random number of bytes between the total
-  requested and 0, optionally setting the data read with nondeterministic
+  shadows.
+- It uses nondeterministic behavior to return every possible output
+  from the function.
+- It simulates expected side-effects in a way that can be externally verified.
+
+## Unix Shadow Examples
+
+- `open` allocates a valid descriptor on success, which we can use later on.
+- `close` verifies that the descriptor is open and frees this descriptor.
+- `read` verifies the descriptor, returns a random number of bytes between the
+  total requested and 0, optionally setting the data read with nondeterministic
   values, or return -1 and set `errno` to a nondeterministic value based on the
   range of possible errors it can set.
 
