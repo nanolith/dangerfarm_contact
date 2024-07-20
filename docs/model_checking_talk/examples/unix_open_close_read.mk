@@ -5,7 +5,8 @@ ALL:
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
 	-I ../include \
-	shadow/open.c \
 	shadow/close.c \
+	shadow/open.c \
 	shadow/prop_is_valid_unix_desc.c \
+	shadow/read.c \
 	open_close_read_example_main.c
