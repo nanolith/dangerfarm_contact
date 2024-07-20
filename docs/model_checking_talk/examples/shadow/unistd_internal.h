@@ -7,11 +7,9 @@ enum desc_type
     DESC_TYPE_FILE = 2
 };
 
-enum flag_type
-{
-    FLAG_TYPE_READ =    0x0001,
-    FLAG_TYPE_WRITE =   0x0002
-};
+#define FLAG_NONE  0x0000
+#define FLAG_READ  0x0001
+#define FLAG_WRITE 0x0002
 
 typedef struct desc desc;
 struct desc
