@@ -33,5 +33,9 @@ int close(int fd)
         #endif /* __Linux__ */
             errno = error;
             return -1;
+
+        default:
+            errno = EBADF;
+            return -1;
     }
 }
