@@ -12,13 +12,13 @@ static int decode_flags(int flags)
     {
         return FLAG_READ | FLAG_WRITE;
     }
-    else if ((O_RDONLY & flags) == O_RDONLY)
-    {
-        return FLAG_READ;
-    }
     else if ((O_WRONLY & flags) == O_WRONLY)
     {
         return FLAG_WRITE;
+    }
+    else if ((O_RDONLY & flags) == O_RDONLY)
+    {
+        return FLAG_READ;
     }
     else
     {
