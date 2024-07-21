@@ -140,6 +140,13 @@ static void _Noreturn contactform_database_helper_entry(int s)
         goto cleanup_form;
     }
 
+    /* write the append response to the CGI socket. */
+    retval = database_write_contact_form_append_response(s, status);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto cleanup_form;
+    }
+
     /* set retval to the status and clean up. */
     retval = (int)status;
     goto cleanup_form;
