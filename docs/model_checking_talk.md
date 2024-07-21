@@ -86,6 +86,16 @@
   values, or return -1 and set `errno` to a nondeterministic value based on the
   range of possible errors it can set.
 
+## Example: Resource Leak in Error Flow
+
+- We examine a function that uses the classic ``goto fail'' pattern for handling
+  an error flow.
+- However, the model checker can find subtle errors.
+
+## Example: Use-After-Free in Error Flow
+
+- Another ``goto fail'' pattern.
+
 ## Example: Heap Corruption in Serialized Variable Length String
 
 - Program reads a data structure with a variable-length string from a
@@ -101,13 +111,3 @@
   command sequences into a terminal.
 - This demonstrates how model checking programs are a bit different than unit
   tests.
-
-## Example: Resource Leak in Error Flow
-
-- We examine a function that uses the classic ``goto fail'' pattern for handling
-  an error flow.
-- However, the model checker can find subtle errors.
-
-## Example: Use-After-Free in Error Flow
-
-- Another ``goto fail'' pattern.
