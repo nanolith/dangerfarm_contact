@@ -18,7 +18,7 @@ read(int fd, void* buf, size_t nbytes)
     char* cbuf = (char*)buf;
 
     /* verify that this is a valid descriptor for reading. */
-    MODEL_ASSERT(prop_is_valid_unix_desc(fd, DESC_TYPE_ANY, O_RDONLY));
+    MODEL_ASSERT(prop_is_valid_unix_desc(fd, DESC_TYPE_ANY, FLAG_READ));
 
     /* does the read succeed? */
     if (0 == error)
