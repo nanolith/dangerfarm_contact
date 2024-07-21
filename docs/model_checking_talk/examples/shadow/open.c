@@ -5,26 +5,7 @@
 #include "unistd_internal.h"
 
 int nondet_errno();
-
-static int decode_flags(int flags)
-{
-    if ((O_RDWR & flags) == O_RDWR)
-    {
-        return FLAG_READ | FLAG_WRITE;
-    }
-    else if ((O_WRONLY & flags) == O_WRONLY)
-    {
-        return FLAG_WRITE;
-    }
-    else if ((O_RDONLY & flags) == O_RDONLY)
-    {
-        return FLAG_READ;
-    }
-    else
-    {
-        return FLAG_NONE;
-    }
-}
+static int decode_flags(int flags);
 
 int open(const char *path, int flags, ...)
 {
@@ -103,5 +84,25 @@ int open(const char *path, int flags, ...)
         }
 
         return -1;
+    }
+}
+
+static int decode_flags(int flags)
+{
+    if ((O_RDWR & flags) == O_RDWR)
+    {
+        return FLAG_READ | FLAG_WRITE;
+    }
+    else if ((O_WRONLY & flags) == O_WRONLY)
+    {
+        return FLAG_WRITE;
+    }
+    else if ((O_RDONLY & flags) == O_RDONLY)
+    {
+        return FLAG_READ;
+    }
+    else
+    {
+        return FLAG_NONE;
     }
 }
