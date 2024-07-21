@@ -20,7 +20,7 @@ bool prop_is_valid_unix_desc(int d, int type, int flags)
 
     if (flags != 0)
     {
-        if (flags & p->flags != flags)
+        if ((flags & p->flags) != flags)
             return false;
     }
 

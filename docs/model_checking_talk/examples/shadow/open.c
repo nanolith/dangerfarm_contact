@@ -8,15 +8,15 @@ int nondet_errno();
 
 static int decode_flags(int flags)
 {
-    if (O_RDWR == flags)
+    if ((O_RDWR & flags) == O_RDWR)
     {
         return FLAG_READ | FLAG_WRITE;
     }
-    else if (O_RDONLY == flags)
+    else if ((O_RDONLY & flags) == O_RDONLY)
     {
         return FLAG_READ;
     }
-    else if (O_WRONLY == flags)
+    else if ((O_WRONLY & flags) == O_WRONLY)
     {
         return FLAG_WRITE;
     }
