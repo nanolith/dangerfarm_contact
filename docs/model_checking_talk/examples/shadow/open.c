@@ -1,9 +1,30 @@
 #include <errno.h>
+#include <fcntl.h>
 #include <stdlib.h>
 
 #include "unistd_internal.h"
 
 int nondet_errno();
+
+static int decode_flags(int flags)
+{
+    if (O_RDWR == flags)
+    {
+        return FLAG_READ | FLAG_WRITE;
+    }
+    else if (O_RDONLY == flags)
+    {
+        return FLAG_READ;
+    }
+    else if (O_WRONLY == flags)
+    {
+        return FLAG_WRITE;
+    }
+    else
+    {
+        return FLAG_NONE;
+    }
+}
 
 int open(const char *path, int flags, ...)
 {
@@ -25,7 +46,7 @@ int open(const char *path, int flags, ...)
                 }
 
                 unistd_desc_array[i]->type = DESC_TYPE_FILE;
-                unistd_desc_array[i]->flags = flags;
+                unistd_desc_array[i]->flags = decode_flags(flags);
                 errno = 0;
                 return i;
             }
