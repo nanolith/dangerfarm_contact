@@ -10,7 +10,7 @@ struct customer
     char customer_name[0];
 };
 
-#define MAX_CUSTOMER 100
+#define MAX_CUSTOMER_SIZE 100
 
 int main(int argc, char* argv[])
 {
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     uint32_t data_size = name_size + sizeof(customer) + 1;
 
     /* sanity check the size. */
-    if (data_size > MAX_CUSTOMER)
+    if (data_size > MAX_CUSTOMER_SIZE)
     {
         retval = 1;
         goto cleanup_desc;
