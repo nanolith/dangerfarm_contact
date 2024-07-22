@@ -123,6 +123,8 @@ const char* status_decode(int status)
             return "dbsock close";
         case ERROR_CONTACTFORM_DBPID_KILL:
             return "dbpid kill";
+        case ERROR_CONTACTFORM_DBPID_WAIT:
+            return "dbpid wait";
         default:
             return "unknown error";
     }
