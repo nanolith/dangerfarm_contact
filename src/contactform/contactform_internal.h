@@ -8,11 +8,24 @@ enum contactform_drop_privileges_step
     DROP_PRIV_STEP_COMPLETE   = 2,
 };
 
+typedef struct contactform_context contactform_context;
 struct contactform_context
 {
     int dbsock;
     pid_t dbpid;
 };
+
+/**
+ * \brief Create a \ref contactform_context instance.
+ *
+ * \param ctx           Pointer to the pointer to receive the context on
+ *                      success.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactform_context_create(contactform_context** ctx);
 
 /**
  * \brief Create a database helper connection.
