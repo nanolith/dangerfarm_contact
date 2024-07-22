@@ -61,6 +61,7 @@
 #define ERROR_CONTACTFORM_SOCKET                             58
 #define ERROR_CONTACTFORM_CONNECT                            59
 #define ERROR_CONTACTFORM_DBSOCK_CLOSE                       60
+#define ERROR_CONTACTFORM_DBPID_KILL                         61
 
 /**
  * \brief Return a description string for a given status code.
