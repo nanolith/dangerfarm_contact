@@ -28,6 +28,17 @@ struct contactform_context
 int contactform_context_create(contactform_context** ctx);
 
 /**
+ * \brief Release a \ref contactform_context instance.
+ *
+ * \param ctx           The context to release.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactform_context_release(contactform_context* ctx);
+
+/**
  * \brief Create a database helper connection.
  *
  * \param s             Pointer to the descriptor to be set to the socket to
