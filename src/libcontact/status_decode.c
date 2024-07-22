@@ -119,6 +119,8 @@ const char* status_decode(int status)
             return "drop privileges";
         case ERROR_CONTACTFORM_INVALID_DROP_PRIVILEGES_STEP:
             return "invalid drop privileges step";
+        case ERROR_CONTACTFORM_DBSOCK_CLOSE:
+            return "dbsock close";
         default:
             return "unknown error";
     }
