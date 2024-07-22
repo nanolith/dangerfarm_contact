@@ -8,6 +8,12 @@ enum contactform_drop_privileges_step
     DROP_PRIV_STEP_COMPLETE   = 2,
 };
 
+struct contactform_context
+{
+    int dbsock;
+    pid_t dbpid;
+};
+
 /**
  * \brief Create a database helper connection.
  *
