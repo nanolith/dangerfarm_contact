@@ -39,4 +39,10 @@ TEST(decode_strings)
     const char* oom_string = status_decode(ERROR_GENERAL_OUT_OF_MEMORY);
     TEST_EXPECT(0 == match_count(oom_string, unique_strings, unique_ctr));
     unique_strings[unique_ctr++] = oom_string;
+
+    /* verify out of memory string. */
+    const char* read_multibyte_eof = status_decode(ERROR_READ_MULTIBYTE_EOF);
+    TEST_EXPECT(
+        0 == match_count(read_multibyte_eof, unique_strings, unique_ctr));
+    unique_strings[unique_ctr++] = read_multibyte_eof;
 }
