@@ -34,4 +34,9 @@ TEST(decode_strings)
     const char* success_string = status_decode(STATUS_SUCCESS);
     TEST_EXPECT(0 == match_count(success_string, unique_strings, unique_ctr));
     unique_strings[unique_ctr++] = success_string;
+
+    /* verify out of memory string. */
+    const char* oom_string = status_decode(ERROR_GENERAL_OUT_OF_MEMORY);
+    TEST_EXPECT(0 == match_count(oom_string, unique_strings, unique_ctr));
+    unique_strings[unique_ctr++] = oom_string;
 }
