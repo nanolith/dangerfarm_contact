@@ -7,14 +7,13 @@
 
 int main(int argc, char* argv[])
 {
-    int retval, release_retval, dbproc_retval;
-    int dbsock;
-    pid_t dbpid;
+    int retval, release_retval;
+    contactform_context* ctx;
     (void)argc;
     (void)argv;
 
-    /* create the database helper instance. */
-    retval = contactform_database_helper_create(&dbsock, &dbpid);
+    /* create the contactform context. */
+    retval = contactform_context_create(&ctx);
     if (STATUS_SUCCESS != retval)
     {
         retval = 1;
@@ -26,7 +25,7 @@ int main(int argc, char* argv[])
     if (STATUS_SUCCESS != retval)
     {
         retval = 1;
-        goto cleanup_dbpid;
+        goto cleanup_ctx;
     }
 
     /* drop privileges prior to performing CGI actions. */
@@ -34,30 +33,19 @@ int main(int argc, char* argv[])
     if (STATUS_SUCCESS != retval)
     {
         retval = 1;
-        goto cleanup_dbpid;
+        goto cleanup_ctx;
     }
 
     /* success. */
     retval = 0;
-    goto cleanup_dbpid;
+    goto cleanup_ctx;
 
-cleanup_dbpid:
-    /* send a signal to kill the child process. */
-    release_retval = kill(dbpid, SIGTERM);
-    if (release_retval < 0)
+cleanup_ctx:
+    release_retval = contactform_context_release(ctx);
+    if (STATUS_SUCCESS != release_retval)
     {
         retval = 1;
     }
-
-    /* wait on the child pid. */
-    release_retval = waitpid(dbpid, &dbproc_retval, 0);
-    if (release_retval < 0)
-    {
-        retval = 1;
-    }
-
-    /* close the database socket. */
-    close(dbsock);
 
 done:
     return retval;
