@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef   __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
+
 #define STATUS_SUCCESS                                        0
 #define ERROR_GENERAL_OUT_OF_MEMORY                           1
 #define ERROR_READ_MULTIBYTE_EOF                              2
@@ -73,3 +77,7 @@
  * unknown.
  */
 const char* status_decode(int status);
+
+#ifdef   __cplusplus
+}
+#endif /*__cplusplus*/
