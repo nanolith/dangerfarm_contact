@@ -17,12 +17,18 @@ static size_t match_count(const char* str, const char** arr, size_t size)
     return count;
 }
 
+#define MATCH_AND_ADD(status, count) \
+    str = status_decode(status); \
+    TEST_EXPECT(count == match_count(str, unique_strings, unique_ctr)); \
+    unique_strings[unique_ctr++] = str; \
+
 /**
  * Test that each status is decoded into unique strings by class.
  */
 TEST(decode_strings)
 {
     const char* unique_strings[1024];
+    const char* str;
     size_t unique_ctr = 0;
 
     /* verify that an unknown status is decoded as an unknown string. */
@@ -30,49 +36,11 @@ TEST(decode_strings)
     TEST_ASSERT(0 == strcmp(unknown_string, "unknown error"));
     unique_strings[unique_ctr++] = unknown_string;
 
-    /* verify the success string. */
-    const char* success_string = status_decode(STATUS_SUCCESS);
-    TEST_EXPECT(0 == match_count(success_string, unique_strings, unique_ctr));
-    unique_strings[unique_ctr++] = success_string;
-
-    /* verify out of memory string. */
-    const char* oom_string = status_decode(ERROR_GENERAL_OUT_OF_MEMORY);
-    TEST_EXPECT(0 == match_count(oom_string, unique_strings, unique_ctr));
-    unique_strings[unique_ctr++] = oom_string;
-
-    /* verify out of memory string. */
-    const char* read_multibyte_eof = status_decode(ERROR_READ_MULTIBYTE_EOF);
-    TEST_EXPECT(
-        0 == match_count(read_multibyte_eof, unique_strings, unique_ctr));
-    unique_strings[unique_ctr++] = read_multibyte_eof;
-
-    /* verify read multibyte raw continuation. */
-    const char* read_multibyte_raw_continuation =
-        status_decode(ERROR_READ_MULTIBYTE_RAW_CONTINUATION);
-    TEST_EXPECT(
-        0
-            == match_count(
-                    read_multibyte_raw_continuation, unique_strings,
-                    unique_ctr));
-    unique_strings[unique_ctr++] = read_multibyte_raw_continuation;
-
-    /* verify read multibyte invalid continuation. */
-    const char* read_multibyte_invalid_continuation =
-        status_decode(ERROR_READ_MULTIBYTE_INVALID_CONTINUATION);
-    TEST_EXPECT(
-        0
-            == match_count(
-                    read_multibyte_invalid_continuation, unique_strings,
-                    unique_ctr));
-    unique_strings[unique_ctr++] = read_multibyte_invalid_continuation;
-
-    /* verify read multibyte overlong representation. */
-    const char* read_multibyte_overlong_representation =
-        status_decode(ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION);
-    TEST_EXPECT(
-        0
-            == match_count(
-                    read_multibyte_overlong_representation, unique_strings,
-                    unique_ctr));
-    unique_strings[unique_ctr++] = read_multibyte_overlong_representation;
+    /* verify status strings. */
+    MATCH_AND_ADD(STATUS_SUCCESS, 0);
+    MATCH_AND_ADD(ERROR_GENERAL_OUT_OF_MEMORY, 0);
+    MATCH_AND_ADD(ERROR_READ_MULTIBYTE_EOF, 0);
+    MATCH_AND_ADD(ERROR_READ_MULTIBYTE_RAW_CONTINUATION, 0);
+    MATCH_AND_ADD(ERROR_READ_MULTIBYTE_INVALID_CONTINUATION, 0);
+    MATCH_AND_ADD(ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION, 0);
 }
