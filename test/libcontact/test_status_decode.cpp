@@ -65,4 +65,14 @@ TEST(decode_strings)
                     read_multibyte_invalid_continuation, unique_strings,
                     unique_ctr));
     unique_strings[unique_ctr++] = read_multibyte_invalid_continuation;
+
+    /* verify read multibyte overlong representation. */
+    const char* read_multibyte_overlong_representation =
+        status_decode(ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION);
+    TEST_EXPECT(
+        0
+            == match_count(
+                    read_multibyte_overlong_representation, unique_strings,
+                    unique_ctr));
+    unique_strings[unique_ctr++] = read_multibyte_overlong_representation;
 }
