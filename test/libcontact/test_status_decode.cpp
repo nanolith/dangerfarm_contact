@@ -55,4 +55,14 @@ TEST(decode_strings)
                     read_multibyte_raw_continuation, unique_strings,
                     unique_ctr));
     unique_strings[unique_ctr++] = read_multibyte_raw_continuation;
+
+    /* verify read multibyte invalid continuation. */
+    const char* read_multibyte_invalid_continuation =
+        status_decode(ERROR_READ_MULTIBYTE_INVALID_CONTINUATION);
+    TEST_EXPECT(
+        0
+            == match_count(
+                    read_multibyte_invalid_continuation, unique_strings,
+                    unique_ctr));
+    unique_strings[unique_ctr++] = read_multibyte_invalid_continuation;
 }
