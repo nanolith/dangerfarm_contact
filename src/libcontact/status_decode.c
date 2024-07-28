@@ -125,6 +125,8 @@ const char* status_decode(int status)
             return "dbpid kill";
         case ERROR_CONTACTFORM_DBPID_WAIT:
             return "dbpid wait";
+        case ERROR_CONTACTFORM_SOCKETPAIR:
+            return "socketpair";
         default:
             return "unknown error";
     }
