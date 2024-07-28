@@ -94,6 +94,7 @@ const char* status_decode(int status)
         case ERROR_CONTACTDB_SIGACTION_FAILURE:
             return "sigaction failure";
         case ERROR_CONTACTDB_FORK:
+        case ERROR_CONTACTFORM_FORK:
             return "fork failure";
         case ERROR_CONTACTDB_FORK_PARENT:
             return "fork parent exiting";
