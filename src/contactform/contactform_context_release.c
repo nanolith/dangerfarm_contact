@@ -48,5 +48,15 @@ int contactform_context_release(contactform_context* ctx)
         }
     }
 
+    /* release the contact form if created. */
+    if (NULL != ctx->form)
+    {
+        release_retval = contact_form_release(ctx->form);
+        if (STATUS_SUCCESS != release_retval)
+        {
+            retval = release_retval;
+        }
+    }
+
     return retval;
 }
