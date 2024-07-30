@@ -1,5 +1,6 @@
 #pragma once
 
+#include <dangerfarm_contact/data/contact_form.h>
 #include <unistd.h>
 
 enum contactform_drop_privileges_step
@@ -13,6 +14,7 @@ struct contactform_context
 {
     int dbsock;
     pid_t dbpid;
+    contact_form* form;
 };
 
 /**
