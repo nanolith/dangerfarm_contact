@@ -114,6 +114,7 @@ const char* status_decode(int status)
         case ERROR_CTOOL_INVALID_COMMAND:
             return "invalid command";
         case ERROR_CTOOL_CONNECT_FAILURE:
+        case ERROR_CONTACTFORM_CONNECT:
             return "connect failure";
         case ERROR_CONTACTDB_DROP_PRIVILEGES:
         case ERROR_CONTACTFORM_DROP_PRIVILEGES:
