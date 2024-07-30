@@ -54,6 +54,17 @@ int contactform_context_release(contactform_context* ctx);
 int contactform_database_helper_create(int* s, pid_t* pid);
 
 /**
+ * \brief Parse the CGI content, creating a contact form to send to the helper.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactform_context_read_cgi(contactform_context* ctx);
+
+/**
  * \brief Perform a drop privileges step.
  *
  * \param step          The step to perform.
