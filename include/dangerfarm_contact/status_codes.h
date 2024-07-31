@@ -67,6 +67,7 @@ extern "C" {
 #define ERROR_CONTACTFORM_DBSOCK_CLOSE                       60
 #define ERROR_CONTACTFORM_DBPID_KILL                         61
 #define ERROR_CONTACTFORM_DBPID_WAIT                         62
+#define ERROR_CONTACTFORM_KHTTP_PARSE                        63
 
 /**
  * \brief Return a description string for a given status code.
