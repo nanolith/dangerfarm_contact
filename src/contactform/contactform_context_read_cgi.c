@@ -23,13 +23,15 @@ static struct kvalid keys[] = {
     { kvalid_string, "comment" },
 };
 
-#define PAGE_MAX 0
+enum page
+{
+    PAGE_CONTACTFORM,
+    PAGE_MAX
+};
 
 static const char* pages[] = {
     "contactform"
 };
-
-static const size_t defaultpage = 0;
 
 /**
  * \brief Parse the CGI content, creating a contact form to send to the helper.
@@ -45,7 +47,6 @@ int contactform_context_read_cgi(contactform_context* ctx)
     (void)ctx;
     (void)keys;
     (void)pages;
-    (void)defaultpage;
 
     return -1;
 }
