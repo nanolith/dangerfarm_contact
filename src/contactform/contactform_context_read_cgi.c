@@ -7,9 +7,21 @@
 
 #include "contactform_internal.h"
 
-#define KEY_MAX 0
+enum key
+{
+    KEY_NAME,
+    KEY_EMAIL,
+    KEY_SUBJECT,
+    KEY_COMMENT,
+    KEY_MAX
+};
 
-static struct kvalid keys[] = { {NULL, NULL} };
+static struct kvalid keys[] = {
+    { kvalid_string, "name" },
+    { kvalid_string, "email" },
+    { kvalid_string, "subject" },
+    { kvalid_string, "comment" },
+};
 
 #define PAGE_MAX 0
 
