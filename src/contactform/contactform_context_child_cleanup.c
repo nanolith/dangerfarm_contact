@@ -15,4 +15,7 @@ void contactform_context_child_cleanup(contactform_context* ctx)
         close(ctx->dbsock);
         ctx->dbsock = -1;
     }
+
+    /* Invalidate the PID. */
+    ctx->dbpid = 0;
 }
