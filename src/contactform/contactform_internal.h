@@ -1,7 +1,10 @@
 #pragma once
 
 #include <dangerfarm_contact/data/contact_form.h>
+#include <stdarg.h>
+#include <stdbool.h>
 #include <unistd.h>
+#include <kcgi.h>
 
 enum contactform_drop_privileges_step
 {
@@ -15,6 +18,8 @@ struct contactform_context
     int dbsock;
     pid_t dbpid;
     contact_form* form;
+    bool kreq_initialized;
+    struct kreq req;
 };
 
 /**
