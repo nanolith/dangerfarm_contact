@@ -27,6 +27,7 @@ struct contactform_context
     contact_form* form;
     bool kreq_initialized;
     struct kreq req;
+    int request_type;
 };
 
 /**
