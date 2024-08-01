@@ -44,9 +44,27 @@ static const char* pages[] = {
  */
 int contactform_context_read_cgi(contactform_context* ctx)
 {
-    (void)ctx;
-    (void)keys;
-    (void)pages;
+    int retval;
+    struct kreq req;
 
-    return -1;
+    /* parse http request. */
+    retval =
+        khttp_parsex(
+            &req, ksuffixmap, kmimetypes, KMIME__MAX, keys, KEY_MAX, pages,
+            PAGE_MAX, KMIME_TEXT_HTML, PAGE_CONTACTFORM,
+            ctx, (void (*)(void*))&contactform_context_child_cleanup, 0, NULL);
+    if (KCGI_OK != retval)
+    {
+        retval = ERROR_CONTACTFORM_KHTTP_PARSE;
+        goto done;
+    }
+
+    retval = -1;
+    goto cleanup_req;
+
+cleanup_req:
+    khttp_free(&req);
+
+done:
+    return retval;
 }
