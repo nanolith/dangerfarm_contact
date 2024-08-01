@@ -87,6 +87,17 @@ int contactform_context_read_cgi(contactform_context* ctx);
 void contactform_context_child_cleanup(contactform_context* ctx);
 
 /**
+ * \brief Decode the method type into a contact form request type.
+ *
+ * \param ctx           The context for this operation.
+ * \param method        The KCGI HTTP request method to decode.
+ *
+ * \returns the request type to perform.
+ */
+int contactform_context_decode_request_type(
+    contactform_context* ctx, int method);
+
+/**
  * \brief Perform a drop privileges step.
  *
  * \param step          The step to perform.
