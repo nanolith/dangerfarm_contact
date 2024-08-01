@@ -1,9 +1,4 @@
 #include <dangerfarm_contact/status_codes.h>
-#include <stdarg.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <unistd.h>
-#include <kcgi.h>
 
 #include "contactform_internal.h"
 
