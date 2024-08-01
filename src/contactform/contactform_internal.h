@@ -16,6 +16,7 @@ enum contactform_request_type
 {
     CONTACTFORM_REQUEST_TYPE_OPTIONS = 1,
     CONTACTFORM_REQUEST_TYPE_POST = 2,
+    CONTACTFORM_REQUEST_TYPE_INVALID = 3
 };
 
 typedef struct contactform_context contactform_context;
