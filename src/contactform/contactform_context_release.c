@@ -58,5 +58,11 @@ int contactform_context_release(contactform_context* ctx)
         }
     }
 
+    /* release req if initialized. */
+    if (ctx->kreq_initialized)
+    {
+        khttp_free(&ctx->req);
+    } 
+
     return retval;
 }
