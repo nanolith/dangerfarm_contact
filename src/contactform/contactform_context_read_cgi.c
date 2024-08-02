@@ -40,8 +40,7 @@ int contactform_context_read_cgi(contactform_context* ctx)
             ctx, (void (*)(void*))&contactform_context_child_cleanup, 0, NULL);
     if (KCGI_OK != retval)
     {
-        retval = ERROR_CONTACTFORM_KHTTP_PARSE;
-        goto done;
+        return ERROR_CONTACTFORM_KHTTP_PARSE;
     }
 
     /* the kcgi request context has been initialized. */
@@ -52,10 +51,15 @@ int contactform_context_read_cgi(contactform_context* ctx)
         contactform_context_decode_request_type(ctx->req.method);
 
     /* if this is a post, decode a contact form. */
+    if (CONTACTFORM_REQUEST_TYPE_POST == ctx->request_type)
+    {
+        retval = contactform_form_decode(ctx);
+        if (STATUS_SUCCESS != retval)
+        {
+            return retval;
+        }
+    }
 
-    retval = -1;
-    goto done;
-
-done:
-    return retval;
+    /* success. */
+    return STATUS_SUCCESS;
 }
