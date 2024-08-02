@@ -55,6 +55,11 @@ int contactform_context_read_cgi(contactform_context* ctx)
 
     /* the kcgi request context has been initialized. */
     ctx->kreq_initialized = true;
+
+    /* decode the request type. */
+    ctx->request_type =
+        contactform_context_decode_request_type(ctx->req.method);
+
     retval = -1;
     goto done;
 
