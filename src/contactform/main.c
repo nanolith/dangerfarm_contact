@@ -28,6 +28,14 @@ int main(int argc, char* argv[])
         goto cleanup_ctx;
     }
 
+    /* parse the CGI request. */
+    retval = contactform_context_read_cgi(ctx);
+    if (STATUS_SUCCESS != retval)
+    {
+        retval = 1;
+        goto cleanup_ctx;
+    }
+
     /* drop privileges prior to performing CGI actions. */
     retval = contactform_drop_privileges(DROP_PRIV_STEP_COMPLETE);
     if (STATUS_SUCCESS != retval)
