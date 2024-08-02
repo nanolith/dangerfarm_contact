@@ -116,6 +116,17 @@ int contactform_context_decode_request_type(int method);
 int contactform_form_decode(contactform_context* ctx);
 
 /**
+ * \brief Perform a CGI request action.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactform_perform_cgi_request(contactform_context* ctx);
+
+/**
  * \brief Perform a drop privileges step.
  *
  * \param step          The step to perform.
