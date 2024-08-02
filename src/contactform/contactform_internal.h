@@ -96,6 +96,17 @@ void contactform_context_child_cleanup(contactform_context* ctx);
 int contactform_context_decode_request_type(int method);
 
 /**
+ * \brief Decode a contact form instance using form data.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactform_form_decode(contactform_context* ctx);
+
+/**
  * \brief Perform a drop privileges step.
  *
  * \param step          The step to perform.
