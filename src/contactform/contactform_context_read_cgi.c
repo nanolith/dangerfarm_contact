@@ -2,15 +2,6 @@
 
 #include "contactform_internal.h"
 
-enum key
-{
-    KEY_NAME,
-    KEY_EMAIL,
-    KEY_SUBJECT,
-    KEY_COMMENT,
-    KEY_MAX
-};
-
 static struct kvalid keys[] = {
     { kvalid_string, "name" },
     { kvalid_string, "email" },
@@ -59,6 +50,8 @@ int contactform_context_read_cgi(contactform_context* ctx)
     /* decode the request type. */
     ctx->request_type =
         contactform_context_decode_request_type(ctx->req.method);
+
+    /* if this is a post, decode a contact form. */
 
     retval = -1;
     goto done;
