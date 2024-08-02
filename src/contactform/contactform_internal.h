@@ -19,6 +19,15 @@ enum contactform_request_type
     CONTACTFORM_REQUEST_TYPE_INVALID = 3
 };
 
+enum contactform_key
+{
+    KEY_NAME,
+    KEY_EMAIL,
+    KEY_SUBJECT,
+    KEY_COMMENT,
+    KEY_MAX
+};
+
 typedef struct contactform_context contactform_context;
 struct contactform_context
 {
