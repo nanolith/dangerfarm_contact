@@ -69,6 +69,7 @@ extern "C" {
 #define ERROR_CONTACTFORM_DBPID_WAIT                         62
 #define ERROR_CONTACTFORM_KHTTP_PARSE                        63
 #define ERROR_CONTACTFORM_MISSING_FIELD                      64
+#define ERROR_CONTACTFORM_KHTTP_HEAD                         65
 
 /**
  * \brief Return a description string for a given status code.
