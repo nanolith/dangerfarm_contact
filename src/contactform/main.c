@@ -44,6 +44,14 @@ int main(int argc, char* argv[])
         goto cleanup_ctx;
     }
 
+    /* perform the CGI request. */
+    retval = contactform_perform_cgi_request(ctx);
+    if (STATUS_SUCCESS != retval)
+    {
+        retval = 1;
+        goto cleanup_ctx;
+    }
+
     /* success. */
     retval = 0;
     goto cleanup_ctx;
