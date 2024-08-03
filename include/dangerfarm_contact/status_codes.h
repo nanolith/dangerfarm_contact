@@ -71,6 +71,7 @@ extern "C" {
 #define ERROR_CONTACTFORM_MISSING_FIELD                      64
 #define ERROR_CONTACTFORM_KHTTP_HEAD                         65
 #define ERROR_CONTACTFORM_KHTTP_BODY                         66
+#define ERROR_CONTACTFORM_KHTTP_PUTS                         67
 
 /**
  * \brief Return a description string for a given status code.
