@@ -1,3 +1,4 @@
+#include <dangerfarm_contact/protocol/database.h>
 #include <dangerfarm_contact/status_codes.h>
 
 #include "contactform_internal.h"
@@ -67,9 +68,48 @@ static int contactform_perform_cgi_options_request(contactform_context* ctx)
  */
 static int contactform_perform_cgi_post_request(contactform_context* ctx)
 {
-    (void)ctx;
+    int retval;
+    uint32_t status;
 
-    return -1;
+    /* send the contact form request to the database server, through our child
+     * process. */
+    retval = database_write_contact_form_append_request(ctx->dbsock, ctx->form);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto error_500;
+    }
+
+    /* read the response. */
+    retval = database_read_contact_form_append_response(&status, ctx->dbsock);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto error_500;
+    }
+
+    /* did we fail? */
+    if (STATUS_SUCCESS != status)
+    {
+        return output_standard_headers(ctx, KHTTP_400);
+    }
+
+    /* output headers. */
+    retval = output_standard_headers(ctx, KHTTP_200);
+    if (STATUS_SUCCESS != retval)
+    {
+        return retval;
+    }
+
+    /* output body. */
+    retval = khttp_puts(&ctx->req, "Contact Request Sent!");
+    if (KCGI_OK != retval)
+    {
+        return ERROR_CONTACTFORM_KHTTP_PUTS;
+    }
+
+    return STATUS_SUCCESS;
+
+error_500:
+    return output_standard_headers(ctx, KHTTP_500);
 }
 
 /**
