@@ -53,7 +53,7 @@ static int contactform_perform_cgi_options_request(contactform_context* ctx)
     }
 
     /* add the standard headers. */
-    return output_standard_headers(ctx, KHTTP_200);
+    return output_standard_headers(ctx, KHTTP_204);
 }
 
 /**
