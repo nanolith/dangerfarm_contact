@@ -6,6 +6,7 @@
 static int contactform_perform_cgi_options_request(contactform_context* ctx);
 static int contactform_perform_cgi_post_request(contactform_context* ctx);
 static int contactform_perform_cgi_bad_request(contactform_context* ctx);
+static int output_standard_headers(contactform_context* ctx, int status_code);
 
 /**
  * \brief Perform a CGI request action.
@@ -51,32 +52,8 @@ static int contactform_perform_cgi_options_request(contactform_context* ctx)
         return ERROR_CONTACTFORM_KHTTP_HEAD;
     }
 
-    /* add the status header. */
-    retval =
-        khttp_head(&ctx->req, kresps[KRESP_STATUS], "%s", khttps[KHTTP_200]);
-    if (KCGI_OK != retval)
-    {
-        return ERROR_CONTACTFORM_KHTTP_HEAD;
-    }
-
-    /* add the content type header. */
-    retval =
-        khttp_head(
-            &ctx->req, kresps[KRESP_CONTENT_TYPE], "%s",
-            kmimetypes[KMIME_TEXT_PLAIN]);
-    if (KCGI_OK != retval)
-    {
-        return ERROR_CONTACTFORM_KHTTP_HEAD;
-    }
-
-    /* Close the headers and start the body. */
-    retval = khttp_body(&ctx->req);
-    if (KCGI_OK != retval)
-    {
-        return ERROR_CONTACTFORM_KHTTP_BODY;
-    }
-
-    return STATUS_SUCCESS;
+    /* add the standard headers. */
+    return output_standard_headers(ctx, KHTTP_200);
 }
 
 /**
@@ -115,9 +92,28 @@ static int contactform_perform_cgi_bad_request(contactform_context* ctx)
         return ERROR_CONTACTFORM_KHTTP_HEAD;
     }
 
+    /* add the standard headers. */
+    return output_standard_headers(ctx, KHTTP_405);
+}
+
+/**
+ * \brief Output the standard headers and close the header section of the
+ * response.
+ *
+ * \param ctx           The context for this operation.
+ * \param status_code   The KCGI http header code for this response.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+static int output_standard_headers(contactform_context* ctx, int status_code)
+{
+    int retval;
+
     /* add the status header. */
     retval =
-        khttp_head(&ctx->req, kresps[KRESP_STATUS], "%s", khttps[KHTTP_405]);
+        khttp_head(&ctx->req, kresps[KRESP_STATUS], "%s", khttps[status_code]);
     if (KCGI_OK != retval)
     {
         return ERROR_CONTACTFORM_KHTTP_HEAD;
