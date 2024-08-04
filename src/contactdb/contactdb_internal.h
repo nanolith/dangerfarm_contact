@@ -186,3 +186,12 @@ int contactdb_dnd_contact_form_get(contactdb_context* ctx, int sock);
  *      - non-zero on error.
  */
 int contactdb_dnd_contact_form_delete(contactdb_context* ctx, int sock);
+
+/**
+ * \brief Return true if the given \ref contactdb_context is valid.
+ *
+ * \param ctx           The context to verify.
+ *
+ * \returns true if this context is valid, and false otherwise.
+ */
+bool prop_is_valid_contactdb_context(const contactdb_context* ctx);
