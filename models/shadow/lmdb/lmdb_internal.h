@@ -5,6 +5,7 @@
 
 struct MDB_env
 {
+    bool created;
     bool opened;
     size_t dbi_count;
 };
