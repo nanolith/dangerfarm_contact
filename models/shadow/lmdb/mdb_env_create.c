@@ -14,6 +14,7 @@ int mdb_env_create(MDB_env** env)
 
     (*env)->created = true;
     (*env)->opened = false;
+    (*env)->in_txn = false;
     (*env)->dbi_count = 0;
 
     return MDB_SUCCESS;
