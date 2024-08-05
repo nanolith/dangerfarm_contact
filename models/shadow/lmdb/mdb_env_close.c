@@ -5,6 +5,7 @@
 void mdb_env_close(MDB_env* env)
 {
     MODEL_ASSERT(prop_MDB_env_created(env));
+    MODEL_ASSERT(!prop_MDB_env_in_txn(env));
 
     free(env);
 }
