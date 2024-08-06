@@ -1,4 +1,5 @@
 #include <dangerfarm_contact/cbmc/model_assert.h>
+#include <stdlib.h>
 
 #include "lmdb_internal.h"
 
