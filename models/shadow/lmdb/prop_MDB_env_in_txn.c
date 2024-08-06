@@ -2,7 +2,7 @@
 
 #include "lmdb_internal.h"
 
-bool prop_MDB_env_in_txn(const MDB_env* env);
+bool prop_MDB_env_in_txn(const MDB_env* env)
 {
     MODEL_ASSERT(NULL != env);
 
