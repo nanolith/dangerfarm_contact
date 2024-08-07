@@ -9,6 +9,8 @@ int retval_nondet();
 int mdb_env_set_mapsize(MDB_env *env, mdb_size_t size)
 {
     MODEL_ASSERT(prop_MDB_env_created(env));
+    MODEL_ASSERT(!prop_MDB_env_opened(env));
+    MODEL_ASSERT(!prop_MDB_env_in_txn(env));
 
     int retval = retval_nondet();
     switch (retval)
