@@ -4,7 +4,7 @@
 
 #include "lmdb_internal.h"
 
-int retval_nondet();
+int nondet_retval();
 
 int mdb_env_set_mapsize(MDB_env *env, mdb_size_t size)
 {
@@ -12,7 +12,7 @@ int mdb_env_set_mapsize(MDB_env *env, mdb_size_t size)
     MODEL_ASSERT(!prop_MDB_env_opened(env));
     MODEL_ASSERT(!prop_MDB_env_in_txn(env));
 
-    int retval = retval_nondet();
+    int retval = nondet_retval();
     switch (retval)
     {
         case EINVAL:
