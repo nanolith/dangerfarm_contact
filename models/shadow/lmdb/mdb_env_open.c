@@ -5,7 +5,7 @@
 
 #include "lmdb_internal.h"
 
-int retval_nondet();
+int nondet_retval();
 
 int mdb_env_open(
     MDB_env *env, const char *path, unsigned int flags, mdb_mode_t mode)
@@ -19,7 +19,7 @@ int mdb_env_open(
 #endif
     MODEL_ASSERT(0600 == mode);
 
-    int retval = retval_nondet();
+    int retval = nondet_retval();
     switch (retval)
     {
         case STATUS_SUCCESS:
