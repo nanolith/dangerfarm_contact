@@ -3,18 +3,20 @@
 
 #include "lmdb_internal.h"
 
-bool prop_MDB_txn_valid(const MDB_env* env, const MDB_txn* txn)
+bool prop_MDB_txn_valid(const MDB_txn* txn)
 {
-    MODEL_ASSERT(prop_MDB_env_opened(env));
+    MODEL_ASSERT(NULL != txn);
+    MODEL_ASSERT(prop_MDB_env_opened(txn->env));
 
     if (NULL != txn->parent)
     {
-        return prop_MDB_txn_valid(env, txn->parent);
+        MODEL_ASSERT(txn->parent->env == txn->env);
+        return prop_MDB_txn_valid(txn->parent);
     }
     else
     {
-        MODEL_ASSERT(prop_MDB_env_in_txn(env));
-        MODEL_ASSERT(env->txn == txn);
+        MODEL_ASSERT(prop_MDB_env_in_txn(txn->env));
+        MODEL_ASSERT(txn->env->txn == txn);
 
         return true;
     }
