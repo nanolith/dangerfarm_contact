@@ -14,6 +14,7 @@ struct MDB_env
 
 struct MDB_txn
 {
+    MDB_env* env;
     MDB_txn* parent;
     unsigned int flags;
 };
