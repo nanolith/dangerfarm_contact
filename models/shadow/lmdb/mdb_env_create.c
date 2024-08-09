@@ -18,6 +18,7 @@ int mdb_env_create(MDB_env** env)
     (*env)->in_txn = false;
     (*env)->txn = NULL;
     (*env)->dbi_count = 0;
+    (*env)->dbi_alloc_count = 0;
 
     return MDB_SUCCESS;
 }
