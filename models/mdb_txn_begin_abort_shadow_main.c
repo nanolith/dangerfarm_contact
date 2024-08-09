@@ -1,3 +1,4 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <lmdb.h>
 #include <stddef.h>
@@ -29,6 +30,9 @@ int main(int argc, char* argv[])
         goto cleanup_env;
     }
 
+    /* we are not currently in a transaction. */
+    MODEL_ASSERT(!prop_MDB_env_in_txn(env));
+
     /* begin a transaction. */
     retval = mdb_txn_begin(env, NULL, 0, &txn);
     if (STATUS_SUCCESS != retval)
@@ -37,8 +41,14 @@ int main(int argc, char* argv[])
         goto cleanup_env;
     }
 
+    /* we are in a transaction. */
+    MODEL_ASSERT(prop_MDB_env_in_txn(env));
+
     /* abort the transaction. */
     mdb_txn_abort(txn);
+
+    /* we are no longer in a transaction. */
+    MODEL_ASSERT(!prop_MDB_env_in_txn(env));
 
     /* success. */
     retval = 0;
