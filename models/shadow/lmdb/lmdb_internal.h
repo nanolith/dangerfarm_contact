@@ -10,6 +10,7 @@ struct MDB_env
     bool in_txn;
     MDB_txn* txn;
     size_t dbi_count;
+    size_t dbi_alloc_count;
 };
 
 struct MDB_txn
