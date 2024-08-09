@@ -4,7 +4,7 @@
 
 #include "lmdb_internal.h"
 
-int retval_nondet();
+int nondet_retval();
 
 int mdb_env_set_maxdbs(MDB_env *env, MDB_dbi dbs)
 {
@@ -12,7 +12,7 @@ int mdb_env_set_maxdbs(MDB_env *env, MDB_dbi dbs)
     MODEL_ASSERT(!prop_MDB_env_opened(env));
     MODEL_ASSERT(!prop_MDB_env_in_txn(env));
 
-    int retval = retval_nondet();
+    int retval = nondet_retval();
     switch (retval)
     {
         case STATUS_SUCCESS:
