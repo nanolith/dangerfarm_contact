@@ -18,6 +18,7 @@ struct MDB_txn
     MDB_env* env;
     MDB_txn* parent;
     unsigned int flags;
+    size_t dbi_count;
 };
 
 bool prop_MDB_env_created(const MDB_env* env);
