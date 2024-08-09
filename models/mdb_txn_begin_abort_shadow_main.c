@@ -3,6 +3,8 @@
 #include <lmdb.h>
 #include <stddef.h>
 
+#include "shadow/lmdb/lmdb_internal.h"
+
 int main(int argc, char* argv[])
 {
     int retval;
