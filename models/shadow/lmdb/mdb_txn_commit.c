@@ -35,6 +35,10 @@ int mdb_txn_commit(MDB_txn *txn)
         txn->env->txn = NULL;
     }
 
+    /* update DBI counts based on transaction commit. */
+    txn->env->dbi_count -= txn->dbi_count;
+    txn->env->dbi_alloc_count += txn->dbi_count;
+
     free(txn);
 
     return STATUS_SUCCESS;
