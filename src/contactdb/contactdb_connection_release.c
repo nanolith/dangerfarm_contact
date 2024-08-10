@@ -15,13 +15,14 @@
  */
 int contactdb_connection_release(contactdb_connection* conn)
 {
-    int retval;
+    int release_retval;
+    int retval = STATUS_SUCCESS;
 
     /* synchronize the database. */
-    retval = mdb_env_sync(conn->env, 1);
-    if (STATUS_SUCCESS != retval)
+    release_retval = mdb_env_sync(conn->env, 1);
+    if (STATUS_SUCCESS != release_retval)
     {
-        return ERROR_DATABASE_SYNC;
+        retval = ERROR_DATABASE_SYNC;
     }
 
     /* close all database connections. */
@@ -35,5 +36,5 @@ int contactdb_connection_release(contactdb_connection* conn)
     memset(conn, 0, sizeof(*conn));
     free(conn);
 
-    return STATUS_SUCCESS;
+    return retval;
 }
