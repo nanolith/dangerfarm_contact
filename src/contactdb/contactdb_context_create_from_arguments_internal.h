@@ -1,5 +1,7 @@
 #pragma once
 
+#include "contactdb_internal.h"
+
 /**
  * \brief Set the given string argument, returning an error if the string
  * argument was already set.
@@ -14,3 +16,17 @@
  */
 int contactdb_context_create_from_arguments_set_string(
     char** str, const char* opt, const char* value);
+
+/**
+ * \brief Read arguments, populating the context.
+ *
+ * \brief ctx           The context to populate with arguments.
+ * \brief argc          The argument count.
+ * \brief argv          The argument vector.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_context_create_from_arguments_read_args(
+    contactdb_context* ctx, int argc, char* argv[]);
