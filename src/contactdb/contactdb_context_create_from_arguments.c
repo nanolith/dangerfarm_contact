@@ -13,7 +13,6 @@
 
 /* forward decls. */
 static void set_defaults(contactdb_context* ctx);
-static int bind_local_socket(contactdb_context* ctx);
 
 /**
  * \brief Given an argument count and vector, create a contactdb context.
@@ -54,7 +53,7 @@ int contactdb_context_create_from_arguments(
     /* if this is a listen socket, bind it. */
     if (tmp->listen_socket && NULL != tmp->socket_path)
     {
-        retval = bind_local_socket(tmp);
+        retval = contactdb_context_create_from_arguments_bind_local_socket(tmp);
         if (STATUS_SUCCESS != retval)
         {
             goto cleanup_tmp;
@@ -96,78 +95,4 @@ static void set_defaults(contactdb_context* ctx)
 
     ctx->sock = -1;
     ctx->listen_socket = true;
-}
-
-/**
- * \brief Bind the local domain socket for this context.
- *
- * \param ctx           The context for this operation.
- *
- * \returns a status code indicating success or failure.
- *      - zero on success.
- *      - non-zero on failure.
- */
-static int bind_local_socket(contactdb_context* ctx)
-{
-    int retval;
-    struct sockaddr_un addr;
-
-    /* verify that the length of the socket path does not exceed sun_path. */
-    if (strlen(ctx->socket_path) + 1 > sizeof(addr.sun_path))
-    {
-        retval = ERROR_CONTACTDB_SOCKET_PATH_TOO_LONG;
-        goto done;
-    }
-
-    /* set the bind address. */
-    addr.sun_family = AF_UNIX;
-    strlcpy(addr.sun_path, ctx->socket_path, sizeof(addr.sun_path));
-
-    /* create a socket. */
-    ctx->sock = socket(AF_UNIX, SOCK_STREAM, 0);
-    if (ctx->sock < 0)
-    {
-        retval = ERROR_CONTACTDB_SOCKET_FAILURE;
-        goto done;
-    }
-
-    /* unlink the file before binding. */
-    unlink(addr.sun_path);
-
-    /* bind this socket. */
-    retval = bind(ctx->sock, (struct sockaddr*)&addr, sizeof(addr));
-    if (retval < 0)
-    {
-        retval = ERROR_CONTACTDB_BIND_FAILURE;
-        goto cleanup_sock;
-    }
-
-    /* make this socket only user / group readable / writeable. */
-    retval = chmod(ctx->socket_path, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
-    if (retval < 0)
-    {
-        retval = ERROR_CONTACTDB_CHMOD_FAILURE;
-        goto cleanup_sock;
-    }
-
-    /* listen on this socket. */
-    retval = listen(ctx->sock, 5);
-    if (retval < 0)
-    {
-        retval = ERROR_CONTACTDB_LISTEN_FAILURE;
-        goto cleanup_sock;
-    }
-
-    /* success. */
-    retval = STATUS_SUCCESS;
-    goto done;
-
-cleanup_sock:
-    close(ctx->sock);
-    ctx->sock = -1;
-
-done:
-    memcpy(&addr, 0, sizeof(addr));
-
-    return retval;
 }
