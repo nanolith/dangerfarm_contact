@@ -30,3 +30,15 @@ int contactdb_context_create_from_arguments_set_string(
  */
 int contactdb_context_create_from_arguments_read_args(
     contactdb_context* ctx, int argc, char* argv[]);
+
+/**
+ * \brief Bind the local domain socket for this context.
+ *
+ * \param ctx           The context for this operation.
+ *
+ * \returns a status code indicating success or failure.
+ *      - zero on success.
+ *      - non-zero on failure.
+ */
+int contactdb_context_create_from_arguments_bind_local_socket(
+    contactdb_context* ctx);
