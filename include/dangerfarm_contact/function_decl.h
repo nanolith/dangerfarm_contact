@@ -22,3 +22,11 @@
     dangerfarm_contact ## _ ## x ## _ ## y ## _ ## z
 #define DANGERFARM_CONTACT_SYM_COMBINE1(x, y, z) \
     DANGERFARM_CONTACT_SYM_COMBINE(x, y, z)
+
+/**
+ * The DANGERFARM_CONTACT_SYM macro elevates a given symbol to the
+ * DANGERFARM_CONTACT namespace.
+ */
+#define DANGERFARM_CONTACT_SYM(sym) \
+    DANGERFARM_CONTACT_SYM_COMBINE1( \
+        DANGERFARM_CONTACT_UNIQUE_NAME, DANGERFARM_CONTACT_VERSION_SYM, sym);
