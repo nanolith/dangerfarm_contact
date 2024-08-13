@@ -1,6 +1,11 @@
 #include <dangerfarm_contact/macro_tricks.h>
 
 /**
+ * We don't really version this code, but if we did, we can adjust this symbol.
+ */
+#define DANGERFARM_CONTACT_VERSION_SYM V0_1
+
+/**
  * A UUID symbol to make names unique.
  */
 #define DANGERFARM_CONTACT_UNIQUE_NAME 6a32746c_5353_11ef_b2d0_18c04d8c76eb
