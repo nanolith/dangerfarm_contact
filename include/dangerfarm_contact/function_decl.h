@@ -9,3 +9,11 @@
  * Concatenate two symbols together.
  */
 #define DANGERFARM_CONTACT_CONCAT(x,y) x ## y
+
+/**
+ * Symbol expansion and combination macros.
+ */
+#define DANGERFARM_CONTACT_SYM_COMBINE(x, y, z) \
+    dangerfarm_contact ## _ ## x ## _ ## y ## _ ## z
+#define DANGERFARM_CONTACT_SYM_COMBINE1(x, y, z) \
+    DANGERFARM_CONTACT_SYM_COMBINE(x, y, z)
