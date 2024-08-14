@@ -18,9 +18,9 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_create(
-    contact_form** form, const char* name, const char* email,
-    const char* subject, const char* comment)
+int DANGERFARM_CONTACT_SYM(contact_form_create)(
+    DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
+    const char* email, const char* subject, const char* comment)
 {
     contact_form* tmp = NULL;
     size_t offset = 0;
