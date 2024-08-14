@@ -80,7 +80,8 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_write(int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
+int DANGERFARM_CONTACT_SYM(contact_form_write)(
+    int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Given a serialized contact form and a size, verify that the contact
@@ -201,6 +202,10 @@ bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
     static inline int sym ## contact_form_read( \
         DANGERFARM_CONTACT_SYM(contact_form)** x, int y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_read)(x,y); \
+    } \
+    static inline int sym ## contact_form_write( \
+        int x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
+            return DANGERFARM_CONTACT_SYM(contact_form_write)(x,y); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
