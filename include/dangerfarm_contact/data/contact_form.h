@@ -1,4 +1,5 @@
 #pragma once
+#include <dangerfarm_contact/function_decl.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -172,6 +173,18 @@ int contact_form_extract_comment(char** comment, const contact_form* form);
  * \returns true if the contact form appears valid and false otherwise.
  */
 bool prop_valid_contact_form(const contact_form* form);
+
+/******************************************************************************/
+/* Start of public exports.                                                   */
+/******************************************************************************/
+#define __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(sym) \
+    DANGERFARM_CONTACT_BEGIN_EXPORT \
+    DANGERFARM_CONTACT_END_EXPORT \
+    REQUIRE_SEMICOLON_HERE
+#define DANGERFARM_CONTACT_IMPORT_contact_form_as(sym) \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(sym ## _)
+#define DANGERFARM_CONTACT_IMPORT_contact_form \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(()
 
 #ifdef   __cplusplus
 }
