@@ -66,7 +66,8 @@ int DANGERFARM_CONTACT_SYM(contact_form_release)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_read(DANGERFARM_CONTACT_SYM(contact_form)** form, int s);
+int DANGERFARM_CONTACT_SYM(contact_form_read)(
+    DANGERFARM_CONTACT_SYM(contact_form)** form, int s);
 
 /**
  * \brief Write a \ref contact_form to the given descriptor.
@@ -196,6 +197,10 @@ bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
     static inline int sym ## contact_form_release( \
         DANGERFARM_CONTACT_SYM(contact_form)* x) { \
             return DANGERFARM_CONTACT_SYM(contact_form_release)(x); \
+    } \
+    static inline int sym ## contact_form_read( \
+        DANGERFARM_CONTACT_SYM(contact_form)** x, int y) { \
+            return DANGERFARM_CONTACT_SYM(contact_form_read)(x,y); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE

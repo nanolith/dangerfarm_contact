@@ -18,7 +18,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_read(contact_form** form, int s)
+int DANGERFARM_CONTACT_SYM(contact_form_read)(
+    DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
     int retval, release_retval;
     contact_form hdr;
