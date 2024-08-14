@@ -14,7 +14,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_verify(const contact_form* form, size_t size)
+int DANGERFARM_CONTACT_SYM(contact_form_verify)(
+    const DANGERFARM_CONTACT_SYM(contact_form)* form, size_t size)
 {
     /* the size must at least be large enough for the contact form. */
     if (size < sizeof(contact_form))
