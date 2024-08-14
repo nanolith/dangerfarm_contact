@@ -9,7 +9,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
 
 int nondet_status();
 
-int contact_form_read(contact_form** form, int s)
+int DANGERFARM_CONTACT_SYM(contact_form_read)(
+    DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
