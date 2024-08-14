@@ -4,6 +4,8 @@
 
 #include "contactform_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Release a \ref contactform_context instance.
  *
