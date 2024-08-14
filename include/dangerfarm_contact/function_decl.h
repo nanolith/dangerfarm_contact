@@ -37,3 +37,9 @@
 #define DANGERFARM_CONTACT_BEGIN_EXPORT \
     _Pragma("GCC diagnostic push") \
     _Pragma("GCC diagnostic ignored \"-Wunused-function\"")
+
+/**
+ * End an export section.
+ */
+#define DANGERFARM_CONTACT_END_EXPORT \
+    _Pragma("GCC diagnostic pop")
