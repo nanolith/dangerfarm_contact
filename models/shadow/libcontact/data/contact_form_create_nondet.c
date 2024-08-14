@@ -61,7 +61,7 @@ int contact_form_create_nondet(
     return STATUS_SUCCESS;
 }
 
-int contact_form_create(
+int DANGERFARM_CONTACT_SYM(contact_form_create)(
     contact_form** form, const char* name, const char* email,
     const char* subject, const char* comment)
 {

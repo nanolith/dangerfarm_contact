@@ -40,7 +40,7 @@ struct DANGERFARM_CONTACT_SYM(contact_form)
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_create(
+int DANGERFARM_CONTACT_SYM(contact_form_create)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
     const char* email, const char* subject, const char* comment);
 
@@ -187,6 +187,11 @@ bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
     typedef DANGERFARM_CONTACT_SYM(contact_form) sym ## contact_form; \
+    static inline int sym ## contact_form_create( \
+        DANGERFARM_CONTACT_SYM(contact_form)** v, const char* w, \
+        const char* x, const char* y, const char* z) { \
+            return DANGERFARM_CONTACT_SYM(contact_form_create)(v,w,x,y,z); \
+    } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
 #define DANGERFARM_CONTACT_IMPORT_contact_form_as(sym) \
