@@ -3,6 +3,8 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 int main(int argc, char* argv[])
 {
     int retval;

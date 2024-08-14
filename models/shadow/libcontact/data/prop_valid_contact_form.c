@@ -2,6 +2,8 @@
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/status_codes.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 bool prop_valid_contact_form(const contact_form* form)
 {
     size_t size = contact_form_compute_size(form);

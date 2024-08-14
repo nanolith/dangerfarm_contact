@@ -1,6 +1,8 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/data/contact_form.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Given a serialized contact form and a size, verify that the contact
  * form is valid (i.e. that offsets are correct wrt size.)

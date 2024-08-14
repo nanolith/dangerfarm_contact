@@ -1,5 +1,6 @@
 #pragma once
 
+#include <dangerfarm_contact/function_decl.h>
 #include <lmdb.h>
 #include <stdbool.h>
 
@@ -10,7 +11,8 @@
 #define COUNTER_ID_CONTACT_KEY          0x00000002
 
 /* forward decl for contact form. */
-typedef struct contact_form contact_form;
+typedef struct DANGERFARM_CONTACT_SYM(contact_form)
+DANGERFARM_CONTACT_SYM(contact_form);
 
 typedef struct contactdb_connection contactdb_connection;
 
@@ -118,7 +120,8 @@ int contactdb_connection_counter_get(
  *      - non-zero on failure.
  */
 int contactdb_connection_form_append(
-    contactdb_connection* conn, MDB_txn* txn, const contact_form* form);
+    contactdb_connection* conn, MDB_txn* txn,
+    const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Get a form by id.
@@ -134,7 +137,7 @@ int contactdb_connection_form_append(
  */
 int contactdb_connection_form_get(
     contactdb_connection* conn, MDB_txn* txn, uint64_t id,
-    const contact_form** form);
+    const DANGERFARM_CONTACT_SYM(contact_form)** form);
 
 /**
  * \brief Delete a form by id.

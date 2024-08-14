@@ -1,6 +1,9 @@
+#include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/status_codes.h>
 
 #include "contactdb_connection.h"
+
+DANGERFARM_CONTACT_IMPORT_contact_form;
 
 /**
  * \brief Get a form by id.

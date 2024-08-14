@@ -9,6 +9,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 TEST_SUITE(contact_form);
 
 namespace {

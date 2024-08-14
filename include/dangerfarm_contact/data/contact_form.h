@@ -11,13 +11,14 @@ extern "C" {
 /* don't allow contact forms larger than 1 MB. */
 #define MAX_CONTACT_FORM_SIZE  (1024 * 1024)
 
-typedef struct contact_form contact_form;
+typedef struct DANGERFARM_CONTACT_SYM(contact_form)
+DANGERFARM_CONTACT_SYM(contact_form);
 
 /**
  * The contact form data used for storing, retrieving, and serializing contact
  * forms.
  */
-struct contact_form
+struct DANGERFARM_CONTACT_SYM(contact_form)
 {
     uint64_t name_size;
     uint64_t email_size;
@@ -40,8 +41,8 @@ struct contact_form
  *      - non-zero on failure.
  */
 int contact_form_create(
-    contact_form** form, const char* name, const char* email,
-    const char* subject, const char* comment);
+    DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
+    const char* email, const char* subject, const char* comment);
 
 /**
  * \brief Release a \ref contact_form instance.
@@ -52,7 +53,7 @@ int contact_form_create(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_release(contact_form* form);
+int contact_form_release(DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Read a \ref contact_form from the given descriptor.
@@ -64,7 +65,7 @@ int contact_form_release(contact_form* form);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_read(contact_form** form, int s);
+int contact_form_read(DANGERFARM_CONTACT_SYM(contact_form)** form, int s);
 
 /**
  * \brief Write a \ref contact_form to the given descriptor.
@@ -77,7 +78,7 @@ int contact_form_read(contact_form** form, int s);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_write(int s, const contact_form* form);
+int contact_form_write(int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Given a serialized contact form and a size, verify that the contact
@@ -90,7 +91,8 @@ int contact_form_write(int s, const contact_form* form);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_verify(const contact_form* form, size_t size);
+int contact_form_verify(
+    const DANGERFARM_CONTACT_SYM(contact_form)* form, size_t size);
 
 /**
  * \brief Given a valid \ref contact_form, compute the size.
@@ -99,7 +101,8 @@ int contact_form_verify(const contact_form* form, size_t size);
  *
  * \returns the size of this form.
  */
-size_t contact_form_compute_size(const contact_form* form);
+size_t contact_form_compute_size(
+    const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Given a \ref contact_form, extract the name as a string.
@@ -115,7 +118,8 @@ size_t contact_form_compute_size(const contact_form* form);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_extract_name(char** name, const contact_form* form);
+int contact_form_extract_name(
+    char** name, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Given a \ref contact_form, extract the email as a string.
@@ -131,7 +135,8 @@ int contact_form_extract_name(char** name, const contact_form* form);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_extract_email(char** email, const contact_form* form);
+int contact_form_extract_email(
+    char** email, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Given a \ref contact_form, extract the subject as a string.
@@ -147,7 +152,8 @@ int contact_form_extract_email(char** email, const contact_form* form);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_extract_subject(char** subject, const contact_form* form);
+int contact_form_extract_subject(
+    char** subject, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Given a \ref contact_form, extract the comment as a string.
@@ -163,7 +169,8 @@ int contact_form_extract_subject(char** subject, const contact_form* form);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_extract_comment(char** comment, const contact_form* form);
+int contact_form_extract_comment(
+    char** comment, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Model check helper to determine whether a contact form appears valid.
@@ -172,19 +179,20 @@ int contact_form_extract_comment(char** comment, const contact_form* form);
  *
  * \returns true if the contact form appears valid and false otherwise.
  */
-bool prop_valid_contact_form(const contact_form* form);
+bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /******************************************************************************/
 /* Start of public exports.                                                   */
 /******************************************************************************/
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
+    typedef DANGERFARM_CONTACT_SYM(contact_form) sym ## contact_form; \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
 #define DANGERFARM_CONTACT_IMPORT_contact_form_as(sym) \
     __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(sym ## _)
 #define DANGERFARM_CONTACT_IMPORT_contact_form \
-    __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(()
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym()
 
 #ifdef   __cplusplus
 }

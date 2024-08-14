@@ -8,6 +8,8 @@
 
 #include "shadow/unix/unix_shadow.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 size_t nondet_size();
 
 /* simulate different data sizes. */
