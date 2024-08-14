@@ -5,6 +5,8 @@
 #include "contactdb_connection.h"
 #include "contactdb_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Decode and dispatch a contactdb contact form get request.
  *

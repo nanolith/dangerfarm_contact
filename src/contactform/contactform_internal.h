@@ -33,7 +33,7 @@ struct contactform_context
 {
     int dbsock;
     pid_t dbpid;
-    contact_form* form;
+    DANGERFARM_CONTACT_SYM(contact_form)* form;
     bool kreq_initialized;
     struct kreq req;
     int request_type;

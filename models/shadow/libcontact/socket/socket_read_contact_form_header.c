@@ -5,6 +5,8 @@
 
 #include "../../unix/unix_shadow.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 int nondet_status();
 uint64_t nondet_uint64();
 

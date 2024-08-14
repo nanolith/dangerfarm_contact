@@ -5,6 +5,8 @@
 
 #include "ctool_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Run an append command.
  *

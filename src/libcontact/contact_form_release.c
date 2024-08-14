@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Release a \ref contact_form instance.
  *

@@ -4,6 +4,8 @@
 #include <dangerfarm_contact/util/string.h>
 #include <stdlib.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 static char nondet_char();
 static size_t nondet_size();
 static size_t random_size()

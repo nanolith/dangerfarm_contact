@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Read a \ref contact_form from the given descriptor.
  *

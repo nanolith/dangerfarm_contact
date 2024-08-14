@@ -1,6 +1,8 @@
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/protocol/database.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Read a contact form append request payload.
  *

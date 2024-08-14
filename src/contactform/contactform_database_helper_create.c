@@ -10,6 +10,8 @@
 
 #include "contactform_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /* forward decls. */
 static void _Noreturn contactform_database_helper_entry(int s);
 static int connect_local_socket(int* dbsock);

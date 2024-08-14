@@ -5,6 +5,8 @@
 #include "contact_form_shadow.h"
 #include "../../unix/unix_shadow.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 int nondet_status();
 
 int contact_form_read(contact_form** form, int s)

@@ -1,12 +1,14 @@
 #pragma once
 
+#include <dangerfarm_contact/function_decl.h>
 #include <stdint.h>
 
 #ifdef   __cplusplus
 extern "C" {
 #endif /*__cplusplus*/
 
-typedef struct contact_form contact_form;
+typedef struct DANGERFARM_CONTACT_SYM(contact_form)
+DANGERFARM_CONTACT_SYM(contact_form);
 
 enum database_protocol_request_id
 {
@@ -43,7 +45,7 @@ int database_read_request_id(uint32_t* req, int s);
  *      - non-zero on failure.
  */
 int database_write_contact_form_append_request(
-    int s, const contact_form* form);
+    int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Read a contact form append request payload.
@@ -60,7 +62,7 @@ int database_write_contact_form_append_request(
  *      - non-zero on failure.
  */
 int database_read_contact_form_append_request_payload(
-    contact_form** form, int s);
+    DANGERFARM_CONTACT_SYM(contact_form)** form, int s);
 
 /**
  * \brief Write a contact form append response to the socket.
@@ -208,7 +210,8 @@ int database_read_contact_form_read_request_payload(uint64_t* id, int s);
  *      - non-zero on failure.
  */
 int database_write_contact_form_read_response(
-    int s, const uint32_t status, const contact_form* form);
+    int s, const uint32_t status,
+    const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
  * \brief Read a contact read response from the socket.
@@ -226,7 +229,7 @@ int database_write_contact_form_read_response(
  *      - non-zero on failure.
  */
 int database_read_contact_form_read_response(
-    uint32_t* status, contact_form** form, int s);
+    uint32_t* status, DANGERFARM_CONTACT_SYM(contact_form)** form, int s);
 
 /**
  * \brief Write a contact delete request to the socket.

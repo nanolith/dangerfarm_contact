@@ -1,4 +1,5 @@
 #pragma once
+#include <dangerfarm_contact/function_decl.h>
 #include <stdint.h>
 #include <stddef.h>
 
@@ -7,7 +8,8 @@ extern "C" {
 #endif /*__cplusplus*/
 
 /* forward decls. */
-typedef struct contact_form contact_form;
+typedef struct DANGERFARM_CONTACT_SYM(contact_form)
+DANGERFARM_CONTACT_SYM(contact_form);
 
 /**
  * \brief Write a uint32_t value to a socket.
@@ -68,7 +70,8 @@ int socket_read_uint64(uint64_t* val, int s);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_write_contact_form_header(int s, const contact_form* hdr);
+int socket_write_contact_form_header(
+    int s, const DANGERFARM_CONTACT_SYM(contact_form)* hdr);
 
 /**
  * \brief Read a contact form header from a socket.
@@ -83,7 +86,8 @@ int socket_write_contact_form_header(int s, const contact_form* hdr);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_read_contact_form_header(contact_form* hdr, int s);
+int socket_read_contact_form_header(
+    DANGERFARM_CONTACT_SYM(contact_form)* hdr, int s);
 
 /**
  * \brief Write contact form data to a socket.

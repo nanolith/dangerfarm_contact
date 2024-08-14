@@ -3,6 +3,8 @@
 
 #include "contactdb_connection.h"
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Append a contact form record to the database.
  *

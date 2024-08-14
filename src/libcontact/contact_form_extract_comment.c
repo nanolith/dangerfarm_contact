@@ -2,6 +2,8 @@
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/util/string.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Given a \ref contact_form, extract the comment as a string.
  *

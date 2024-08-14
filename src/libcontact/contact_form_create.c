@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+DANGERFARM_CONTACT_IMPORT_contact_form;
+
 /**
  * \brief Create a \ref contact_form instance given a name, email, and comment.
  *
