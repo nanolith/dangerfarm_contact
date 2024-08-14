@@ -30,3 +30,10 @@
 #define DANGERFARM_CONTACT_SYM(sym) \
     DANGERFARM_CONTACT_SYM_COMBINE1( \
         DANGERFARM_CONTACT_UNIQUE_NAME, DANGERFARM_CONTACT_VERSION_SYM, sym);
+
+/**
+ * Begin an export section.
+ */
+#define DANGERFARM_CONTACT_BEGIN_EXPORT \
+    _Pragma("GCC diagnostic push") \
+    _Pragma("GCC diagnostic ignored \"-Wunused-function\"")
