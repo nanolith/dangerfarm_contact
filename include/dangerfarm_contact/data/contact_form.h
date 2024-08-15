@@ -138,7 +138,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_extract_name)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_extract_email(
+int DANGERFARM_CONTACT_SYM(contact_form_extract_email)(
     char** email, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
@@ -218,6 +218,10 @@ bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
     static inline int sym ## contact_form_extract_name( \
         char** x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_extract_name)(x,y); \
+    } \
+    static inline int sym ## contact_form_extract_email( \
+        char** x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
+            return DANGERFARM_CONTACT_SYM(contact_form_extract_email)(x,y); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
