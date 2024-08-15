@@ -327,6 +327,18 @@ int database_read_database_truncate_response(uint32_t* status, int s);
  */
 int database_write_generic_response(int s, uint32_t req, uint32_t status);
 
+/******************************************************************************/
+/* Start of public exports.                                                   */
+/******************************************************************************/
+#define __INTERNAL_DANGERFARM_CONTACT_IMPORT_protocol_database_sym(sym) \
+    DANGERFARM_CONTACT_BEGIN_EXPORT \
+    DANGERFARM_CONTACT_END_EXPORT \
+    REQUIRE_SEMICOLON_HERE
+#define DANGERFARM_CONTACT_IMPORT_protocol_database_as(sym) \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_protocol_database_sym(sym ## _)
+#define DANGERFARM_CONTACT_IMPORT_protocol_database \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_protocol_database_sym()
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
