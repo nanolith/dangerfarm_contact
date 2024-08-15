@@ -19,7 +19,8 @@ size_t random_size()
     return size;
 }
 
-int contact_form_extract_subject(char** subject, const contact_form* form)
+int DANGERFARM_CONTACT_SYM(contact_form_extract_subject)(
+    char** subject, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
     size_t size = random_size();
 
