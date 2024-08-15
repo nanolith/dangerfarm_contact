@@ -182,7 +182,8 @@ int DANGERFARM_CONTACT_SYM(contact_form_extract_comment)(
  *
  * \returns true if the contact form appears valid and false otherwise.
  */
-bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
+bool DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(
+    const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /******************************************************************************/
 /* Start of public exports.                                                   */
@@ -230,6 +231,10 @@ bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
     static inline int sym ## contact_form_extract_comment( \
         char** x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_extract_comment)(x,y); \
+    } \
+    static inline bool sym ## prop_valid_contact_form( \
+        const DANGERFARM_CONTACT_SYM(contact_form)* x) { \
+            return DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(x); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE

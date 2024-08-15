@@ -4,7 +4,8 @@
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
 
-bool prop_valid_contact_form(const contact_form* form)
+bool DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(
+    const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
     size_t size = contact_form_compute_size(form);
     size_t data_size = size - sizeof(*form);
