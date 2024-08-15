@@ -3,6 +3,8 @@
 
 #include "contactdb_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_protocol_database;
+
 /**
  * \brief Decode and dispatch a contactdb request.
  *
