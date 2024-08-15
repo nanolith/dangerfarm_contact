@@ -3,6 +3,8 @@
 
 #include "contactform_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_protocol_database;
+
 /* forward decls. */
 static int contactform_perform_cgi_options_request(contactform_context* ctx);
 static int contactform_perform_cgi_post_request(contactform_context* ctx);
