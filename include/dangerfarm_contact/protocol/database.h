@@ -32,7 +32,7 @@ enum DANGERFARM_CONTACT_SYM(database_protocol_request_id)
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_request_id(uint32_t* req, int s);
+int DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s);
 
 /**
  * \brief Write a contact form append request to the socket.
@@ -332,6 +332,10 @@ int database_write_generic_response(int s, uint32_t req, uint32_t status);
 /******************************************************************************/
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_protocol_database_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
+    static inline int sym ## database_read_request_id( \
+        uint32_t* x, int y) { \
+            return DANGERFARM_CONTACT_SYM(database_read_request_id)(x, y); \
+    } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
 #define DANGERFARM_CONTACT_IMPORT_protocol_database_as(sym) \

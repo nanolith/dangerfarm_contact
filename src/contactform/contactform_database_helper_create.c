@@ -11,6 +11,7 @@
 #include "contactform_internal.h"
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_protocol_database;
 
 /* forward decls. */
 static void _Noreturn contactform_database_helper_entry(int s);

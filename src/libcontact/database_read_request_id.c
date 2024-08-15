@@ -11,7 +11,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_request_id(uint32_t* req, int s)
+int DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s)
 {
     return socket_read_uint32(req, s);
 }
