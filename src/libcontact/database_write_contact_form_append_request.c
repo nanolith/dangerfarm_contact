@@ -15,8 +15,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_contact_form_append_request(
-    int s, const contact_form* form)
+int DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request)(
+    int s, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
     int retval;
 
