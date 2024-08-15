@@ -10,7 +10,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  *
  * \returns the size of this form.
  */
-size_t contact_form_compute_size(const contact_form* form)
+size_t DANGERFARM_CONTACT_SYM(contact_form_compute_size)(
+    const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
     return
         form->name_size + form->email_size + form->subject_size
