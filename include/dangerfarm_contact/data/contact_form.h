@@ -121,7 +121,7 @@ size_t DANGERFARM_CONTACT_SYM(contact_form_compute_size)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contact_form_extract_name(
+int DANGERFARM_CONTACT_SYM(contact_form_extract_name)(
     char** name, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
@@ -214,6 +214,10 @@ bool prop_valid_contact_form(const DANGERFARM_CONTACT_SYM(contact_form)* form);
     static inline size_t sym ## contact_form_compute_size( \
         const DANGERFARM_CONTACT_SYM(contact_form)* x) { \
             return DANGERFARM_CONTACT_SYM(contact_form_compute_size)(x); \
+    } \
+    static inline int sym ## contact_form_extract_name( \
+        char** x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
+            return DANGERFARM_CONTACT_SYM(contact_form_extract_name)(x,y); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
