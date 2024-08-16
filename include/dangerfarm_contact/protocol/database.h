@@ -153,7 +153,7 @@ int DANGERFARM_CONTACT_SYM(database_write_contact_form_list_request)(int s);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_contact_form_list_response(
+int DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response)(
     int s, const uint32_t status, const uint64_t count,
     const uint64_t* id_list);
 
@@ -377,6 +377,11 @@ int database_write_generic_response(int s, uint32_t req, uint32_t status);
     static inline int database_write_contact_form_list_request(int x) { \
         return DANGERFARM_CONTACT_SYM( \
             database_write_contact_form_list_request)(x); \
+    } \
+    static inline int database_write_contact_form_list_response( \
+        int w, const uint32_t x, const uint64_t y, const uint64_t* z) { \
+        return DANGERFARM_CONTACT_SYM( \
+            database_write_contact_form_list_response)(w,x,y,z); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE

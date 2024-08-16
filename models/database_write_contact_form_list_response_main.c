@@ -7,6 +7,8 @@
 
 #include "shadow/unix/unix_shadow.h"
 
+DANGERFARM_CONTACT_IMPORT_protocol_database;
+
 uint32_t nondet_uint32();
 uint64_t nondet_uint64();
 

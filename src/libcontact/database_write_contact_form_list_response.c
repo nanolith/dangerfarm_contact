@@ -15,7 +15,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_contact_form_list_response(
+int DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response)(
     int s, const uint32_t status, const uint64_t count,
     const uint64_t* id_list)
 {
