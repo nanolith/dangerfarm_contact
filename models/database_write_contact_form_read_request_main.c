@@ -8,6 +8,8 @@
 
 #include "shadow/unix/unix_shadow.h"
 
+DANGERFARM_CONTACT_IMPORT_protocol_database;
+
 uint64_t nondet_uint64();
 
 int main(int argc, char* argv[])
