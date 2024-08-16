@@ -7,6 +7,8 @@
 #include "contactdb_connection.h"
 #include "contactdb_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_protocol_database;
+
 /* forward decls. */
 static int id_vector_create(uint64_t** vec, uint64_t count);
 static void id_vector_release(uint64_t* vec, uint64_t count);
