@@ -10,7 +10,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_contact_form_list_request(int s)
+int DANGERFARM_CONTACT_SYM(database_write_contact_form_list_request)(int s)
 {
     return socket_write_uint32(s, DATABASE_REQUEST_ID_CONTACT_FORM_GET_LIST);
 }

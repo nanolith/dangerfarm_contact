@@ -139,7 +139,7 @@ int DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_contact_form_list_request(int s);
+int DANGERFARM_CONTACT_SYM(database_write_contact_form_list_request)(int s);
 
 /**
  * \brief Write a list contact forms response to the socket.
@@ -373,6 +373,10 @@ int database_write_generic_response(int s, uint32_t req, uint32_t status);
         uint32_t* x, uint64_t* y, int z) { \
             return DANGERFARM_CONTACT_SYM( \
                 database_read_contact_form_get_count_response)(x,y,z); \
+    } \
+    static inline int database_write_contact_form_list_request(int x) { \
+        return DANGERFARM_CONTACT_SYM( \
+            database_write_contact_form_list_request)(x); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
