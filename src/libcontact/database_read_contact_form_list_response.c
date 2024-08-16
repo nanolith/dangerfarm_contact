@@ -20,7 +20,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_contact_form_list_response(
+int DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response)(
     uint32_t* status, uint64_t* count, uint64_t** id_list, int s)
 {
     int retval;
