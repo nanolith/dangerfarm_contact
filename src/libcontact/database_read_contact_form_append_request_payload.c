@@ -17,8 +17,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_contact_form_append_request_payload(
-    contact_form** form, int s)
+int DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload)(
+    DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
     return contact_form_read(form, s);
 }
