@@ -5,6 +5,8 @@
 
 #include "ctool_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_protocol_database;
+
 /**
  * \brief Run a get count command.
  *
