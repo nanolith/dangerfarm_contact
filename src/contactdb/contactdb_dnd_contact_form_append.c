@@ -6,6 +6,7 @@
 #include "contactdb_internal.h"
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_protocol_database;
 
 /* forward decls. */
 static int verify_max_count(contactdb_context* ctx, MDB_txn* txn);
