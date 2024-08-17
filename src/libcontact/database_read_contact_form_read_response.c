@@ -20,8 +20,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_contact_form_read_response(
-    uint32_t* status, contact_form** form, int s)
+int DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response)(
+    uint32_t* status, DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
     int retval;
     uint32_t request_id;
