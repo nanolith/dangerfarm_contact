@@ -12,7 +12,8 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_contact_form_delete_response(uint32_t* status, int s)
+int DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response)(
+    uint32_t* status, int s)
 {
     int retval;
     uint32_t request_id;
