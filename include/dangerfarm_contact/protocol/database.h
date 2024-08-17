@@ -244,7 +244,8 @@ int DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_contact_form_delete_request(int s, uint64_t id);
+int DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_request)(
+    int s, uint64_t id);
 
 /**
  * \brief Read a contact delete request payload from the socket.
@@ -410,6 +411,11 @@ int database_write_generic_response(int s, uint32_t req, uint32_t status);
         uint32_t* x, DANGERFARM_CONTACT_SYM(contact_form)** y, int z) { \
             return DANGERFARM_CONTACT_SYM( \
                 database_read_contact_form_read_response)(x,y,z); \
+    } \
+    static inline int database_write_contact_form_delete_request( \
+        int x, uint64_t y) { \
+            return DANGERFARM_CONTACT_SYM( \
+                database_write_contact_form_delete_request)(x,y); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
