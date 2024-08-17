@@ -363,7 +363,7 @@ int DANGERFARM_CONTACT_SYM(database_write_generic_response)(
             return  DANGERFARM_CONTACT_SYM( \
                 database_write_contact_form_append_response)(x,y); \
     } \
-    static inline int database_read_contact_form_append_response( \
+    static inline int sym ## database_read_contact_form_append_response( \
         uint32_t* x, int y) { \
             return DANGERFARM_CONTACT_SYM( \
                         database_read_contact_form_append_response)(x,y); \
