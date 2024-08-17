@@ -11,7 +11,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_database_truncate_request(int s)
+int DANGERFARM_CONTACT_SYM(database_write_database_truncate_request)(int s)
 {
     /* write the request id. */
     return socket_write_uint32(s, DATABASE_REQUEST_ID_TRUNCATE);
