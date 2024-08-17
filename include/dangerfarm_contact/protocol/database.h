@@ -334,7 +334,8 @@ int DANGERFARM_CONTACT_SYM(database_read_database_truncate_response)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_generic_response(int s, uint32_t req, uint32_t status);
+int DANGERFARM_CONTACT_SYM(database_write_generic_response)(
+    int s, uint32_t req, uint32_t status);
 
 /******************************************************************************/
 /* Start of public exports.                                                   */
@@ -450,6 +451,11 @@ int database_write_generic_response(int s, uint32_t req, uint32_t status);
         uint32_t* x, int y) { \
         return DANGERFARM_CONTACT_SYM( \
             database_read_database_truncate_response)(x,y); \
+    } \
+    static inline int database_write_generic_response( \
+        int x, uint32_t y, uint32_t z) { \
+            return DANGERFARM_CONTACT_SYM( \
+                        database_write_generic_response)(x,y,z); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE

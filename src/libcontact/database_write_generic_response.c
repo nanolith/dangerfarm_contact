@@ -13,7 +13,8 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_write_generic_response(int s, uint32_t req, uint32_t status)
+int DANGERFARM_CONTACT_SYM(database_write_generic_response)(
+    int s, uint32_t req, uint32_t status)
 {
     int retval;
 
