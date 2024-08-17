@@ -12,7 +12,8 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int database_read_contact_form_delete_request_payload(uint64_t* id, int s)
+int DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_request_payload)(
+    uint64_t* id, int s)
 {
     return socket_read_uint64(id, s);
 }
