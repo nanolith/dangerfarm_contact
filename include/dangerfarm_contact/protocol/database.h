@@ -403,7 +403,7 @@ int DANGERFARM_CONTACT_SYM(database_write_generic_response)(
         return DANGERFARM_CONTACT_SYM( \
             database_write_contact_form_read_request)(x,y); \
     } \
-    static inline int database_read_contact_form_read_request_payload( \
+    static inline int sym ## database_read_contact_form_read_request_payload( \
         uint64_t* x, int y) { \
         return DANGERFARM_CONTACT_SYM( \
             database_read_contact_form_read_request_payload)(x, y); \
