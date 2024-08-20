@@ -2,6 +2,8 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/socket.h>
 
+DANGERFARM_CONTACT_IMPORT_util_socket;
+
 /**
  * \brief Write a contact form append response to the socket.
  *

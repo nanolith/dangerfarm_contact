@@ -3,6 +3,8 @@
 #include <dangerfarm_contact/util/socket.h>
 #include <unistd.h>
 
+DANGERFARM_CONTACT_IMPORT_util_socket;
+
 /**
  * \brief Write a list contact forms response to the socket.
  *
