@@ -10,7 +10,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
 int nondet_status();
 uint64_t nondet_uint64();
 
-int socket_read_contact_form_header(contact_form* hdr, int s)
+int DANGERFARM_CONTACT_SYM(socket_read_contact_form_header)(
+    DANGERFARM_CONTACT_SYM(contact_form)* hdr, int s)
 {
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
