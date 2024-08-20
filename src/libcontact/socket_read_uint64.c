@@ -12,7 +12,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_read_uint64(uint64_t* val, int s)
+int DANGERFARM_CONTACT_SYM(socket_read_uint64)(uint64_t* val, int s)
 {
     ssize_t read_bytes = 0;
 

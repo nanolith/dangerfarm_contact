@@ -3,6 +3,7 @@
 #include <dangerfarm_contact/util/socket.h>
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_util_socket;
 
 /**
  * \brief Read a contact form header from a socket.
