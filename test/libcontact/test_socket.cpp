@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_util_socket;
 
 TEST_SUITE(util_socket);
 

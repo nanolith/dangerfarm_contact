@@ -12,7 +12,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_write_uint32(int s, uint32_t val)
+int DANGERFARM_CONTACT_SYM(socket_write_uint32)(int s, uint32_t val)
 {
     ssize_t wrote_bytes = 0;
 

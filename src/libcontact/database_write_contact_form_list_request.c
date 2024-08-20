@@ -1,6 +1,8 @@
 #include <dangerfarm_contact/protocol/database.h>
 #include <dangerfarm_contact/util/socket.h>
 
+DANGERFARM_CONTACT_IMPORT_util_socket;
+
 /**
  * \brief Write a list contact forms request to the socket.
  *
