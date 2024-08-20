@@ -7,6 +7,8 @@
 
 #include "shadow/unix/unix_shadow.h"
 
+DANGERFARM_CONTACT_IMPORT_util_socket;
+
 int main(int argc, char* argv[])
 {
     int retval;

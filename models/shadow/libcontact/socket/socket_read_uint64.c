@@ -7,7 +7,7 @@
 int nondet_status();
 uint64_t nondet_uint64();
 
-int socket_read_uint64(uint64_t* val, int s)
+int DANGERFARM_CONTACT_SYM(socket_read_uint64)(uint64_t* val, int s)
 {
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
