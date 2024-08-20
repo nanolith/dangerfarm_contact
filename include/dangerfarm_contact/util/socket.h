@@ -118,6 +118,18 @@ int socket_write_contact_form_data(int s, const char* data, size_t size);
  */
 int socket_read_contact_form_data(char* data, int s, size_t size);
 
+/******************************************************************************/
+/* Start of public exports.                                                   */
+/******************************************************************************/
+#define __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_socket_sym(sym) \
+    DANGERFARM_CONTACT_BEGIN_EXPORT \
+    DANGERFARM_CONTACT_END_EXPORT \
+    REQUIRE_SEMICOLON_HERE
+#define DANGERFARM_CONTACT_IMPORT_util_socket_as(sym) \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_socket_sym(sym ## _)
+#define DANGERFARM_CONTACT_IMPORT_util_socket \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_socket_sym()
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
