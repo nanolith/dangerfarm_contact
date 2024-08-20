@@ -5,6 +5,8 @@
 #include <string.h>
 #include <unistd.h>
 
+DANGERFARM_CONTACT_IMPORT_util_socket;
+
 /**
  * \brief Read a list contact forms response from the socket.
  *

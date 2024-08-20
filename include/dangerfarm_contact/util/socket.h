@@ -45,7 +45,7 @@ int DANGERFARM_CONTACT_SYM(socket_write_uint64)(int s, uint64_t val);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_read_uint32(uint32_t* val, int s);
+int DANGERFARM_CONTACT_SYM(socket_read_uint32)(uint32_t* val, int s);
 
 /**
  * \brief Read a uint64_t value from a socket.
@@ -130,6 +130,10 @@ int socket_read_contact_form_data(char* data, int s, size_t size);
     static inline int sym ## socket_write_uint64( \
         int x, uint64_t y) { \
             return DANGERFARM_CONTACT_SYM(socket_write_uint64)(x,y); \
+    } \
+    static inline int sym ## socket_read_uint32( \
+        uint32_t* x, int y) { \
+            return DANGERFARM_CONTACT_SYM(socket_read_uint32)(x,y); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
