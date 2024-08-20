@@ -16,7 +16,8 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_write_contact_form_header(int s, const contact_form* hdr)
+int DANGERFARM_CONTACT_SYM(socket_write_contact_form_header)(
+    int s, const DANGERFARM_CONTACT_SYM(contact_form)* hdr)
 {
     int retval;
 

@@ -70,7 +70,7 @@ int DANGERFARM_CONTACT_SYM(socket_read_uint64)(uint64_t* val, int s);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_write_contact_form_header(
+int DANGERFARM_CONTACT_SYM(socket_write_contact_form_header)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* hdr);
 
 /**
@@ -138,6 +138,11 @@ int socket_read_contact_form_data(char* data, int s, size_t size);
     static inline int sym ## socket_read_uint64( \
         uint64_t* x, int y) { \
             return DANGERFARM_CONTACT_SYM(socket_read_uint64)(x,y); \
+    } \
+    static inline int sym ## socket_write_contact_form_header( \
+        int x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
+            return DANGERFARM_CONTACT_SYM( \
+                socket_write_contact_form_header)(x,y); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
