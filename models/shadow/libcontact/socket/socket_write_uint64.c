@@ -6,7 +6,7 @@
 
 int nondet_status();
 
-int socket_write_uint64(int s, uint64_t val)
+int DANGERFARM_CONTACT_SYM(socket_write_uint64)(int s, uint64_t val)
 {
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
