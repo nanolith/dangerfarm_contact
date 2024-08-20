@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_util_socket;
 
 /**
  * \brief Write a \ref contact_form to the given descriptor.
