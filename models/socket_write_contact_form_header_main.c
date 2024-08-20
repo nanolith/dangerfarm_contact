@@ -9,6 +9,7 @@
 #include "shadow/unix/unix_shadow.h"
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_util_socket;
 
 uint64_t nondet_uint64();
 
