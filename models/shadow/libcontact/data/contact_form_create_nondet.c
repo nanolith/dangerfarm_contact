@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_util_string;
 
 static char nondet_char();
 static size_t nondet_size();
