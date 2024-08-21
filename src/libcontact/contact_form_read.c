@@ -8,6 +8,7 @@
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
 DANGERFARM_CONTACT_IMPORT_util_socket;
+DANGERFARM_CONTACT_IMPORT_util_string;
 
 /**
  * \brief Read a \ref contact_form from the given descriptor.

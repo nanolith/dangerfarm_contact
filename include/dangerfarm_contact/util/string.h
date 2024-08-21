@@ -36,7 +36,7 @@ int DANGERFARM_CONTACT_SYM(string_create)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int string_filter(char* str);
+int DANGERFARM_CONTACT_SYM(string_filter)(char* str);
 
 /**
  * \brief Given an allocated string, clear and release it.
@@ -66,6 +66,10 @@ bool prop_string_valid(const char* str);
     static inline int sym ## string_create( \
         char** x, const void* y, size_t z) { \
             return DANGERFARM_CONTACT_SYM(string_create)(x,y,z); \
+    } \
+    static inline int sym ## string_filter( \
+        char* x) { \
+            return DANGERFARM_CONTACT_SYM(string_filter)(x); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE

@@ -3,7 +3,7 @@
 #include <dangerfarm_contact/util/string.h>
 #include <string.h>
 
-int string_filter(char* str)
+int DANGERFARM_CONTACT_SYM(string_filter)(char* str)
 {
     /* verify that all bytes of data are reachable. */
     size_t length = strlen(str);

@@ -6,6 +6,7 @@
 #include "contactform_internal.h"
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_util_string;
 
 /**
  * \brief Decode a contact form instance using form data.
