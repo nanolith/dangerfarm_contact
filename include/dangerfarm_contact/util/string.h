@@ -1,5 +1,6 @@
 #pragma once
 
+#include <dangerfarm_contact/function_decl.h>
 #include <stdbool.h>
 #include <stddef.h>
 
