@@ -23,7 +23,8 @@ extern "C" {
  *      - zero on success.
  *      - non-zero on failure.
  */
-int string_create(char** str, const void* data, size_t size);
+int DANGERFARM_CONTACT_SYM(string_create)(
+    char** str, const void* data, size_t size);
 
 /**
  * \brief Filter a string, replacing any invalid UTF-8 sequences or HTML /
@@ -62,6 +63,10 @@ bool prop_string_valid(const char* str);
 /******************************************************************************/
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_string_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
+    static inline int sym ## string_create( \
+        char** x, const void* y, size_t z) { \
+            return DANGERFARM_CONTACT_SYM(string_create)(x,y,z); \
+    } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
 #define DANGERFARM_CONTACT_IMPORT_util_string_as(sym) \

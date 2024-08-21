@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+DANGERFARM_CONTACT_IMPORT_util_string;
+
 static int nondet_char();
 
 char random_char()

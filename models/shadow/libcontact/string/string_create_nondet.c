@@ -6,7 +6,8 @@
 
 char nondet_char();
 
-int string_create(char** str, const void* data, size_t size)
+int DANGERFARM_CONTACT_SYM(string_create)(
+    char** str, const void* data, size_t size)
 {
     /* verify that all bytes of data are reachable. */
     const char* bdata = (const char*)data;

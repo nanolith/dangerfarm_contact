@@ -2,6 +2,8 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
 
+DANGERFARM_CONTACT_IMPORT_util_string;
+
 int nondet_char();
 static void randomize_string(char* str, size_t size)
 {
