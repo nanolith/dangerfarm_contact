@@ -33,7 +33,7 @@ static bool is_codepoint_control_character(uint32_t codepoint);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int string_filter(char* str)
+int DANGERFARM_CONTACT_SYM(string_filter)(char* str)
 {
     int retval;
     uint32_t codepoint;
