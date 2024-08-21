@@ -56,7 +56,7 @@ int DANGERFARM_CONTACT_SYM(string_release)(char* str);
  *
  * \returns true if the string appears valid and false otherwise.
  */
-bool prop_string_valid(const char* str);
+bool DANGERFARM_CONTACT_SYM(prop_string_valid)(const char* str);
 
 /******************************************************************************/
 /* Start of public exports.                                                   */
@@ -73,6 +73,9 @@ bool prop_string_valid(const char* str);
     } \
     static inline int sym ## string_release(char* x) { \
         return DANGERFARM_CONTACT_SYM(string_release)(x); \
+    } \
+    static inline bool sym ## prop_string_valid(const char* x) { \
+        return DANGERFARM_CONTACT_SYM(prop_string_valid)(x); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
