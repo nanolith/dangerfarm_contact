@@ -17,7 +17,8 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int string_create(char** str, const void* data, size_t size)
+int DANGERFARM_CONTACT_SYM(string_create)(
+    char** str, const void* data, size_t size)
 {
     char* tmp = NULL;
     const char* bdata = (const char*)data;

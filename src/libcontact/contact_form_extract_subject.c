@@ -3,6 +3,7 @@
 #include <dangerfarm_contact/util/string.h>
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
+DANGERFARM_CONTACT_IMPORT_util_string;
 
 /**
  * \brief Given a \ref contact_form, extract the subject as a string.

@@ -4,6 +4,8 @@
 #include <dangerfarm_contact/util/string.h>
 #include <string.h>
 
+DANGERFARM_CONTACT_IMPORT_util_string;
+
 TEST_SUITE(util_string);
 
 /**
