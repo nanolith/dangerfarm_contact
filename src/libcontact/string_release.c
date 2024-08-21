@@ -12,7 +12,7 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int string_release(char* str)
+int DANGERFARM_CONTACT_SYM(string_release)(char* str)
 {
     size_t len = strlen(str);
 

@@ -6,6 +6,8 @@
 
 #include "ctool_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_util_string;
+
 /* forward decls. */
 static void cleanup_string(int* retval, char* string);
 

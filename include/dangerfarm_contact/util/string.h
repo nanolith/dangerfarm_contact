@@ -47,7 +47,7 @@ int DANGERFARM_CONTACT_SYM(string_filter)(char* str);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int string_release(char* str);
+int DANGERFARM_CONTACT_SYM(string_release)(char* str);
 
 /**
  * \brief Model check helper to determine whether a string appears valid.
@@ -70,6 +70,9 @@ bool prop_string_valid(const char* str);
     static inline int sym ## string_filter( \
         char* x) { \
             return DANGERFARM_CONTACT_SYM(string_filter)(x); \
+    } \
+    static inline int sym ## string_release(char* x) { \
+        return DANGERFARM_CONTACT_SYM(string_release)(x); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
