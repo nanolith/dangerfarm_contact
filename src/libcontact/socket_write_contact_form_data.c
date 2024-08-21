@@ -13,7 +13,8 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_write_contact_form_data(int s, const char* data, size_t size)
+int DANGERFARM_CONTACT_SYM(socket_write_contact_form_data)(
+    int s, const char* data, size_t size)
 {
     ssize_t wrote_bytes = 0;
 

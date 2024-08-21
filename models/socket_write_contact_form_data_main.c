@@ -8,6 +8,8 @@
 
 #include "shadow/unix/unix_shadow.h"
 
+DANGERFARM_CONTACT_IMPORT_util_socket;
+
 size_t nondet_size();
 char nondet_data();
 
