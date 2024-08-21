@@ -7,6 +7,8 @@
 #include "contactdb_connection.h"
 #include "contactdb_internal.h"
 
+DANGERFARM_CONTACT_IMPORT_util_string;
+
 /**
  * \brief Release a contactdb context.
  *

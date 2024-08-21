@@ -11,6 +11,7 @@
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
 DANGERFARM_CONTACT_IMPORT_protocol_database;
+DANGERFARM_CONTACT_IMPORT_util_string;
 
 TEST_SUITE(contact_form);
 

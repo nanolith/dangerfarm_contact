@@ -8,6 +8,7 @@
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
 DANGERFARM_CONTACT_IMPORT_protocol_database;
+DANGERFARM_CONTACT_IMPORT_util_string;
 
 /**
  * \brief Run a get command.
