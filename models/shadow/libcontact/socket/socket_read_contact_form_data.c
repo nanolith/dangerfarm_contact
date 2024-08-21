@@ -8,7 +8,8 @@
 int nondet_status();
 char nondet_char();
 
-int socket_read_contact_form_data(char* data, int s, size_t size)
+int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
+    char* data, int s, size_t size)
 {
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));

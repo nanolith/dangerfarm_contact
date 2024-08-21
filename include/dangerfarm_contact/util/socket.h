@@ -117,7 +117,8 @@ int DANGERFARM_CONTACT_SYM(socket_write_contact_form_data)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_read_contact_form_data(char* data, int s, size_t size);
+int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
+    char* data, int s, size_t size);
 
 /******************************************************************************/
 /* Start of public exports.                                                   */
@@ -154,6 +155,11 @@ int socket_read_contact_form_data(char* data, int s, size_t size);
         int x, const char* y, size_t z) { \
             return DANGERFARM_CONTACT_SYM( \
                         socket_write_contact_form_data)(x,y,z); \
+    } \
+    static inline int sym ## socket_read_contact_form_data( \
+        char* x, int y, size_t z) { \
+            return DANGERFARM_CONTACT_SYM( \
+                socket_read_contact_form_data)(x,y,z); \
     } \
     DANGERFARM_CONTACT_END_EXPORT \
     REQUIRE_SEMICOLON_HERE
