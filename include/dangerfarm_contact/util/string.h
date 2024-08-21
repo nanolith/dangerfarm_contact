@@ -56,6 +56,18 @@ int string_release(char* str);
  */
 bool prop_string_valid(const char* str);
 
+/******************************************************************************/
+/* Start of public exports.                                                   */
+/******************************************************************************/
+#define __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_string_sym(sym) \
+    DANGERFARM_CONTACT_BEGIN_EXPORT \
+    DANGERFARM_CONTACT_END_EXPORT \
+    REQUIRE_SEMICOLON_HERE
+#define DANGERFARM_CONTACT_IMPORT_util_string_as(sym) \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_string_sym(sym ## _)
+#define DANGERFARM_CONTACT_IMPORT_util_string \
+    __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_string_sym()
+
 #ifdef   __cplusplus
 }
 #endif /*__cplusplus*/
