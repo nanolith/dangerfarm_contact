@@ -16,7 +16,8 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int socket_read_contact_form_data(char* data, int s, size_t size)
+int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
+    char* data, int s, size_t size)
 {
     ssize_t read_bytes = 0;
 
