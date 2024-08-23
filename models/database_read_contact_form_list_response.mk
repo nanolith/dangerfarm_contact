@@ -4,6 +4,7 @@ ALL:
 	--div-by-zero-check --pointer-overflow-check --trace --stop-on-fail -DCBMC \
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
+	--unwindset read.0:9 \
 	-I ../include \
 	shadow/unix/close.c \
 	shadow/unix/prop_is_open_fd.c \
