@@ -4,8 +4,6 @@ ALL:
 	--div-by-zero-check --pointer-overflow-check --trace --stop-on-fail -DCBMC \
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
-	--unwindset contact_form_create.0:4,contact_form_create.1:4 \
-	--unwindset contact_form_create.2:4,contact_form_create.3:4 \
 	-I ../include \
 	shadow/libcontact/socket/socket_write_uint32.c \
 	shadow/libcontact/string/prop_string_valid.c \
