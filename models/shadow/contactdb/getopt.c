@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 int optind = 0;
 const char* optarg = NULL;
 
