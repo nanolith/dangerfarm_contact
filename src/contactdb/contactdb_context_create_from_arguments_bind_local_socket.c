@@ -1,4 +1,5 @@
 #include <dangerfarm_contact/status_codes.h>
+#include <errno.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -42,7 +43,12 @@ int contactdb_context_create_from_arguments_bind_local_socket(
     }
 
     /* unlink the file before binding. */
-    unlink(addr.sun_path);
+    retval = unlink(addr.sun_path);
+    if (retval < 0 && errno != ENOENT)
+    {
+        retval = ERROR_CONTACTDB_UNLINK_FAILURE;
+        goto cleanup_sock;
+    }
 
     /* bind this socket. */
     retval = bind(ctx->sock, (struct sockaddr*)&addr, sizeof(addr));
