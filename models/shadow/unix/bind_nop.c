@@ -38,9 +38,11 @@ int bind(int s, const struct sockaddr *addr, socklen_t addrlen)
         case ENOTDIR:
         case ENOTSOCK:
         case EROFS:
-            return retval;
+            errno = retval;
+            return -1;
 
         default:
-            return EINVAL;
+            errno = EINVAL;
+            return -1;
     }
 }
