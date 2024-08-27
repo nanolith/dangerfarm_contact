@@ -4,6 +4,7 @@
 #include "../../../src/contactdb/contactdb_context_create_from_arguments_internal.h"
 
 int nondet_retval();
+bool nondet_bool();
 
 int contactdb_context_create_from_arguments_read_args(
     contactdb_context* ctx, int argc, char* argv[])
@@ -32,6 +33,7 @@ int contactdb_context_create_from_arguments_read_args(
     {
         return ERROR_GENERAL_OUT_OF_MEMORY;
     }
+    ctx->listen_socket = nondet_bool();
 
     /* set the root capabilities. */
     switch (nondet_retval())
