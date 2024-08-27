@@ -32,10 +32,10 @@ int socket(int domain, int type, int protocol)
 
                 return i;
             }
-
-            errno = EMFILE;
-            return -1;
         }
+
+        errno = EMFILE;
+        return -1;
     }
     else
     {
