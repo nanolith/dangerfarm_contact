@@ -83,7 +83,7 @@ cleanup_sock:
     ctx->sock = -1;
 
 done:
-    memcpy(&addr, 0, sizeof(addr));
+    memset(&addr, 0, sizeof(addr));
 
     return retval;
 }
