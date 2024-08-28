@@ -18,6 +18,7 @@ ALL:
 	shadow/unix/close.c \
 	shadow/contactdb/contactdb_context_create_from_arguments_set_string.c \
 	shadow/contactdb/contactdb_connection_release_nop.c \
+	shadow/contactdb/contactdb_disable_signal_handler.c \
 	../src/contactdb/contactdb_context_create_from_arguments_bind_local_socket.c \
 	../src/contactdb/contactdb_context_release.c \
 	contactdb_context_create_from_arguments_bind_local_socket_main.c
