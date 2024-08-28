@@ -6,5 +6,6 @@ ALL:
 	--unwind 10 --unwinding-assertions \
 	-I ../include -I $(HOME)/apps/lmdb/include \
 	shadow/stdlib/strdup.c \
+	shadow/contactdb/contactdb_disable_signal_handler.c \
 	../src/contactdb/contactdb_context_create_from_arguments_set_string.c \
 	contactdb_context_create_from_arguments_set_string_main.c
