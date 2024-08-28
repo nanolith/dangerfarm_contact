@@ -11,6 +11,7 @@ ALL:
 	shadow/contactdb/contactdb_context_create_from_arguments_set_string.c \
 	shadow/contactdb/contactdb_connection_release_nop.c \
 	shadow/contactdb/getopt.c \
+	shadow/contactdb/contactdb_disable_signal_handler.c \
 	../src/contactdb/contactdb_context_create_from_arguments_read_args.c \
 	../src/contactdb/contactdb_context_release.c \
 	contactdb_context_create_from_arguments_read_args_main.c
