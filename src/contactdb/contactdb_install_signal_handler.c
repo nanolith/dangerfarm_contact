@@ -22,6 +22,13 @@ int contactdb_install_signal_handler(contactdb_context* ctx)
     int retval;
     struct sigaction sa;
 
+    /* pass NULL to disable the global context. */
+    if (NULL == ctx)
+    {
+        global_context = NULL;
+        return STATUS_SUCCESS;
+    }
+
     /* initialize the signal action. */
     memset(&sa, 0, sizeof(sa));
     sa.sa_handler = &sighandler;
@@ -75,7 +82,10 @@ static void sighandler(int sig)
 
         /* for all other signals, instruct the process to terminate. */
         default:
-            global_context->should_terminate = true;
+            if (NULL != global_context)
+            {
+                global_context->should_terminate = true;
+            }
             break;
     }
 }
