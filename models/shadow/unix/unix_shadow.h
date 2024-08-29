@@ -15,3 +15,4 @@ void unix_shadow_init();
 bool prop_is_open_fd(int fd);
 
 bool prop_sighandler_set();
+void call_sighandler(int sig);
