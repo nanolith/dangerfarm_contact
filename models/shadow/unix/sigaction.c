@@ -47,3 +47,8 @@ int sigaction(
     memcpy(&global_sig, act, sizeof(*act));
     return 0;
 }
+
+bool prop_sighandler_set()
+{
+    return global_sig.sa_handler != NULL;
+}
