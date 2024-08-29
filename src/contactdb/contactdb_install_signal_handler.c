@@ -33,7 +33,14 @@ int contactdb_install_signal_handler(contactdb_context* ctx)
     memset(&sa, 0, sizeof(sa));
     sa.sa_handler = &sighandler;
     sa.sa_flags = 0;
-    sigemptyset(&sa.sa_mask);
+
+    /* empty the set. */
+    retval = sigemptyset(&sa.sa_mask);
+    if (retval < 0)
+    {
+        retval = ERROR_CONTACTDB_SIGEMPTYSET_FAILURE;
+        goto done;
+    }
 
     /* register SIGHUP. */
     if (sigaction(SIGHUP, &sa, NULL) < 0)
