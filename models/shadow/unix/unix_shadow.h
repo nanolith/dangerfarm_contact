@@ -13,3 +13,5 @@ __fds __fd_shadow_list[SHADOW_FD_COUNT];
 
 void unix_shadow_init();
 bool prop_is_open_fd(int fd);
+
+bool prop_sighandler_set();
