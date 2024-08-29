@@ -23,6 +23,13 @@ int contactdb_context_release(contactdb_context* ctx)
     int retval = STATUS_SUCCESS;
     int release_retval = STATUS_SUCCESS;
 
+    /* disable the signal handler. */
+    release_retval = contactdb_disable_signal_handler(ctx);
+    if (STATUS_SUCCESS != release_retval)
+    {
+        retval = release_retval;
+    }
+
     /* if the connection is set, release it. */
     if (NULL != ctx->conn)
     {
