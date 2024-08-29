@@ -52,3 +52,9 @@ bool prop_sighandler_set()
 {
     return global_sig.sa_handler != NULL;
 }
+
+void call_sighandler(int sig)
+{
+    MODEL_ASSERT(prop_sighandler_set());
+    (*global_sig.sa_handler)(sig);
+}
