@@ -25,6 +25,8 @@ static bool prop_expected_sig(int sig)
     }
 }
 
+int nondet_retval();
+
 int sigaction(
     int sig, const struct sigaction * restrict act,
     struct sigaction * restrict oact)
