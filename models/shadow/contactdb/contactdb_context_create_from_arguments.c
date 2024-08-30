@@ -21,6 +21,7 @@ int contactdb_context_create_from_arguments(
     }
 
     memset(tmp, 0, sizeof(*tmp));
+    tmp->sock = -1;
     tmp->listen_socket = true;
 
     /* create a dummy socket. */
