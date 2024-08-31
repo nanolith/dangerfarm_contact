@@ -1,0 +1,19 @@
+ALL:
+	cbmc --bounds-check --pointer-check --memory-leak-check \
+	--malloc-may-fail --malloc-fail-null \
+	--div-by-zero-check --pointer-overflow-check --trace --stop-on-fail -DCBMC \
+	--drop-unused-functions \
+	--unwind 10 --unwinding-assertions \
+	-I ../include -I $(HOME)/apps/lmdb/include \
+	shadow/contactdb/contactdb_connection_create.c \
+	shadow/contactdb/contactdb_connection_release_nop.c \
+	shadow/contactdb/contactdb_context_create_from_arguments_no_socket.c \
+	shadow/contactdb/contactdb_disable_signal_handler.c \
+	shadow/libcontact/string/string_release.c \
+	shadow/unix/cap_enter.c \
+	shadow/unix/close.c \
+	shadow/unix/pledge.c \
+	shadow/unix/socket.c \
+	../src/contactdb/contactdb_context_release.c \
+	../src/contactdb/contactdb_drop_privileges.c \
+	contactdb_drop_privileges_main.c
