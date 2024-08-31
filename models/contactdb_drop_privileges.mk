@@ -12,6 +12,7 @@ ALL:
 	shadow/libcontact/string/string_release.c \
 	shadow/unix/cap_enter.c \
 	shadow/unix/close.c \
+	shadow/unix/prop_is_open_fd.c \
 	shadow/unix/pledge.c \
 	shadow/unix/socket.c \
 	../src/contactdb/contactdb_context_release.c \
