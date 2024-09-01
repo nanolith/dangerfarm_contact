@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 
+#include "../../../src/contactdb/contactdb_connection.h"
 #include "../../../src/contactdb/contactdb_internal.h"
 
 int contactdb_context_create_from_arguments(
