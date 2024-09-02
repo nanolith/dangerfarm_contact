@@ -25,6 +25,22 @@ int contactdb_context_create_from_arguments(
     tmp->sock = -1;
     tmp->listen_socket = true;
 
+    /* create a dummy db path. */
+    tmp->db_path = strdup("db path");
+    if (NULL == tmp->db_path)
+    {
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto cleanup_tmp;
+    }
+
+    /* create a dummy socket path. */
+    tmp->socket_path = strdup("s path");
+    if (NULL == tmp->socket_path)
+    {
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto cleanup_tmp;
+    }
+
     /* create a dummy socket. */
     tmp->sock = socket(AF_UNIX, SOCK_STREAM, 0);
     if (tmp->sock < 0)
