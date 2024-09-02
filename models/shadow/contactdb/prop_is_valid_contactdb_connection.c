@@ -1,3 +1,5 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
+
 #include "../../../src/contactdb/contactdb_connection.h"
 #include "../lmdb/lmdb_internal.h"
 
