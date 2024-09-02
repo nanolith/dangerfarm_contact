@@ -1,3 +1,7 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
+#include <stddef.h>
+
+#include "../unix/unix_shadow.h"
 #include "../../../src/contactdb/contactdb_internal.h"
 #include "../../../src/contactdb/contactdb_connection.h"
 
@@ -17,7 +21,7 @@ bool prop_is_valid_contactdb_context(const contactdb_context* ctx)
     MODEL_ASSERT(NULL != ctx->socket_path);
 
     /* the socket should be a valid Unix socket. */
-    MODEL_ASSERT(prop_is_valid_unix_desc(ctx->sock));
+    MODEL_ASSERT(prop_is_open_fd(ctx->sock));
 
     /* the database connection should be valid. */
     MODEL_ASSERT(prop_is_valid_contactdb_connection(ctx->conn));
