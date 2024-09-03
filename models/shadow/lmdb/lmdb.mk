@@ -7,6 +7,7 @@ LMDB_SHADOW_FILES=\
 	shadow/lmdb/mdb_env_sync.c \
 	shadow/lmdb/mdb_env_set_mapsize.c \
 	shadow/lmdb/mdb_env_set_maxdbs.c \
+	shadow/lmdb/mdb_get.c \
 	shadow/lmdb/mdb_txn_abort.c \
 	shadow/lmdb/mdb_txn_begin.c \
 	shadow/lmdb/mdb_txn_commit.c \
