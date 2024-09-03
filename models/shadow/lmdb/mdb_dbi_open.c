@@ -32,7 +32,7 @@ int mdb_dbi_open(
     }
 
     /* success. */
+    *dbi = txn->dbi_count + txn->env->dbi_alloc_count;
     ++txn->dbi_count;
-    *dbi = nondet_descriptor();
     return STATUS_SUCCESS;
 }
