@@ -38,6 +38,7 @@ int mdb_get(MDB_txn* txn, MDB_dbi dbi, MDB_val* key, MDB_val* data)
     {
         data->mv_data = returned_data;
         data->mv_size = random_size(sizeof(returned_data));
+        return STATUS_SUCCESS;
     }
     else
     {
