@@ -2,6 +2,7 @@
 
 #include <lmdb.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 struct MDB_env
 {
@@ -19,6 +20,7 @@ struct MDB_txn
     MDB_txn* parent;
     unsigned int flags;
     size_t dbi_count;
+    uint8_t* data_buffer;
 };
 
 bool prop_MDB_env_created(const MDB_env* env);
