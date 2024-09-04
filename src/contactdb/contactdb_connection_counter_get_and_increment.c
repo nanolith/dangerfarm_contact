@@ -97,13 +97,13 @@ static int get_counter_value(
     }
 
     /* verify that the returned size of this data is correct. */
-    if (key.mv_size != sizeof(*value))
+    if (val.mv_size != sizeof(*value))
     {
         return ERROR_CONTACTDB_GET_INVALID_SIZE;
     }
 
     /* save the value. */
-    memcpy(value, val.mv_data, sizeof(*value));
+    memcpy(value, val.mv_data, val.mv_size);
 
     /* success. */
     return STATUS_SUCCESS;
