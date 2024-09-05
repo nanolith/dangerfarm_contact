@@ -39,6 +39,11 @@ int mdb_txn_commit(MDB_txn *txn)
     txn->env->dbi_count -= txn->dbi_count;
     txn->env->dbi_alloc_count += txn->dbi_count;
 
+    if (NULL != txn->data_buffer)
+    {
+        free(txn->data_buffer);
+    }
+
     free(txn);
 
     return STATUS_SUCCESS;
