@@ -5,21 +5,7 @@
 
 #include "lmdb_internal.h"
 
-static uint8_t returned_data[100];
-
 int nondet_retval();
-size_t nondet_size();
-
-size_t random_size(size_t max)
-{
-    size_t retval = nondet_size();
-    if (retval > max)
-    {
-        retval = max;
-    }
-
-    return retval;
-}
 
 int mdb_get(MDB_txn* txn, MDB_dbi dbi, MDB_val* key, MDB_val* data)
 {
@@ -36,8 +22,8 @@ int mdb_get(MDB_txn* txn, MDB_dbi dbi, MDB_val* key, MDB_val* data)
     int retval = nondet_retval();
     if (STATUS_SUCCESS == retval)
     {
-        data->mv_data = returned_data;
-        data->mv_size = random_size(sizeof(returned_data));
+        data->mv_data = txn->data_buffer;
+        data->mv_size = txn->data_buffer_size;
         return STATUS_SUCCESS;
     }
     else
