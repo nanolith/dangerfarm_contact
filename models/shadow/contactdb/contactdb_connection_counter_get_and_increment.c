@@ -16,7 +16,9 @@ int contactdb_connection_counter_get_and_increment(
     MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
     MODEL_ASSERT(prop_MDB_txn_valid(txn));
     MODEL_ASSERT(prop_MDB_dbi_valid(conn->env, conn->global_db));
-    MODEL_ASSERT(counter_id == COUNTER_ID_CONTACT_COUNT);
+    MODEL_ASSERT(
+        (counter_id == COUNTER_ID_CONTACT_COUNT)
+     || (counter_id == COUNTER_ID_CONTACT_KEY));
     MODEL_ASSERT(NULL != value);
 
     int retval = nondet_retval();
