@@ -13,5 +13,10 @@ void mdb_txn_abort(MDB_txn *txn)
         txn->env->txn = NULL;
     }
 
+    if (NULL != txn->data_buffer)
+    {
+        free(txn->data_buffer);
+    }
+
     free(txn);
 }
