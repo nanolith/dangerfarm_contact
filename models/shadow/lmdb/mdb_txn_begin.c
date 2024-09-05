@@ -6,6 +6,19 @@
 #include "lmdb_internal.h"
 
 int nondet_retval();
+size_t nondet_size();
+
+size_t buff_size()
+{
+    size_t retval = nondet_size();
+
+    if (retval > 100)
+    {
+        retval = 100;
+    }
+
+    return retval;
+}
 
 int mdb_txn_begin(
     MDB_env* env, MDB_txn* parent, unsigned int flags, MDB_txn** txn)
@@ -49,11 +62,21 @@ int mdb_txn_begin(
         return ENOMEM;
     }
 
+    /* allocate memory for the data buffer. */
+    size_t buffer_size = buff_size();
+    void* buffer = malloc(buffer_size);
+    if (NULL == buffer)
+    {
+        free(*txn);
+        return ENOMEM;
+    }
+
+    (*txn)->data_buffer = (uint8_t*)buffer;
+    (*txn)->data_buffer_size = buffer_size;
     (*txn)->env = env;
     (*txn)->parent = parent;
     (*txn)->flags = flags;
     (*txn)->dbi_count = 0;
-    (*txn)->data_buffer = NULL;
     env->txn = *txn;
     env->in_txn = true;
 
