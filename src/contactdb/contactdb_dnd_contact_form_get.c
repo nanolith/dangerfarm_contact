@@ -57,6 +57,7 @@ int contactdb_dnd_contact_form_get(contactdb_context* ctx, int sock)
 
     /* write the response. */
     retval = database_write_contact_form_read_response(sock, retval, form);
+    response_written = true;
     goto rollback_txn;
 
 rollback_txn:
