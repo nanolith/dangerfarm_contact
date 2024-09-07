@@ -30,6 +30,7 @@ struct MDB_cursor
     MDB_dbi dbi;
     uint8_t* key_buffer;
     size_t key_buffer_size;
+    size_t count;
 };
 
 bool prop_MDB_env_created(const MDB_env* env);
