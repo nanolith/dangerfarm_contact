@@ -1,5 +1,6 @@
 LMDB_SHADOW_FILES=\
 	shadow/lmdb/mdb_cursor_close.c \
+	shadow/lmdb/mdb_cursor_get.c \
 	shadow/lmdb/mdb_cursor_open.c \
 	shadow/lmdb/mdb_dbi_close.c \
 	shadow/lmdb/mdb_dbi_open.c \
