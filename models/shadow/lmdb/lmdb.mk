@@ -13,6 +13,7 @@ LMDB_SHADOW_FILES=\
 	shadow/lmdb/mdb_txn_abort.c \
 	shadow/lmdb/mdb_txn_begin.c \
 	shadow/lmdb/mdb_txn_commit.c \
+	shadow/lmdb/prop_MDB_cursor_valid.c \
 	shadow/lmdb/prop_MDB_dbi_valid.c \
 	shadow/lmdb/prop_MDB_env_created.c \
 	shadow/lmdb/prop_MDB_env_in_txn.c \
