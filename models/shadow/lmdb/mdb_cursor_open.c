@@ -20,6 +20,18 @@ size_t key_size()
     return retval;
 }
 
+size_t result_count()
+{
+    size_t retval = nondet_size();
+
+    if (retval > 3)
+    {
+        retval = 3;
+    }
+
+    return retval;
+}
+
 int mdb_cursor_open(MDB_txn* txn, MDB_dbi dbi, MDB_cursor** cursor)	
 {
     /* the transaction must be valid. */
@@ -62,6 +74,7 @@ int mdb_cursor_open(MDB_txn* txn, MDB_dbi dbi, MDB_cursor** cursor)
     (*cursor)->key_buffer_size = key_buffer_size;
     (*cursor)->txn = txn;
     (*cursor)->dbi = dbi;
+    (*cursor)->count = result_count();
 
     /* success. */
     return STATUS_SUCCESS;
