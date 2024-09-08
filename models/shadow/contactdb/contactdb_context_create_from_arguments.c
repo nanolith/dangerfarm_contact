@@ -26,7 +26,7 @@ int contactdb_context_create_from_arguments(
     tmp->listen_socket = true;
 
     /* create a dummy db path. */
-    tmp->db_path = strdup("db path");
+    tmp->db_path = strdup("dbp");
     if (NULL == tmp->db_path)
     {
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
@@ -34,7 +34,7 @@ int contactdb_context_create_from_arguments(
     }
 
     /* create a dummy socket path. */
-    tmp->socket_path = strdup("s path");
+    tmp->socket_path = strdup("sp");
     if (NULL == tmp->socket_path)
     {
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
@@ -50,7 +50,7 @@ int contactdb_context_create_from_arguments(
     }
 
     /* connect to the database. */
-    retval = contactdb_connection_create(&tmp->conn, "fake path");
+    retval = contactdb_connection_create(&tmp->conn, "fp");
     if (STATUS_SUCCESS != retval)
     {
         goto cleanup_tmp;
