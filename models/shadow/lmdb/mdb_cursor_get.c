@@ -11,13 +11,18 @@ int mdb_cursor_get(
     MDB_cursor* cursor, MDB_val* key, MDB_val* data, MDB_cursor_op op)
 {
     MODEL_ASSERT(prop_MDB_cursor_valid(cursor));
-    MODEL_ASSERT(NULL != key);
-    MODEL_ASSERT(NULL != key->mv_data);
-    const uint8_t* bkdata = (const uint8_t*)key->mv_data;
-    MODEL_ASSERT(bkdata[0] == bkdata[0]);
-    MODEL_ASSERT(bkdata[key->mv_size - 1] == bkdata[key->mv_size - 1]);
-    MODEL_ASSERT(NULL != data);
     MODEL_ASSERT(MDB_FIRST == op || MDB_NEXT == op);
+    MODEL_ASSERT(NULL != key);
+    MODEL_ASSERT(NULL != data);
+
+    /* if this is an MDB_NEXT operation, then key must be valid. */
+    if (MDB_NEXT == op)
+    {
+        MODEL_ASSERT(NULL != key->mv_data);
+        const uint8_t* bkdata = (const uint8_t*)key->mv_data;
+        MODEL_ASSERT(bkdata[0] == bkdata[0]);
+        MODEL_ASSERT(bkdata[key->mv_size - 1] == bkdata[key->mv_size - 1]);
+    }
 
     int retval = nondet_retval();
     if (STATUS_SUCCESS == retval)
