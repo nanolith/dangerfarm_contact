@@ -22,11 +22,19 @@ int mdb_cursor_get(
     int retval = nondet_retval();
     if (STATUS_SUCCESS == retval)
     {
-        key->mv_data = cursor->key_buffer;
-        key->mv_size = cursor->key_buffer_size;
-        data->mv_data = cursor->txn->data_buffer;
-        data->mv_size = cursor->txn->data_buffer_size;
-        return STATUS_SUCCESS;
+        if (cursor->count > 0)
+        {
+            --(cursor->count);
+            key->mv_data = cursor->key_buffer;
+            key->mv_size = cursor->key_buffer_size;
+            data->mv_data = cursor->txn->data_buffer;
+            data->mv_size = cursor->txn->data_buffer_size;
+            return STATUS_SUCCESS;
+        }
+        else
+        {
+            return MDB_NOTFOUND;
+        }
     }
     else
     {
