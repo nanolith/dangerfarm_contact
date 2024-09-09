@@ -6,7 +6,7 @@ ALL:
 	--div-by-zero-check --pointer-overflow-check --trace --stop-on-fail -DCBMC \
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
-	--unwind 10 \
+	$(LMDB_SHADOW_UNWINDSET) \
 	-I ../include -I $(HOME)/apps/lmdb/include $(LMDB_SHADOW_FILES) \
 	shadow/contactdb/contactdb_connection_counter_get_and_decrement.c \
 	shadow/contactdb/prop_is_valid_contactdb_connection.c \
