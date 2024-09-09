@@ -22,3 +22,6 @@ LMDB_SHADOW_FILES=\
 	shadow/lmdb/prop_MDB_env_in_txn.c \
 	shadow/lmdb/prop_MDB_env_opened.c \
 	shadow/lmdb/prop_MDB_txn_valid.c
+
+LMDB_SHADOW_UNWINDSET=\
+    --unwindset prop_MDB_txn_valid:3
