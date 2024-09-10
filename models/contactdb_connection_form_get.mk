@@ -7,6 +7,7 @@ ALL:
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
 	--unwind 10 \
+	$(LMDB_SHADOW_UNWINDSET) \
 	-I ../include -I $(HOME)/apps/lmdb/include $(LMDB_SHADOW_FILES) \
 	../src/contactdb/contactdb_connection_create.c \
 	../src/contactdb/contactdb_connection_release.c \
