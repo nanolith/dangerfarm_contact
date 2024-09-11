@@ -44,6 +44,11 @@ int mdb_txn_commit(MDB_txn *txn)
         free(txn->data_buffer);
     }
 
+    if (NULL != txn->temp_object)
+    {
+        free(txn->temp_object);
+    }
+
     free(txn);
 
     return STATUS_SUCCESS;
