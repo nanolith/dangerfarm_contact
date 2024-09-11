@@ -77,6 +77,7 @@ int mdb_txn_begin(
     (*txn)->parent = parent;
     (*txn)->flags = flags;
     (*txn)->dbi_count = 0;
+    (*txn)->temp_object = NULL;
     env->txn = *txn;
     env->in_txn = true;
 
