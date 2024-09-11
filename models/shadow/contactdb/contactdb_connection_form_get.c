@@ -8,32 +8,28 @@
 
 DANGERFARM_CONTACT_IMPORT_contact_form;
 
-static contact_form const_form = {
-    .name_size = 2,
-    .email_size = 2,
-    .subject_size = 2,
-    .comment_size = 2,
-    .data = {
-        'n', 'a',
-        'e', 'm', 
-        's', 'u',
-        'c', 'o' } };
-
-
 int nondet_retval();
 
 int contactdb_connection_form_get(
     contactdb_connection* conn, MDB_txn* txn, uint64_t id,
     const contact_form** form)
 {
+    int retval;
     MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
     MODEL_ASSERT(prop_MDB_txn_valid(txn));
     MODEL_ASSERT(NULL != form);
 
-    int retval = nondet_retval();
+    retval = nondet_retval();
     if (STATUS_SUCCESS == retval)
     {
-        *form = (const contact_form*)&const_form;
+        retval = contact_form_create(form, "na", "em", "su", "co");
+        if (STATUS_SUCCESS != retval)
+        {
+            return retval;
+        }
+        txn->temp_object = *form;
+
+        MODEL_ASSERT(prop_valid_contact_form(*form));
         return STATUS_SUCCESS;
     }
     else
