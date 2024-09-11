@@ -22,6 +22,7 @@ struct MDB_txn
     size_t dbi_count;
     uint8_t* data_buffer;
     size_t data_buffer_size;
+    void* temp_object;
 };
 
 struct MDB_cursor
