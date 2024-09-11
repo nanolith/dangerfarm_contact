@@ -18,5 +18,10 @@ void mdb_txn_abort(MDB_txn *txn)
         free(txn->data_buffer);
     }
 
+    if (NULL != txn->temp_object)
+    {
+        free(txn->temp_object);
+    }
+
     free(txn);
 }
