@@ -48,7 +48,7 @@ int contactdb_connection_form_get_first(
 
             /* set the key. */
             key->mv_data = p_key;
-            key->mv_size = sizeof(*p_key);
+            key->mv_size = (NULL == p_key) ? 0 :sizeof(*p_key);
 
             /* set the data. */
             val->mv_data = form;
