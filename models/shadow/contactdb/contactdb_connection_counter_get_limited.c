@@ -11,7 +11,7 @@ uint64_t nondet_value();
 
 uint64_t counter_value()
 {
-    uint64_t retval = counter_value();
+    uint64_t retval = nondet_value();
     if (retval > 5)
     {
         retval = 5;
