@@ -67,6 +67,13 @@ int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
         goto rollback_txn;
     }
 
+    /* handle the zero count case. */
+    if (0 == count)
+    {
+        retval = STATUS_SUCCESS;
+        goto rollback_txn;
+    }
+
     /* get the first key and open the cursor. */
     retval =
         contactdb_connection_form_get_first(
