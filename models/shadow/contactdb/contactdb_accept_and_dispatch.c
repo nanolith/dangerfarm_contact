@@ -16,5 +16,8 @@ int contactdb_accept_and_dispatch(contactdb_context* ctx)
 {
     MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
 
+    /* trigger the end to the outer loop in main. */
+    ctx->should_terminate = true;
+
     return random_status_code();
 }
