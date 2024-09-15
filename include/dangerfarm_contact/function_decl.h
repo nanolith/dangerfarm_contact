@@ -50,3 +50,9 @@
 #define DANGERFARM_CONTACT_BEGIN_CONTRACT_HELPER \
     _Pragma("GCC diagnostic push") \
     _Pragma("GCC diagnostic ignored \"-Wunused-parameter\"")
+
+/**
+ * End a contract helper section.
+ */
+#define DANGERFARM_CONTACT_END_CONTRACT_HELPER \
+    _Pragma("GCC diagnostic pop")
