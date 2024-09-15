@@ -28,6 +28,16 @@ struct DANGERFARM_CONTACT_SYM(contact_form)
 };
 
 /**
+ * \brief Model check helper to determine whether a contact form appears valid.
+ *
+ * \param form          The contact form to check.
+ *
+ * \returns true if the contact form appears valid and false otherwise.
+ */
+bool DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(
+    const DANGERFARM_CONTACT_SYM(contact_form)* form);
+
+/**
  * \brief Create a \ref contact_form instance given a name, email, and comment.
  *
  * \param form          Pointer to the pointer to receive the form on success.
@@ -174,16 +184,6 @@ int DANGERFARM_CONTACT_SYM(contact_form_extract_subject)(
  */
 int DANGERFARM_CONTACT_SYM(contact_form_extract_comment)(
     char** comment, const DANGERFARM_CONTACT_SYM(contact_form)* form);
-
-/**
- * \brief Model check helper to determine whether a contact form appears valid.
- *
- * \param form          The contact form to check.
- *
- * \returns true if the contact form appears valid and false otherwise.
- */
-bool DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(
-    const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /******************************************************************************/
 /* Start of public exports.                                                   */
