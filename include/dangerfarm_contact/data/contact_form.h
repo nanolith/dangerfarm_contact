@@ -59,7 +59,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_create)(
     const char* email, const char* subject, const char* comment);
 
 /* preconditions. */
-MODEL_CONTRACT_PRECONDITION_BEGIN(
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(contact_form_create),
     DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
     const char* email, const char* subject, const char* comment)
@@ -68,10 +68,10 @@ MODEL_CONTRACT_PRECONDITION_BEGIN(
         MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(email));
         MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(subject));
         MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(comment));
-MODEL_CONTRACT_PRECONDITION_END(DANGERFARM_CONTACT_SYM(contact_form_create))
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_create))
 
 /* postconditions. */
-MODEL_CONTRACT_POSTCONDITION_BEGIN(
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(contact_form_create),
     DANGERFARM_CONTACT_SYM(contact_form)** form, int retval, const char* name,
     const char* email, const char* subject, const char* comment)
@@ -84,7 +84,7 @@ MODEL_CONTRACT_POSTCONDITION_BEGIN(
         {
             MODEL_ASSERT(NULL == *form);
         }
-MODEL_CONTRACT_POSTCONDITION_END(DANGERFARM_CONTACT_SYM(contact_form_create))
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_create))
 
 /**
  * \brief Release a \ref contact_form instance.
