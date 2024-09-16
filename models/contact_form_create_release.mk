@@ -9,6 +9,7 @@ ALL:
 	--unwindset $(DF_EXPORT)string_create.0:7 \
 	-I ../include \
 	shadow/libcontact/data/prop_valid_contact_form.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/libcontact/string/string_create_nondet.c \
 	shadow/libcontact/string/string_release.c \
 	../src/libcontact/contact_form_compute_size.c \
