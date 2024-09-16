@@ -1,5 +1,9 @@
 #pragma once
+#include <dangerfarm_contact/cbmc/function_contracts.h>
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/function_decl.h>
+#include <dangerfarm_contact/status_codes.h>
+#include <dangerfarm_contact/util/string.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -53,6 +57,34 @@ bool DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(
 int DANGERFARM_CONTACT_SYM(contact_form_create)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
     const char* email, const char* subject, const char* comment);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITION_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_create),
+    DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
+    const char* email, const char* subject, const char* comment)
+        MODEL_ASSERT(NULL != form);
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(name));
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(email));
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(subject));
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(comment));
+MODEL_CONTRACT_PRECONDITION_END(DANGERFARM_CONTACT_SYM(contact_form_create))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITION_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_create),
+    DANGERFARM_CONTACT_SYM(contact_form)** form, int retval, const char* name,
+    const char* email, const char* subject, const char* comment)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(
+                DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(*form));
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *form);
+        }
+MODEL_CONTRACT_POSTCONDITION_END(DANGERFARM_CONTACT_SYM(contact_form_create))
 
 /**
  * \brief Release a \ref contact_form instance.
