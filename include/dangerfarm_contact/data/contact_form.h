@@ -73,7 +73,7 @@ MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_create))
 /* postconditions. */
 MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(contact_form_create),
-    DANGERFARM_CONTACT_SYM(contact_form)** form, int retval, const char* name,
+    int retval, DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
     const char* email, const char* subject, const char* comment)
         if (STATUS_SUCCESS == retval)
         {
