@@ -22,6 +22,11 @@ int DANGERFARM_CONTACT_SYM(contact_form_create)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
     const char* email, const char* subject, const char* comment)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_create), form, name, email, subject,
+        comment);
+
+    int retval;
     contact_form* tmp = NULL;
     size_t offset = 0;
     size_t name_len = strlen(name);
@@ -36,7 +41,9 @@ int DANGERFARM_CONTACT_SYM(contact_form_create)(
     tmp = (contact_form*)malloc(total_size);
     if (NULL == tmp)
     {
-        return ERROR_GENERAL_OUT_OF_MEMORY;
+        *form = NULL;
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto done;
     }
 
     /* clear memory. */
@@ -56,5 +63,13 @@ int DANGERFARM_CONTACT_SYM(contact_form_create)(
 
     /* success. */
     *form = tmp;
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_create), retval, form, name, email,
+        subject, comment);
+
+    return retval;
 }
