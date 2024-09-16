@@ -35,6 +35,7 @@ int contact_form_create_nondet(
     tmp = (contact_form*)malloc(total_size);
     if (NULL == tmp)
     {
+        *form = NULL;
         return ERROR_GENERAL_OUT_OF_MEMORY;
     }
 
@@ -66,12 +67,15 @@ int DANGERFARM_CONTACT_SYM(contact_form_create)(
     contact_form** form, const char* name, const char* email,
     const char* subject, const char* comment)
 {
-    /* verify that the parameters are valid. */
-    MODEL_ASSERT(prop_string_valid(name));
-    MODEL_ASSERT(prop_string_valid(email));
-    MODEL_ASSERT(prop_string_valid(subject));
-    MODEL_ASSERT(prop_string_valid(comment));
-    MODEL_ASSERT(NULL != form);
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_create), form, name, email, subject,
+        comment);
 
-    return contact_form_create_nondet(form);
+    int retval = contact_form_create_nondet(form);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_create), retval, form, name, email,
+        subject, comment);
+
+    return retval;
 }
