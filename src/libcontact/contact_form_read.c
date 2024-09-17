@@ -23,6 +23,9 @@ DANGERFARM_CONTACT_IMPORT_util_string;
 int DANGERFARM_CONTACT_SYM(contact_form_read)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_read), form, s);
+
     int retval, release_retval;
     contact_form hdr;
     contact_form* tmp1 = NULL;
@@ -37,12 +40,14 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = socket_read_uint64(&size, s);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto done;
     }
 
     /* ensure the size is sane. */
     if (size < sizeof(contact_form) || size > MAX_CONTACT_FORM_SIZE)
     {
+        *form = NULL;
         retval = ERROR_CONTACT_FORM_INVALID;
         goto done;
     }
@@ -51,6 +56,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = socket_read_contact_form_header(&hdr, s);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto done;
     }
 
@@ -58,6 +64,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = contact_form_verify(&hdr, size);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto done;
     }
 
@@ -65,6 +72,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     tmp1 = (contact_form*)malloc(size);
     if (NULL == tmp1)
     {
+        *form = NULL;
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
         goto done;
     }
@@ -87,6 +95,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = socket_read_contact_form_data(tmp1->data, s, data_size);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_tmp1;
     }
 
@@ -94,6 +103,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = contact_form_extract_name(&name, tmp1);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_tmp1;
     }
 
@@ -101,6 +111,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = contact_form_extract_email(&email, tmp1);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_name;
     }
 
@@ -108,6 +119,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = contact_form_extract_subject(&subject, tmp1);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_email;
     }
 
@@ -115,6 +127,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = contact_form_extract_comment(&comment, tmp1);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_subject;
     }
 
@@ -122,6 +135,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = string_filter(name);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_comment;
     }
 
@@ -129,6 +143,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = string_filter(email);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_comment;
     }
 
@@ -136,6 +151,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = string_filter(subject);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_comment;
     }
 
@@ -143,6 +159,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = string_filter(comment);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_comment;
     }
 
@@ -150,6 +167,7 @@ int DANGERFARM_CONTACT_SYM(contact_form_read)(
     retval = contact_form_create(&tmp2, name, email, subject, comment);
     if (STATUS_SUCCESS != retval)
     {
+        *form = NULL;
         goto cleanup_comment;
     }
 
@@ -192,6 +210,9 @@ cleanup_tmp1:
 
 done:
     memset(&hdr, 0, sizeof(hdr));
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_read), retval, form);
 
     return retval;
 }
