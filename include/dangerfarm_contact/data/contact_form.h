@@ -1,6 +1,7 @@
 #pragma once
 #include <dangerfarm_contact/cbmc/function_contracts.h>
 #include <dangerfarm_contact/cbmc/model_assert.h>
+#include <dangerfarm_contact/contracts/properties/unix.h>
 #include <dangerfarm_contact/function_decl.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <dangerfarm_contact/util/string.h>
@@ -122,6 +123,29 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_release))
  */
 int DANGERFARM_CONTACT_SYM(contact_form_read)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, int s);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_read),
+    DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
+        MODEL_ASSERT(NULL != form);
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_read))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_read),
+    int retval, DANGERFARM_CONTACT_SYM(contact_form)** form)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(
+                DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(*form));
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *form);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_read))
 
 /**
  * \brief Write a \ref contact_form to the given descriptor.
