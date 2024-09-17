@@ -18,8 +18,10 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
 int DANGERFARM_CONTACT_SYM(contact_form_release)(
     DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
-    MODEL_ASSERT(prop_valid_contact_form(form));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_release), form);
 
+    int retval;
     size_t size = 0;
 
     /* this computation always succeeds. */
@@ -31,5 +33,12 @@ int DANGERFARM_CONTACT_SYM(contact_form_release)(
     /* free memory. */
     free(form);
 
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_release), retval);
+
+    return retval;
 }
