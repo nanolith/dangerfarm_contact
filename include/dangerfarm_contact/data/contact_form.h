@@ -161,6 +161,20 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_read))
 int DANGERFARM_CONTACT_SYM(contact_form_write)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_write),
+    int s, DANGERFARM_CONTACT_SYM(contact_form)* form)
+        MODEL_ASSERT(prop_is_open_fd(s));
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form(form)));
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_write))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_write), int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_write))
+
+
 /**
  * \brief Given a serialized contact form and a size, verify that the contact
  * form is valid (i.e. that offsets are correct wrt size.)
