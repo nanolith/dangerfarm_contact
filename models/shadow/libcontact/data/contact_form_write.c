@@ -11,19 +11,26 @@ int nondet_status();
 int DANGERFARM_CONTACT_SYM(contact_form_write)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
-    /* verify that this is a valid contact form. */
-    MODEL_ASSERT(prop_valid_contact_form(form));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_write), s, form);
 
-    /* verify that this is an open fd. */
-    MODEL_ASSERT(prop_is_open_fd(s));
+    int retval;
 
     /* does this write succeed? */
     if (0 == nondet_status())
     {
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
     else
     {
-        return ERROR_SOCKET_WRITE;
+        retval = ERROR_SOCKET_WRITE;
+        goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_write), retval);
+
+    return retval;
 }
