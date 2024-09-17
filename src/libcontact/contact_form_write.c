@@ -21,7 +21,8 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
 int DANGERFARM_CONTACT_SYM(contact_form_write)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
-    MODEL_ASSERT(prop_valid_contact_form(form));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_write), s, form);
 
     int retval;
     size_t size = contact_form_compute_size(form);
@@ -30,14 +31,14 @@ int DANGERFARM_CONTACT_SYM(contact_form_write)(
     retval = socket_write_uint64(s, size);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* write the header. */
     retval = socket_write_contact_form_header(s, form);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* reduce the size by header bytes. */
@@ -47,9 +48,16 @@ int DANGERFARM_CONTACT_SYM(contact_form_write)(
     retval = socket_write_contact_form_data(s, form->data, size);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_write), retval);
+
+    return retval;
 }
