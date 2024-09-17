@@ -12,14 +12,25 @@ int nondet_status();
 int DANGERFARM_CONTACT_SYM(contact_form_read)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
-    /* verify that this is an open fd. */
-    MODEL_ASSERT(prop_is_open_fd(s));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_read), form, s);
+
+    int retval;
 
     /* does this read fail? */
     if (0 != nondet_status())
     {
-        return ERROR_SOCKET_READ;
+        *form = NULL;
+        retval = ERROR_SOCKET_READ;
+        goto done;
     }
 
-    return contact_form_create_nondet(form);
+    retval = contact_form_create_nondet(form);
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_read), retval, form);
+
+    return retval;
 }
