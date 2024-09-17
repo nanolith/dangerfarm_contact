@@ -98,6 +98,18 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_create))
 int DANGERFARM_CONTACT_SYM(contact_form_release)(
     DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_release),
+    DANGERFARM_CONTACT_SYM(contact_form)* form)
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form(form)));
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_release))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_release), int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_release))
+
 /**
  * \brief Read a \ref contact_form from the given descriptor.
  *
