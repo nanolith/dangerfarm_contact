@@ -243,6 +243,29 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int DANGERFARM_CONTACT_SYM(contact_form_extract_name)(
     char** name, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_name),
+    char** name, const DANGERFARM_CONTACT_SYM(contact_form)* form)
+        MODEL_ASSERT(NULL != name);
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form(form)));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_name))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_name), int retval, char** name)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(NULL != *name);
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *name);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_name))
+
 /**
  * \brief Given a \ref contact_form, extract the email as a string.
  *
