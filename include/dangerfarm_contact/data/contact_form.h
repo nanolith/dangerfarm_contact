@@ -192,7 +192,8 @@ int DANGERFARM_CONTACT_SYM(contact_form_verify)(
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(contact_form_verify),
     const DANGERFARM_CONTACT_SYM(contact_form)* form, size_t size)
-        MODEL_CHECK_OBJECT_READ(form, size);
+        MODEL_CHECK_OBJECT_READ(
+            form, sizeof(DANGERFARM_CONTACT_SYM(contact_form)));
 MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_verify))
 
 /* postconditions. */
