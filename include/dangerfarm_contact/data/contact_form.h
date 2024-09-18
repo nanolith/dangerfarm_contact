@@ -211,6 +211,21 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_verify))
 size_t DANGERFARM_CONTACT_SYM(contact_form_compute_size)(
     const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_compute_size),
+    const DANGERFARM_CONTACT_SYM(contact_form)* form)
+        MODEL_CHECK_OBJECT_READ(
+            form, sizeof(DANGERFARM_CONTACT_SYM(contact_form)));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_compute_size))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_compute_size), size_t retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_compute_size))
+
 /**
  * \brief Given a \ref contact_form, extract the name as a string.
  *
