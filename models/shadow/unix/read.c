@@ -27,17 +27,8 @@ read(int fd, void* buf, size_t nbytes)
             readbytes = nbytes;
         }
 
-        /* set a byte at the end of the read range to prove access. */
-        if (readbytes > 0)
-        {
-            cbuf[readbytes - 1] = nondet_char();
-        }
-
-        /* throw in some randomized bytes. */
-        for (size_t i = 0; i < readbytes; ++i)
-        {
-            cbuf[i] = nondet_char();
-        }
+        char contents_nondet[readbytes];
+        __CPROVER_array_replace((char*)buf, contents_nondet);
 
         return (ssize_t)readbytes;
     }
