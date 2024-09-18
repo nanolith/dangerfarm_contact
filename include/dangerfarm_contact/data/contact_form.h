@@ -174,7 +174,6 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(contact_form_write), int retval)
 MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_write))
 
-
 /**
  * \brief Given a serialized contact form and a size, verify that the contact
  * form is valid (i.e. that offsets are correct wrt size.)
@@ -188,6 +187,18 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_write))
  */
 int DANGERFARM_CONTACT_SYM(contact_form_verify)(
     const DANGERFARM_CONTACT_SYM(contact_form)* form, size_t size);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_verify),
+    const DANGERFARM_CONTACT_SYM(contact_form)* form, size_t size)
+        MODEL_CHECK_OBJECT_READ(form, size);
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_verify))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_verify), int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_verify))
 
 /**
  * \brief Given a valid \ref contact_form, compute the size.
