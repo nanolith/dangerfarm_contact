@@ -324,6 +324,30 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int DANGERFARM_CONTACT_SYM(contact_form_extract_subject)(
     char** subject, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_subject),
+    char** subject, const DANGERFARM_CONTACT_SYM(contact_form)* form)
+        MODEL_ASSERT(NULL != subject);
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form(form)));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_subject))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_subject),
+    int retval, char** subject)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(NULL != *subject);
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *subject);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_subject))
+
 /**
  * \brief Given a \ref contact_form, extract the comment as a string.
  *
