@@ -22,9 +22,16 @@ DANGERFARM_CONTACT_IMPORT_util_string;
 int DANGERFARM_CONTACT_SYM(contact_form_extract_name)(
     char** name, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
-    MODEL_ASSERT(prop_valid_contact_form(form));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_extract_name), name, form);
 
+    int retval;
     size_t offset = 0;
 
-    return string_create(name, form->data + offset, form->name_size);
+    retval = string_create(name, form->data + offset, form->name_size);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_extract_name), retval, name);
+
+    return retval;
 }
