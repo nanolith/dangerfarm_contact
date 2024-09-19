@@ -283,6 +283,30 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int DANGERFARM_CONTACT_SYM(contact_form_extract_email)(
     char** email, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_email),
+    char** email, const DANGERFARM_CONTACT_SYM(contact_form)* form)
+        MODEL_ASSERT(NULL != email);
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form(form)));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_email))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_email),
+    int retval, char** email)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(NULL != *email);
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *email);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_email))
+
 /**
  * \brief Given a \ref contact_form, extract the subject as a string.
  *
