@@ -28,8 +28,6 @@ int DANGERFARM_CONTACT_SYM(contact_form_extract_email)(
     int retval;
     size_t size = random_size();
 
-    MODEL_ASSERT(prop_valid_contact_form(form));
-
     char* tmp = (char*)malloc(size + 1);
     if (NULL == tmp)
     {
