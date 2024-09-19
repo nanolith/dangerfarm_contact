@@ -12,8 +12,7 @@
     __CPROVER_assert(__CPROVER_w_ok((x), (size)), #x " write " #size); \
     REQUIRE_SEMICOLON_HERE
 #define MODEL_CHECK_OBJECT_RW(x, size) \
-    MODEL_CHECK_OBJECT_READ(x, size); \
-    MODEL_CHECK_OBJECT_WRITE(x, size); \
+    __CPROVER_assert(__CPROVER_rw_ok((x), (size)), #x " r/w " #size); \
     REQUIRE_SEMICOLON_HERE
 #define MODEL_ASSUME(x) __CPROVER_assume((x)); REQUIRE_SEMICOLON_HERE
 #define MODEL_EXEMPT(x)
