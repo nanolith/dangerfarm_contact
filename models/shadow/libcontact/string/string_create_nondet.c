@@ -10,12 +10,7 @@ int DANGERFARM_CONTACT_SYM(string_create)(
     char** str, const void* data, size_t size)
 {
     /* verify that all bytes of data are reachable. */
-    const char* bdata = (const char*)data;
-    if (size >= 1)
-    {
-        MODEL_ASSERT(bdata[0] == bdata[0]);
-        MODEL_ASSERT(bdata[size - 1] == bdata[size - 1]);
-    }
+    MODEL_CHECK_OBJECT_READ(data, size);
 
     /* truncate string to speed up analysis. */
     if (size > 6) size = 6;
@@ -23,6 +18,7 @@ int DANGERFARM_CONTACT_SYM(string_create)(
     char* tmp = (char*)malloc(size + 1);
     if (NULL == tmp)
     {
+        *str = NULL;
         return ERROR_GENERAL_OUT_OF_MEMORY;
     }
 
