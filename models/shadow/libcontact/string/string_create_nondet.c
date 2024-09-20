@@ -22,10 +22,8 @@ int DANGERFARM_CONTACT_SYM(string_create)(
         return ERROR_GENERAL_OUT_OF_MEMORY;
     }
 
-    for (size_t i = 0; i < size; ++i)
-    {
-        tmp[i] = nondet_char();
-    }
+    char contents_nondet[size];
+    __CPROVER_array_replace((char*)tmp, contents_nondet);
 
     tmp[size] = 0;
     *str = tmp;
