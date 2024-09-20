@@ -22,14 +22,18 @@ size_t random_size()
 int DANGERFARM_CONTACT_SYM(contact_form_extract_comment)(
     char** comment, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
-    size_t size = random_size();
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_extract_comment), comment, form);
 
-    MODEL_ASSERT(prop_valid_contact_form(form));
+    int retval;
+    size_t size = random_size();
 
     char* tmp = (char*)malloc(size + 1);
     if (NULL == tmp)
     {
-        return ERROR_GENERAL_OUT_OF_MEMORY;
+        *comment = NULL;
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto done;
     }
 
     for (size_t i = 0; i < size; ++i)
@@ -40,5 +44,12 @@ int DANGERFARM_CONTACT_SYM(contact_form_extract_comment)(
     tmp[size] = 0;
     *comment = tmp;
 
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_extract_comment), retval, comment);
+
+    return retval;
 }
