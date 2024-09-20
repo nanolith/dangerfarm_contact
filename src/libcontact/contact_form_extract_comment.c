@@ -22,9 +22,16 @@ DANGERFARM_CONTACT_IMPORT_util_string;
 int DANGERFARM_CONTACT_SYM(contact_form_extract_comment)(
     char** comment, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
-    MODEL_ASSERT(prop_valid_contact_form(form));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_extract_comment), comment, form);
 
+    int retval;
     size_t offset = form->name_size + form->email_size + form->subject_size;
 
-    return string_create(comment, form->data + offset, form->comment_size);
+    retval = string_create(comment, form->data + offset, form->comment_size);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(contact_form_extract_comment), retval, comment);
+
+    return retval;
 }
