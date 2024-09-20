@@ -26,11 +26,7 @@ ssize_t write(int fd, const void* buf, size_t nbytes)
         }
 
         /* verify read access. */
-        MODEL_ASSERT(cbuf[0] == cbuf[0]);
-        if (writebytes > 0)
-        {
-            MODEL_ASSERT(cbuf[writebytes - 1] == cbuf[writebytes - 1]);
-        }
+        MODEL_CHECK_OBJECT_READ(cbuf, writebytes);
 
         return (ssize_t)writebytes;
     }
