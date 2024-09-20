@@ -29,6 +29,7 @@ ALL:
 	shadow/unix/close.c \
 	shadow/unix/prop_is_open_fd.c \
 	shadow/unix/socket.c \
+	shadow/unix/write.c \
 	../src/contactdb/contactdb_connection_create.c \
 	../src/contactdb/contactdb_connection_release.c \
 	../src/contactdb/contactdb_context_release.c \
