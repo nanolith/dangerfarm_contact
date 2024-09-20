@@ -15,14 +15,8 @@ ssize_t write(int fd, const void* buf, size_t nbytes)
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(fd));
 
-    /* read a byte from the beginning and end of the buffer to check access. */
-    if (nbytes > 0)
-    {
-        char byte0 = cbuf[0];
-        MODEL_ASSERT(byte0 == cbuf[0]);
-        char byte1 = cbuf[nbytes - 1];
-        MODEL_ASSERT(byte1 == cbuf[nbytes - 1]);
-    }
+    /* verify read access. */
+    MODEL_CHECK_OBJECT_READ(cbuf, nbytes);
 
     /* does this write succeed? */
     if (0 == nondet_status())
