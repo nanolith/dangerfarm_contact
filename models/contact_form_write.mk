@@ -17,6 +17,7 @@ ALL:
 	shadow/unix/prop_is_open_fd.c \
 	shadow/unix/socket.c \
 	shadow/unix/unix_shadow_init.c \
+	shadow/unix/write.c \
 	../src/libcontact/contact_form_compute_size.c \
 	../src/libcontact/contact_form_release.c \
 	../src/libcontact/contact_form_verify.c \
