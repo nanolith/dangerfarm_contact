@@ -365,6 +365,30 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int DANGERFARM_CONTACT_SYM(contact_form_extract_comment)(
     char** comment, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_comment),
+    char** comment, const DANGERFARM_CONTACT_SYM(contact_form)* form)
+        MODEL_ASSERT(NULL != comment);
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form(form)));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_comment))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_comment),
+    int retval, char** comment)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(NULL != *comment);
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *comment);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(contact_form_extract_comment))
+
 /******************************************************************************/
 /* Start of public exports.                                                   */
 /******************************************************************************/
