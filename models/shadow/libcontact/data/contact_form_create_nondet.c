@@ -46,17 +46,17 @@ int contact_form_create_nondet(
     tmp->comment_size = comment_len;
 
     /* initialize with random data. */
-    for (size_t i = 0; i < name_len; ++i)
-        tmp->data[offset + i] = nondet_char();
+    char contents_name_nondet[name_len];
+    __CPROVER_array_replace(tmp->data + offset, contents_name_nondet);
     offset += name_len;
-    for (size_t i = 0; i < email_len; ++i)
-        tmp->data[offset + i] = nondet_char();
+    char contents_email_nondet[email_len];
+    __CPROVER_array_replace(tmp->data + offset, contents_email_nondet);
     offset += email_len;
-    for (size_t i = 0; i < subject_len; ++i)
-        tmp->data[offset + i] = nondet_char();
+    char contents_subject_nondet[subject_len];
+    __CPROVER_array_replace(tmp->data + offset, contents_subject_nondet);
     offset += subject_len;
-    for (size_t i = 0; i < comment_len; ++i)
-        tmp->data[offset + i] = nondet_char();
+    char contents_comment_nondet[comment_len];
+    __CPROVER_array_replace(tmp->data + offset, contents_comment_nondet);
     offset += comment_len;
 
     *form = tmp;
