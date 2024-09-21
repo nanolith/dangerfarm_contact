@@ -7,6 +7,7 @@ ALL:
 	-I ../include \
 	shadow/unix/close.c \
 	shadow/unix/prop_is_open_fd.c \
+	shadow/unix/read.c \
 	shadow/unix/socket.c \
 	shadow/unix/unix_shadow_init.c \
 	shadow/libcontact/socket/socket_read_uint64.c \
