@@ -7,7 +7,8 @@ DANGERFARM_CONTACT_IMPORT_util_string;
 int nondet_char();
 static void randomize_string(char* str, size_t size)
 {
-    for (size_t i = 0; i < size; ++i) str[i] = nondet_char();
+    char contents_nondet[size];
+    __CPROVER_array_replace((char*)str, contents_nondet);
 }
 
 size_t nondet_size();
