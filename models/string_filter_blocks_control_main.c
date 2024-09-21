@@ -18,11 +18,8 @@ char random_char()
 
 void randomize_string(char* str, size_t size)
 {
-    for (size_t i = 0; i < size - 1; ++i)
-    {
-        str[i] = random_char();
-    }
-
+    char contents_nondet[size];
+    __CPROVER_array_replace((char*)str, contents_nondet);
     str[size - 1] = 0;
 }
 
