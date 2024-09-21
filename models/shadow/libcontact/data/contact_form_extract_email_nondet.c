@@ -36,10 +36,8 @@ int DANGERFARM_CONTACT_SYM(contact_form_extract_email)(
         goto done;
     }
 
-    for (size_t i = 0; i < size; ++i)
-    {
-        tmp[i] = nondet_char();
-    }
+    char contents_nondet[size];
+    __CPROVER_array_replace((char*)tmp, contents_nondet);
 
     tmp[size] = 0;
     *email = tmp;
