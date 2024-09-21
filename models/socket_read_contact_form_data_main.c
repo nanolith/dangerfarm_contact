@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
     }
 
     /* "read" contact form data from this socket. */
-    retval = socket_read_contact_form_data(data, data_size(), sock);
+    retval = socket_read_contact_form_data(data, sock, data_size());
     if (STATUS_SUCCESS != retval)
     {
         retval = 1;
