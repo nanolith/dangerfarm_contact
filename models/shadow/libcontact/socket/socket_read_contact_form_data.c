@@ -17,16 +17,9 @@ int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
     /* does this read succeed? */
     if (0 == nondet_status())
     {
-        size_t shadow_size = size;
-        if (shadow_size > 9)
-        {
-            shadow_size = 9;
-        }
+        char contents_nondet[size];
+        __CPROVER_array_replace((char*)data, contents_nondet);
 
-        for (size_t i = 0; i < shadow_size; ++i)
-        {
-            data[i] = nondet_char();
-        }
         return STATUS_SUCCESS;
     }
     else
