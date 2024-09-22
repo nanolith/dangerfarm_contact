@@ -6,8 +6,6 @@ ALL:
 	--div-by-zero-check --pointer-overflow-check --trace --stop-on-fail -DCBMC \
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
-	--unwindset contact_form_create_nondet.0:4,contact_form_create_nondet.1:4 \
-	--unwindset contact_form_create_nondet.2:4,contact_form_create_nondet.3:4 \
 	-I ../include \
 	shadow/unix/close.c \
 	shadow/unix/prop_is_open_fd.c \
