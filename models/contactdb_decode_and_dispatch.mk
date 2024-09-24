@@ -8,8 +8,6 @@ ALL:
 	--div-by-zero-check --pointer-overflow-check --trace --stop-on-fail -DCBMC \
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
-    --unwindset contact_form_create_nondet.0:4,contact_form_create_nondet.1:4 \
-    --unwindset contact_form_create_nondet.2:4,contact_form_create_nondet.3:4 \
 	$(LMDB_SHADOW_UNWINDSET) \
 	-I ../include -I $(HOME)/apps/lmdb/include $(LMDB_SHADOW_FILES) \
 	shadow/contactdb/contactdb_context_create_from_arguments.c \
