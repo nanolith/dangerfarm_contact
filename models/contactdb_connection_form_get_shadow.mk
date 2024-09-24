@@ -7,8 +7,6 @@ ALL:
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
 	--unwind 10 \
-	--unwindset contact_form_create_nondet.0:4,contact_form_create_nondet.1:4 \
-	--unwindset contact_form_create_nondet.2:4,contact_form_create_nondet.3:4 \
 	$(LMDB_SHADOW_UNWINDSET) \
 	-I ../include -I $(HOME)/apps/lmdb/include $(LMDB_SHADOW_FILES) \
 	shadow/contactdb/contactdb_connection_form_get.c \
