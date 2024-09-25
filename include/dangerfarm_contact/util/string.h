@@ -9,6 +9,15 @@ extern "C" {
 #endif /*__cplusplus*/
 
 /**
+ * \brief Model check helper to determine whether a string appears valid.
+ *
+ * \param str           The string to check.
+ *
+ * \returns true if the string appears valid and false otherwise.
+ */
+bool DANGERFARM_CONTACT_SYM(prop_string_valid)(const char* str);
+
+/**
  * \brief Create a string from a data pointer and size.
  *
  * \note Any null bytes in the data will be changed to ' ' to ensure that the
@@ -48,15 +57,6 @@ int DANGERFARM_CONTACT_SYM(string_filter)(char* str);
  *      - non-zero on failure.
  */
 int DANGERFARM_CONTACT_SYM(string_release)(char* str);
-
-/**
- * \brief Model check helper to determine whether a string appears valid.
- *
- * \param str           The string to check.
- *
- * \returns true if the string appears valid and false otherwise.
- */
-bool DANGERFARM_CONTACT_SYM(prop_string_valid)(const char* str);
 
 /******************************************************************************/
 /* Start of public exports.                                                   */
