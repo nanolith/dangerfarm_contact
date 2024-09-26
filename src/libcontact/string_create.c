@@ -20,6 +20,10 @@
 int DANGERFARM_CONTACT_SYM(string_create)(
     char** str, const void* data, size_t size)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_create), str, data, size);
+
+    int retval;
     char* tmp = NULL;
     const char* bdata = (const char*)data;
 
@@ -27,7 +31,8 @@ int DANGERFARM_CONTACT_SYM(string_create)(
     tmp = (char*)malloc(size + 1);
     if (NULL == tmp)
     {
-        return ERROR_GENERAL_OUT_OF_MEMORY;
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto done;
     }
 
     /* copy over data, changing null bytes to spaces. */
@@ -41,5 +46,12 @@ int DANGERFARM_CONTACT_SYM(string_create)(
 
     /* Success. Set the string and return. */
     *str = tmp;
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_create), retval, str, size);
+
+    return retval;
 }
