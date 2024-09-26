@@ -9,6 +9,11 @@ char nondet_char();
 int DANGERFARM_CONTACT_SYM(string_create)(
     char** str, const void* data, size_t size)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_create), str, data, size);
+
+    int retval;
+
     /* verify that all bytes of data are reachable. */
     MODEL_CHECK_OBJECT_READ(data, size);
 
@@ -19,7 +24,8 @@ int DANGERFARM_CONTACT_SYM(string_create)(
     if (NULL == tmp)
     {
         *str = NULL;
-        return ERROR_GENERAL_OUT_OF_MEMORY;
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto done;
     }
 
     char contents_nondet[size];
@@ -27,6 +33,11 @@ int DANGERFARM_CONTACT_SYM(string_create)(
 
     tmp[size] = 0;
     *str = tmp;
+    retval = STATUS_SUCCESS;
 
-    return STATUS_SUCCESS;
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_create), retval, str, size);
+
+    return retval;
 }
