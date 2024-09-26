@@ -5,6 +5,7 @@ ALL:
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
 	-I ../include \
+	shadow/libcontact/string/prop_string_valid.c \
 	../src/libcontact/string_create.c \
 	../src/libcontact/string_release.c \
 	../src/libcontact/string_filter.c \
