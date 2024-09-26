@@ -1,5 +1,7 @@
 #pragma once
 
+#include <dangerfarm_contact/cbmc/function_contracts.h>
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/function_decl.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -34,6 +36,29 @@ bool DANGERFARM_CONTACT_SYM(prop_string_valid)(const char* str);
  */
 int DANGERFARM_CONTACT_SYM(string_create)(
     char** str, const void* data, size_t size);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(string_create),
+    char** str, const void* data, size_t size)
+        MODEL_ASSERT(NULL != str);
+        MODEL_ASSERT(NULL != data);
+        MODEL_CHECK_OBJECT_READ(data, size);
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(string_create))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(string_create), int retval, char** str, size_t size)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(*str));
+            MODEL_CHECK_OBJECT_READ(*str, size + 1);
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *str);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_create))
 
 /**
  * \brief Filter a string, replacing any invalid UTF-8 sequences or HTML /
