@@ -34,6 +34,7 @@ int DANGERFARM_CONTACT_SYM(string_create)(
     tmp[size] = 0;
     *str = tmp;
     retval = STATUS_SUCCESS;
+    goto done;
 
 done:
     MODEL_CONTRACT_CHECK_POSTCONDITIONS(
