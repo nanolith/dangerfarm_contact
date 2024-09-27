@@ -35,6 +35,9 @@ static bool is_codepoint_control_character(uint32_t codepoint);
  */
 int DANGERFARM_CONTACT_SYM(string_filter)(char* str)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_filter), str);
+
     int retval;
     uint32_t codepoint;
     size_t codepoint_size;
@@ -74,7 +77,14 @@ int DANGERFARM_CONTACT_SYM(string_filter)(char* str)
         }
     }
 
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_filter), retval, str);
+
+    return retval;
 }
 
 /**
