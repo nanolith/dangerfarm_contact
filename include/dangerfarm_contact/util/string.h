@@ -83,7 +83,7 @@ MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(string_filter))
 
 /* postconditions. */
 MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
-    DANGERFARM_CONTACT_SYM(string_filter), char* str)
+    DANGERFARM_CONTACT_SYM(string_filter), int retval, char* str)
         MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(str));
         MODEL_CHECK_OBJECT_RW(str, strlen(str));
 MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_filter))
