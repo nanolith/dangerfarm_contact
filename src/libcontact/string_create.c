@@ -31,6 +31,7 @@ int DANGERFARM_CONTACT_SYM(string_create)(
     tmp = (char*)malloc(size + 1);
     if (NULL == tmp)
     {
+        *str = NULL;
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
         goto done;
     }
