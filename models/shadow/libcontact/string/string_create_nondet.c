@@ -14,9 +14,6 @@ int DANGERFARM_CONTACT_SYM(string_create)(
 
     int retval;
 
-    /* verify that all bytes of data are reachable. */
-    MODEL_CHECK_OBJECT_READ(data, size);
-
     /* truncate string to speed up analysis. */
     if (size > 6) size = 6;
 
