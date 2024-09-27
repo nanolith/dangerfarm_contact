@@ -7,12 +7,16 @@ int nondet_retval();
 
 int DANGERFARM_CONTACT_SYM(string_filter)(char* str)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_filter), str);
+
+    int retval;
     /* verify that all bytes of data are reachable. */
     size_t length = strlen(str);
     MODEL_ASSERT(str[0] == str[0]);
     MODEL_ASSERT(str[length] == str[length] && str[length] == 0);
 
-    int retval = nondet_retval();
+    retval = nondet_retval();
     switch (retval)
     {
         case STATUS_SUCCESS:
@@ -22,9 +26,16 @@ int DANGERFARM_CONTACT_SYM(string_filter)(char* str)
         case ERROR_READ_MULTIBYTE_OVERLONG_REPRESENTATION:
         case ERROR_READ_MULTIBYTE_RAW_CONTINUATION:
         case ERROR_READ_MULTIBYTE_UNEXPECTED_CHARACTER:
-            return retval;
+            goto done;
 
         default:
-            return STATUS_SUCCESS;
+            retval = STATUS_SUCCESS;
+            goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_filter), retval, str);
+
+    return retval;
 }
