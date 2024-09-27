@@ -99,6 +99,19 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_filter))
  */
 int DANGERFARM_CONTACT_SYM(string_release)(char* str);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(string_release), char* str)
+        MODEL_ASSERT(NULL != str);
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_string_valid)(str));
+        MODEL_CHECK_OBJECT_RW(str, strlen(str));
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(string_release))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(string_release), int retval, char* str)
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_release))
+
 /******************************************************************************/
 /* Start of public exports.                                                   */
 /******************************************************************************/
