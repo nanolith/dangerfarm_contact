@@ -5,6 +5,7 @@
 #include <dangerfarm_contact/function_decl.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <string.h>
 
 #ifdef   __cplusplus
 extern "C" {
