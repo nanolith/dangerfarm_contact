@@ -8,7 +8,7 @@ DANGERFARM_CONTACT_IMPORT_util_string;
 int main(int argc, char* argv[])
 {
     int retval;
-    char* str = NULL;
+    char* str;
     const char* INPUT = "foobar";
     const size_t INPUT_SIZE = strlen(INPUT);
 
