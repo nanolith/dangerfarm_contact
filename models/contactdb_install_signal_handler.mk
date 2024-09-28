@@ -8,6 +8,7 @@ ALL:
 	shadow/contactdb/contactdb_context_create_from_arguments.c \
 	shadow/contactdb/contactdb_connection_create.c \
 	shadow/contactdb/contactdb_connection_release_nop.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/libcontact/string/string_release.c \
 	shadow/unix/sigemptyset.c \
 	shadow/unix/sigaction.c \
