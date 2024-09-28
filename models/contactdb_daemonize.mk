@@ -10,6 +10,7 @@ ALL:
 	shadow/contactdb/contactdb_connection_release_nop.c \
 	shadow/contactdb/contactdb_disable_signal_handler.c \
 	shadow/contactdb/contactdb_install_signal_handler_nop.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/libcontact/string/string_release.c \
 	shadow/unix/close_nop.c \
 	shadow/unix/fork.c \
