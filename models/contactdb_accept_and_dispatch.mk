@@ -15,6 +15,7 @@ ALL:
 	shadow/contactdb/contactdb_disable_signal_handler.c \
 	shadow/contactdb/prop_is_valid_contactdb_context.c \
 	shadow/contactdb/prop_is_valid_contactdb_connection_nop.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/libcontact/string/string_release.c \
 	shadow/libcontact/random_status_code.c \
 	shadow/unix/accept.c \
