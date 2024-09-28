@@ -5,6 +5,7 @@ ALL:
 	--drop-unused-functions \
 	--unwind 10 --unwinding-assertions \
 	-I ../include -I $(HOME)/apps/lmdb/include \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/libcontact/string/string_release.c \
 	shadow/stdlib/strdup.c \
 	shadow/stdlib/strcmp.c \
