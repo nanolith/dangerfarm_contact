@@ -27,6 +27,13 @@ DANGERFARM_CONTACT_SYM(contact_form);
  */
 int DANGERFARM_CONTACT_SYM(socket_write_uint32)(int s, uint32_t val);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_write_uint32),
+    int s, uint32_t val)
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_write_uint32))
+
 /**
  * \brief Write a uint64_t value to a socket.
  *
