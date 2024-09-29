@@ -18,6 +18,7 @@ ALL:
 	shadow/contactdb/prop_is_valid_contactdb_context.c \
 	shadow/contactdb/prop_is_valid_contactdb_connection_nop.c \
 	shadow/libcontact/random_status_code.c \
+	shadow/libcontact/string/prop_string_valid.c \
 	shadow/libcontact/string/string_release.c \
 	shadow/unix/close.c \
 	shadow/unix/prop_is_open_fd.c \
