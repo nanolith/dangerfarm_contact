@@ -14,10 +14,21 @@
  */
 int DANGERFARM_CONTACT_SYM(string_release)(char* str)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_release), str);
+
+    int retval;
     size_t len = strlen(str);
 
     memset(str, 0, len);
     free(str);
 
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(string_release), retval, str);
+
+    return retval;
 }
