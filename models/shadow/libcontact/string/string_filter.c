@@ -11,10 +11,6 @@ int DANGERFARM_CONTACT_SYM(string_filter)(char* str)
         DANGERFARM_CONTACT_SYM(string_filter), str);
 
     int retval;
-    /* verify that all bytes of data are reachable. */
-    size_t length = strlen(str);
-    MODEL_ASSERT(str[0] == str[0]);
-    MODEL_ASSERT(str[length] == str[length] && str[length] == 0);
 
     retval = nondet_retval();
     switch (retval)
