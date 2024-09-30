@@ -14,14 +14,27 @@
  */
 int DANGERFARM_CONTACT_SYM(socket_write_uint64)(int s, uint64_t val)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_write_uint64), s, val);
+
+    int retval;
     ssize_t wrote_bytes = 0;
 
     /* write the value. */
     wrote_bytes = write(s, &val, sizeof(val));
     if (wrote_bytes < 0 || (size_t)wrote_bytes != sizeof(val))
     {
-        return ERROR_SOCKET_WRITE;
+        retval = ERROR_SOCKET_WRITE;
+        goto done;
     }
 
-    return STATUS_SUCCESS;
+    /* success. */
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_write_uint64), retval);
+
+    return retval;
 }
