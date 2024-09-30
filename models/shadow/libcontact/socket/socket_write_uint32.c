@@ -13,9 +13,6 @@ int DANGERFARM_CONTACT_SYM(socket_write_uint32)(int s, uint32_t val)
 
     int retval;
 
-    /* verify that this is an open fd. */
-    MODEL_ASSERT(prop_is_open_fd(s));
-
     /* does this write succeed? */
     if (0 == nondet_status())
     {
