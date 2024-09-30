@@ -4,6 +4,7 @@
 #include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/contracts/properties/unix.h>
 #include <dangerfarm_contact/function_decl.h>
+#include <dangerfarm_contact/status_codes.h>
 #include <stdint.h>
 #include <stddef.h>
 
@@ -82,6 +83,15 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(NULL != val);
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint32))
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_read_uint32), int retval, uint32_t* val)
+        if (STATUS_SUCCESS != retval)
+        {
+            MODEL_ASSERT(0 == *val);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint32))
 
 /**
  * \brief Read a uint64_t value from a socket.
