@@ -8,16 +8,29 @@ int nondet_status();
 
 int DANGERFARM_CONTACT_SYM(socket_write_uint64)(int s, uint64_t val)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_write_uint64), s, val);
+
+    int retval;
+
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
 
     /* does this write succeed? */
     if (0 == nondet_status())
     {
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
     else
     {
-        return ERROR_SOCKET_WRITE;
+        retval = ERROR_SOCKET_WRITE;
+        goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_write_uint64), retval);
+
+    return retval;
 }
