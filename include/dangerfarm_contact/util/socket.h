@@ -75,6 +75,14 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_write_uint64))
  */
 int DANGERFARM_CONTACT_SYM(socket_read_uint32)(uint32_t* val, int s);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_read_uint32),
+    uint32_t* val, int s)
+        MODEL_ASSERT(NULL != val);
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint32))
+
 /**
  * \brief Read a uint64_t value from a socket.
  *
