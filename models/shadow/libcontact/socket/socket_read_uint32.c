@@ -14,8 +14,6 @@ int DANGERFARM_CONTACT_SYM(socket_read_uint32)(uint32_t* val, int s)
 
     int retval;
 
-    /* prove access by writing a nondet value to val. */
-    /* also, this covers partial read scenarios from read(). */
     *val = nondet_uint32();
 
     /* does this read succeed? */
