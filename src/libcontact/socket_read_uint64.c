@@ -14,14 +14,28 @@
  */
 int DANGERFARM_CONTACT_SYM(socket_read_uint64)(uint64_t* val, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_uint64), val, s);
+
+    int retval;
     ssize_t read_bytes = 0;
 
     /* read the value. */
     read_bytes = read(s, val, sizeof(*val));
     if (read_bytes < 0 || (size_t)read_bytes != sizeof(*val))
     {
-        return ERROR_SOCKET_READ;
+        *val = 0;
+        retval = ERROR_SOCKET_READ;
+        goto done;
     }
 
-    return STATUS_SUCCESS;
+    /* success. */
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_uint64), retval, val);
+
+    return retval;
 }
