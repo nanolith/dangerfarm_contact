@@ -81,6 +81,7 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(socket_read_uint32),
     uint32_t* val, int s)
         MODEL_ASSERT(NULL != val);
+        MODEL_CHECK_OBJECT_WRITE(val, sizeof(uint32_t));
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint32))
 
