@@ -9,6 +9,11 @@ uint32_t nondet_uint32();
 
 int DANGERFARM_CONTACT_SYM(socket_read_uint32)(uint32_t* val, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_uint32), val, s);
+
+    int retval;
+
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
 
@@ -19,10 +24,19 @@ int DANGERFARM_CONTACT_SYM(socket_read_uint32)(uint32_t* val, int s)
     /* does this read succeed? */
     if (0 == nondet_status())
     {
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
     else
     {
-        return ERROR_SOCKET_READ;
+        *val = 0;
+        retval = ERROR_SOCKET_READ;
+        goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_uint32), retval, val);
+
+    return retval;
 }
