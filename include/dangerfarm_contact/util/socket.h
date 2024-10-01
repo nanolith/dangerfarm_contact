@@ -115,6 +115,15 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint64))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_read_uint64), int retval, uint64_t* val)
+        if (STATUS_SUCCESS != retval)
+        {
+            MODEL_ASSERT(0 == *val);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint64))
+
 /**
  * \brief Write a contact form header to a socket.
  *
