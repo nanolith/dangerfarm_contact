@@ -21,36 +21,46 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
 int DANGERFARM_CONTACT_SYM(socket_read_contact_form_header)(
     DANGERFARM_CONTACT_SYM(contact_form)* hdr, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_header), hdr, s);
+
     int retval;
 
     /* read the name size. */
     retval = socket_read_uint64(&hdr->name_size, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* read the email size. */
     retval = socket_read_uint64(&hdr->email_size, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* read the subject size. */
     retval = socket_read_uint64(&hdr->subject_size, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* read the comment size. */
     retval = socket_read_uint64(&hdr->comment_size, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_header), retval);
+
+    return retval;
 }
