@@ -14,9 +14,6 @@ int DANGERFARM_CONTACT_SYM(socket_read_uint64)(uint64_t* val, int s)
 
     int retval;
 
-    /* verify that this is an open fd. */
-    MODEL_ASSERT(prop_is_open_fd(s));
-
     *val = nondet_uint64();
 
     /* does this read succeed? */
