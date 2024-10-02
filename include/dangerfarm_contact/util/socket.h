@@ -138,6 +138,15 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint64))
 int DANGERFARM_CONTACT_SYM(socket_write_contact_form_header)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* hdr);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_write_contact_form_header),
+    int s, const DANGERFARM_CONTACT_SYM(contact_form)* hdr)
+        MODEL_ASSERT(prop_is_open_fd(s));
+        MODEL_CHECK_OBJECT_READ(hdr, sizeof(contact_form));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(socket_write_contact_form_header))
+
 /**
  * \brief Read a contact form header from a socket.
  *
