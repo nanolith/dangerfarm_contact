@@ -13,6 +13,11 @@ uint64_t nondet_uint64();
 int DANGERFARM_CONTACT_SYM(socket_read_contact_form_header)(
     DANGERFARM_CONTACT_SYM(contact_form)* hdr, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_header), hdr, s);
+
+    int retval;
+
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
 
@@ -23,10 +28,18 @@ int DANGERFARM_CONTACT_SYM(socket_read_contact_form_header)(
         hdr->email_size = nondet_uint64();
         hdr->subject_size = nondet_uint64();
         hdr->comment_size = nondet_uint64();
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
     else
     {
-        return ERROR_SOCKET_READ;
+        retval = ERROR_SOCKET_READ;
+        goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_header), retval);
+
+    return retval;
 }
