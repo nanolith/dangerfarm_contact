@@ -2,6 +2,7 @@
 
 #include <dangerfarm_contact/cbmc/function_contracts.h>
 #include <dangerfarm_contact/cbmc/model_assert.h>
+#include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/contracts/properties/unix.h>
 #include <dangerfarm_contact/function_decl.h>
 #include <dangerfarm_contact/status_codes.h>
@@ -11,10 +12,6 @@
 #ifdef   __cplusplus
 extern "C" {
 #endif /*__cplusplus*/
-
-/* forward decls. */
-typedef struct DANGERFARM_CONTACT_SYM(contact_form)
-DANGERFARM_CONTACT_SYM(contact_form);
 
 /**
  * \brief Write a uint32_t value to a socket.
@@ -143,7 +140,8 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(socket_write_contact_form_header),
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* hdr)
         MODEL_ASSERT(prop_is_open_fd(s));
-        MODEL_CHECK_OBJECT_READ(hdr, sizeof(contact_form));
+        MODEL_CHECK_OBJECT_READ(
+            hdr, sizeof(DANGERFARM_CONTACT_SYM(contact_form)));
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(socket_write_contact_form_header))
 
