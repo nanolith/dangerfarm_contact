@@ -167,6 +167,16 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int DANGERFARM_CONTACT_SYM(socket_read_contact_form_header)(
     DANGERFARM_CONTACT_SYM(contact_form)* hdr, int s);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_read_contact_form_header),
+    DANGERFARM_CONTACT_SYM(contact_form)* hdr, int s)
+        MODEL_CHECK_OBJECT_WRITE(
+            hdr, sizeof(DANGERFARM_CONTACT_SYM(contact_form)));
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(socket_read_contact_form_header))
+
 /**
  * \brief Write contact form data to a socket.
  *
