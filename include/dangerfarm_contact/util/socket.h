@@ -197,6 +197,15 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int DANGERFARM_CONTACT_SYM(socket_write_contact_form_data)(
     int s, const char* data, size_t size);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_write_contact_form_data),
+    int s, const char* data, size_t size)
+        MODEL_ASSERT(prop_is_open_fd(s));
+        MODEL_CHECK_OBJECT_READ(data, size);
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(socket_write_contact_form_data))
+
 /**
  * \brief Read contact form data from a socket.
  *
