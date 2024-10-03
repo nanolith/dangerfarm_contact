@@ -11,6 +11,11 @@ char nondet_char();
 int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
     char* data, int s, size_t size)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_data), data, s, size);
+
+    int retval;
+
     /* verify that this is an open fd. */
     MODEL_ASSERT(prop_is_open_fd(s));
 
@@ -20,10 +25,18 @@ int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
         char contents_nondet[size];
         __CPROVER_array_replace((char*)data, contents_nondet);
 
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
     else
     {
-        return ERROR_SOCKET_READ;
+        retval = ERROR_SOCKET_READ;
+        goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_data), retval);
+
+    return retval;
 }
