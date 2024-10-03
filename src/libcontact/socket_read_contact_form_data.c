@@ -19,14 +19,27 @@
 int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
     char* data, int s, size_t size)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_data), data, s, size);
+
+    int retval;
     ssize_t read_bytes = 0;
 
     /* read the data. */
     read_bytes = read(s, data, size);
     if (read_bytes < 0 || (size_t)read_bytes != size)
     {
-        return ERROR_SOCKET_READ;
+        retval = ERROR_SOCKET_READ;
+        goto done;
     }
 
-    return STATUS_SUCCESS;
+    /* success. */
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(socket_read_contact_form_data), retval);
+
+    return retval;
 }
