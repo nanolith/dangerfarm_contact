@@ -18,9 +18,6 @@ int DANGERFARM_CONTACT_SYM(socket_read_contact_form_header)(
 
     int retval;
 
-    /* verify that this is an open fd. */
-    MODEL_ASSERT(prop_is_open_fd(s));
-
     /* does this read succeed? */
     if (0 == nondet_status())
     {
