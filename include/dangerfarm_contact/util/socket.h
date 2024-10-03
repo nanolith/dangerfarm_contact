@@ -229,6 +229,15 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int DANGERFARM_CONTACT_SYM(socket_read_contact_form_data)(
     char* data, int s, size_t size);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_read_contact_form_data),
+    char* data, int s, size_t size)
+        MODEL_CHECK_OBJECT_WRITE(data, size);
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(socket_read_contact_form_data))
+
 /******************************************************************************/
 /* Start of public exports.                                                   */
 /******************************************************************************/
