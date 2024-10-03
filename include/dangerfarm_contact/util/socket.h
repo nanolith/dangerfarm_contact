@@ -238,6 +238,12 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(socket_read_contact_form_data))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_read_contact_form_data), int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(socket_read_contact_form_data))
+
 /******************************************************************************/
 /* Start of public exports.                                                   */
 /******************************************************************************/
