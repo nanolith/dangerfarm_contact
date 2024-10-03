@@ -206,6 +206,12 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(socket_write_contact_form_data))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(socket_write_contact_form_data), int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(socket_write_contact_form_data))
+
 /**
  * \brief Read contact form data from a socket.
  *
