@@ -27,6 +27,7 @@ SET(C_BUILD_OPTIONS
 #dependencies
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LMDB REQUIRED lmdb)
+pkg_check_modules(MINUNIT REQUIRED minunit)
 
 #libcontact build
 AUX_SOURCE_DIRECTORY(src/libcontact DANGERFARM_CONTACT_LIB_SOURCES)
