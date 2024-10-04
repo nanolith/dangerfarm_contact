@@ -17,11 +17,11 @@ configure_file(config.h.cmake include/dangerfarm_contact/config.h)
 INCLUDE_DIRECTORIES(include)
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR}/include)
 
-#source files
-AUX_SOURCE_DIRECTORY(src/libcontact DANGERFARM_CONTACT_LIB_SOURCES)
-
 SET(COMPILER_CHOOSER ${CMAKE_SOURCE_DIR}/scripts/compiler-chooser.sh)
 SET(LINKER_CHOOSER ${CMAKE_SOURCE_DIR}/scripts/linker-chooser.sh)
+
+#source files
+AUX_SOURCE_DIRECTORY(src/libcontact DANGERFARM_CONTACT_LIB_SOURCES)
 
 SET(C_BUILD_OPTIONS
     -fPIC -O2 -Wall -Werror -Wextra -Wpedantic
