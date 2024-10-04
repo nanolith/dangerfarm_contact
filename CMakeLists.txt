@@ -24,6 +24,10 @@ SET(C_BUILD_OPTIONS
     -fPIC -O2 -Wall -Werror -Wextra -Wpedantic
     -Wno-unused-command-line-argument)
 
+#dependencies
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LMDB REQUIRED lmdb)
+
 #libcontact build
 AUX_SOURCE_DIRECTORY(src/libcontact DANGERFARM_CONTACT_LIB_SOURCES)
 ADD_LIBRARY(contact STATIC ${DANGERFARM_CONTACT_LIB_SOURCES})
