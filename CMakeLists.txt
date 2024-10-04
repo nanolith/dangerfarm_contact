@@ -28,6 +28,8 @@ SET(C_BUILD_OPTIONS
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LMDB REQUIRED lmdb)
 pkg_check_modules(MINUNIT REQUIRED minunit)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 #libcontact build
 AUX_SOURCE_DIRECTORY(src/libcontact DANGERFARM_CONTACT_LIB_SOURCES)
