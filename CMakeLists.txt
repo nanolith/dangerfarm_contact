@@ -24,7 +24,7 @@ SET(C_BUILD_OPTIONS
     -fPIC -O2 -Wall -Werror -Wextra -Wpedantic
     -Wno-unused-command-line-argument)
 
-#source files
+#libcontact build
 AUX_SOURCE_DIRECTORY(src/libcontact DANGERFARM_CONTACT_LIB_SOURCES)
 ADD_LIBRARY(contact STATIC ${DANGERFARM_CONTACT_LIB_SOURCES})
 TARGET_COMPILE_OPTIONS(contact PRIVATE ${C_BUILD_OPTIONS})
