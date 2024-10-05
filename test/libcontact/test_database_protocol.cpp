@@ -154,7 +154,6 @@ TEST(database_read_write_contact_form_get_count_response)
     int sock[2];
     const uint32_t WRITE_STATUS = STATUS_SUCCESS;
     const uint64_t WRITE_COUNT = 12;
-    uint32_t request_id = 1234;
     uint32_t status = 4433;
     uint64_t count = 0;
 
@@ -190,7 +189,6 @@ TEST(database_read_write_contact_form_get_count_response_not_successful)
     int sock[2];
     const uint32_t WRITE_STATUS = 4433;
     const uint64_t WRITE_COUNT = 12;
-    uint32_t request_id = 1234;
     uint32_t status = 0;
     uint64_t count = 0;
 
