@@ -26,6 +26,7 @@ SET(C_BUILD_OPTIONS
 
 #dependencies
 find_package(PkgConfig REQUIRED)
+pkg_check_modules(KCGI REQUIRED kcgi)
 pkg_check_modules(LMDB REQUIRED lmdb)
 pkg_check_modules(MINUNIT REQUIRED minunit)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
