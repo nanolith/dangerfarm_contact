@@ -76,3 +76,9 @@ TARGET_COMPILE_OPTIONS(
     testcontact PRIVATE ${C_TEST_BUILD_OPTIONS} ${MINUNIT_CFLAGS})
 TARGET_LINK_LIBRARIES(
     testcontact PRIVATE ${C_TEST_OPTIONS} ${MINUNIT_LINK_LIBRARIES})
+
+#test build target
+ADD_CUSTOM_TARGET(
+    test
+    COMMAND testcontact
+    DEPENDS testcontact)
