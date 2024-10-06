@@ -1,3 +1,4 @@
 ADD_SUBDIRECTORY(contact_form_create_release)
 ADD_SUBDIRECTORY(contact_form_extract_comment)
 ADD_SUBDIRECTORY(contact_form_extract_comment_nondet)
+ADD_SUBDIRECTORY(contact_form_extract_email)
