@@ -84,3 +84,6 @@ ADD_CUSTOM_TARGET(
     test
     COMMAND testcontact
     DEPENDS testcontact)
+
+#model checks
+ADD_SUBDIRECTORY(models)
