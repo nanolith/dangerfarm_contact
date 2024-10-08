@@ -1,10 +1,9 @@
 SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/close.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/prop_is_open_fd.c
-    ${CMAKE_SOURCE_DIR}/models/shadow/unix/read.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/socket.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/unix_shadow_init.c
-    ${CMAKE_SOURCE_DIR}/src/libcontact/socket_read_uint32.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_read_uint32.c
     main.c)
 
 ADD_EXECUTABLE(model_socket_read_uint32_shadow ${MC_SOURCES})
