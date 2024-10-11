@@ -1,1 +1,2 @@
 ADD_SUBDIRECTORY(contactdb_accept_and_dispatch)
+ADD_SUBDIRECTORY(contactdb_connection_counter_get)
