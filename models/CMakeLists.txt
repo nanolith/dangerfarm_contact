@@ -34,3 +34,4 @@ SET(LMDB_UNWINDSET --unwindset prop_MDB_txn_valid:3)
 
 ADD_SUBDIRECTORY(contactdb)
 ADD_SUBDIRECTORY(libcontact)
+ADD_SUBDIRECTORY(lmdb)
