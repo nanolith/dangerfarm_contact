@@ -1,6 +1,6 @@
 SET(MC_SOURCES
     ${LMDB_SOURCES}
-	main.c)
+    main.c)
 
 ADD_EXECUTABLE(model_mdb_env_create_close_shadow ${MC_SOURCES})
 SET_TARGET_PROPERTIES(

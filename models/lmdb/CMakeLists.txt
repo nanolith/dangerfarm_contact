@@ -1,1 +1,2 @@
 ADD_SUBDIRECTORY(mdb_env_create_close_shadow)
+ADD_SUBDIRECTORY(mdb_env_dbi_open_close_shadow)
