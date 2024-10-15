@@ -4,6 +4,7 @@ SET(CBMC_OPTIONS
     "--pointer-overflow-check" "--trace" "--stop-on-fail"
 	"--drop-unused-functions" "--unwind" "10" "--unwinding-assertions")
 
+#lmdb variables
 SET(LMDB_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/lmdb/mdb_cursor_close.c
     ${CMAKE_SOURCE_DIR}/models/shadow/lmdb/mdb_cursor_get.c
@@ -28,9 +29,12 @@ SET(LMDB_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/lmdb/prop_MDB_env_in_txn.c
     ${CMAKE_SOURCE_DIR}/models/shadow/lmdb/prop_MDB_env_opened.c
     ${CMAKE_SOURCE_DIR}/models/shadow/lmdb/prop_MDB_txn_valid.c)
-
 SET(LMDB_BUILD_OPTIONS "-I ${LMDB_INCLUDE_DIRS}")
 SET(LMDB_UNWINDSET --unwindset prop_MDB_txn_valid:3)
+
+#CBMC build options
+SET(CBMC_BUILD_OPTIONS
+    "-DCBMC ${LMDB_BUILD_OPTIONS} -I ${CMAKE_SOURCE_DIR}/models")
 
 ADD_SUBDIRECTORY(contactdb)
 ADD_SUBDIRECTORY(cstring)
