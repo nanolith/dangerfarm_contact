@@ -79,11 +79,11 @@ TARGET_COMPILE_OPTIONS(
 TARGET_LINK_LIBRARIES(
     testcontact PRIVATE ${C_TEST_OPTIONS} ${MINUNIT_LINK_LIBRARIES})
 
-#test build target
-ADD_CUSTOM_TARGET(
-    test
+ADD_CUSTOM_COMMAND(
+    TARGET testcontact
+    POST_BUILD
     COMMAND testcontact
-    DEPENDS testcontact)
+    USES_TERMINAL)
 
 #model checks
 ADD_SUBDIRECTORY(models)
