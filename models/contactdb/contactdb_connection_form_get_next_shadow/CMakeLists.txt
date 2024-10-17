@@ -18,7 +18,7 @@ SET_TARGET_PROPERTIES(
     C_LINKER_LAUNCHER "${LINKER_CHOOSER};goto-ld")
 TARGET_COMPILE_OPTIONS(
     model_contactdb_connection_form_get_next_shadow
-        PRIVATE -DCBMC ${LMDB_BUILD_OPTIONS} ${C_BUILD_OPTIONS})
+        PRIVATE ${CBMC_BUILD_OPTIONS})
 SET_PROPERTY(
     TARGET model_contactdb_connection_form_get_next_shadow
     PROPERTY JOB_POOL_LINK console)
