@@ -21,8 +21,7 @@ SET_TARGET_PROPERTIES(
     C_LINKER_LAUNCHER "${LINKER_CHOOSER};goto-ld")
 TARGET_COMPILE_OPTIONS(
     model_contactdb_install_signal_handler
-         PRIVATE -DCBMC ${LMDB_BUILD_OPTIONS} -I ${CMAKE_SOURCE_DIR}/models
-                 ${C_BUILD_OPTIONS})
+        PRIVATE ${CBMC_BUILD_OPTIONS})
 SET_PROPERTY(
     TARGET model_contactdb_install_signal_handler
     PROPERTY JOB_POOL_LINK console)
