@@ -15,7 +15,7 @@ SET_TARGET_PROPERTIES(
     C_LINKER_LAUNCHER "${LINKER_CHOOSER};goto-ld")
 TARGET_COMPILE_OPTIONS(
     model_database_read_contact_form_delete_request_payload
-        PRIVATE -DCBMC -I ${CMAKE_SOURCE_DIR}/models ${C_BUILD_OPTIONS})
+        PRIVATE ${CBMC_BUILD_OPTIONS})
 SET_PROPERTY(
     TARGET model_database_read_contact_form_delete_request_payload
     PROPERTY JOB_POOL_LINK console)
