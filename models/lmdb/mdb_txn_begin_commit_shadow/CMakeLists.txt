@@ -9,8 +9,7 @@ SET_TARGET_PROPERTIES(
     C_LINKER_LAUNCHER "${LINKER_CHOOSER};goto-ld")
 TARGET_COMPILE_OPTIONS(
     model_mdb_txn_begin_commit_shadow
-        PRIVATE -DCBMC ${LMDB_BUILD_OPTIONS}
-                -I ${CMAKE_SOURCE_DIR}/models ${C_BUILD_OPTIONS})
+        PRIVATE ${CBMC_BUILD_OPTIONS})
 SET_PROPERTY(
     TARGET model_mdb_txn_begin_commit_shadow
     PROPERTY JOB_POOL_LINK console)
