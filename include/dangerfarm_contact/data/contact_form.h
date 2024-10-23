@@ -395,7 +395,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_contact_form_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
     typedef DANGERFARM_CONTACT_SYM(contact_form) sym ## contact_form; \
-    static inline int sym ## contact_form_create( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## contact_form_create( \
         DANGERFARM_CONTACT_SYM(contact_form)** v, const char* w, \
         const char* x, const char* y, const char* z) { \
             return DANGERFARM_CONTACT_SYM(contact_form_create)(v,w,x,y,z); \
