@@ -401,7 +401,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
         const char* x, const char* y, const char* z) { \
             return DANGERFARM_CONTACT_SYM(contact_form_create)(v,w,x,y,z); \
     } \
-    static inline int sym ## contact_form_release( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## contact_form_release( \
         DANGERFARM_CONTACT_SYM(contact_form)* x) { \
             return DANGERFARM_CONTACT_SYM(contact_form_release)(x); \
     } \
