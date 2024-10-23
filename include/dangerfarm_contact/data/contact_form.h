@@ -55,7 +55,7 @@ bool DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(contact_form_create)(
+int FN_DECL_MUST_CHECK DANGERFARM_CONTACT_SYM(contact_form_create)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, const char* name,
     const char* email, const char* subject, const char* comment);
 
