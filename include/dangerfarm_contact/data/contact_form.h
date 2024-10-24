@@ -321,7 +321,7 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(contact_form_extract_subject)(
+int FN_DECL_MUST_CHECK DANGERFARM_CONTACT_SYM(contact_form_extract_subject)(
     char** subject, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /* preconditions. */
