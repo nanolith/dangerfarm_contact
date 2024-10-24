@@ -406,7 +406,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
         DANGERFARM_CONTACT_SYM(contact_form)* x) { \
             return DANGERFARM_CONTACT_SYM(contact_form_release)(x); \
     } \
-    static inline int sym ## contact_form_read( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## contact_form_read( \
         DANGERFARM_CONTACT_SYM(contact_form)** x, int y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_read)(x,y); \
     } \
