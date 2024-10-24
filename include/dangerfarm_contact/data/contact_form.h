@@ -425,7 +425,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
         const DANGERFARM_CONTACT_SYM(contact_form)* x) { \
             return DANGERFARM_CONTACT_SYM(contact_form_compute_size)(x); \
     } \
-    static inline int sym ## contact_form_extract_name( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## contact_form_extract_name( \
         char** x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_extract_name)(x,y); \
     } \
