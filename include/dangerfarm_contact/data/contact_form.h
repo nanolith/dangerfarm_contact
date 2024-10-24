@@ -416,7 +416,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
         int x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_write)(x,y); \
     } \
-    static inline int sym ## contact_form_verify( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## contact_form_verify( \
         const DANGERFARM_CONTACT_SYM(contact_form)* x, size_t y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_verify)(x,y); \
     } \
