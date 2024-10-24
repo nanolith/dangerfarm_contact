@@ -158,7 +158,7 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(contact_form_read))
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(contact_form_write)(
+int FN_DECL_MUST_CHECK DANGERFARM_CONTACT_SYM(contact_form_write)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /* preconditions. */
