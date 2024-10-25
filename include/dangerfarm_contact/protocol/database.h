@@ -45,7 +45,8 @@ DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
 /**
