@@ -435,7 +435,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
         char** x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
             return DANGERFARM_CONTACT_SYM(contact_form_extract_email)(x,y); \
     } \
-    static inline int sym ## contact_form_extract_subject( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## contact_form_extract_subject( \
         char** x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
             return  DANGERFARM_CONTACT_SYM(contact_form_extract_subject)(x,y); \
     } \
