@@ -32,7 +32,8 @@ enum DANGERFARM_CONTACT_SYM(database_protocol_request_id)
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s);
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s);
 
 /**
  * \brief Write a contact form append request to the socket.
