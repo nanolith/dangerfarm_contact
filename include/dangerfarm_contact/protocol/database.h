@@ -210,7 +210,8 @@ DANGERFARM_CONTACT_SYM(database_write_contact_form_read_request)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(database_read_contact_form_read_request_payload)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(database_read_contact_form_read_request_payload)(
     uint64_t* id, int s);
 
 /**
