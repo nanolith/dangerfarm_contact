@@ -134,7 +134,8 @@ DANGERFARM_CONTACT_SYM(database_write_contact_form_get_count_response)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response)(
     uint32_t* status, uint64_t* count, int s);
 
 /**
