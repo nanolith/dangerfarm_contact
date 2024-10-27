@@ -314,7 +314,8 @@ DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(database_write_database_truncate_request)(int s);
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(database_write_database_truncate_request)(int s);
 
 /**
  * \brief Write a database truncate response to the socket.
