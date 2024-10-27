@@ -425,7 +425,8 @@ DANGERFARM_CONTACT_SYM(database_write_generic_response)(
         return DANGERFARM_CONTACT_SYM( \
             database_write_contact_form_list_response)(w,x,y,z); \
     } \
-    static inline int sym ## database_read_contact_form_list_response( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## database_read_contact_form_list_response( \
         uint32_t* w, uint64_t* x, uint64_t** y, int z) { \
         return DANGERFARM_CONTACT_SYM( \
             database_read_contact_form_list_response)(w,x,y,z); \
