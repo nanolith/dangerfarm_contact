@@ -401,7 +401,8 @@ DANGERFARM_CONTACT_SYM(database_write_generic_response)(
             return DANGERFARM_CONTACT_SYM( \
                         database_write_contact_form_get_count_request)(x); \
     } \
-    static inline int sym ## database_write_contact_form_get_count_response( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## database_write_contact_form_get_count_response( \
         int x, const uint32_t y, const uint64_t z) { \
             return DANGERFARM_CONTACT_SYM( \
                         database_write_contact_form_get_count_response)( \
