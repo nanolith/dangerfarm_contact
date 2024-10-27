@@ -365,7 +365,8 @@ DANGERFARM_CONTACT_SYM(database_write_generic_response)(
 /******************************************************************************/
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_protocol_database_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
-    static inline int sym ## database_read_request_id( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## database_read_request_id( \
         uint32_t* x, int y) { \
             return DANGERFARM_CONTACT_SYM(database_read_request_id)(x, y); \
     } \
