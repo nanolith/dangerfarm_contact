@@ -443,7 +443,8 @@ DANGERFARM_CONTACT_SYM(database_write_generic_response)(
         return DANGERFARM_CONTACT_SYM( \
             database_read_contact_form_read_request_payload)(x, y); \
     } \
-    static inline int sym ## database_write_contact_form_read_response( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## database_write_contact_form_read_response( \
         int x, const uint32_t y, \
         const DANGERFARM_CONTACT_SYM(contact_form)* z) { \
             return DANGERFARM_CONTACT_SYM( \
