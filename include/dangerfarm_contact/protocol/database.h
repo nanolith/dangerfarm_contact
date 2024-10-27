@@ -301,7 +301,8 @@ DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_response)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response)(
     uint32_t* status, int s);
 
 /**
