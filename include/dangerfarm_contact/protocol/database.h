@@ -356,7 +356,8 @@ DANGERFARM_CONTACT_SYM(database_read_database_truncate_response)(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(database_write_generic_response)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(database_write_generic_response)(
     int s, uint32_t req, uint32_t status);
 
 /******************************************************************************/
