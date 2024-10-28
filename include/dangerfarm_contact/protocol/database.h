@@ -480,7 +480,7 @@ DANGERFARM_CONTACT_SYM(database_write_generic_response)(
             return DANGERFARM_CONTACT_SYM( \
                 database_read_contact_form_delete_response)(x,y); \
     } \
-    static inline int \
+    static inline int FN_DECL_MUST_CHECK \
     sym ## database_write_database_truncate_request(int x) { \
         return DANGERFARM_CONTACT_SYM( \
             database_write_database_truncate_request)(x); \
