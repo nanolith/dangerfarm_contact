@@ -485,7 +485,8 @@ DANGERFARM_CONTACT_SYM(database_write_generic_response)(
         return DANGERFARM_CONTACT_SYM( \
             database_write_database_truncate_request)(x); \
     } \
-    static inline int sym ## database_write_database_truncate_response( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## database_write_database_truncate_response( \
         int x, const uint32_t y) { \
         return DANGERFARM_CONTACT_SYM( \
             database_write_database_truncate_response)(x,y); \
