@@ -23,7 +23,8 @@ extern "C" {
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(socket_write_uint32)(int s, uint32_t val);
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(socket_write_uint32)(int s, uint32_t val);
 
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
