@@ -257,7 +257,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 /******************************************************************************/
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_socket_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
-    static inline int sym ## socket_write_uint32( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## socket_write_uint32( \
         int x, uint32_t y) { \
             return DANGERFARM_CONTACT_SYM(socket_write_uint32)(x,y); \
     } \
