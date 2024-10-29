@@ -48,7 +48,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_write_uint32))
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(socket_write_uint64)(int s, uint64_t val);
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(socket_write_uint64)(int s, uint64_t val);
 
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
