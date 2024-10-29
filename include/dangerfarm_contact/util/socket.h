@@ -267,7 +267,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
         int x, uint64_t y) { \
             return DANGERFARM_CONTACT_SYM(socket_write_uint64)(x,y); \
     } \
-    static inline int sym ## socket_read_uint32( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## socket_read_uint32( \
         uint32_t* x, int y) { \
             return DANGERFARM_CONTACT_SYM(socket_read_uint32)(x,y); \
     } \
