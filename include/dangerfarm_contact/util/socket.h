@@ -200,7 +200,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(socket_write_contact_form_data)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(socket_write_contact_form_data)(
     int s, const char* data, size_t size);
 
 /* preconditions. */
