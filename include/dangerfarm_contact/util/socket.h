@@ -136,7 +136,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(socket_read_uint64))
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(socket_write_contact_form_header)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(socket_write_contact_form_header)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* hdr);
 
 /* preconditions. */
