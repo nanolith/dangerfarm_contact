@@ -125,7 +125,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_release))
         char** x, const void* y, size_t z) { \
             return DANGERFARM_CONTACT_SYM(string_create)(x,y,z); \
     } \
-    static inline int sym ## string_filter( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## string_filter( \
         char* x) { \
             return DANGERFARM_CONTACT_SYM(string_filter)(x); \
     } \
