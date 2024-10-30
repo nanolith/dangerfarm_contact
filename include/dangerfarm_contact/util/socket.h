@@ -289,7 +289,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
             return DANGERFARM_CONTACT_SYM( \
                 socket_read_contact_form_header)(x,y); \
     } \
-    static inline int sym ## socket_write_contact_form_data( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## socket_write_contact_form_data( \
         int x, const char* y, size_t z) { \
             return DANGERFARM_CONTACT_SYM( \
                         socket_write_contact_form_data)(x,y,z); \
