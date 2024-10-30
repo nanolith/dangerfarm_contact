@@ -120,7 +120,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_release))
 /******************************************************************************/
 #define __INTERNAL_DANGERFARM_CONTACT_IMPORT_util_string_sym(sym) \
     DANGERFARM_CONTACT_BEGIN_EXPORT \
-    static inline int sym ## string_create( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## string_create( \
         char** x, const void* y, size_t z) { \
             return DANGERFARM_CONTACT_SYM(string_create)(x,y,z); \
     } \
