@@ -99,7 +99,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_filter))
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(string_release)(char* str);
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(string_release)(char* str);
 
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
