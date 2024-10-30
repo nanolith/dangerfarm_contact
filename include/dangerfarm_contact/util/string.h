@@ -35,7 +35,8 @@ bool DANGERFARM_CONTACT_SYM(prop_string_valid)(const char* str);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int DANGERFARM_CONTACT_SYM(string_create)(
+int FN_DECL_MUST_CHECK
+DANGERFARM_CONTACT_SYM(string_create)(
     char** str, const void* data, size_t size);
 
 /* preconditions. */
