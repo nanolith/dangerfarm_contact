@@ -277,7 +277,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
         uint64_t* x, int y) { \
             return DANGERFARM_CONTACT_SYM(socket_read_uint64)(x,y); \
     } \
-    static inline int sym ## socket_write_contact_form_header( \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## socket_write_contact_form_header( \
         int x, const DANGERFARM_CONTACT_SYM(contact_form)* y) { \
             return DANGERFARM_CONTACT_SYM( \
                 socket_write_contact_form_header)(x,y); \
