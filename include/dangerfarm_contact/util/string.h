@@ -130,7 +130,8 @@ MODEL_CONTRACT_POSTCONDITIONS_END(DANGERFARM_CONTACT_SYM(string_release))
         char* x) { \
             return DANGERFARM_CONTACT_SYM(string_filter)(x); \
     } \
-    static inline int sym ## string_release(char* x) { \
+    static inline int FN_DECL_MUST_CHECK \
+    sym ## string_release(char* x) { \
         return DANGERFARM_CONTACT_SYM(string_release)(x); \
     } \
     static inline bool sym ## prop_string_valid(const char* x) { \
