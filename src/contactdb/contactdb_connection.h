@@ -124,7 +124,8 @@ contactdb_connection_counter_get(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_connection_form_append(
+int FN_DECL_MUST_CHECK
+contactdb_connection_form_append(
     contactdb_connection* conn, MDB_txn* txn,
     const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
