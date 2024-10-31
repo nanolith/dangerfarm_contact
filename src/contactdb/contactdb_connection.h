@@ -34,7 +34,8 @@ struct contactdb_connection
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_connection_create(contactdb_connection** conn, const char* path);
+int FN_DECL_MUST_CHECK
+contactdb_connection_create(contactdb_connection** conn, const char* path);
 
 /**
  * \brief Release a contactdb connection.
