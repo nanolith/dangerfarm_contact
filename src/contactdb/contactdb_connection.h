@@ -46,7 +46,8 @@ contactdb_connection_create(contactdb_connection** conn, const char* path);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_connection_release(contactdb_connection* conn);
+int FN_DECL_MUST_CHECK
+contactdb_connection_release(contactdb_connection* conn);
 
 /**
  * \brief Given a connection and a transaction, read and increment the given
