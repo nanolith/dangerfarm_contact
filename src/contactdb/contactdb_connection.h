@@ -178,7 +178,8 @@ contactdb_connection_form_delete(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_connection_form_get_first(
+int FN_DECL_MUST_CHECK
+contactdb_connection_form_get_first(
     MDB_cursor** cursor, contactdb_connection* conn, MDB_txn* txn, MDB_val* key,
     MDB_val* val, bool* found, uint64_t* p_key);
 
