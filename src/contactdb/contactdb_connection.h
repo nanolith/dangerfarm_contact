@@ -65,7 +65,8 @@ contactdb_connection_release(contactdb_connection* conn);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_connection_counter_get_and_increment(
+int FN_DECL_MUST_CHECK
+contactdb_connection_counter_get_and_increment(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value);
 
