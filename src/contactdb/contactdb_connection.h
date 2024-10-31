@@ -86,7 +86,8 @@ contactdb_connection_counter_get_and_increment(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_connection_counter_get_and_decrement(
+int FN_DECL_MUST_CHECK
+contactdb_connection_counter_get_and_decrement(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value);
 
