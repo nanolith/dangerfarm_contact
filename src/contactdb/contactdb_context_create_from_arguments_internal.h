@@ -29,7 +29,8 @@ contactdb_context_create_from_arguments_set_string(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_context_create_from_arguments_read_args(
+int FN_DECL_MUST_CHECK
+contactdb_context_create_from_arguments_read_args(
     contactdb_context* ctx, int argc, char* argv[]);
 
 /**
