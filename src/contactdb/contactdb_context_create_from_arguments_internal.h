@@ -42,5 +42,6 @@ contactdb_context_create_from_arguments_read_args(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_context_create_from_arguments_bind_local_socket(
+int FN_DECL_MUST_CHECK
+contactdb_context_create_from_arguments_bind_local_socket(
     contactdb_context* ctx);
