@@ -61,7 +61,8 @@ contactdb_context_create_from_arguments(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_context_release(contactdb_context* ctx);
+int FN_DECL_MUST_CHECK
+contactdb_context_release(contactdb_context* ctx);
 
 /**
  * \brief Confirm whether the given capability exists in this context.
