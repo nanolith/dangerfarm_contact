@@ -14,7 +14,8 @@
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_context_create_from_arguments_set_string(
+int FN_DECL_MUST_CHECK
+contactdb_context_create_from_arguments_set_string(
     char** str, const char* opt, const char* value);
 
 /**
