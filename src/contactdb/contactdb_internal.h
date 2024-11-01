@@ -83,7 +83,8 @@ bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_daemonize(contactdb_context* ctx);
+int FN_DECL_MUST_CHECK
+contactdb_daemonize(contactdb_context* ctx);
 
 /**
  * \brief Disable the signal handler.
