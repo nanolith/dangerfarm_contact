@@ -95,7 +95,8 @@ contactdb_daemonize(contactdb_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_disable_signal_handler(contactdb_context* ctx);
+int FN_DECL_MUST_CHECK
+contactdb_disable_signal_handler(contactdb_context* ctx);
 
 /**
  * \brief Drop privileges to only those needed for database communication.
