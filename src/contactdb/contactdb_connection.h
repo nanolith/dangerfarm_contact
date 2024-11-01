@@ -197,7 +197,8 @@ contactdb_connection_form_get_first(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_connection_form_get_next(
+int FN_DECL_MUST_CHECK
+contactdb_connection_form_get_next(
     MDB_cursor* cursor, MDB_val* key, MDB_val* val, bool* found,
     uint64_t* p_key);
 
