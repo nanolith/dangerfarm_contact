@@ -1,5 +1,7 @@
 #pragma once
 
+#include <dangerfarm_contact/function_decl.h>
+
 #include "contactdb_internal.h"
 
 /**
