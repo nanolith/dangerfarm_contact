@@ -131,7 +131,8 @@ contactdb_install_signal_handler(contactdb_context* ctx);
  *      - zero on success.
  *      - non-zero on a FATAL error.
  */
-int contactdb_accept_and_dispatch(contactdb_context* ctx);
+int FN_DECL_MUST_CHECK
+contactdb_accept_and_dispatch(contactdb_context* ctx);
 
 /**
  * \brief Decode and dispatch a contactdb request.
