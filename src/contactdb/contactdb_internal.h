@@ -144,7 +144,8 @@ contactdb_accept_and_dispatch(contactdb_context* ctx);
  *      - zero on success.
  *      - non-zero on error.
  */
-int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock);
+int FN_DECL_MUST_CHECK
+contactdb_decode_and_dispatch(contactdb_context* ctx, int sock);
 
 /**
  * \brief Decode and dispatch a contactdb contact form append request.
