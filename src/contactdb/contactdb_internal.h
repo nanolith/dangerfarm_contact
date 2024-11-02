@@ -157,7 +157,8 @@ contactdb_decode_and_dispatch(contactdb_context* ctx, int sock);
  *      - zero on success.
  *      - non-zero on error.
  */
-int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock);
+int FN_DECL_MUST_CHECK
+contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock);
 
 /**
  * \brief Decode and dispatch a contactdb contact form get count request.
