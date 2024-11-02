@@ -1,6 +1,7 @@
 #pragma once
 
 #include <dangerfarm_contact/data/contact_form.h>
+#include <dangerfarm_contact/function_decl.h>
 #include <stdarg.h>
 #include <stdbool.h>
 #include <unistd.h>
