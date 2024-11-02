@@ -209,7 +209,8 @@ contactdb_dnd_contact_form_get(contactdb_context* ctx, int sock);
  *      - zero on success.
  *      - non-zero on error.
  */
-int contactdb_dnd_contact_form_delete(contactdb_context* ctx, int sock);
+int FN_DECL_MUST_CHECK
+contactdb_dnd_contact_form_delete(contactdb_context* ctx, int sock);
 
 /**
  * \brief Return true if the given \ref contactdb_context is valid.
