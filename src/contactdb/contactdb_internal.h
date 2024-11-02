@@ -119,7 +119,8 @@ contactdb_drop_privileges(contactdb_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_install_signal_handler(contactdb_context* ctx);
+int FN_DECL_MUST_CHECK
+contactdb_install_signal_handler(contactdb_context* ctx);
 
 /**
  * \brief Accept and dispatch a connection.
