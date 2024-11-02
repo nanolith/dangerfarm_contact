@@ -107,7 +107,8 @@ contactdb_disable_signal_handler(contactdb_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactdb_drop_privileges(contactdb_context* ctx);
+int FN_DECL_MUST_CHECK
+contactdb_drop_privileges(contactdb_context* ctx);
 
 /**
  * \brief Install a signal handler.
