@@ -118,7 +118,8 @@ int contactform_context_decode_request_type(int method);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactform_form_decode(contactform_context* ctx);
+int FN_DECL_MUST_CHECK
+contactform_form_decode(contactform_context* ctx);
 
 /**
  * \brief Perform a CGI request action.
