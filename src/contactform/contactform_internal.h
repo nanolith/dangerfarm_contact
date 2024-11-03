@@ -142,4 +142,5 @@ contactform_perform_cgi_request(contactform_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactform_drop_privileges(int step);
+int FN_DECL_MUST_CHECK
+contactform_drop_privileges(int step);
