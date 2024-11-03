@@ -62,7 +62,8 @@ contactform_context_create(contactform_context** ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactform_context_release(contactform_context* ctx);
+int FN_DECL_MUST_CHECK
+contactform_context_release(contactform_context* ctx);
 
 /**
  * \brief Create a database helper connection.
