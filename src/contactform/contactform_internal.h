@@ -50,7 +50,8 @@ struct contactform_context
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactform_context_create(contactform_context** ctx);
+int FN_DECL_MUST_CHECK
+contactform_context_create(contactform_context** ctx);
 
 /**
  * \brief Release a \ref contactform_context instance.
