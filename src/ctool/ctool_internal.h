@@ -53,7 +53,8 @@ ctool_context_create_from_arguments(
  *      - zero on success.
  *      - non-zero on failure.
  */
-int ctool_context_release(ctool_context* ctx);
+int FN_DECL_MUST_CHECK
+ctool_context_release(ctool_context* ctx);
 
 /**
  * \brief Drop privileges before communicating with the database.
