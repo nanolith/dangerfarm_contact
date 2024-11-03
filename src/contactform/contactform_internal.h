@@ -76,7 +76,8 @@ contactform_context_release(contactform_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactform_database_helper_create(int* s, pid_t* pid);
+int FN_DECL_MUST_CHECK
+contactform_database_helper_create(int* s, pid_t* pid);
 
 /**
  * \brief Parse the CGI content, creating a contact form to send to the helper.
