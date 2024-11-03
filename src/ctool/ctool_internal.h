@@ -40,7 +40,8 @@ struct ctool_context
  *      - zero on success.
  *      - non-zero on failure.
  */
-int ctool_context_create_from_arguments(
+int FN_DECL_MUST_CHECK
+ctool_context_create_from_arguments(
     ctool_context** ctx, int argc, char* argv[]);
 
 /**
