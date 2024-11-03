@@ -130,7 +130,8 @@ contactform_form_decode(contactform_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int contactform_perform_cgi_request(contactform_context* ctx);
+int FN_DECL_MUST_CHECK
+contactform_perform_cgi_request(contactform_context* ctx);
 
 /**
  * \brief Perform a drop privileges step.
