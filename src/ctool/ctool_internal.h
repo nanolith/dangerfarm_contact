@@ -77,7 +77,8 @@ ctool_drop_privileges(ctool_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int ctool_run_command(ctool_context* ctx);
+int FN_DECL_MUST_CHECK
+ctool_run_command(ctool_context* ctx);
 
 /**
  * \brief Run an append command.
