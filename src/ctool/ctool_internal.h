@@ -65,7 +65,8 @@ ctool_context_release(ctool_context* ctx);
  *      - zero on success.
  *      - non-zero on failure.
  */
-int ctool_drop_privileges(ctool_context* ctx);
+int FN_DECL_MUST_CHECK
+ctool_drop_privileges(ctool_context* ctx);
 
 /**
  * \brief Run a ctool command.
