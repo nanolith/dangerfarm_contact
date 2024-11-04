@@ -1,5 +1,6 @@
 #pragma once
 
+#include <dangerfarm_contact/cbmc/function_contracts.h>
 #include <dangerfarm_contact/function_decl.h>
 #include <stdint.h>
 
