@@ -23,6 +23,8 @@ enum DANGERFARM_CONTACT_SYM(database_protocol_request_id)
     DATABASE_REQUEST_ID_CONTACT_FORM_GET                                = 4,
     DATABASE_REQUEST_ID_CONTACT_FORM_DELETE                             = 6,
     DATABASE_REQUEST_ID_TRUNCATE                                        = 7,
+
+    DATABASE_REQUEST_ID_INVALID                                         = -1,
 };
 
 #define DATABASE_PROTOCOL_MAX_COUNT         1024
