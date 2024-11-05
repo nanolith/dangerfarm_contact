@@ -15,5 +15,17 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
  */
 int DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s)
 {
-    return socket_read_uint32(req, s);
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_request_id), req, s);
+
+    int retval = socket_read_uint32(req, s);
+    if (STATUS_SUCCESS != retval)
+    {
+        *req = DATABASE_REQUEST_ID_INVALID;
+    }
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_request_id), retval, req);
+
+    return retval;
 }
