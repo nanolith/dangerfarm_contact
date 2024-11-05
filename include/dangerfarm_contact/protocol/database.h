@@ -48,7 +48,7 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         /* request pointer can't be NULL. */
         MODEL_ASSERT(NULL != req);
         /* socket is a valid descriptor. */
-        MODEL_ASSERT(prop_is_valid_unix_desc(s));
+        MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_request_id))
 
