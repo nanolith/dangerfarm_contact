@@ -52,6 +52,19 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_request_id))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_request_id),
+    int retval, uint32_t* req)
+        /* on failure. */
+        if (STATUS_SUCCESS != retval)
+        {
+            /* req is INVALID on failure. */
+            MODEL_ASSERT(DATABASE_REQUEST_ID_INVALID == *req);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_request_id))
+
 /**
  * \brief Write a contact form append request to the socket.
  *
