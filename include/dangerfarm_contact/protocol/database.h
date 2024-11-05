@@ -4,6 +4,7 @@
 #include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/contracts/properties/unix.h>
 #include <dangerfarm_contact/function_decl.h>
+#include <dangerfarm_contact/status_codes.h>
 #include <stdint.h>
 
 #ifdef   __cplusplus
