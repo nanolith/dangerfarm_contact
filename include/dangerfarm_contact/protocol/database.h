@@ -40,6 +40,16 @@ enum DANGERFARM_CONTACT_SYM(database_protocol_request_id)
 int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_request_id), uint32_t* req, int s)
+        /* request pointer can't be NULL. */
+        MODEL_ASSERT(NULL != req);
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_valid_unix_desc(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_request_id))
+
 /**
  * \brief Write a contact form append request to the socket.
  *
