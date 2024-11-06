@@ -9,6 +9,7 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_dnd_contact_form_get_list.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_connection.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_context.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/protocol/database/database_read_request_id.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/random_status_code.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_read_uint32.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_write_uint32.c
@@ -21,7 +22,6 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_release.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_context_release.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_decode_and_dispatch.c
-    ${CMAKE_SOURCE_DIR}/src/libcontact/database_read_request_id.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/database_write_generic_response.c
     main.c)
 
