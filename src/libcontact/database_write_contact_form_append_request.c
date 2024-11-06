@@ -19,22 +19,34 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
 int DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* form)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request),
+        s, form);
+
     int retval;
 
     /* write the request id. */
     retval = socket_write_uint32(s, DATABASE_REQUEST_ID_CONTACT_FORM_APPEND);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* write the contact form. */
     retval = contact_form_write(s, form);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request),
+        retval);
+
+    return retval;
 }
