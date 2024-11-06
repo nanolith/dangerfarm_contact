@@ -13,8 +13,7 @@ bool DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(
     MODEL_ASSERT(STATUS_SUCCESS == contact_form_verify(form, size));
     if (data_size > 0)
     {
-        MODEL_ASSERT(form->data[0] == form->data[0]);
-        MODEL_ASSERT(form->data[data_size - 1] == form->data[data_size - 1]);
+        MODEL_CHECK_OBJECT_READ(form->data, data_size);
     }
 
     return true;
