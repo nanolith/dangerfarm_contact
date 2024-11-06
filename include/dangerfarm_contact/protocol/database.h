@@ -79,6 +79,17 @@ int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request)(
     int s, const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request), int s,
+        const DANGERFARM_CONTACT_SYM(contact_form)* form)
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_open_fd(s));
+        /* form is a valid form. */
+        MODEL_ASSERT(prop_valid_contact_form(form));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request))
+
 /**
  * \brief Read a contact form append request payload.
  *
