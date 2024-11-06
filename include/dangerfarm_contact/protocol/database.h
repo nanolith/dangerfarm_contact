@@ -3,6 +3,7 @@
 #include <dangerfarm_contact/cbmc/function_contracts.h>
 #include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/contracts/properties/unix.h>
+#include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/function_decl.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <stddef.h>
@@ -86,7 +87,7 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         /* socket is a valid descriptor. */
         MODEL_ASSERT(prop_is_open_fd(s));
         /* form is a valid form. */
-        MODEL_ASSERT(prop_valid_contact_form(form));
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(form));
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_write_contact_form_append_request))
 
