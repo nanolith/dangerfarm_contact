@@ -20,5 +20,15 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
 int DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload)(
     DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
-    return contact_form_read(form, s);
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload),
+        form, s);
+
+    int retval = contact_form_read(form, s);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload),
+        retval, form);
+
+    return retval;
 }
