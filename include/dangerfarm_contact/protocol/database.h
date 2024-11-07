@@ -127,6 +127,22 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload),
+    int retval, DANGERFARM_CONTACT_SYM(contact_form)** form)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(
+                DANGERFARM_CONTACT_SYM(prop_valid_contact_form(*form)));
+        }
+        else
+        {
+            MODEL_ASSERT(NULL == *form);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload))
+
 /**
  * \brief Write a contact form append response to the socket.
  *
