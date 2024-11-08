@@ -75,6 +75,7 @@ extern "C" {
 #define ERROR_CONTACTFORM_KHTTP_BODY                         68
 #define ERROR_CONTACTFORM_KHTTP_PUTS                         69
 
+#define ERROR_INVALID_STATUS                             100000
 /**
  * \brief Return a description string for a given status code.
  *
