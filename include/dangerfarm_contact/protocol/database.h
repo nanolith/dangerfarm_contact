@@ -198,6 +198,22 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_append_response))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_append_response),
+    int retval, uint32_t* status)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(ERROR_INVALID_STATUS != *status);
+        }
+        else
+        {
+            /* on failure, set status to ERROR_INVALID_STATUS. */
+            MODEL_ASSERT(ERROR_INVALID_STATUS == *status);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_append_response))
+
 /**
  * \brief Write a get count request to the socket.
  *
