@@ -258,6 +258,15 @@ int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_write_contact_form_get_count_response)(
     int s, const uint32_t status, const uint64_t count);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_get_count_response),
+    int s, const uint32_t status, const uint64_t count)
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_get_count_response))
+
 /**
  * \brief Read a contact form get count response from the socket.
  *
