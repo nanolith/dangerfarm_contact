@@ -302,6 +302,24 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response),
+    int retval, uint32_t* status, uint64_t* count)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(ERROR_INVALID_STATUS != *status);
+        }
+        else
+        {
+            /* on failure, set status to ERROR_INVALID_STATUS. */
+            MODEL_ASSERT(ERROR_INVALID_STATUS == *status);
+            /* on failure, set count to zero. */
+            MODEL_ASSERT(0 == *count);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response))
+
 /**
  * \brief Write a list contact forms request to the socket.
  *
