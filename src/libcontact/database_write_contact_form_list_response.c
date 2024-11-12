@@ -21,6 +21,10 @@ int DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response)(
     int s, const uint32_t status, const uint64_t count,
     const uint64_t* id_list)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response), s,
+        status, count, id_list);
+
     int retval;
     ssize_t wrote_bytes;
 
@@ -28,37 +32,50 @@ int DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response)(
     retval = socket_write_uint32(s, DATABASE_REQUEST_ID_CONTACT_FORM_GET_LIST);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* write the status. */
     retval = socket_write_uint32(s, status);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* continue only if the status is successful. */
     if (STATUS_SUCCESS != status)
     {
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
 
     /* write the count. */
     retval = socket_write_uint64(s, count);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
+
+    /* the id list is ONLY valid if the status is STATUS_SUCCESS. */
+    MODEL_ASSERT(STATUS_SUCCESS == status);
 
     /* write the id list. */
     size_t length = count * sizeof(uint64_t);
     wrote_bytes = write(s, id_list, count * sizeof(uint64_t));
     if (wrote_bytes < 0 || (size_t)wrote_bytes != length)
     {
-        return ERROR_SOCKET_WRITE;
+        retval = ERROR_SOCKET_WRITE;
+        goto done;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response),
+        retval);
+
+    return retval;
 }
