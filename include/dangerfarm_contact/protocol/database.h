@@ -374,7 +374,7 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         /* the id list is valid. */
         MODEL_CHECK_OBJECT_READ(id_list, count * sizeof(uint64_t));
 MODEL_CONTRACT_PRECONDITIONS_END(
-    DANGERFARM_CONTACT_SYM(database_write_contact_form_get_count_response))
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response))
 
 /**
  * \brief Read a list contact forms response from the socket.
