@@ -371,8 +371,12 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     int s, const uint32_t status, const uint64_t count, const uint64_t* id_list)
         /* socket is a valid descriptor. */
         MODEL_ASSERT(prop_is_open_fd(s));
-        /* the id list is valid. */
-        MODEL_CHECK_OBJECT_READ(id_list, count * sizeof(uint64_t));
+        /* if the status is success... */
+        if (STATUS_SUCCESS == status)
+        {
+            /* then the id list is valid. */
+            MODEL_CHECK_OBJECT_READ(id_list, count * sizeof(uint64_t));
+        }
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_write_contact_form_list_response))
 
