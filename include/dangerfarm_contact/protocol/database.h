@@ -406,6 +406,21 @@ int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response)(
     uint32_t* status, uint64_t* count, uint64_t** id_list, int s);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response),
+        uint32_t* status, uint64_t* count, uint64_t** id_list, int s)
+        /* we can read and write the status. */
+        MODEL_CHECK_OBJECT_RW(status, sizeof(*status));
+        /* we can read and write the count. */
+        MODEL_CHECK_OBJECT_RW(count, sizeof(*count));
+        /* we can read and write the id_list pointer. */
+        MODEL_CHECK_OBJECT_RW(id_list, sizeof(*id_list));
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response))
+
 /**
  * \brief Write a contact read request to the socket.
  *
