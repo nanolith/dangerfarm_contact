@@ -25,6 +25,10 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
 int DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response)(
     uint32_t* status, uint64_t* count, uint64_t** id_list, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response),
+        status, count, id_list, s);
+
     int retval;
     ssize_t read_bytes;
     uint32_t request_id;
@@ -34,42 +38,49 @@ int DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response)(
     retval = socket_read_uint32(&request_id, s);
     if (STATUS_SUCCESS != retval)
     {
-        goto done;
+        goto fail;
     }
 
     /* verify the request id. */
     if (DATABASE_REQUEST_ID_CONTACT_FORM_GET_LIST != request_id)
     {
         retval = ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID;
-        goto done;
+        goto fail;
     }
 
     /* read the status. */
     retval = socket_read_uint32(status, s);
     if (STATUS_SUCCESS != retval)
     {
-        goto done;
+        goto fail;
+    }
+
+    /* if the read status is invalid, then this is an error. */
+    if (ERROR_INVALID_STATUS == *status)
+    {
+        retval = ERROR_INVALID_STATUS;
+        goto clear_count;
     }
 
     /* verify that the status was successful before decoding the payload. */
     if (STATUS_SUCCESS != *status)
     {
         retval = STATUS_SUCCESS;
-        goto done;
+        goto clear_count;
     }
 
     /* read the count. */
     retval = socket_read_uint64(count, s);
     if (STATUS_SUCCESS != retval)
     {
-        goto done;
+        goto fail;
     }
 
     /* verify that the count is sane. */
     if (*count > DATABASE_PROTOCOL_MAX_COUNT)
     {
         retval = ERROR_DATABASE_PROTOCOL_INVALID_COUNT;
-        goto done;
+        goto fail;
     }
 
     /* allocate memory for the id list. */
@@ -78,7 +89,7 @@ int DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response)(
     if (NULL == tmp)
     {
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
-        goto done;
+        goto fail;
     }
 
     /* clear memory. */
@@ -101,6 +112,17 @@ cleanup_tmp:
     memset(tmp, 0, tmp_size);
     free(tmp);
 
+fail:
+    *status = ERROR_INVALID_STATUS;
+
+clear_count:
+    *count = 0;
+    *id_list = NULL;
+
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response),
+        retval, status, count, id_list);
+
     return retval;
 }
