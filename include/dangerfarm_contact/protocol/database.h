@@ -421,6 +421,40 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response),
+    int retval, uint32_t* status, uint64_t* count, uint64_t** id_list)
+        if (STATUS_SUCCESS == retval)
+        {
+            /* on success, status con't be invalid. */
+            MODEL_ASSERT(ERROR_INVALID_STATUS != *status);
+            if (STATUS_SUCCESS != *status)
+            {
+                /* if status was not successful, then count is 0. */
+                MODEL_ASSERT(0 == *count);
+                /* if status was not successful, then id_list is NULL. */
+                MODEL_ASSERT(NULL == *id_list);
+            }
+            else
+            {
+                /* if status was successful, then id_list is a valid list of
+                 * count IDs. */
+                MODEL_CHECK_OBJECT_READ(*id_list, sizeof(uint64_t) * (*count));
+            }
+        }
+        else
+        {
+            /* on failure, set status to ERROR_INVALID_STATUS. */
+            MODEL_ASSERT(ERROR_INVALID_STATUS == *status);
+            /* on failure, set count to zero. */
+            MODEL_ASSERT(0 == *count);
+            /* on failure, set id_list to NULL. */
+            MODEL_ASSERT(NULL == *id_list);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response))
+
 /**
  * \brief Write a contact read request to the socket.
  *
