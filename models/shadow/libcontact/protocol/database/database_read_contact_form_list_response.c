@@ -72,5 +72,9 @@ clear_count:
     *id_list = NULL;
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_list_response),
+        retval, status, count, id_list);
+
     return retval;
 }
