@@ -472,7 +472,7 @@ DANGERFARM_CONTACT_SYM(database_write_contact_form_read_request)(
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(database_write_contact_form_read_request),
-    int s)
+    int s, uint64_t id)
         /* socket is a valid descriptor. */
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(
