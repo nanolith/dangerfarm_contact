@@ -46,8 +46,8 @@ DANGERFARM_CONTACT_SYM(database_read_request_id)(uint32_t* req, int s);
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(database_read_request_id), uint32_t* req, int s)
-        /* request pointer can't be NULL. */
-        MODEL_ASSERT(NULL != req);
+        /* request variable must be accessible. */
+        MODEL_CHECK_OBJECT_RW(req, sizeof(*req));
         /* socket is a valid descriptor. */
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(
