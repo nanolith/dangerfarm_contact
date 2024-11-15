@@ -28,7 +28,8 @@ enum DANGERFARM_CONTACT_SYM(database_protocol_request_id)
     DATABASE_REQUEST_ID_INVALID                                         = -1,
 };
 
-#define DATABASE_PROTOCOL_MAX_COUNT         1024
+#define DATABASE_PROTOCOL_MAX_COUNT                                1024
+#define DATABASE_PROTOCOL_INVALID_ID        UINT64_C(0xFFFFFFFFFFFFFFFF)
 
 /**
  * \brief Read a database request id from the socket.
