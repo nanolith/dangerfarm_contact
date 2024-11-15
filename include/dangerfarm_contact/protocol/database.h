@@ -293,10 +293,10 @@ DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response)(
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_get_count_response),
         uint32_t* status, uint64_t* count, int s)
-        /* The status pointer is not NULL. */
-        MODEL_ASSERT(NULL != status);
-        /* The count pointer is not NULL. */
-        MODEL_ASSERT(NULL != count);
+        /* The status pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(status, sizeof(*status));
+        /* The count pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(count, sizeof(*count));
         /* socket is a valid descriptor. */
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(
