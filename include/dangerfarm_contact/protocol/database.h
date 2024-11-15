@@ -499,6 +499,17 @@ int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_read_contact_form_read_request_payload)(
     uint64_t* id, int s);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_read_request_payload),
+        uint64_t* id, int s)
+        /* The output id pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(id, sizeof(*id));
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_read_request_payload))
+
 /**
  * \brief Write a contact read response to the socket.
  *
