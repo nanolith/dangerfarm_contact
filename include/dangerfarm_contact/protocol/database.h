@@ -120,8 +120,8 @@ DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload)(
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_append_request_payload),
         DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
-        /* The output form pointer is not NULL. */
-        MODEL_ASSERT(NULL != form);
+        /* The output form pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(form, sizeof(*form));
         /* socket is a valid descriptor. */
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(
