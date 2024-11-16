@@ -46,12 +46,25 @@ int main(int argc, char* argv[])
         goto close_sock;
     }
 
-    /* "write" a database read contact form response to the socket. */
-    retval = database_write_contact_form_read_response(sock, status, form);
-    if (STATUS_SUCCESS != retval)
+    if (STATUS_SUCCESS == status)
     {
-        retval = 1;
-        goto cleanup_form;
+        /* "write" a database read contact form response to the socket. */
+        retval = database_write_contact_form_read_response(sock, status, form);
+        if (STATUS_SUCCESS != retval)
+        {
+            retval = 1;
+            goto cleanup_form;
+        }
+    }
+    else
+    {
+        /* "write" a database read contact form error response to the socket. */
+        retval = database_write_contact_form_read_response(sock, status, NULL);
+        if (STATUS_SUCCESS != retval)
+        {
+            retval = 1;
+            goto cleanup_form;
+        }
     }
 
     /* success. */
