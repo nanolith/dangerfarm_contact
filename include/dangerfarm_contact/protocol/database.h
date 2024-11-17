@@ -600,6 +600,24 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response),
+    int retval, uint32_t* status, DANGERFARM_CONTACT_SYM(contact_form)** form)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(ERROR_INVALID_STATUS != *status);
+            MODEL_ASSERT(
+                DANGERFARM_CONTACT_SYM(prop_valid_contact_form(*form)));
+        }
+        else
+        {
+            MODEL_ASSERT(ERROR_INVALID_STATUS == *status);
+            MODEL_ASSERT(NULL == *form);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response))
+
 /**
  * \brief Write a contact delete request to the socket.
  *
