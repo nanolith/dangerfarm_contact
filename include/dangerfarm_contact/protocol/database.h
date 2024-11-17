@@ -604,15 +604,25 @@ MODEL_CONTRACT_PRECONDITIONS_END(
 MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response),
     int retval, uint32_t* status, DANGERFARM_CONTACT_SYM(contact_form)** form)
+        /* on success... */
         if (STATUS_SUCCESS == retval)
         {
+            /* the status is not invalid. */
             MODEL_ASSERT(ERROR_INVALID_STATUS != *status);
-            MODEL_ASSERT(
-                DANGERFARM_CONTACT_SYM(prop_valid_contact_form(*form)));
+            /* if the status was successful. */
+            if (STATUS_SUCCESS == *status)
+            {
+                /* a valid form is returned. */
+                MODEL_ASSERT(
+                    DANGERFARM_CONTACT_SYM(prop_valid_contact_form(*form)));
+            }
         }
+        /* on failure... */
         else
         {
+            /* the status is invalid. */
             MODEL_ASSERT(ERROR_INVALID_STATUS == *status);
+            /* the form is NULL. */
             MODEL_ASSERT(NULL == *form);
         }
 MODEL_CONTRACT_POSTCONDITIONS_END(
