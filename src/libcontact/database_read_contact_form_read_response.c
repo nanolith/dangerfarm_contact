@@ -24,6 +24,10 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
 int DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response)(
     uint32_t* status, DANGERFARM_CONTACT_SYM(contact_form)** form, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response),
+        status, form, s);
+
     int retval;
     uint32_t request_id;
 
@@ -31,28 +35,57 @@ int DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response)(
     retval = socket_read_uint32(&request_id, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto fail;
     }
 
     /* verify that the request id matches what we expect. */
     if (DATABASE_REQUEST_ID_CONTACT_FORM_GET != request_id)
     {
-        return ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID;
+        retval = ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID;
+        goto fail;
     }
 
     /* read the status. */
     retval = socket_read_uint32(status, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto fail;
+    }
+
+    /* if the status is ERROR_INVALID_STATUS, then this is an error. */
+    if (ERROR_INVALID_STATUS == *status)
+    {
+        retval = ERROR_INVALID_STATUS;
+        goto fail;
     }
 
     /* only read the payload if the status is successful. */
     if (STATUS_SUCCESS != *status)
     {
-        return STATUS_SUCCESS;
+        goto clear_form;
     }
 
     /* read the contact form data. */
-    return contact_form_read(form, s);
+    retval = contact_form_read(form, s);
+    if (STATUS_SUCCESS != retval)
+    {
+        goto fail;
+    }
+
+    /* success. */
+    retval = STATUS_SUCCESS;
+    goto done;
+
+fail:
+    *status = ERROR_INVALID_STATUS;
+
+clear_form:
+    *form = NULL;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_read_response),
+        retval, status, form);
+
+    return retval;
 }
