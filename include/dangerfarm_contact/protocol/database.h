@@ -642,6 +642,15 @@ int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_request)(
     int s, uint64_t id);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_request),
+    int s, uint64_t id)
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_request))
+
 /**
  * \brief Read a contact delete request payload from the socket.
  *
