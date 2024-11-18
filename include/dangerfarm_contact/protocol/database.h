@@ -687,6 +687,21 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_request_payload))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_request_payload),
+    int retval, uint64_t* id)
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(DATABASE_PROTOCOL_INVALID_ID != *id);
+        }
+        else
+        {
+            MODEL_ASSERT(DATABASE_PROTOCOL_INVALID_ID == *id);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_request_payload))
+
 /**
  * \brief Write a contact delete response to the socket.
  *
