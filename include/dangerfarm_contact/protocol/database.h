@@ -483,6 +483,10 @@ MODEL_CONTRACT_PRECONDITIONS_END(
 MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     DANGERFARM_CONTACT_SYM(database_write_contact_form_read_request),
     int retval)
+    if (STATUS_SUCCESS != retval)
+    {
+        MODEL_ASSERT(ERROR_SOCKET_WRITE == retval);
+    }
 MODEL_CONTRACT_POSTCONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_write_contact_form_read_request))
 
