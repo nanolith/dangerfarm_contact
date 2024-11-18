@@ -651,6 +651,13 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_request))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_request),
+    int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_write_contact_form_delete_request))
+
 /**
  * \brief Read a contact delete request payload from the socket.
  *
