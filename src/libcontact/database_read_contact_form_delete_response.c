@@ -17,6 +17,10 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
 int DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response)(
     uint32_t* status, int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response),
+        status, s);
+
     int retval;
     uint32_t request_id;
 
@@ -24,22 +28,41 @@ int DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response)(
     retval = socket_read_uint32(&request_id, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto fail;
     }
 
     /* verify the request id. */
     if (DATABASE_REQUEST_ID_CONTACT_FORM_DELETE != request_id)
     {
-        return ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID;
+        retval = ERROR_DATABASE_PROTOCOL_UNEXPECTED_REQUEST_ID;
+        goto fail;
     }
 
     /* read the status. */
     retval = socket_read_uint32(status, s);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto fail;
+    }
+
+    /* is the status invalid? */
+    if (ERROR_INVALID_STATUS == *status)
+    {
+        retval = ERROR_INVALID_STATUS;
+        goto fail;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+fail:
+    *status = ERROR_INVALID_STATUS;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response),
+        retval, status);
+
+    return retval;
 }
