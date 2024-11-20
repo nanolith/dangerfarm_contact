@@ -746,6 +746,17 @@ int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response)(
     uint32_t* status, int s);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response),
+        uint32_t* status, int s)
+        /* The status pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(status, sizeof(*status));
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_read_contact_form_delete_response))
+
 /**
  * \brief Write a database truncate request to the socket.
  *
