@@ -793,6 +793,13 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     DANGERFARM_CONTACT_SYM(database_write_database_truncate_request))
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_write_database_truncate_request),
+    int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_write_database_truncate_request))
+
 /**
  * \brief Write a database truncate response to the socket.
  *
