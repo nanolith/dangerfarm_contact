@@ -814,6 +814,15 @@ int FN_DECL_MUST_CHECK
 DANGERFARM_CONTACT_SYM(database_write_database_truncate_response)(
     int s, const uint32_t status);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    DANGERFARM_CONTACT_SYM(database_write_database_truncate_response), int s,
+        const uint32_t status)
+        /* socket is a valid descriptor. */
+        MODEL_ASSERT(prop_is_open_fd(s));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    DANGERFARM_CONTACT_SYM(database_write_database_truncate_response))
+
 /**
  * \brief Read a database truncate response from the socket.
  *
