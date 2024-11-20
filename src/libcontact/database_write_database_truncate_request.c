@@ -15,6 +15,15 @@ DANGERFARM_CONTACT_IMPORT_util_socket;
  */
 int DANGERFARM_CONTACT_SYM(database_write_database_truncate_request)(int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_write_database_truncate_request), s);
+
     /* write the request id. */
-    return socket_write_uint32(s, DATABASE_REQUEST_ID_TRUNCATE);
+    int retval = socket_write_uint32(s, DATABASE_REQUEST_ID_TRUNCATE);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        DANGERFARM_CONTACT_SYM(database_write_database_truncate_request),
+        retval);
+
+    return retval;
 }
