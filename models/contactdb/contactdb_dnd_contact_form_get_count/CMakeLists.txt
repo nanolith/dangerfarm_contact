@@ -5,6 +5,7 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_disable_signal_handler.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_has_capability.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_connection.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/protocol/database/database_write_contact_form_get_count_response.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_write_uint32.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_write_uint64.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/string/prop_string_valid.c
@@ -16,7 +17,6 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_release.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_context_release.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_dnd_contact_form_get_count.c
-    ${CMAKE_SOURCE_DIR}/src/libcontact/database_write_contact_form_get_count_response.c
     main.c)
 
 ADD_EXECUTABLE(model_contactdb_dnd_contact_form_get_count ${MC_SOURCES})
