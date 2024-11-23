@@ -9,6 +9,7 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_connection.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/contact_form_create_nondet.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/prop_valid_contact_form.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/protocol/database/database_write_contact_form_list_response.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_write_uint32.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_write_uint64.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/string/prop_string_valid.c
@@ -23,7 +24,6 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_dnd_contact_form_get_list.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_compute_size.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_verify.c
-    ${CMAKE_SOURCE_DIR}/src/libcontact/database_write_contact_form_list_response.c
     main.c)
 
 ADD_EXECUTABLE(model_contactdb_dnd_contact_form_get_list ${MC_SOURCES})
