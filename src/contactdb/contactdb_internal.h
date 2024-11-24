@@ -3,7 +3,9 @@
 #include <dangerfarm_contact/cbmc/function_contracts.h>
 #include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/function_decl.h>
+#include <dangerfarm_contact/status_codes.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
 
 #define DATABASE_CAPABILITY_CONTACT_FORM_APPEND                 0x0001
@@ -74,6 +76,24 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         /* argv must be accessible. */
         MODEL_CHECK_OBJECT_READ(argv, argc * sizeof(char*));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_context_create_from_arguments)
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments,
+    int retval, contactdb_context** ctx)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            /* the context is valid. */
+            MODEL_ASSERT(prop_is_valid_contactdb_context(*ctx));
+        }
+        /* on failure... */
+        else
+        {
+            /* the context is set to NULL. */
+            MODEL_ASSERT(NULL == *ctx);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_context_create_from_arguments)
 
 /**
  * \brief Release a contactdb context.
