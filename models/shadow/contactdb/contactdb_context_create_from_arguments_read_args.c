@@ -33,7 +33,7 @@ int contactdb_context_create_from_arguments_read_args(
     {
         return ERROR_GENERAL_OUT_OF_MEMORY;
     }
-    ctx->listen_socket = nondet_bool();
+    ctx->listen_socket = true;
 
     /* set the root capabilities. */
     switch (nondet_retval())
