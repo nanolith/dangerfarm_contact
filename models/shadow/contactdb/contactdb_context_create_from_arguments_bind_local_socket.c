@@ -1,4 +1,6 @@
 #include <dangerfarm_contact/status_codes.h>
+#include <sys/socket.h>
+#include <sys/types.h>
 
 #include "../../../src/contactdb/contactdb_context_create_from_arguments_internal.h"
 
@@ -7,6 +9,12 @@ int nondet_retval();
 int contactdb_context_create_from_arguments_bind_local_socket(
     contactdb_context* ctx)
 {
+    ctx->sock = socket(AF_UNIX, SOCK_STREAM, 0);
+    if (ctx->sock < 0)
+    {
+        return ERROR_CONTACTDB_BIND_FAILURE;
+    }
+
     int retval = nondet_retval();
 
     switch (retval)
@@ -21,6 +29,6 @@ int contactdb_context_create_from_arguments_bind_local_socket(
             return retval;
 
         default:
-            return  ERROR_CONTACTDB_BIND_FAILURE;
+            return ERROR_CONTACTDB_BIND_FAILURE;
     }
 }
