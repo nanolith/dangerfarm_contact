@@ -1,5 +1,7 @@
 #pragma once
 
+#include <dangerfarm_contact/cbmc/function_contracts.h>
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/function_decl.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -60,6 +62,18 @@ bool prop_is_valid_contactdb_context(const contactdb_context* ctx);
 int FN_DECL_MUST_CHECK
 contactdb_context_create_from_arguments(
     contactdb_context** ctx, int argc, char* argv[]);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments,
+    contactdb_context** ctx, int argc, char* argv[])
+        /* ctx variable must be accessible. */
+        MODEL_CHECK_OBJECT_RW(ctx, sizeof(*ctx));
+        /* argc must be >= 0. */
+        MODEL_ASSERT(argc >= 0);
+        /* argv must be accessible. */
+        MODEL_CHECK_OBJECT_READ(argv, argc * sizeof(char*));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_context_create_from_arguments)
 
 /**
  * \brief Release a contactdb context.
