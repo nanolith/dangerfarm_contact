@@ -14,6 +14,8 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/contact_form_extract_name_nondet.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/contact_form_extract_subject_nondet.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/contact_form_write.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/protocol/database/database_read_contact_form_read_request_payload.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/protocol/database/database_write_contact_form_read_response.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_read_contact_form_header.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_read_contact_form_data.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_read_uint64.c
@@ -32,8 +34,6 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_read.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_release.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_verify.c
-    ${CMAKE_SOURCE_DIR}/src/libcontact/database_read_contact_form_read_request_payload.c
-    ${CMAKE_SOURCE_DIR}/src/libcontact/database_write_contact_form_read_response.c
     main.c)
 
 ADD_EXECUTABLE(model_contactdb_dnd_contact_form_get ${MC_SOURCES})
