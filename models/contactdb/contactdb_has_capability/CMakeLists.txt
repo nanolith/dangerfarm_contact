@@ -3,6 +3,8 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_connection_release_nop.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_context_create_from_arguments.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_disable_signal_handler.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_connection_stub.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_context.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/string/prop_string_valid.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/string/string_release.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/close.c
