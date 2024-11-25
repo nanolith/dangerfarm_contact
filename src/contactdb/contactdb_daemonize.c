@@ -1,4 +1,5 @@
 #include <dangerfarm_contact/status_codes.h>
+#include <dangerfarm_contact/util/unix.h>
 #include <unistd.h>
 
 #include "contactdb_internal.h"
@@ -62,9 +63,9 @@ int contactdb_daemonize(contactdb_context* ctx)
     }
 
     /* close standard file descriptors. */
-    close(STDIN_FILENO);
-    close(STDOUT_FILENO);
-    close(STDERR_FILENO);
+    close_fd(STDIN_FILENO);
+    close_fd(STDOUT_FILENO);
+    close_fd(STDERR_FILENO);
 
     /* success. */
     retval = STATUS_SUCCESS;
