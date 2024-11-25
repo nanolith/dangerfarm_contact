@@ -10,6 +10,9 @@
 int contactdb_context_create_from_arguments(
     contactdb_context** ctx, int argc, char* argv[])
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_context_create_from_arguments, ctx, argc, argv);
+
     int retval, release_retval;
     contactdb_context* tmp = NULL;
 
@@ -18,7 +21,7 @@ int contactdb_context_create_from_arguments(
     if (NULL == tmp)
     {
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
-        goto done;
+        goto fail;
     }
 
     memset(tmp, 0, sizeof(*tmp));
@@ -68,6 +71,12 @@ cleanup_tmp:
         retval = release_retval;
     }
 
+fail:
+    *ctx = NULL;
+
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_context_create_from_arguments, retval, ctx);
+
     return retval;
 }
