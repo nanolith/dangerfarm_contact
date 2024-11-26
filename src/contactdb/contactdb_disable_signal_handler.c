@@ -13,7 +13,14 @@
  */
 int contactdb_disable_signal_handler(contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_disable_signal_handler, ctx);
+
     (void)ctx;
 
-    return contactdb_install_signal_handler(NULL);
+    int retval = contactdb_install_signal_handler(NULL);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_disable_signal_handler, retval);
+
+    return retval;
 }
