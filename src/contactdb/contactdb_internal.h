@@ -153,6 +153,12 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_context_release)
 int FN_DECL_MUST_CHECK
 contactdb_daemonize(contactdb_context* ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(contactdb_daemonize, contactdb_context* ctx)
+        /* the context is valid. */
+        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_daemonize)
+
 /**
  * \brief Disable the signal handler.
  *
