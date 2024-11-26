@@ -15,6 +15,8 @@
  */
 int contactdb_daemonize(contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_daemonize, ctx);
+
     int retval;
 
     /* install a signal handler. */
@@ -72,5 +74,7 @@ int contactdb_daemonize(contactdb_context* ctx)
     goto done;
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_daemonize, retval);
+
     return retval;
 }
