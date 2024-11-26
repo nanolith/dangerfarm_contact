@@ -20,6 +20,8 @@ DANGERFARM_CONTACT_IMPORT_util_string;
  */
 int contactdb_context_release(contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_context_release, ctx);
+
     int retval = STATUS_SUCCESS;
     int release_retval = STATUS_SUCCESS;
 
@@ -69,6 +71,8 @@ int contactdb_context_release(contactdb_context* ctx)
     /* clean up the context. */
     memset(ctx, 0, sizeof(*ctx));
     free(ctx);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_context_release, retval);
 
     return retval;
 }
