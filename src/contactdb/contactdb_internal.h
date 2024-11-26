@@ -107,6 +107,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_context_create_from_arguments)
 int FN_DECL_MUST_CHECK
 contactdb_context_release(contactdb_context* ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_context_release, contactdb_context* ctx)
+        /* the context is valid. */
+        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_context_release)
+
 /**
  * \brief Confirm whether the given capability exists in this context.
  *
