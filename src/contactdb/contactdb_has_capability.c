@@ -10,10 +10,21 @@
  */
 bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_has_capability, ctx, cap);
+
+    bool retval;
+
     if ((ctx->root_capabilities & cap) == cap)
     {
-        return true;
+        retval = true;
+        goto done;
     }
 
-    return false;
+    retval = false;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_has_capability, retval);
+
+    return retval;
 }
