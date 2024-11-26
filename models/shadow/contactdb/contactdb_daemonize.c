@@ -6,6 +6,8 @@ int nondet_retval();
 
 int contactdb_daemonize(contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_daemonize, ctx);
+
     int retval = nondet_retval();
 
     switch (retval)
@@ -14,9 +16,15 @@ int contactdb_daemonize(contactdb_context* ctx)
         case ERROR_CONTACTDB_FORK_PARENT:
         case ERROR_CONTACTDB_SETSID:
         case STATUS_SUCCESS:
-            return retval;
+            goto done;
 
         default:
-            return ERROR_CONTACTDB_FORK;
+            retval = ERROR_CONTACTDB_FORK;
+            goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_daemonize, retval);
+
+    return retval;
 }
