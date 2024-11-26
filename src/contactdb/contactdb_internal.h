@@ -159,6 +159,10 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(contactdb_daemonize, contactdb_context* ctx)
         MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_daemonize)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(contactdb_daemonize, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_daemonize)
+
 /**
  * \brief Disable the signal handler.
  *
