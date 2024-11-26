@@ -114,6 +114,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_context_release)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_context_release, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_context_release)
+
 /**
  * \brief Confirm whether the given capability exists in this context.
  *
