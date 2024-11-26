@@ -178,8 +178,8 @@ contactdb_disable_signal_handler(contactdb_context* ctx);
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     contactdb_disable_signal_handler, contactdb_context* ctx)
-        /* the context is valid. */
-        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+        /* the context pointer is not NULL. */
+        MODEL_ASSERT(NULL != ctx);
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_disable_signal_handler)
 
 /* postconditions. */
