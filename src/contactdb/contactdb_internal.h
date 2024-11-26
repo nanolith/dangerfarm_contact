@@ -136,6 +136,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_context_release)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_has_capability, bool retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_context_release)
+
 /**
  * \brief Daemonize the contactdb service.
  *
