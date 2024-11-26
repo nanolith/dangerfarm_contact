@@ -4,5 +4,12 @@
 
 int contactdb_disable_signal_handler(contactdb_context* ctx)
 {
-    return STATUS_SUCCESS;
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_disable_signal_handler, ctx);
+
+    int retval = STATUS_SUCCESS;
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_disable_signal_handler, retval);
+
+    return retval;
 }
