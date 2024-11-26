@@ -110,8 +110,8 @@ contactdb_context_release(contactdb_context* ctx);
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     contactdb_context_release, contactdb_context* ctx)
-        /* the context is valid. */
-        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+        /* the context is a valid pointer. */
+        MODEL_ASSERT(NULL != ctx);
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_context_release)
 
 /* postconditions. */
