@@ -206,6 +206,10 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_drop_privileges)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(contactdb_drop_privileges, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_drop_privileges)
+
 /**
  * \brief Install a signal handler.
  *
