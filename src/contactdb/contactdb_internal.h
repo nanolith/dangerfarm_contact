@@ -129,6 +129,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_context_release)
  */
 bool contactdb_has_capability(const contactdb_context* ctx, const uint64_t cap);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_has_capability, const contactdb_context* ctx, const uint64_t cap)
+        /* the context is valid. */
+        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_context_release)
+
 /**
  * \brief Daemonize the contactdb service.
  *
