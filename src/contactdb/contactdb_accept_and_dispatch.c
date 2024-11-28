@@ -18,6 +18,8 @@
  */
 int contactdb_accept_and_dispatch(contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_accept_and_dispatch, ctx);
+
     int retval;
 
     /* accept a connection. */
@@ -50,5 +52,7 @@ close_sock:
     close(sock);
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_accept_and_dispatch, retval);
+
     return retval;
 }
