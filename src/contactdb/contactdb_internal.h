@@ -250,6 +250,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_install_signal_handler)
 int FN_DECL_MUST_CHECK
 contactdb_accept_and_dispatch(contactdb_context* ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_accept_and_dispatch, contactdb_context* ctx)
+        /* the context is valid. */
+        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_accept_and_dispatch)
+
 /**
  * \brief Decode and dispatch a contactdb request.
  *
