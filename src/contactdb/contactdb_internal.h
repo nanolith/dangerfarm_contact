@@ -257,6 +257,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_accept_and_dispatch)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_accept_and_dispatch, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_accept_and_dispatch)
+
 /**
  * \brief Decode and dispatch a contactdb request.
  *
