@@ -18,6 +18,8 @@
  */
 int contactdb_drop_privileges(contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_drop_privileges, ctx);
+
     int retval;
 
     (void)ctx;
@@ -27,7 +29,8 @@ int contactdb_drop_privileges(contactdb_context* ctx)
     retval = cap_enter();
     if (STATUS_SUCCESS != retval)
     {
-        return ERROR_CONTACTDB_DROP_PRIVILEGES;
+        retval = ERROR_CONTACTDB_DROP_PRIVILEGES;
+        goto done;
     }
     #endif
 
@@ -35,10 +38,17 @@ int contactdb_drop_privileges(contactdb_context* ctx)
     retval = pledge("flock error stdio unix", "");
     if (STATUS_SUCCESS != retval)
     {
-        return ERROR_CONTACTDB_DROP_PRIVILEGES;
+        retval = ERROR_CONTACTDB_DROP_PRIVILEGES;
+        goto done;
     }
     #endif
 
     /* by default, return success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_drop_privileges, retval);
+
+    return retval;
 }
