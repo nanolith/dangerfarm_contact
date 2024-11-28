@@ -229,6 +229,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_install_signal_handler)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_install_signal_handler, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_install_signal_handler)
+
 /**
  * \brief Accept and dispatch a connection.
  *
