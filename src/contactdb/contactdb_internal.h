@@ -225,8 +225,12 @@ contactdb_install_signal_handler(contactdb_context* ctx);
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     contactdb_install_signal_handler, contactdb_context* ctx)
-        /* the context is valid. */
-        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+        /* if the context is NOT NULL... */
+        if (NULL != ctx)
+        {
+            /* then the context is valid. */
+            MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+        }
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_install_signal_handler)
 
 /* postconditions. */
