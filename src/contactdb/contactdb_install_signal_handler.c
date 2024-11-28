@@ -19,6 +19,8 @@ static contactdb_context* global_context = NULL;
  */
 int contactdb_install_signal_handler(contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_install_signal_handler, ctx);
+
     int retval;
     struct sigaction sa;
 
@@ -26,7 +28,8 @@ int contactdb_install_signal_handler(contactdb_context* ctx)
     if (NULL == ctx)
     {
         global_context = NULL;
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
 
     /* initialize the signal action. */
@@ -71,6 +74,9 @@ int contactdb_install_signal_handler(contactdb_context* ctx)
     goto done;
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_install_signal_handler, retval);
+
     return retval;
 }
 
