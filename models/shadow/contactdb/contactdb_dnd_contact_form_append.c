@@ -7,8 +7,13 @@
 
 int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
 {
-    MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
-    MODEL_ASSERT(prop_is_open_fd(sock));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_dnd_contact_form_append, ctx, sock);
 
-    return random_status_code();
+    int retval = random_status_code();
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_dnd_contact_form_append, retval);
+
+    return retval;
 }
