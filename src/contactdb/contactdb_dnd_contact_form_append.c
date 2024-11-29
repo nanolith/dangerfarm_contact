@@ -23,6 +23,9 @@ static int verify_max_count(contactdb_context* ctx, MDB_txn* txn);
  */
 int contactdb_dnd_contact_form_append(contactdb_context* ctx, int sock)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_dnd_contact_form_append, ctx, sock);
+
     int retval, release_retval;
     contact_form* form = NULL;
     MDB_txn* txn = NULL;
@@ -91,7 +94,12 @@ cleanup_form:
     }
 
 write_response:
-    return database_write_contact_form_append_response(sock, retval);
+    retval = database_write_contact_form_append_response(sock, retval);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_dnd_contact_form_append, retval);
+
+    return retval;
 }
 
 /**
