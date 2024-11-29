@@ -17,6 +17,9 @@ DANGERFARM_CONTACT_IMPORT_protocol_database;
  */
 int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_decode_and_dispatch, ctx, sock);
+
     int retval;
     uint32_t req;
 
@@ -58,5 +61,7 @@ int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock)
     }
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_decode_and_dispatch, retval);
+
     return retval;
 }
