@@ -16,8 +16,12 @@
  */
 int contactdb_decode_and_dispatch(contactdb_context* ctx, int sock)
 {
-    MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
-    MODEL_ASSERT(prop_is_open_fd(sock));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_decode_and_dispatch, ctx, sock);
 
-    return random_status_code();
+    int retval = random_status_code();
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_decode_and_dispatch, retval);
+
+    return retval;
 }
