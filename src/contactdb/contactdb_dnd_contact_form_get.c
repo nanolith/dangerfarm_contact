@@ -20,6 +20,9 @@ DANGERFARM_CONTACT_IMPORT_protocol_database;
  */
 int contactdb_dnd_contact_form_get(contactdb_context* ctx, int sock)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_dnd_contact_form_get, ctx, sock);
+
     int retval;
     bool response_written = false;
     const contact_form* form = NULL;
@@ -72,6 +75,8 @@ write_response:
     {
         retval = database_write_contact_form_read_response(sock, retval, form);
     }
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_dnd_contact_form_get, retval);
 
     return retval;
 }
