@@ -19,6 +19,9 @@ DANGERFARM_CONTACT_IMPORT_protocol_database;
  */
 int contactdb_dnd_contact_form_get_count(contactdb_context* ctx, int sock)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_dnd_contact_form_get_count, ctx, sock);
+
     int retval;
     uint64_t count = 0;
     MDB_txn* txn = NULL;
@@ -61,5 +64,10 @@ rollback_txn:
     }
 
 write_response:
-    return database_write_contact_form_get_count_response(sock, retval, count);
+    retval = database_write_contact_form_get_count_response(sock, retval, count);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_dnd_contact_form_get_count, retval);
+
+    return retval;
 }
