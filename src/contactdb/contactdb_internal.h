@@ -393,6 +393,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_is_open_fd(sock));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_dnd_contact_form_get)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_dnd_contact_form_get, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_dnd_contact_form_get)
+
 /**
  * \brief Decode and dispatch a contactdb contact form delete request.
  *
