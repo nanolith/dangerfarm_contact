@@ -25,6 +25,9 @@ static void id_vector_release(uint64_t* vec, uint64_t count);
  */
 int contactdb_dnd_contact_form_get_list(contactdb_context* ctx, int sock)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_dnd_contact_form_get_list, ctx, sock);
+
     int retval;
     uint64_t count = 0;
     uint64_t read_count = 0;
@@ -143,6 +146,9 @@ write_response:
 
     /* clean up the id list. */
     id_vector_release(id_list, count);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_dnd_contact_form_get_list, retval);
 
     return retval;
 }
