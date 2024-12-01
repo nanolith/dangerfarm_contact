@@ -19,6 +19,9 @@ DANGERFARM_CONTACT_IMPORT_protocol_database;
  */
 int contactdb_dnd_contact_form_delete(contactdb_context* ctx, int sock)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_dnd_contact_form_delete, ctx, sock);
+
     int retval;
     MDB_txn* txn = NULL;
     uint64_t id = 0;
@@ -73,5 +76,10 @@ rollback_txn:
     }
 
 write_response:
-    return database_write_contact_form_delete_response(sock, retval);
+    retval = database_write_contact_form_delete_response(sock, retval);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_dnd_contact_form_delete, retval);
+
+    return retval;
 }
