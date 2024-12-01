@@ -59,6 +59,24 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(NULL != path);
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_create)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_connection_create,
+    int retval, contactdb_connection** conn)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            /* the connection is valid. */
+            MODEL_ASSERT(prop_is_valid_contactdb_connection(*conn));
+        }
+        /* on failure... */
+        else
+        {
+            /* the connection is set to NULL. */
+            MODEL_ASSERT(NULL == *conn);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_connection_create)
+
 /**
  * \brief Release a contactdb connection.
  *
