@@ -419,3 +419,8 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         /* the socket is valid. */
         MODEL_ASSERT(prop_is_open_fd(sock));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_dnd_contact_form_delete)
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_dnd_contact_form_delete, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_dnd_contact_form_delete)
