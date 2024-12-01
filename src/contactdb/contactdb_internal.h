@@ -410,3 +410,12 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_dnd_contact_form_get)
  */
 int FN_DECL_MUST_CHECK
 contactdb_dnd_contact_form_delete(contactdb_context* ctx, int sock);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_dnd_contact_form_delete, contactdb_context* ctx, int sock)
+        /* the context is valid. */
+        MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+        /* the socket is valid. */
+        MODEL_ASSERT(prop_is_open_fd(sock));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_dnd_contact_form_delete)
