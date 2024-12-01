@@ -1,8 +1,12 @@
 #pragma once
 
+#include <dangerfarm_contact/cbmc/function_contracts.h>
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <dangerfarm_contact/function_decl.h>
+#include <dangerfarm_contact/status_codes.h>
 #include <lmdb.h>
 #include <stdbool.h>
+#include <stddef.h>
 
 /* 20 MB is the default contact database size. */
 #define CONTACTDB_SIZE      (20 * 1024 * 1024)
@@ -45,6 +49,15 @@ bool prop_is_valid_contactdb_connection(const contactdb_connection* conn);
  */
 int FN_DECL_MUST_CHECK
 contactdb_connection_create(contactdb_connection** conn, const char* path);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_create, contactdb_connection** conn, const char* path)
+        /* conn variable must be accessible. */
+        MODEL_CHECK_OBJECT_RW(conn, sizeof(*conn));
+        /* path can't be NULL. */
+        MODEL_ASSERT(NULL != path);
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_create)
 
 /**
  * \brief Release a contactdb connection.
