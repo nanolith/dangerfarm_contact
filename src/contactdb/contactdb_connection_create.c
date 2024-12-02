@@ -17,6 +17,9 @@
  */
 int contactdb_connection_create(contactdb_connection** conn, const char* path)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_create, conn, path);
+
     int retval;
     contactdb_connection* tmp = NULL;
     MDB_txn* txn = NULL;
@@ -26,7 +29,7 @@ int contactdb_connection_create(contactdb_connection** conn, const char* path)
     if (NULL == tmp)
     {
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
-        goto done;
+        goto fail;
     }
 
     /* clear memory. */
@@ -117,6 +120,12 @@ cleanup_tmp:
     memset(tmp, 0, sizeof(*tmp));
     free(tmp);
 
+fail:
+    *conn = NULL;
+
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_create, retval, conn);
+
     return retval;
 }
