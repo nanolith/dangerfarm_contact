@@ -8,6 +8,9 @@ int nondet_retval();
 
 int contactdb_connection_create(contactdb_connection** conn, const char* path)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_create, conn, path);
+
     MODEL_ASSERT(NULL != conn);
     MODEL_ASSERT(NULL != path);
 
@@ -23,9 +26,16 @@ int contactdb_connection_create(contactdb_connection** conn, const char* path)
         case ERROR_DATABASE_DBI_OPEN:
         case ERROR_DATABASE_TXN_COMMIT:
         case STATUS_SUCCESS:
-            return retval;
+            goto done;
 
         default:
-            return ERROR_GENERAL_OUT_OF_MEMORY;
+            retval = ERROR_GENERAL_OUT_OF_MEMORY;
+            goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_create, retval, conn);
+
+    return retval;
 }
