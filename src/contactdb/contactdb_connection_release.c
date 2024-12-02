@@ -15,6 +15,8 @@
  */
 int contactdb_connection_release(contactdb_connection* conn)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactdb_connection_release, conn);
+
     int release_retval;
     int retval = STATUS_SUCCESS;
 
@@ -35,6 +37,8 @@ int contactdb_connection_release(contactdb_connection* conn)
     /* release the connection. */
     memset(conn, 0, sizeof(*conn));
     free(conn);
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactdb_connection_release, retval);
 
     return retval;
 }
