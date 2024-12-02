@@ -89,6 +89,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_connection_create)
 int FN_DECL_MUST_CHECK
 contactdb_connection_release(contactdb_connection* conn);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_release, contactdb_connection* conn)
+        /* the connection is a valid pointer. */
+        MODEL_ASSERT(NULL != conn);
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_release)
+
 /**
  * \brief Given a connection and a transaction, read and increment the given
  * counter id, returning the result.
