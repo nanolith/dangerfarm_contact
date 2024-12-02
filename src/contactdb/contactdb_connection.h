@@ -96,6 +96,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(NULL != conn);
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_release)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_connection_release, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(connection_release)
+
 /**
  * \brief Given a connection and a transaction, read and increment the given
  * counter id, returning the result.
