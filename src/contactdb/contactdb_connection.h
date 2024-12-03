@@ -27,6 +27,9 @@ struct contactdb_connection
     MDB_dbi contact_db;
 };
 
+/* forward decls for external properties used in function contracts. */
+bool prop_MDB_txn_valid(const MDB_txn* txn);
+
 /**
  * \brief Return true if the given \ref contactdb_connection is valid.
  *
@@ -130,6 +133,20 @@ int FN_DECL_MUST_CHECK
 contactdb_connection_counter_get_and_increment(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_counter_get_and_increment, contactdb_connection* conn,
+    MDB_txn* txn, uint64_t counter_id, uint64_t* value)
+        /* this is a valid connection. */
+        MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
+        /* this is a valid transaction. */
+        MODEL_ASSERT(prop_MDB_txn_valid(txn));
+        /* this is a valid counter id. */
+        MODEL_ASSERT(prop_is_valid_counter_id(counter_id));
+        /* the value is accessible. */
+        MODEL_CHECK_OBJECT_RW(value, sizeof(*value));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_counter_get_and_increment)
 
 /**
  * \brief Given a connection and a transaction, read and decrement the given
