@@ -2,6 +2,7 @@ SET(MC_SOURCES
     ${LMDB_SOURCES}
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_connection_counter_get_and_increment.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_connection.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_counter_id.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/contact_form_create_nondet.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/string/prop_string_valid.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/prop_valid_contact_form.c
