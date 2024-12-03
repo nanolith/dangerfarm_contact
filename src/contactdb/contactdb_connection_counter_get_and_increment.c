@@ -31,6 +31,10 @@ int contactdb_connection_counter_get_and_increment(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_counter_get_and_increment,
+        conn, txn, counter_id, value);
+
     int retval;
     uint64_t local_value = 0;
 
@@ -38,7 +42,7 @@ int contactdb_connection_counter_get_and_increment(
     retval = get_counter_value(conn, txn, counter_id, &local_value);
     if (STATUS_SUCCESS != retval)
     {
-        goto done;
+        goto fail;
     }
 
     /* increment this value. */
@@ -48,7 +52,14 @@ int contactdb_connection_counter_get_and_increment(
     retval = put_counter_value(conn, txn, counter_id, local_value);
     if (STATUS_SUCCESS != retval)
     {
-        goto done;
+        goto fail;
+    }
+
+    /* is the value invalid? */
+    if (COUNTER_VALUE_INVALID == local_value)
+    {
+        retval = ERROR_CONTACTDB_BAD_COUNTER_VALUE;
+        goto fail;
     }
 
     /* Success. Set the output value. */
@@ -56,7 +67,13 @@ int contactdb_connection_counter_get_and_increment(
     retval = STATUS_SUCCESS;
     goto done;
 
+fail:
+    *value = COUNTER_VALUE_INVALID;
+
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_counter_get_and_increment, retval, value);
+
     return retval;
 }
 
