@@ -14,6 +14,8 @@
 #define COUNTER_ID_CONTACT_COUNT        0x00000001
 #define COUNTER_ID_CONTACT_KEY          0x00000002
 
+#define COUNTER_VALUE_INVALID           UINT64_C(0xFFFFFFFFFFFFFFFF)
+
 /* forward decl for contact form. */
 typedef struct DANGERFARM_CONTACT_SYM(contact_form)
 DANGERFARM_CONTACT_SYM(contact_form);
