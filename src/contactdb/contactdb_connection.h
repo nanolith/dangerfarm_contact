@@ -150,6 +150,24 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_CHECK_OBJECT_RW(value, sizeof(*value));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_counter_get_and_increment)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_connection_counter_get_and_increment, int retval, uint64_t* value)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            /* the counter value is NOT invalid. */
+            MODEL_ASSERT(COUNTER_VALUE_INVALID != *value);
+        }
+        /* on failure... */
+        else
+        {
+            /* the counter value is invalid. */
+            MODEL_ASSERT(COUNTER_VALUE_INVALID == *value);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    contactdb_connection_counter_get_and_increment)
+
 /**
  * \brief Given a connection and a transaction, read and decrement the given
  * counter id, returning the result.
