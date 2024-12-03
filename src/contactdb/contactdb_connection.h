@@ -37,6 +37,15 @@ struct contactdb_connection
 bool prop_is_valid_contactdb_connection(const contactdb_connection* conn);
 
 /**
+ * \brief Return true if the given counter id is valid.
+ *
+ * \param counter_id    The counter id to verify.
+ *
+ * \returns true if this counter id is valid, and false otherwise.
+ */
+bool prop_is_valid_counter_id(uint64_t counter_id);
+
+/**
  * \brief Given a database path, create a contactdb connection.
  *
  * \param conn      Pointer to the connection pointer to receive this connection
