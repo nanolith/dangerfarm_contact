@@ -5,12 +5,22 @@
 
 uint64_t nondet_counter_id();
 
+uint64_t pick_counter_id()
+{
+    uint64_t retval = nondet_counter_id();
+
+    /* this is a valid counter id. */
+    MODEL_ASSUME(prop_is_valid_counter_id(retval));
+
+    return retval;
+}
+
 int main(int argc, char* argv[])
 {
     int retval, release_retval;
     contactdb_connection* conn;
     MDB_txn* txn;
-    uint64_t counter = nondet_counter_id();
+    uint64_t counter = pick_counter_id();
     uint64_t value;
 
     /* create the contactdb connection. */
