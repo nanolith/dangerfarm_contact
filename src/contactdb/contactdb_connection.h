@@ -189,6 +189,20 @@ contactdb_connection_counter_get_and_decrement(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_counter_get_and_decrement, contactdb_connection* conn,
+    MDB_txn* txn, uint64_t counter_id, uint64_t* value)
+        /* this is a valid connection. */
+        MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
+        /* this is a valid transaction. */
+        MODEL_ASSERT(prop_MDB_txn_valid(txn));
+        /* this is a valid counter id. */
+        MODEL_ASSERT(prop_is_valid_counter_id(counter_id));
+        /* the value is accessible. */
+        MODEL_CHECK_OBJECT_RW(value, sizeof(*value));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_counter_get_and_decrement)
+
 /**
  * \brief Given a connection and a transaction, read the current counter but DO
  * NOT INCREMENT IT.
