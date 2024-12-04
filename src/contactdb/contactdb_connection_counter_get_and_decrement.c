@@ -31,6 +31,10 @@ int contactdb_connection_counter_get_and_decrement(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_counter_get_and_decrement,
+        conn, txn, counter_id, value);
+
     int retval;
     uint64_t local_value = 0;
 
@@ -38,7 +42,7 @@ int contactdb_connection_counter_get_and_decrement(
     retval = get_counter_value(conn, txn, counter_id, &local_value);
     if (STATUS_SUCCESS != retval)
     {
-        goto done;
+        goto fail;
     }
 
     /* decrement this value. */
@@ -51,7 +55,7 @@ int contactdb_connection_counter_get_and_decrement(
     retval = put_counter_value(conn, txn, counter_id, local_value);
     if (STATUS_SUCCESS != retval)
     {
-        goto done;
+        goto fail;
     }
 
     /* Success. Set the output value. */
@@ -59,7 +63,13 @@ int contactdb_connection_counter_get_and_decrement(
     retval = STATUS_SUCCESS;
     goto done;
 
+fail:
+    *value = COUNTER_VALUE_INVALID;
+
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_counter_get_and_decrement, retval, value);
+
     return retval;
 }
 
