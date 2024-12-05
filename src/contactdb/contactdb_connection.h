@@ -2,6 +2,7 @@
 
 #include <dangerfarm_contact/cbmc/function_contracts.h>
 #include <dangerfarm_contact/cbmc/model_assert.h>
+#include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/function_decl.h>
 #include <dangerfarm_contact/status_codes.h>
 #include <lmdb.h>
@@ -300,7 +301,7 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         /* this is a valid transaction. */
         MODEL_ASSERT(prop_MDB_txn_valid(txn));
         /* this is a valid form. */
-        MODEL_ASSERT(prop_valid_contact_form(form));
+        MODEL_ASSERT(DANGERFARM_CONTACT_SYM(prop_valid_contact_form)(form));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_append)
 
 /* postconditions. */
