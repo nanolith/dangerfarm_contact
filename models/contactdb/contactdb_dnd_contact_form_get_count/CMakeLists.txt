@@ -6,6 +6,7 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_has_capability.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_connection.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_context.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_counter_id.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/protocol/database/database_write_contact_form_get_count_response.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_write_uint32.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/socket/socket_write_uint64.c
