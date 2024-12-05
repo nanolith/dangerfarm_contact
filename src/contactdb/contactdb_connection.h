@@ -327,6 +327,19 @@ contactdb_connection_form_get(
     contactdb_connection* conn, MDB_txn* txn, uint64_t id,
     const DANGERFARM_CONTACT_SYM(contact_form)** form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_form_get, contactdb_connection* conn,
+    MDB_txn* txn, uint64_t id,
+    const DANGERFARM_CONTACT_SYM(contact_form)** form)
+        /* this is a valid connection. */
+        MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
+        /* this is a valid transaction. */
+        MODEL_ASSERT(prop_MDB_txn_valid(txn));
+        /* the pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(form, sizeof(*form));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_get)
+
 /**
  * \brief Delete a form by id.
  *
