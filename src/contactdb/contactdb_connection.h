@@ -291,6 +291,18 @@ contactdb_connection_form_append(
     contactdb_connection* conn, MDB_txn* txn,
     const DANGERFARM_CONTACT_SYM(contact_form)* form);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_form_append, contactdb_connection* conn,
+    MDB_txn* txn, const DANGERFARM_CONTACT_SYM(contact_form)* form)
+        /* this is a valid connection. */
+        MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
+        /* this is a valid transaction. */
+        MODEL_ASSERT(prop_MDB_txn_valid(txn));
+        /* this is a valid form. */
+        MODEL_ASSERT(prop_valid_contact_form(form));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_append)
+
 /**
  * \brief Get a form by id.
  *
