@@ -17,6 +17,9 @@
 int contactdb_connection_form_delete(
     contactdb_connection* conn, MDB_txn* txn, uint64_t id)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_form_delete, conn, txn, id);
+
     int retval;
     MDB_val key;
     uint64_t count;
@@ -29,7 +32,8 @@ int contactdb_connection_form_delete(
     retval = mdb_del(txn, conn->contact_db, &key, NULL);
     if (STATUS_SUCCESS != retval)
     {
-        return ERROR_DATABASE_DELETE;
+        retval = ERROR_DATABASE_DELETE;
+        goto done;
     }
 
     /* decrement the count. */
@@ -38,9 +42,16 @@ int contactdb_connection_form_delete(
             conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_form_delete, retval);
+
+    return retval;
 }
