@@ -374,6 +374,16 @@ int FN_DECL_MUST_CHECK
 contactdb_connection_form_delete(
     contactdb_connection* conn, MDB_txn* txn, uint64_t id);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_form_delete, contactdb_connection* conn,
+    MDB_txn* txn, uint64_t id)
+        /* this is a valid connection. */
+        MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
+        /* this is a valid transaction. */
+        MODEL_ASSERT(prop_MDB_txn_valid(txn));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_delete)
+
 /**
  * \brief Get the first form associated with the contact database.
  *
