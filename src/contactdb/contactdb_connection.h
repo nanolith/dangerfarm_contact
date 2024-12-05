@@ -384,6 +384,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_MDB_txn_valid(txn));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_delete)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_connection_form_delete, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_connection_form_delete)
+
 /**
  * \brief Get the first form associated with the contact database.
  *
