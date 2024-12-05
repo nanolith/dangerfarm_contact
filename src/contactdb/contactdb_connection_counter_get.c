@@ -22,6 +22,9 @@ int contactdb_connection_counter_get(
     contactdb_connection* conn, MDB_txn* txn, uint64_t counter_id,
     uint64_t* value)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_counter_get, conn, txn, counter_id, value);
+
     int retval;
     MDB_val key, val;
 
@@ -34,22 +37,42 @@ int contactdb_connection_counter_get(
     if (MDB_NOTFOUND == retval)
     {
         *value = 0;
-        return STATUS_SUCCESS;
+        retval = STATUS_SUCCESS;
+        goto done;
     }
     else if (STATUS_SUCCESS != retval)
     {
-        return ERROR_DATABASE_GET;
+        retval = ERROR_DATABASE_GET;
+        goto fail;
     }
 
     /* verify that the returned size of this data is correct. */
     if (val.mv_size != sizeof(*value))
     {
-        return ERROR_CONTACTDB_GET_INVALID_SIZE;
+        retval = ERROR_CONTACTDB_GET_INVALID_SIZE;
+        goto fail;
     }
 
     /* save the value. */
     memcpy(value, val.mv_data, val.mv_size);
 
+    /* if the value is invalid, this is an error. */
+    if (COUNTER_VALUE_INVALID == *value)
+    {
+        retval = ERROR_CONTACTDB_BAD_COUNTER_VALUE;
+        goto fail;
+    }
+
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+fail:
+    *value = COUNTER_VALUE_INVALID;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_counter_get_and_decrement, retval, value);
+
+    return retval;
 }
