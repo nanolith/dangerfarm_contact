@@ -303,6 +303,12 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_valid_contact_form(form));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_append)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_connection_form_append, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    contactdb_connection_form_append)
+
 /**
  * \brief Get a form by id.
  *
