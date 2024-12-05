@@ -14,10 +14,10 @@ int contactdb_connection_form_get(
     contactdb_connection* conn, MDB_txn* txn, uint64_t id,
     const contact_form** form)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_form_get, conn, txn, id, form);
+
     int retval;
-    MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
-    MODEL_ASSERT(prop_MDB_txn_valid(txn));
-    MODEL_ASSERT(NULL != form);
 
     retval = nondet_retval();
     if (STATUS_SUCCESS == retval)
@@ -25,15 +25,25 @@ int contactdb_connection_form_get(
         retval = contact_form_create(form, "na", "em", "su", "co");
         if (STATUS_SUCCESS != retval)
         {
-            return retval;
+            goto fail;
         }
         txn->temp_object = *form;
 
         MODEL_ASSERT(prop_valid_contact_form(*form));
-        return STATUS_SUCCESS;
+        goto done;
     }
     else
     {
-        return ERROR_DATABASE_GET;
+        retval = ERROR_DATABASE_GET;
+        goto fail;
     }
+
+fail:
+    *form = NULL;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_form_get, retval, form);
+
+    return retval;
 }
