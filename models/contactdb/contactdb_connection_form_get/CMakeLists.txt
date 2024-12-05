@@ -1,6 +1,9 @@
 SET(MC_SOURCES
     ${LMDB_SOURCES}
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/prop_is_valid_contactdb_connection.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/data/prop_valid_contact_form.c
+    ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_compute_size.c
+    ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_verify.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_create.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_release.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_form_get.c
