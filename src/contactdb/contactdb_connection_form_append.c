@@ -21,6 +21,9 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
 int contactdb_connection_form_append(
     contactdb_connection* conn, MDB_txn* txn, const contact_form* form)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_form_append, conn, txn, form);
+
     int retval;
     uint64_t count, contact_id;
     MDB_val key, val;
@@ -31,7 +34,7 @@ int contactdb_connection_form_append(
             conn, txn, COUNTER_ID_CONTACT_KEY, &contact_id);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* set up the payload for this transaction. */
@@ -44,7 +47,8 @@ int contactdb_connection_form_append(
     retval = mdb_put(txn, conn->contact_db, &key, &val, 0);
     if (STATUS_SUCCESS != retval)
     {
-        return ERROR_DATABASE_PUT;
+        retval = ERROR_DATABASE_PUT;
+        goto done;
     }
 
     /* increment the count. */
@@ -53,9 +57,16 @@ int contactdb_connection_form_append(
             conn, txn, COUNTER_ID_CONTACT_COUNT, &count);
     if (STATUS_SUCCESS != retval)
     {
-        return retval;
+        goto done;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_form_append, retval);
+
+    return retval;
 }
