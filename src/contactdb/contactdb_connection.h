@@ -413,8 +413,11 @@ contactdb_connection_form_get_first(
 
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
-    contactdb_connection_form_get_first, contactdb_connection* conn,
-    MDB_txn* txn, MDB_val* key, MDB_val* val, bool* found, uint64_t* p_key)
+    contactdb_connection_form_get_first, MDB_cursor** cursor,
+    contactdb_connection* conn, MDB_txn* txn, MDB_val* key, MDB_val* val,
+    bool* found, uint64_t* p_key)
+        /* the cursor is accessible. */
+        MODEL_CHECK_OBJECT_RW(cursor, sizeof(*cursor));
         /* this is a valid connection. */
         MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
         /* this is a valid transaction. */
@@ -434,10 +437,8 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     contactdb_connection_form_get_first, int retval, MDB_val* key, MDB_val* val,
     bool* found, uint64_t* p_key)
         /* on success... */
-        if (STATUS_SUCCESS == retval)
+        if (STATUS_SUCCESS == retval && true == *found)
         {
-            /* found is set to true. */
-            MODEL_ASSERT(true == *found);
             /* p_key is a valid value. */
             MODEL_ASSERT(COUNTER_VALUE_INVALID != *p_key);
             /* key is set to a valid pointer. */
