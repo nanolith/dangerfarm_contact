@@ -10,18 +10,25 @@ int nondet_retval();
 int contactdb_connection_form_delete(
     contactdb_connection* conn, MDB_txn* txn, uint64_t id)
 {
-    MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
-    MODEL_ASSERT(prop_MDB_txn_valid(txn));
-    MODEL_ASSERT(prop_MDB_dbi_valid(conn->env, conn->global_db));
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_form_delete, conn, txn, id);
 
     int retval = nondet_retval();
     switch (retval)
     {
         case STATUS_SUCCESS:
-            return STATUS_SUCCESS;
-
         case ERROR_DATABASE_GET:
         case ERROR_CONTACTDB_GET_INVALID_SIZE:
-            return retval;
+            goto done;
+
+        default:
+            retval = ERROR_DATABASE_GET;
+            goto done;
     }
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_form_delete, retval);
+
+    return retval;
 }
