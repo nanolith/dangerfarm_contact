@@ -414,13 +414,19 @@ contactdb_connection_form_get_first(
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
     contactdb_connection_form_get_first, contactdb_connection* conn,
-    MDB_txn* txn, const DANGERFARM_CONTACT_SYM(contact_form)** form)
+    MDB_txn* txn, MDB_val* key, MDB_val* val, bool* found, uint64_t* p_key)
         /* this is a valid connection. */
         MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
         /* this is a valid transaction. */
         MODEL_ASSERT(prop_MDB_txn_valid(txn));
-        /* the pointer is accessible. */
-        MODEL_CHECK_OBJECT_RW(form, sizeof(*form));
+        /* the key pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(key, sizeof(*key));
+        /* the val pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(val, sizeof(*val));
+        /* the found pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(found, sizeof(*found));
+        /* the p_key pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(p_key, sizeof(*p_key));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_get_first)
 
 /* postconditions. */
