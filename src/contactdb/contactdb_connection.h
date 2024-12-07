@@ -423,6 +423,25 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_CHECK_OBJECT_RW(form, sizeof(*form));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_get_first)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_connection_form_get_first, int retval,
+    const DANGERFARM_CONTACT_SYM(contact_form)** form)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            /* the form is valid. */
+            MODEL_ASSERT(
+                DANGERFARM_CONTACT_SYM(prop_valid_contact_form(*form)));
+        }
+        /* on failure... */
+        else
+        {
+            /* the form pointer is set to NULL. */
+            MODEL_ASSERT(NULL == *form);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_connection_form_get_first)
+
 /**
  * \brief Get the next form associated with the contact database.
  *
