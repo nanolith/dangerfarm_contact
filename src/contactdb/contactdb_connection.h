@@ -431,20 +431,33 @@ MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_get_first)
 
 /* postconditions. */
 MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
-    contactdb_connection_form_get_first, int retval,
-    const DANGERFARM_CONTACT_SYM(contact_form)** form)
+    contactdb_connection_form_get_first, int retval, MDB_val* key, MDB_val* val,
+    bool* found, uint64_t* p_key)
         /* on success... */
         if (STATUS_SUCCESS == retval)
         {
-            /* the form is valid. */
-            MODEL_ASSERT(
-                DANGERFARM_CONTACT_SYM(prop_valid_contact_form(*form)));
+            /* found is set to true. */
+            MODEL_ASSERT(true == *found);
+            /* p_key is a valid value. */
+            MODEL_ASSERT(COUNTER_VALUE_INVALID != *p_key);
+            /* key is set to a valid pointer. */
+            MODEL_CHECK_OBJECT_READ(key->mv_data, key->mv_size);
+            /* val is set to a valid pointer. */
+            MODEL_CHECK_OBJECT_READ(val->mv_data, val->mv_size);
         }
         /* on failure... */
         else
         {
-            /* the form pointer is set to NULL. */
-            MODEL_ASSERT(NULL == *form);
+            /* found is set to false. */
+            MODEL_ASSERT(false == *found);
+            /* p_key is an invalid value. */
+            MODEL_ASSERT(COUNTER_VALUE_INVALID == *p_key);
+            /* key is nulled out. */
+            MODEL_ASSERT(NULL == key->mv_data);
+            MODEL_ASSERT(0 == key->mv_size);
+            /* val is nulled out. */
+            MODEL_ASSERT(NULL == val->mv_data);
+            MODEL_ASSERT(0 == val->mv_size);
         }
 MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_connection_form_get_first)
 
