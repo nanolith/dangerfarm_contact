@@ -523,14 +523,11 @@ MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_get_next)
 
 /* postconditions. */
 MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
-    contactdb_connection_form_get_next, int retval, MDB_cursor** cursor,
+    contactdb_connection_form_get_next, int retval, MDB_cursor* cursor,
     MDB_val* key, MDB_val* val, bool* found, uint64_t* p_key)
         /* on success... */
         if (STATUS_SUCCESS == retval)
         {
-            /* cursor is valid. */
-            MODEL_ASSERT(prop_MDB_cursor_valid(*cursor));
-
             if (true == *found)
             {
                 /* p_key is a valid value. */
@@ -555,8 +552,6 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
         /* on failure... */
         else
         {
-            /* cursor is NULL. */
-            MODEL_ASSERT(NULL == *cursor);
             /* found is set to false. */
             MODEL_ASSERT(false == *found);
             /* p_key is an invalid value. */
