@@ -503,15 +503,10 @@ contactdb_connection_form_get_next(
 
 /* preconditions. */
 MODEL_CONTRACT_PRECONDITIONS_BEGIN(
-    contactdb_connection_form_get_next, MDB_cursor** cursor,
-    contactdb_connection* conn, MDB_txn* txn, MDB_val* key, MDB_val* val,
-    bool* found, uint64_t* p_key)
-        /* the cursor is accessible. */
-        MODEL_CHECK_OBJECT_RW(cursor, sizeof(*cursor));
-        /* this is a valid connection. */
-        MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
-        /* this is a valid transaction. */
-        MODEL_ASSERT(prop_MDB_txn_valid(txn));
+    contactdb_connection_form_get_next, MDB_cursor* cursor, MDB_val* key,
+    MDB_val* val, bool* found, uint64_t* p_key)
+        /* the cursor is valid. */
+        MODEL_ASSERT(prop_MDB_cursor_valid(cursor));
         /* the key pointer is accessible. */
         MODEL_CHECK_OBJECT_RW(key, sizeof(*key));
         /* the key data is accessible. */
