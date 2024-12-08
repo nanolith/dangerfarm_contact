@@ -500,3 +500,28 @@ int FN_DECL_MUST_CHECK
 contactdb_connection_form_get_next(
     MDB_cursor* cursor, MDB_val* key, MDB_val* val, bool* found,
     uint64_t* p_key);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_connection_form_get_next, MDB_cursor** cursor,
+    contactdb_connection* conn, MDB_txn* txn, MDB_val* key, MDB_val* val,
+    bool* found, uint64_t* p_key)
+        /* the cursor is accessible. */
+        MODEL_CHECK_OBJECT_RW(cursor, sizeof(*cursor));
+        /* this is a valid connection. */
+        MODEL_ASSERT(prop_is_valid_contactdb_connection(conn));
+        /* this is a valid transaction. */
+        MODEL_ASSERT(prop_MDB_txn_valid(txn));
+        /* the key pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(key, sizeof(*key));
+        /* the key data is accessible. */
+        MODEL_CHECK_OBJECT_RW(key->mv_data, key->mv_size);
+        /* the key data is large enough for a uint64_t key. */
+        MODEL_ASSERT(sizeof(uint64_t) == key->mv_size);
+        /* the val pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(val, sizeof(*val));
+        /* the found pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(found, sizeof(*found));
+        /* the p_key pointer is accessible. */
+        MODEL_CHECK_OBJECT_RW(p_key, sizeof(*p_key));
+MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_get_next)
