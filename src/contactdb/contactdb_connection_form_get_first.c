@@ -24,6 +24,10 @@ int contactdb_connection_form_get_first(
     MDB_cursor** cursor, contactdb_connection* conn, MDB_txn* txn, MDB_val* key,
     MDB_val* val, bool* found, uint64_t* p_key)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_form_get_first, cursor, conn, txn, key, val, found,
+        p_key);
+
     int retval;
 
     /* open a cursor over the contact database. */
@@ -31,7 +35,8 @@ int contactdb_connection_form_get_first(
     if (STATUS_SUCCESS != retval)
     {
         retval = ERROR_DATABASE_CURSOR_OPEN;
-        goto done;
+        *cursor = NULL;
+        goto fail;
     }
 
     /* get the first contact. */
@@ -39,8 +44,7 @@ int contactdb_connection_form_get_first(
     if (MDB_NOTFOUND == retval)
     {
         retval = STATUS_SUCCESS;
-        *found = false;
-        goto done;
+        goto fail;
     }
     else if (STATUS_SUCCESS != retval)
     {
@@ -59,6 +63,12 @@ int contactdb_connection_form_get_first(
     if (NULL != p_key)
     {
         memcpy(p_key, key->mv_data, sizeof(uint64_t));
+
+        if (COUNTER_VALUE_INVALID == *p_key)
+        {
+            retval = ERROR_CONTACTDB_BAD_COUNTER_VALUE;
+            goto close_cursor;
+        }
     }
 
     /* success. */
@@ -68,7 +78,18 @@ int contactdb_connection_form_get_first(
 
 close_cursor:
     mdb_cursor_close(*cursor);
+    *cursor = NULL;
+
+fail:
+    *found = false;
+    *p_key = COUNTER_VALUE_INVALID;
+    key->mv_data = NULL; key->mv_size = 0;
+    val->mv_data = NULL; val->mv_size = 0;
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_form_get_first, retval, cursor, key, val, found,
+        p_key);
+
     return retval;
 }
