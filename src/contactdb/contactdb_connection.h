@@ -525,3 +525,52 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         /* the p_key pointer is accessible. */
         MODEL_CHECK_OBJECT_RW(p_key, sizeof(*p_key));
 MODEL_CONTRACT_PRECONDITIONS_END(contactdb_connection_form_get_next)
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_connection_form_get_next, int retval, MDB_cursor** cursor,
+    MDB_val* key, MDB_val* val, bool* found, uint64_t* p_key)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            /* cursor is valid. */
+            MODEL_ASSERT(prop_MDB_cursor_valid(*cursor));
+
+            if (true == *found)
+            {
+                /* p_key is a valid value. */
+                MODEL_ASSERT(COUNTER_VALUE_INVALID != *p_key);
+                /* key is set to a valid pointer. */
+                MODEL_CHECK_OBJECT_READ(key->mv_data, key->mv_size);
+                /* val is set to a valid pointer. */
+                MODEL_CHECK_OBJECT_READ(val->mv_data, val->mv_size);
+            }
+            else
+            {
+                /* p_key is an invalid value. */
+                MODEL_ASSERT(COUNTER_VALUE_INVALID == *p_key);
+                /* key is nulled out. */
+                MODEL_ASSERT(NULL == key->mv_data);
+                MODEL_ASSERT(0 == key->mv_size);
+                /* val is nulled out. */
+                MODEL_ASSERT(NULL == val->mv_data);
+                MODEL_ASSERT(0 == val->mv_size);
+            }
+        }
+        /* on failure... */
+        else
+        {
+            /* cursor is NULL. */
+            MODEL_ASSERT(NULL == *cursor);
+            /* found is set to false. */
+            MODEL_ASSERT(false == *found);
+            /* p_key is an invalid value. */
+            MODEL_ASSERT(COUNTER_VALUE_INVALID == *p_key);
+            /* key is nulled out. */
+            MODEL_ASSERT(NULL == key->mv_data);
+            MODEL_ASSERT(0 == key->mv_size);
+            /* val is nulled out. */
+            MODEL_ASSERT(NULL == val->mv_data);
+            MODEL_ASSERT(0 == val->mv_size);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(contactdb_connection_form_get_next)
