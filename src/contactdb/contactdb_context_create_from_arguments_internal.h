@@ -33,6 +33,28 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     contactdb_context_create_from_arguments_set_string)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments_set_string, int retval, char** str)
+    if (STATUS_SUCCESS == retval)
+    {
+        MODEL_ASSERT(NULL != *str);
+    }
+    else if (ERROR_GENERAL_OUT_OF_MEMORY == retval)
+    {
+        MODEL_ASSERT(NULL == *str);
+    }
+    else if (ERROR_CONTACTDB_BAD_PARAMETER == retval)
+    {
+        MODEL_ASSERT(NULL != *str);
+    }
+    else
+    {
+        MODEL_ASSERT(false && "Only those three cases are supported.");
+    }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    contactdb_context_create_from_arguments_set_string)
+
 /**
  * \brief Read arguments, populating the context.
  *
