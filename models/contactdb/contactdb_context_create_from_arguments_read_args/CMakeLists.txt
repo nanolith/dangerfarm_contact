@@ -3,12 +3,12 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/string/string_release.c
     ${CMAKE_SOURCE_DIR}/models/shadow/stdlib/strdup.c
     ${CMAKE_SOURCE_DIR}/models/shadow/stdlib/strcmp.c
-    ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_context_create_from_arguments_set_string.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_connection_release_nop.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/getopt.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_disable_signal_handler.c
     ${CMAKE_SOURCE_DIR}/models/../src/contactdb/contactdb_context_create_from_arguments_read_args.c
     ${CMAKE_SOURCE_DIR}/models/../src/contactdb/contactdb_context_release.c
+    ${CMAKE_SOURCE_DIR}/models/../src/contactdb/contactdb_context_create_from_arguments_set_string.c
     main.c)
 
 ADD_EXECUTABLE(
