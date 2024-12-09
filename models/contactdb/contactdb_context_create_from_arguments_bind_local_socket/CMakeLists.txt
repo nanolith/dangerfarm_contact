@@ -11,10 +11,10 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/listen.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/prop_is_open_fd.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/close.c
-    ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_context_create_from_arguments_set_string.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_connection_release_nop.c
     ${CMAKE_SOURCE_DIR}/models/shadow/contactdb/contactdb_disable_signal_handler.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_context_create_from_arguments_bind_local_socket.c
+    ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_context_create_from_arguments_set_string.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_context_release.c
     main.c)
 
