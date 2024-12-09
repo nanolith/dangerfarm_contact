@@ -8,6 +8,7 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_create.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_release.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_compute_size.c
+    ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_release.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_verify.c
     main.c)
 
