@@ -38,14 +38,17 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     contactdb_context_create_from_arguments_set_string, int retval, char** str)
     if (STATUS_SUCCESS == retval)
     {
+        /* the value is duplicated and returned. */
         MODEL_ASSERT(NULL != *str);
     }
     else if (ERROR_GENERAL_OUT_OF_MEMORY == retval)
     {
+        /* the value couldn't be duplicated due to memory error. */
         MODEL_ASSERT(NULL == *str);
     }
     else if (ERROR_CONTACTDB_BAD_PARAMETER == retval)
     {
+        /* a previous value was duplicated, so don't overwrite it. */
         MODEL_ASSERT(NULL != *str);
     }
     else
