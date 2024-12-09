@@ -4,6 +4,7 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_form_get_next.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_create.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_connection_release.c
+    ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_release.c
     main.c)
 
 ADD_EXECUTABLE(model_contactdb_connection_form_get_next ${MC_SOURCES})
