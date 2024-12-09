@@ -20,6 +20,19 @@ int FN_DECL_MUST_CHECK
 contactdb_context_create_from_arguments_set_string(
     char** str, const char* opt, const char* value);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments_set_string, char** str,
+    const char* opt, const char* value)
+        /* str is accessible. */
+        MODEL_CHECK_OBJECT_RW(str, sizeof(*str));
+        /* opt is not NULL. */
+        MODEL_ASSERT(NULL != opt);
+        /* value is not NULL. */
+        MODEL_ASSERT(NULL != value);
+MODEL_CONTRACT_PRECONDITIONS_END(
+    contactdb_context_create_from_arguments_set_string)
+
 /**
  * \brief Read arguments, populating the context.
  *
