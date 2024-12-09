@@ -19,11 +19,17 @@
 int contactdb_context_create_from_arguments_set_string(
     char** str, const char* opt, const char* value)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_context_create_from_arguments_set_string, str, opt, value);
+
+    int retval;
+
     /* check for dupe. */
     if (NULL != *str)
     {
         fprintf(stderr, "%s parameter used twice!\n", opt);
-        return ERROR_CONTACTDB_BAD_PARAMETER;
+        retval = ERROR_CONTACTDB_BAD_PARAMETER;
+        goto done;
     }
 
     /* set the socket path. */
@@ -31,9 +37,17 @@ int contactdb_context_create_from_arguments_set_string(
     if (NULL == *str)
     {
         fprintf(stderr, "out of memory.\n");
-        return ERROR_GENERAL_OUT_OF_MEMORY;
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto done;
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_context_create_from_arguments_set_string, retval, str);
+
+    return retval;
 }
