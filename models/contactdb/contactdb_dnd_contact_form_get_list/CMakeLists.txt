@@ -24,6 +24,7 @@ SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_context_release.c
     ${CMAKE_SOURCE_DIR}/src/contactdb/contactdb_dnd_contact_form_get_list.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_compute_size.c
+    ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_release.c
     ${CMAKE_SOURCE_DIR}/src/libcontact/contact_form_verify.c
     main.c)
 
