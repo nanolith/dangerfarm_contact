@@ -32,7 +32,7 @@ int contactdb_context_create_from_arguments_set_string(
         goto done;
     }
 
-    /* set the socket path. */
+    /* duplicate the string. */
     *str = strdup(value);
     if (NULL == *str)
     {
