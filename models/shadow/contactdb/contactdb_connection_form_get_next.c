@@ -15,14 +15,11 @@ int contactdb_connection_form_get_next(
     MDB_cursor* cursor, MDB_val* key, MDB_val* val, bool* found,
     uint64_t* p_key)
 {
-    contact_form* form;
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_connection_form_get_next, cursor, key, val, found, p_key);
 
-    MODEL_ASSERT(prop_MDB_cursor_valid(cursor));
-    MODEL_ASSERT(NULL != key);
-    MODEL_ASSERT(NULL != key->mv_data);
-    MODEL_ASSERT(sizeof(uint64_t) == key->mv_size);
-    MODEL_ASSERT(NULL != val);
-    MODEL_ASSERT(NULL != found);
+    int release_retval;
+    contact_form* form;
 
     int retval = nondet_retval();
     if (STATUS_SUCCESS == retval)
@@ -30,7 +27,7 @@ int contactdb_connection_form_get_next(
         retval = contact_form_create(&form, "na", "em", "so", "co");
         if (STATUS_SUCCESS != retval)
         {
-            return retval;
+            goto fail;
         }
 
         if (cursor->count > 0)
@@ -48,6 +45,12 @@ int contactdb_connection_form_get_next(
             if (NULL != p_key)
             {
                 *p_key = nondet_key();
+
+                if (COUNTER_VALUE_INVALID == *p_key)
+                {
+                    retval = ERROR_CONTACTDB_BAD_COUNTER_VALUE;
+                    goto cleanup_form;
+                }
             }
 
             if (NULL != cursor->txn->temp_object)
@@ -57,13 +60,14 @@ int contactdb_connection_form_get_next(
             cursor->txn->temp_object = form;
 
             *found = true;
-            return STATUS_SUCCESS;
+            retval = STATUS_SUCCESS;
+            goto done;
         }
         else
         {
-            free(form);
             *found = false;
-            return STATUS_SUCCESS;
+            retval = STATUS_SUCCESS;
+            goto cleanup_form;
         }
     }
     else
@@ -72,10 +76,31 @@ int contactdb_connection_form_get_next(
         {
             case ERROR_DATABASE_CURSOR_GET:
             case ERROR_CONTACTDB_GET_INVALID_SIZE:
-                return retval;
+                goto fail;
 
             default:
-                return ERROR_DATABASE_CURSOR_GET;
+                retval = ERROR_DATABASE_CURSOR_GET;
+                goto fail;
         }
     }
+
+cleanup_form:
+    release_retval = contact_form_release(form);
+    if (STATUS_SUCCESS != release_retval)
+    {
+        retval = release_retval;
+    }
+
+fail:
+    *found = false;
+    *p_key = COUNTER_VALUE_INVALID;
+    key->mv_data = NULL; key->mv_size = 0;
+    val->mv_data = NULL; val->mv_size = 0;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_connection_form_get_next, retval, cursor, key, val, found,
+        p_key);
+
+    return retval;
 }
