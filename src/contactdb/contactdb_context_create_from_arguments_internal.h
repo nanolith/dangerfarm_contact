@@ -116,3 +116,21 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(NULL != ctx->socket_path);
 MODEL_CONTRACT_PRECONDITIONS_END(
     contactdb_context_create_from_arguments_bind_local_socket)
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments_bind_local_socket,
+    int retval, contactdb_context* ctx)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            /* the context is now valid. */
+            MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+        }
+        else
+        {
+            /* the socket is invalid. */
+            MODEL_ASSERT(ctx->sock < 0);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    contactdb_context_create_from_arguments_bind_local_socket)
