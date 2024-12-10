@@ -124,8 +124,8 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
         /* on success... */
         if (STATUS_SUCCESS == retval)
         {
-            /* the context is now valid. */
-            MODEL_ASSERT(prop_is_valid_contactdb_context(ctx));
+            /* the socket is now valid. */
+            MODEL_ASSERT(ctx->sock >= 0);
         }
         else
         {
