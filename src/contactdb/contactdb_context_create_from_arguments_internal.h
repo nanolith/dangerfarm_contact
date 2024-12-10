@@ -105,3 +105,14 @@ MODEL_CONTRACT_POSTCONDITIONS_END(
 int FN_DECL_MUST_CHECK
 contactdb_context_create_from_arguments_bind_local_socket(
     contactdb_context* ctx);
+
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments_bind_local_socket,
+    contactdb_context* ctx)
+        /* ctx is accessible. */
+        MODEL_CHECK_OBJECT_RW(ctx, sizeof(*ctx));
+        /* socket path is not NULL. */
+        MODEL_ASSERT(NULL != ctx->socket_path);
+MODEL_CONTRACT_PRECONDITIONS_END(
+    contactdb_context_create_from_arguments_bind_local_socket)
