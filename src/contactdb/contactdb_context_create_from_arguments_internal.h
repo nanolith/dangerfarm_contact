@@ -73,6 +73,19 @@ int FN_DECL_MUST_CHECK
 contactdb_context_create_from_arguments_read_args(
     contactdb_context* ctx, int argc, char* argv[]);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments_read_args, contactdb_context* ctx,
+    int argc, char* argv[])
+        /* ctx is accessible. */
+        MODEL_CHECK_OBJECT_RW(ctx, sizeof(*ctx));
+        /* argc >= 0. */
+        MODEL_ASSERT(argc >= 0);
+        /* argv is accessible. */
+        MODEL_CHECK_OBJECT_READ(argv, argc * sizeof(char*));
+MODEL_CONTRACT_PRECONDITIONS_END(
+    contactdb_context_create_from_arguments_read_args)
+
 /**
  * \brief Bind the local domain socket for this context.
  *
