@@ -9,6 +9,9 @@ bool nondet_bool();
 int contactdb_context_create_from_arguments_read_args(
     contactdb_context* ctx, int argc, char* argv[])
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_context_create_from_arguments_read_args, ctx, argc, argv);
+
     /* should we exit early with an error? */
     int retval = nondet_retval();
     switch (retval)
@@ -17,21 +20,23 @@ int contactdb_context_create_from_arguments_read_args(
         case ERROR_CONTACTDB_BAD_PARAMETER:
         case ERROR_CONTACTDB_INVALID_ROLE:
         case ERROR_CONTACTDB_MISSING_PARAMETER:
-            return retval;
+            goto done;
     }
 
     /* create a db path. */
     ctx->db_path = strdup("x");
     if (NULL == ctx->db_path)
     {
-        return ERROR_GENERAL_OUT_OF_MEMORY;
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto done;
     }
 
     /* create a socket path. */
     ctx->socket_path = strdup("x");
     if (NULL == ctx->socket_path)
     {
-        return ERROR_GENERAL_OUT_OF_MEMORY;
+        retval = ERROR_GENERAL_OUT_OF_MEMORY;
+        goto done;
     }
     ctx->listen_socket = true;
 
@@ -48,5 +53,12 @@ int contactdb_context_create_from_arguments_read_args(
             break;
     }
 
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_context_create_from_arguments_read_args, retval, ctx);
+
+    return retval;
 }
