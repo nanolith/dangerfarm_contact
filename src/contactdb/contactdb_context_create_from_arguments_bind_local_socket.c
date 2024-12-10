@@ -20,6 +20,9 @@
 int contactdb_context_create_from_arguments_bind_local_socket(
     contactdb_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_context_create_from_arguments_bind_local_socket, ctx);
+
     int retval;
     struct sockaddr_un addr;
 
@@ -84,6 +87,9 @@ cleanup_sock:
 
 done:
     memset(&addr, 0, sizeof(addr));
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_context_create_from_arguments_bind_local_socket, retval, ctx);
 
     return retval;
 }
