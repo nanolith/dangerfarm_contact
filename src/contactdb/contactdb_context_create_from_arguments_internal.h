@@ -86,6 +86,13 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
 MODEL_CONTRACT_PRECONDITIONS_END(
     contactdb_context_create_from_arguments_read_args)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactdb_context_create_from_arguments_read_args, int retval,
+    contactdb_context* ctx)
+MODEL_CONTRACT_POSTCONDITIONS_END(
+    contactdb_context_create_from_arguments_read_args)
+
 /**
  * \brief Bind the local domain socket for this context.
  *
