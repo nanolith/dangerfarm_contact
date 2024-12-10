@@ -41,6 +41,15 @@ struct contactform_context
 };
 
 /**
+ * \brief Verify that the given drop privileges step is valid.
+ *
+ * \param step          The step to verify.
+ *
+ * \returns true if this step is valid and false otherwise.
+ */
+bool prop_valid_drop_privileges_step(int step);
+
+/**
  * \brief Create a \ref contactform_context instance.
  *
  * \param ctx           Pointer to the pointer to receive the context on
