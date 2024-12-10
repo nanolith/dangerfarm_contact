@@ -19,6 +19,9 @@
 int contactdb_context_create_from_arguments_read_args(
     contactdb_context* ctx, int argc, char* argv[])
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactdb_context_create_from_arguments_read_args, ctx, argc, argv);
+
     int retval;
     int ch;
 
@@ -98,5 +101,8 @@ int contactdb_context_create_from_arguments_read_args(
     goto done;
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactdb_context_create_from_arguments_read_args, retval, ctx);
+
     return retval;
 }
