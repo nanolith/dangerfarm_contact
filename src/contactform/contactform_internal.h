@@ -59,6 +59,15 @@ bool prop_valid_drop_privileges_step(int step);
 bool prop_valid_request_type(int req);
 
 /**
+ * \brief Verify that the given contact form key is valid.
+ *
+ * \param key           The contact form key to verify.
+ *
+ * \returns true if this contact form key is valid and false otherwise.
+ */
+bool prop_valid_contactform_key(int key);
+
+/**
  * \brief Create a \ref contactform_context instance.
  *
  * \param ctx           Pointer to the pointer to receive the context on
