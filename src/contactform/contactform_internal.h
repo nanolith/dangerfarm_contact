@@ -50,6 +50,15 @@ struct contactform_context
 bool prop_valid_drop_privileges_step(int step);
 
 /**
+ * \brief Verify that the given request type is valid.
+ *
+ * \param req           The request type to verify.
+ *
+ * \returns true if this request type is valid and false otherwise.
+ */
+bool prop_valid_request_type(int req);
+
+/**
  * \brief Create a \ref contactform_context instance.
  *
  * \param ctx           Pointer to the pointer to receive the context on
