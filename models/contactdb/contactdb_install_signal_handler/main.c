@@ -43,7 +43,9 @@ int possible_signals()
         case SIGUSR1:
         case SIGUSR2:
         case SIGTHR:
+        #ifndef __OpenBSD__
         case SIGLIBRT:
+        #endif
             return sig;
 
         default:
