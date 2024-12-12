@@ -28,7 +28,9 @@ int bind(int s, const struct sockaddr *addr, socklen_t addrlen)
         case EAGAIN:
         case EBADF:
         case EFAULT:
+        #ifndef __OpenBSD__
         case EINTEGRITY:
+        #endif
         case EINVAL:
         case EIO:
         case EISDIR:
