@@ -1,1 +1,2 @@
 ADD_SUBDIRECTORY(prop_valid_drop_privileges_step)
+ADD_SUBDIRECTORY(prop_valid_request_type)
