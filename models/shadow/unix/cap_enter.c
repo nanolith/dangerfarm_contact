@@ -1,3 +1,5 @@
+#ifdef __FreeBSD__
+
 #include <dangerfarm_contact/status_codes.h>
 #include <errno.h>
 #include <sys/capsicum.h>
@@ -23,3 +25,4 @@ int cap_enter(void)
             return -1;
     }
 }
+#endif /* __FreeBSD__ */
