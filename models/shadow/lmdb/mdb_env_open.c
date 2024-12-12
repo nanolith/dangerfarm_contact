@@ -13,7 +13,7 @@ int mdb_env_open(
     MODEL_ASSERT(prop_MDB_env_created(env));
     MODEL_ASSERT(NULL != path);
 #ifdef __OpenBSD__
-    MODEL_ASSERT(MDB_WRITEMAP == flags)
+    MODEL_ASSERT(MDB_WRITEMAP == flags);
 #else
     MODEL_ASSERT(0 == flags);
 #endif
