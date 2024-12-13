@@ -12,6 +12,8 @@ SET(DF_EXPORT dangerfarm_contact_6a32746c_5353_11ef_b2d0_18c04d8c76eb_V0_1_)
 
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules")
 
+option(MODEL_CHECKING_ENABLED "Enable Model Checking" ON)
+
 #Build config.h
 configure_file(config.h.cmake include/dangerfarm_contact/config.h)
 
@@ -87,4 +89,6 @@ ADD_CUSTOM_COMMAND(
     USES_TERMINAL)
 
 #model checks
-ADD_SUBDIRECTORY(models)
+if(MODEL_CHECKING_ENABLED)
+    ADD_SUBDIRECTORY(models)
+endif()
