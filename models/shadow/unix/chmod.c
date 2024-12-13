@@ -21,7 +21,9 @@ int chmod(const char *path, mode_t mode)
         case EACCES:
         case EFAULT:
         case EFTYPE:
+        #ifndef __OpenBSD__
         case EINTEGRITY:
+        #endif
         case EIO:
         case ELOOP:
         case ENAMETOOLONG:
