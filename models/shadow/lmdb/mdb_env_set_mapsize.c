@@ -6,7 +6,7 @@
 
 int nondet_retval();
 
-int mdb_env_set_mapsize(MDB_env *env, mdb_size_t size)
+int mdb_env_set_mapsize(MDB_env *env, size_t size)
 {
     MODEL_ASSERT(prop_MDB_env_created(env));
     MODEL_ASSERT(!prop_MDB_env_opened(env));
