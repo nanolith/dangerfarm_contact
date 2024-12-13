@@ -62,7 +62,7 @@ int contactform_database_helper_create(int* s, pid_t* pid)
         close(socks[1]);
 
         /* we never return from here. */
-        contactform_database_helper_entry(socks[1]);
+        contactform_database_helper_entry(socks[0]);
     }
 
     /* If we make it here, fork failed, so report the error. */
