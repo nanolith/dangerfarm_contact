@@ -63,7 +63,7 @@ int contactdb_context_create_from_arguments(
     retval = contactdb_connection_create(&tmp->conn, tmp->db_path);
     if (STATUS_SUCCESS != retval)
     {
-        fprintf(stderr, "Error connecting to the database.\n");
+        MODEL_EXEMPT(fprintf(stderr, "Error connecting to the database.\n"));
         goto cleanup_tmp;
     }
 
