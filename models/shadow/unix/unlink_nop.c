@@ -22,7 +22,9 @@ int unlink(const char *path)
         case ELOOP:
         case EPERM:
         case EIO:
+        #ifndef __OpenBSD__
         case EINTEGRITY:
+        #endif
         case EROFS:
         case EFAULT:
         case ENOSPC:
