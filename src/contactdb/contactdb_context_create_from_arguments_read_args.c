@@ -65,7 +65,9 @@ int contactdb_context_create_from_arguments_read_args(
                 }
                 else
                 {
-                    fprintf(stderr, "error: unsupported role %s.\n", optarg);
+                    MODEL_EXEMPT(
+                        fprintf(
+                            stderr, "error: unsupported role %s.\n", optarg));
                     retval = ERROR_CONTACTDB_INVALID_ROLE;
                     goto done;
                 }
@@ -75,7 +77,7 @@ int contactdb_context_create_from_arguments_read_args(
     /* verify that the database path was set. */
     if (NULL == ctx->db_path)
     {
-        fprintf(stderr, "error: -d option is required.\n");
+        MODEL_EXEMPT(fprintf(stderr, "error: -d option is required.\n"));
         retval = ERROR_CONTACTDB_MISSING_PARAMETER;
         goto done;
     }
@@ -83,7 +85,7 @@ int contactdb_context_create_from_arguments_read_args(
     /* verify that the socket path was set. */
     if (NULL == ctx->socket_path)
     {
-        fprintf(stderr, "error: -L option is required.\n");
+        MODEL_EXEMPT(fprintf(stderr, "error: -L option is required.\n"));
         retval = ERROR_CONTACTDB_MISSING_PARAMETER;
         goto done;
     }
@@ -91,7 +93,7 @@ int contactdb_context_create_from_arguments_read_args(
     /* verify that a role was set. */
     if (0 == ctx->root_capabilities)
     {
-        fprintf(stderr, "error: -r option is required.\n");
+        MODEL_EXEMPT(fprintf(stderr, "error: -r option is required.\n"));
         retval = ERROR_CONTACTDB_MISSING_PARAMETER;
         goto done;
     }
