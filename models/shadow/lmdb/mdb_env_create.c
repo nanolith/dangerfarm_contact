@@ -10,7 +10,7 @@ int mdb_env_create(MDB_env** env)
     *env = malloc(sizeof(MDB_env));
     if (NULL == *env)
     {
-        return MDB_PROBLEM;
+        return MDB_BAD_DBI;
     }
 
     (*env)->created = true;
