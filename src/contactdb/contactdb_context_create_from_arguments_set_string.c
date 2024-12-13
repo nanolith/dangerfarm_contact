@@ -27,7 +27,7 @@ int contactdb_context_create_from_arguments_set_string(
     /* check for dupe. */
     if (NULL != *str)
     {
-        fprintf(stderr, "%s parameter used twice!\n", opt);
+        MODEL_EXEMPT(fprintf(stderr, "%s parameter used twice!\n", opt));
         retval = ERROR_CONTACTDB_BAD_PARAMETER;
         goto done;
     }
@@ -36,7 +36,7 @@ int contactdb_context_create_from_arguments_set_string(
     *str = strdup(value);
     if (NULL == *str)
     {
-        fprintf(stderr, "out of memory.\n");
+        MODEL_EXEMPT(fprintf(stderr, "out of memory.\n"));
         retval = ERROR_GENERAL_OUT_OF_MEMORY;
         goto done;
     }
