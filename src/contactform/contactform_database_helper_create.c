@@ -194,7 +194,7 @@ static int connect_local_socket(int* dbsock)
 
     /* set the connect address. */
     addr.sun_family = AF_UNIX;
-    strlcpy(addr.sun_path, "/tmp/contactdb_app.sock", sizeof(addr.sun_path));
+    strlcpy(addr.sun_path, CONTACTDB_SOCKET, sizeof(addr.sun_path));
 
     /* create a socket. */
     *dbsock = socket(AF_UNIX, SOCK_STREAM, 0);
