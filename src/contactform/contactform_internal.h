@@ -7,8 +7,6 @@
 #include <unistd.h>
 #include <kcgi.h>
 
-#define CONTACTDB_SOCKET        "/tmp/contactdb_app.sock"
-
 enum contactform_drop_privileges_step
 {
     DROP_PRIV_STEP_KCGI_PARSE = 1,
