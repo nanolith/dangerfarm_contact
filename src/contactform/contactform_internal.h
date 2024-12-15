@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <kcgi.h>
 
+#define CONTACTDB_SOCKET        "/tmp/contactdb_app.sock"
+
 enum contactform_drop_privileges_step
 {
     DROP_PRIV_STEP_LIMIT_FS_ACCESS = 1,
