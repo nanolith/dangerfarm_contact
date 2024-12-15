@@ -12,6 +12,14 @@ int main(int argc, char* argv[])
     (void)argc;
     (void)argv;
 
+    /* drop FS privileges prior to initializing. */
+    retval = contactform_drop_privileges(DROP_PRIV_STEP_LIMIT_FS_ACCESS);
+    if (STATUS_SUCCESS != retval)
+    {
+        retval = 1;
+        goto done;
+    }
+
     /* create the contactform context. */
     retval = contactform_context_create(&ctx);
     if (STATUS_SUCCESS != retval)
