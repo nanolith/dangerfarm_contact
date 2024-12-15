@@ -9,8 +9,9 @@
 
 enum contactform_drop_privileges_step
 {
-    DROP_PRIV_STEP_KCGI_PARSE = 1,
-    DROP_PRIV_STEP_COMPLETE   = 2,
+    DROP_PRIV_STEP_LIMIT_FS_ACCESS = 1,
+    DROP_PRIV_STEP_KCGI_PARSE = 2,
+    DROP_PRIV_STEP_COMPLETE   = 3,
 };
 
 enum contactform_request_type
