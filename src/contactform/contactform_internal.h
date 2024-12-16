@@ -102,6 +102,23 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_CHECK_OBJECT_RW(ctx, sizeof(*ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_create)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactform_context_create, int retval, contactform_context** ctx)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            /* ctx is valid. */
+            MODEL_ASSERT(prop_valid_contactform_context(*ctx));
+        }
+        /* on failure... */
+        else
+        {
+            /* ctx is NULL. */
+            MODEL_ASSERT(NULL == ctx);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_create)
+
 /**
  * \brief Release a \ref contactform_context instance.
  *
