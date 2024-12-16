@@ -131,6 +131,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_create)
 int FN_DECL_MUST_CHECK
 contactform_context_release(contactform_context* ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactform_context_release, contactform_context* ctx)
+        /* ctx variable must be accessible. */
+        MODEL_CHECK_OBJECT_RW(ctx, sizeof(*ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_release)
+
 /**
  * \brief Create a database helper connection.
  *
