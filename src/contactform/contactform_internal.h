@@ -157,6 +157,15 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_release)
 int FN_DECL_MUST_CHECK
 contactform_database_helper_create(int* s, pid_t* pid);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactform_database_helper_create, int* s, pid_t* pid)
+        /* s variable must be accessible. */
+        MODEL_CHECK_OBJECT_RW(s, sizeof(*s));
+        /* pid variable must be accessible. */
+        MODEL_CHECK_OBJECT_RW(pid, sizeof(*pid));
+MODEL_CONTRACT_PRECONDITIONS_END(contactform_database_helper_create)
+
 /**
  * \brief Parse the CGI content, creating a contact form to send to the helper.
  *
