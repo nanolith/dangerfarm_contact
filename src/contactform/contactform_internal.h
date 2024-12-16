@@ -138,6 +138,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_CHECK_OBJECT_RW(ctx, sizeof(*ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_release)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactform_context_release, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_release)
+
 /**
  * \brief Create a database helper connection.
  *
