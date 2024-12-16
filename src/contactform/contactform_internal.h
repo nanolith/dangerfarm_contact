@@ -86,6 +86,13 @@ bool prop_valid_contactform_key(int key);
 int FN_DECL_MUST_CHECK
 contactform_context_create(contactform_context** ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactform_context_create, contactform_context** ctx)
+        /* ctx variable must be accessible. */
+        MODEL_CHECK_OBJECT_RW(ctx, sizeof(*ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_create)
+
 /**
  * \brief Release a \ref contactform_context instance.
  *
