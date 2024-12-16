@@ -74,6 +74,15 @@ bool prop_valid_request_type(int req);
 bool prop_valid_contactform_key(int key);
 
 /**
+ * \brief Verify that the given \ref contactform_context is valid.
+ *
+ * \param ctx           The context to verify.
+ *
+ * \returns true if this context is valid and false otherwise.
+ */
+bool prop_valid_contactform_context(const contactform_context* ctx);
+
+/**
  * \brief Create a \ref contactform_context instance.
  *
  * \param ctx           Pointer to the pointer to receive the context on
