@@ -16,6 +16,8 @@
  */
 int contactform_context_create(contactform_context** ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_context_create, ctx);
+
     int retval, release_retval;
     contactform_context* tmp;
 
@@ -52,5 +54,8 @@ cleanup_tmp:
     }
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactform_context_create, retval, ctx);
+
     return retval;
 }
