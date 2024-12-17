@@ -166,6 +166,23 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_CHECK_OBJECT_RW(pid, sizeof(*pid));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_database_helper_create)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactform_database_helper_create, int retval, int* s, pid_t* pid)
+        /* on success... */
+        if (STATUS_SUCCESS == retval)
+        {
+            MODEL_ASSERT(prop_is_valid_unix_desc(*s));
+            MODEL_ASSERT(prop_is_valid_unix_pid(*pid));
+        }
+        /* on failure... */
+        else
+        {
+            MODEL_ASSERT(*s < 0);
+            MODEL_ASSERT(*pid < 0);
+        }
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_database_helper_create)
+
 /**
  * \brief Parse the CGI content, creating a contact form to send to the helper.
  *
