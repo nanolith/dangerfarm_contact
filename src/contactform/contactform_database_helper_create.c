@@ -17,6 +17,9 @@
  */
 int contactform_database_helper_create(int* s, pid_t* pid)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactform_database_helper_create, s, pid);
+
     int retval;
     int socks[2];
 
@@ -61,5 +64,8 @@ cleanup_socks:
     close(socks[1]);
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactform_database_helper_create, retval, s, pid);
+
     return retval;
 }
