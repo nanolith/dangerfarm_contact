@@ -184,6 +184,15 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
 MODEL_CONTRACT_POSTCONDITIONS_END(contactform_database_helper_create)
 
 /**
+ * \brief Entry point for the contactform database helper.
+ *
+ * \param s             The socket to use to communicate with the CGI script.
+ *
+ * \note This function does NOT return.
+ */
+_Noreturn void contactform_database_helper_entry(int s);
+
+/**
  * \brief Parse the CGI content, creating a contact form to send to the helper.
  *
  * \param ctx           The context for this operation.
