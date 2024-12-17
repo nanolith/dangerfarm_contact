@@ -21,6 +21,8 @@ static int connect_local_socket(int* dbsock);
  */
 _Noreturn void contactform_database_helper_entry(int s)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_database_helper_entry, s);
+
     int retval, release_retval;
     int dbsock = -1;
     uint32_t req = 0, status = 0;
@@ -156,6 +158,9 @@ cleanup_sock:
 
 done:
     memset(&addr, 0, sizeof(addr));
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactform_database_helper_entry, retval);
 
     return retval;
 }
