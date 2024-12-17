@@ -14,7 +14,7 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
 DANGERFARM_CONTACT_IMPORT_protocol_database;
 
 /* forward decls. */
-_Noreturn static void contactform_database_helper_entry(int s);
+_Noreturn void contactform_database_helper_entry(int s);
 static int connect_local_socket(int* dbsock);
 
 /**
@@ -84,7 +84,7 @@ done:
  *
  * \note This function does NOT return.
  */
-_Noreturn static void contactform_database_helper_entry(int s)
+_Noreturn void contactform_database_helper_entry(int s)
 {
     int retval, release_retval;
     int dbsock = -1;
