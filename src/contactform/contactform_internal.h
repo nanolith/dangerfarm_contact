@@ -198,6 +198,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(contactform_database_helper_entry, int s)
         MODEL_ASSERT(prop_is_open_fd(s));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_database_helper_entry)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactform_database_helper_entry, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_database_helper_entry)
+
 /**
  * \brief Parse the CGI content, creating a contact form to send to the helper.
  *
