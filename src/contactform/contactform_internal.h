@@ -222,6 +222,10 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_valid_contactform_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_read_cgi)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(contactform_context_read_cgi, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_read_cgi)
+
 /**
  * \brief Clean up context data before calling into the CGI parse child. This
  * function ensures, for instance, that when parsing untrusted network data, an
