@@ -282,6 +282,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_decode_request_type)
 int FN_DECL_MUST_CHECK
 contactform_form_decode(contactform_context* ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactform_form_decode, contactform_context* ctx)
+        /* ctx is a valid context. */
+        MODEL_ASSERT(prop_valid_contactform_context(ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactform_form_decode)
+
 /**
  * \brief Perform a CGI request action.
  *
