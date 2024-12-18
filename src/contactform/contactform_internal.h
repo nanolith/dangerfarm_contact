@@ -263,6 +263,13 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_valid_request_method(method));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_decode_request_type)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactform_context_decode_request_type, int retval)
+        /* request type is valid. */
+        MODEL_ASSERT(prop_valid_request_type(retval));
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_decode_request_type)
+
 /**
  * \brief Decode a contact form instance using form data.
  *
