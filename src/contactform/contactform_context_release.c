@@ -17,6 +17,8 @@ DANGERFARM_CONTACT_IMPORT_contact_form;
  */
 int contactform_context_release(contactform_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_context_release, ctx);
+
     int retval = STATUS_SUCCESS, release_retval;
     int dummy_retval;
 
@@ -65,6 +67,8 @@ int contactform_context_release(contactform_context* ctx)
     {
         khttp_free(&ctx->req);
     } 
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactform_context_release, retval);
 
     return retval;
 }
