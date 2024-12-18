@@ -235,6 +235,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_read_cgi)
  */
 void contactform_context_child_cleanup(contactform_context* ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactform_context_child_cleanup, contactform_context* ctx)
+        /* ctx is a valid context. */
+        MODEL_ASSERT(prop_valid_contactform_context(ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_read_cgi)
+
 /**
  * \brief Decode the method type into a contact form request type.
  *
