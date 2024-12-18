@@ -289,6 +289,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_valid_contactform_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_form_decode)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactform_form_decode, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_form_decode)
+
 /**
  * \brief Perform a CGI request action.
  *
