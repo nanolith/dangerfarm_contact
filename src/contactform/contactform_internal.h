@@ -256,6 +256,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_child_cleanup)
  */
 int contactform_context_decode_request_type(int method);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactform_context_decode_request_type, int method)
+        /* method is a valid request method. */
+        MODEL_ASSERT(prop_valid_request_method(method));
+MODEL_CONTRACT_PRECONDITIONS_END(contactform_context_decode_request_type)
+
 /**
  * \brief Decode a contact form instance using form data.
  *
