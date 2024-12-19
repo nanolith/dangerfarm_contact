@@ -111,6 +111,9 @@ cleanup_dbsock:
 done:
     close(s);
 
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactform_database_helper_entry, retval);
+
     exit(retval);
 }
 
@@ -158,9 +161,6 @@ cleanup_sock:
 
 done:
     memset(&addr, 0, sizeof(addr));
-
-    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
-        contactform_database_helper_entry, retval);
 
     return retval;
 }
