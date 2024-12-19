@@ -30,6 +30,8 @@ static const char* pages[] = {
  */
 int contactform_context_read_cgi(contactform_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_context_read_cgi, ctx);
+
     int retval;
 
     /* parse http request. */
@@ -40,7 +42,8 @@ int contactform_context_read_cgi(contactform_context* ctx)
             ctx, (void (*)(void*))&contactform_context_child_cleanup, 0, NULL);
     if (KCGI_OK != retval)
     {
-        return ERROR_CONTACTFORM_KHTTP_PARSE;
+        retval = ERROR_CONTACTFORM_KHTTP_PARSE;
+        goto done;
     }
 
     /* the kcgi request context has been initialized. */
@@ -56,10 +59,16 @@ int contactform_context_read_cgi(contactform_context* ctx)
         retval = contactform_form_decode(ctx);
         if (STATUS_SUCCESS != retval)
         {
-            return retval;
+            goto done;
         }
     }
 
     /* success. */
-    return STATUS_SUCCESS;
+    retval = STATUS_SUCCESS;
+    goto done;
+
+done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactform_context_read_cgi, retval);
+
+    return retval;
 }
