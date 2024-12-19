@@ -313,6 +313,11 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(
         MODEL_ASSERT(prop_valid_contactform_context(ctx));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_perform_cgi_request)
 
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
+    contactform_perform_cgi_request, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_perform_cgi_request)
+
 /**
  * \brief Perform a drop privileges step.
  *
