@@ -247,6 +247,8 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
     contactform_context_child_cleanup, contactform_context* ctx)
         /* dbsock is now closed. */
         MODEL_ASSERT(ctx->dbsock < 0);
+        /* the PID is not visible. */
+        MODEL_ASSERT(0 == ctx->dbpid);
 MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_child_cleanup)
 
 /**
