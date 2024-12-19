@@ -335,3 +335,7 @@ MODEL_CONTRACT_PRECONDITIONS_BEGIN(contactform_drop_privileges, int step)
         /* step is a valid step. */
         MODEL_ASSERT(prop_valid_drop_privileges_step(step));
 MODEL_CONTRACT_PRECONDITIONS_END(contactform_drop_privileges)
+
+/* postconditions. */
+MODEL_CONTRACT_POSTCONDITIONS_BEGIN(contactform_drop_privileges, int retval)
+MODEL_CONTRACT_POSTCONDITIONS_END(contactform_drop_privileges)
