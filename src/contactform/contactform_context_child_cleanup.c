@@ -9,6 +9,8 @@
  */
 void contactform_context_child_cleanup(contactform_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_context_child_cleanup, ctx);
+
     /* close the db socket if valid. */
     if (ctx->dbsock >= 0)
     {
@@ -18,4 +20,6 @@ void contactform_context_child_cleanup(contactform_context* ctx)
 
     /* Invalidate the PID. */
     ctx->dbpid = 0;
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactform_context_child_cleanup, ctx);
 }
