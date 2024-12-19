@@ -306,6 +306,13 @@ MODEL_CONTRACT_POSTCONDITIONS_END(contactform_form_decode)
 int FN_DECL_MUST_CHECK
 contactform_perform_cgi_request(contactform_context* ctx);
 
+/* preconditions. */
+MODEL_CONTRACT_PRECONDITIONS_BEGIN(
+    contactform_perform_cgi_request, contactform_context* ctx)
+        /* ctx is a valid context. */
+        MODEL_ASSERT(prop_valid_contactform_context(ctx));
+MODEL_CONTRACT_PRECONDITIONS_END(contactform_perform_cgi_request)
+
 /**
  * \brief Perform a drop privileges step.
  *
