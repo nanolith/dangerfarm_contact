@@ -1,0 +1,40 @@
+#include <stddef.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <kcgi.h>
+
+#include "../../src/contactform/contactform_internal.h"
+
+int nondet_value();
+
+int choose_method()
+{
+    int retval = nondet_value();
+
+    MODEL_ASSUME(
+        retval == KMETHOD_OPTIONS
+     || retval == KMETHOD_POST);
+
+    return retval;
+}
+
+int choose_invalid_method()
+{
+    int retval = nondet_value();
+
+    MODEL_ASSUME(
+        retval != KMETHOD_OPTIONS
+     && retval != KMETHOD_POST);
+
+    return retval;
+}
+
+int main(int argc, char* argv[])
+{
+    MODEL_ASSERT(prop_valid_request_method(choose_method()));
+    MODEL_ASSERT(!prop_valid_request_method(choose_invalid_method()));
+
+    return 0;
+}
