@@ -22,17 +22,29 @@ static int output_standard_headers(contactform_context* ctx, int status_code);
  */
 int contactform_perform_cgi_request(contactform_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_perform_cgi_request, ctx);
+
+    int retval;
+
     switch (ctx->request_type)
     {
         case CONTACTFORM_REQUEST_TYPE_OPTIONS:
-            return contactform_perform_cgi_options_request(ctx);
+            retval = contactform_perform_cgi_options_request(ctx);
+            break;
 
         case CONTACTFORM_REQUEST_TYPE_POST:
-            return contactform_perform_cgi_post_request(ctx);
+            retval = contactform_perform_cgi_post_request(ctx);
+            break;
 
         default:
-            return contactform_perform_cgi_bad_request(ctx);
+            retval = contactform_perform_cgi_bad_request(ctx);
+            break;
     }
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactform_perform_cgi_request, retval);
+
+    return retval;
 }
 
 /**
