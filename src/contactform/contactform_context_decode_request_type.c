@@ -18,10 +18,15 @@ int contactform_context_decode_request_type(int method)
     {
         case KMETHOD_OPTIONS:
             retval = CONTACTFORM_REQUEST_TYPE_OPTIONS;
+            break;
+
         case KMETHOD_POST:
             retval = CONTACTFORM_REQUEST_TYPE_POST;
+            break;
+
         default:
             retval = CONTACTFORM_REQUEST_TYPE_INVALID;
+            break;
     }
 
     MODEL_CONTRACT_CHECK_POSTCONDITIONS(
