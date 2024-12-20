@@ -23,20 +23,32 @@ static int drop_all_privileges(void);
  */
 int contactform_drop_privileges(int step)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_drop_privileges, step);
+
+    int retval;
+
     switch (step)
     {
         case DROP_PRIV_STEP_LIMIT_FS_ACCESS:
-            return reduce_filesystem_access();
+            retval = reduce_filesystem_access();
+            break;
 
         case DROP_PRIV_STEP_KCGI_PARSE:
-            return drop_privileges_for_parse();
+            retval = drop_privileges_for_parse();
+            break;
 
         case DROP_PRIV_STEP_COMPLETE:
-            return drop_all_privileges();
+            retval = drop_all_privileges();
+            break;
 
         default:
-            return ERROR_CONTACTFORM_INVALID_DROP_PRIVILEGES_STEP;
+            retval = ERROR_CONTACTFORM_INVALID_DROP_PRIVILEGES_STEP;
+            break;
     }
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactform_drop_privileges, retval);
+
+    return retval;
 }
 
 /**
