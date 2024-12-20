@@ -9,13 +9,23 @@
  */
 int contactform_context_decode_request_type(int method)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(
+        contactform_context_decode_request_type, method);
+
+    int retval;
+
     switch (method)
     {
         case KMETHOD_OPTIONS:
-            return CONTACTFORM_REQUEST_TYPE_OPTIONS;
+            retval = CONTACTFORM_REQUEST_TYPE_OPTIONS;
         case KMETHOD_POST:
-            return CONTACTFORM_REQUEST_TYPE_POST;
+            retval = CONTACTFORM_REQUEST_TYPE_POST;
         default:
-            return CONTACTFORM_REQUEST_TYPE_INVALID;
+            retval = CONTACTFORM_REQUEST_TYPE_INVALID;
     }
+
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(
+        contactform_context_decode_request_type, retval);
+
+    return retval;
 }
