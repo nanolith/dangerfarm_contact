@@ -19,6 +19,8 @@ DANGERFARM_CONTACT_IMPORT_util_string;
  */
 int contactform_form_decode(contactform_context* ctx)
 {
+    MODEL_CONTRACT_CHECK_PRECONDITIONS(contactform_form_decode, ctx);
+
     int retval;
     char* name = NULL;
     char* email = NULL;
@@ -137,5 +139,7 @@ cleanup_name:
     free(name);
 
 done:
+    MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactform_form_decode, retval);
+
     return retval;
 }
