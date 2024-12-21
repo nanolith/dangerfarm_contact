@@ -22,6 +22,7 @@ bool prop_valid_request_method(int method)
         case KMETHOD_CONNECT:
         case KMETHOD_COPY:
         case KMETHOD_DELETE:
+        case KMETHOD_GET:
         case KMETHOD_OPTIONS:
         case KMETHOD_POST:
             return true;
