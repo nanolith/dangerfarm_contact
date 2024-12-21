@@ -17,6 +17,7 @@ int choose_method()
         retval == KMETHOD_ACL
      || retval == KMETHOD_CONNECT
      || retval == KMETHOD_COPY
+     || retval == KMETHOD_DELETE
      || retval == KMETHOD_OPTIONS
      || retval == KMETHOD_POST);
 
@@ -31,6 +32,7 @@ int choose_invalid_method()
         retval != KMETHOD_ACL
      && retval != KMETHOD_CONNECT
      && retval != KMETHOD_COPY
+     && retval != KMETHOD_DELETE
      && retval != KMETHOD_OPTIONS
      && retval != KMETHOD_POST);
 
