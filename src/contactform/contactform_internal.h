@@ -2,6 +2,7 @@
 
 #include <dangerfarm_contact/cbmc/function_contracts.h>
 #include <dangerfarm_contact/cbmc/model_assert.h>
+#include <dangerfarm_contact/contracts/properties/kcgi.h>
 #include <dangerfarm_contact/contracts/properties/unix.h>
 #include <dangerfarm_contact/data/contact_form.h>
 #include <dangerfarm_contact/function_decl.h>
