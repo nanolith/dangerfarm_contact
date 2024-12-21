@@ -20,6 +20,7 @@ int choose_method()
      || retval == KMETHOD_DELETE
      || retval == KMETHOD_GET
      || retval == KMETHOD_HEAD
+     || retval == KMETHOD_LOCK
      || retval == KMETHOD_OPTIONS
      || retval == KMETHOD_POST);
 
@@ -37,6 +38,7 @@ int choose_invalid_method()
      && retval != KMETHOD_DELETE
      && retval != KMETHOD_GET
      && retval != KMETHOD_HEAD
+     && retval != KMETHOD_LOCK
      && retval != KMETHOD_OPTIONS
      && retval != KMETHOD_POST);
 
