@@ -8,7 +8,8 @@ int choose_req()
 
     MODEL_ASSUME(
         retval == CONTACTFORM_REQUEST_TYPE_OPTIONS
-     || retval == CONTACTFORM_REQUEST_TYPE_POST);
+     || retval == CONTACTFORM_REQUEST_TYPE_POST
+     || retval == CONTACTFORM_REQUEST_TYPE_INVALID);
 
     return retval;
 }
@@ -19,7 +20,8 @@ int choose_invalid_req()
 
     MODEL_ASSUME(
         retval != CONTACTFORM_REQUEST_TYPE_OPTIONS
-     && retval != CONTACTFORM_REQUEST_TYPE_POST);
+     && retval != CONTACTFORM_REQUEST_TYPE_POST
+     && retval != CONTACTFORM_REQUEST_TYPE_INVALID);
 
     return retval;
 }

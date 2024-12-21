@@ -11,6 +11,7 @@ bool prop_valid_request_type(int req)
 {
     switch (req)
     {
+        case CONTACTFORM_REQUEST_TYPE_INVALID:
         case CONTACTFORM_REQUEST_TYPE_OPTIONS:
         case CONTACTFORM_REQUEST_TYPE_POST:
             return true;
