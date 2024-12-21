@@ -18,6 +18,7 @@ bool prop_valid_request_method(int method)
 {
     switch (method)
     {
+        case KMETHOD_ACL:
         case KMETHOD_OPTIONS:
         case KMETHOD_POST:
             return true;

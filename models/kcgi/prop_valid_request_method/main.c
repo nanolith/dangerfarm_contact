@@ -14,7 +14,8 @@ int choose_method()
     int retval = nondet_value();
 
     MODEL_ASSUME(
-        retval == KMETHOD_OPTIONS
+        retval == KMETHOD_ACL
+     || retval == KMETHOD_OPTIONS
      || retval == KMETHOD_POST);
 
     return retval;
@@ -25,7 +26,8 @@ int choose_invalid_method()
     int retval = nondet_value();
 
     MODEL_ASSUME(
-        retval != KMETHOD_OPTIONS
+        retval != KMETHOD_ACL
+     && retval != KMETHOD_OPTIONS
      && retval != KMETHOD_POST);
 
     return retval;
