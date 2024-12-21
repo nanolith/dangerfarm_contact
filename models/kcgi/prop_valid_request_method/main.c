@@ -16,6 +16,7 @@ int choose_method()
     MODEL_ASSUME(
         retval == KMETHOD_ACL
      || retval == KMETHOD_CONNECT
+     || retval == KMETHOD_COPY
      || retval == KMETHOD_OPTIONS
      || retval == KMETHOD_POST);
 
@@ -29,6 +30,7 @@ int choose_invalid_method()
     MODEL_ASSUME(
         retval != KMETHOD_ACL
      && retval != KMETHOD_CONNECT
+     && retval != KMETHOD_COPY
      && retval != KMETHOD_OPTIONS
      && retval != KMETHOD_POST);
 
