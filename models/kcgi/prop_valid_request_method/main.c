@@ -27,6 +27,7 @@ int choose_method()
      || retval == KMETHOD_OPTIONS
      || retval == KMETHOD_POST
      || retval == KMETHOD_PROPFIND
+     || retval == KMETHOD_PROPPATCH
     );
 
     return retval;
@@ -50,6 +51,7 @@ int choose_invalid_method()
      && retval != KMETHOD_OPTIONS
      && retval != KMETHOD_POST
      && retval != KMETHOD_PROPFIND
+     && retval != KMETHOD_PROPPATCH
     );
 
     return retval;
