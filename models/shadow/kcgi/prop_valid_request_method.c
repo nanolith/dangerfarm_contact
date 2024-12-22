@@ -32,6 +32,7 @@ bool prop_valid_request_method(int method)
         case KMETHOD_POST:
         case KMETHOD_PROPFIND:
         case KMETHOD_PROPPATCH:
+        case KMETHOD_PUT:
             return true;
 
         default:
