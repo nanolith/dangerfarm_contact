@@ -35,6 +35,7 @@ bool prop_valid_request_method(int method)
         case KMETHOD_PUT:
         case KMETHOD_REPORT:
         case KMETHOD_TRACE:
+        case KMETHOD_UNLOCK:
             return true;
 
         default:

@@ -31,6 +31,7 @@ int choose_method()
      || retval == KMETHOD_PUT
      || retval == KMETHOD_REPORT
      || retval == KMETHOD_TRACE
+     || retval == KMETHOD_UNLOCK
     );
 
     return retval;
@@ -58,6 +59,7 @@ int choose_invalid_method()
      && retval != KMETHOD_PUT
      && retval != KMETHOD_REPORT
      && retval != KMETHOD_TRACE
+     && retval != KMETHOD_UNLOCK
     );
 
     return retval;
