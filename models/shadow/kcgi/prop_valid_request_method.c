@@ -26,6 +26,7 @@ bool prop_valid_request_method(int method)
         case KMETHOD_HEAD:
         case KMETHOD_LOCK:
         case KMETHOD_MKCALENDAR:
+        case KMETHOD_MKCOL:
         case KMETHOD_OPTIONS:
         case KMETHOD_POST:
             return true;
