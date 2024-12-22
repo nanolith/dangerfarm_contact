@@ -23,6 +23,7 @@ int choose_method()
      || retval == KMETHOD_LOCK
      || retval == KMETHOD_MKCALENDAR
      || retval == KMETHOD_MKCOL
+     || retval == KMETHOD_MOVE
      || retval == KMETHOD_OPTIONS
      || retval == KMETHOD_POST);
 
@@ -43,6 +44,7 @@ int choose_invalid_method()
      && retval != KMETHOD_LOCK
      && retval != KMETHOD_MKCALENDAR
      && retval != KMETHOD_MKCOL
+     && retval != KMETHOD_MOVE
      && retval != KMETHOD_OPTIONS
      && retval != KMETHOD_POST);
 
