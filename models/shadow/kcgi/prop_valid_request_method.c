@@ -30,6 +30,7 @@ bool prop_valid_request_method(int method)
         case KMETHOD_MOVE:
         case KMETHOD_OPTIONS:
         case KMETHOD_POST:
+        case KMETHOD_PROPFIND:
             return true;
 
         default:
