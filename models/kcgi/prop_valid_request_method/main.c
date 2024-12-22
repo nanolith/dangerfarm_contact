@@ -25,7 +25,9 @@ int choose_method()
      || retval == KMETHOD_MKCOL
      || retval == KMETHOD_MOVE
      || retval == KMETHOD_OPTIONS
-     || retval == KMETHOD_POST);
+     || retval == KMETHOD_POST
+     || retval == KMETHOD_PROPFIND
+    );
 
     return retval;
 }
@@ -46,7 +48,9 @@ int choose_invalid_method()
      && retval != KMETHOD_MKCOL
      && retval != KMETHOD_MOVE
      && retval != KMETHOD_OPTIONS
-     && retval != KMETHOD_POST);
+     && retval != KMETHOD_POST
+     && retval != KMETHOD_PROPFIND
+    );
 
     return retval;
 }
