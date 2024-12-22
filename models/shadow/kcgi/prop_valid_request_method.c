@@ -33,6 +33,7 @@ bool prop_valid_request_method(int method)
         case KMETHOD_PROPFIND:
         case KMETHOD_PROPPATCH:
         case KMETHOD_PUT:
+        case KMETHOD_REPORT:
             return true;
 
         default:
