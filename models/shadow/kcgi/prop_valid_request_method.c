@@ -34,6 +34,7 @@ bool prop_valid_request_method(int method)
         case KMETHOD_PROPPATCH:
         case KMETHOD_PUT:
         case KMETHOD_REPORT:
+        case KMETHOD_TRACE:
             return true;
 
         default:
