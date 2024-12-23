@@ -33,7 +33,7 @@ int contactform_context_release(contactform_context* ctx)
     }
 
     /* kill the child process if spawned. */
-    if (ctx->dbpid > 1)
+    if (ctx->dbpid > 0)
     {
         /* kill the child process. */
         release_retval = kill(ctx->dbpid, SIGTERM);
