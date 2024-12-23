@@ -39,7 +39,7 @@ pid_t fork(void)
         }
 
         /* if the pid is already taken, this is an error. */
-        if (NULL != __pid_shadow_list[retval - 1].desc)
+        if (NULL == __pid_shadow_list[retval - 1].desc)
         {
             errno = ENOMEM;
             return -1;
