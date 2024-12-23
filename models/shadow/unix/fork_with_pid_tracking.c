@@ -7,6 +7,7 @@ int nondet_retval();
 
 pid_t fork(void)
 {
+    /* determine whether this call succeeds. */
     int retval = nondet_retval();
     switch (retval)
     {
@@ -23,6 +24,7 @@ pid_t fork(void)
             return -1;
     }
 
+    /* get the new pid. */
     retval = nondet_retval();
     if (retval <= 0)
     {
@@ -30,11 +32,20 @@ pid_t fork(void)
     }
     else
     {
+        /* clamp the value to the PID count. */
         if (retval >= SHADOW_PID_COUNT)
         {
             retval = SHADOW_PID_COUNT;
         }
 
+        /* if the pid is already taken, this is an error. */
+        if (NULL != __pid_shadow_list[retval - 1].desc)
+        {
+            errno = ENOMEM;
+            return -1;
+        }
+
+        /* reserve this pid so we can track that it is freed. */
         __pid_shadow_list[retval - 1].desc = strdup("a");
         if (NULL == __pid_shadow_list[retval - 1].desc)
         {
