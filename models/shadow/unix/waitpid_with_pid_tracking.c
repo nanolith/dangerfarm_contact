@@ -26,7 +26,7 @@ pid_t waitpid(pid_t wpid, int *status, int options)
 
     /* reclaim the pid. */
     free(__pid_shadow_list[wpid - 1].desc);
-    desc = NULL;
+    __pid_shadow_list[wpid - 1].desc = NULL;
 
     /* choose a return status from the process. */
     *status = choose_status();
