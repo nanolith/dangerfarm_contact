@@ -11,7 +11,7 @@ extern "C" {
 int close_fd(int fd);
 /* in production, this is just inline for close(). */
 #else
-inline int close_fd(int fd)
+static inline int close_fd(int fd)
 {
     return close(fd);
 }
