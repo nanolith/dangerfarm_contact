@@ -1,5 +1,6 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <sys/socket.h>
+#include <dangerfarm_contact/util/unix.h>
 #include <unistd.h>
 
 #include "contactform_internal.h"
@@ -37,8 +38,13 @@ int contactform_database_helper_create(int* s, pid_t* pid)
     /* parent? */
     if (0 != *pid)
     {
+        /* close the child socket endpoint. */
         close(socks[0]);
+
+        /* return the parent socket endpoint. */
         *s = socks[1];
+
+        /* success. */
         retval = STATUS_SUCCESS;
         goto done;
     }
@@ -46,9 +52,12 @@ int contactform_database_helper_create(int* s, pid_t* pid)
     /* child? */
     if (0 == *pid)
     {
-        close(0); /* stdin. */
-        close(1); /* stdout. */
-        close(2); /* stderr. */
+        /* close standard file descriptors. */
+        close_fd(STDIN_FILENO);
+        close_fd(STDOUT_FILENO);
+        close_fd(STDERR_FILENO);
+
+        /* close the parent socket endpoint. */
         close(socks[1]);
 
         /* we never return from here. */
