@@ -35,6 +35,13 @@ int contactform_database_helper_create(int* s, pid_t* pid)
     /* fork the process. */
     *pid = fork();
 
+    /* did fork fail? */
+    if (*pid < 0)
+    {
+        retval = ERROR_CONTACTFORM_FORK;
+        goto cleanup_socks;
+    }
+
     /* parent? */
     if (0 != *pid)
     {
