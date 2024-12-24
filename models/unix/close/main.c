@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     MODEL_ASSERT(desc >= 0 && desc <= SHADOW_FD_COUNT);
 
     /* close the socket. */
-    close(desc);
+    MODEL_ASSERT(0 == close(desc));
 
     /* success. */
     retval = 0;
