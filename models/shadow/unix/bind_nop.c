@@ -13,6 +13,7 @@ int bind(int s, const struct sockaddr *addr, socklen_t addrlen)
     MODEL_ASSERT(prop_is_open_fd(s));
     MODEL_ASSERT(NULL != addr);
     MODEL_ASSERT(addrlen == sizeof(struct sockaddr_un));
+    MODEL_CHECK_OBJECT_RW(addr, addrlen);
 
     int retval = nondet_retval();
 
