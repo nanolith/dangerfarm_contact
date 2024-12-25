@@ -1,3 +1,4 @@
 ADD_SUBDIRECTORY(close)
+ADD_SUBDIRECTORY(close_fd_nop)
 ADD_SUBDIRECTORY(fork_waitpid_with_pid_tracking)
 ADD_SUBDIRECTORY(socket)
