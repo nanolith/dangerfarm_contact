@@ -16,5 +16,10 @@ size_t strlcpy(char * restrict dst, const char * restrict src, size_t dstsize)
         retsize = dstsize;
     }
 
+    /* randomize the output of dst. */
+    __CPROVER_havoc_object(dst);
+    /* ensure that dst is NUL terminated. */
+    dst[dstsize - 1] = 0;
+
     return retsize;
 }
