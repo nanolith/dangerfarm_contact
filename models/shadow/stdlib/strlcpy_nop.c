@@ -7,6 +7,7 @@ size_t strlcpy(char * restrict dst, const char * restrict src, size_t dstsize)
 {
     MODEL_ASSERT(NULL != dst);
     MODEL_ASSERT(NULL != src);
+    MODEL_ASSERT(dstsize > 0);
     MODEL_CHECK_OBJECT_RW(dst, dstsize);
 
     size_t retsize = nondet_size();
