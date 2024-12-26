@@ -8,6 +8,7 @@ int nondet_retval();
 int listen(int s, int backlog)
 {
     MODEL_ASSERT(prop_is_open_fd(s));
+    MODEL_ASSERT(backlog > 0);
 
     int retval = nondet_retval();
 
