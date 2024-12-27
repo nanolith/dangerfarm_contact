@@ -1,8 +1,8 @@
-#ifdef __FreeBSD__
-
 #include <dangerfarm_contact/status_codes.h>
 #include <errno.h>
+#ifdef __FreeBSD__
 #include <sys/capsicum.h>
+#endif /* __FreeBSD__ */
 
 int nondet_retval();
 
@@ -25,4 +25,3 @@ int cap_enter(void)
             return -1;
     }
 }
-#endif /* __FreeBSD__ */
