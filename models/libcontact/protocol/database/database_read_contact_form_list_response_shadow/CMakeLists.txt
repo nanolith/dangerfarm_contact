@@ -1,7 +1,7 @@
 SET(MC_SOURCES
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/close.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/prop_is_open_fd.c
-    ${CMAKE_SOURCE_DIR}/models/shadow/unix/read_loop_constrained.c
+    ${CMAKE_SOURCE_DIR}/models/shadow/unix/read.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/socket.c
     ${CMAKE_SOURCE_DIR}/models/shadow/unix/unix_shadow_init.c
     ${CMAKE_SOURCE_DIR}/models/shadow/libcontact/protocol/database/database_read_contact_form_list_response.c
