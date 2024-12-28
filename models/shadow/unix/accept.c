@@ -11,8 +11,7 @@ int accept(
     int s, struct sockaddr * restrict addr, socklen_t * restrict addrlen)
 {
     MODEL_ASSERT(prop_is_open_fd(s));
-    MODEL_ASSERT(NULL == addr);
-    MODEL_ASSERT(NULL == addrlen);
+    MODEL_CHECK_OBJECT_RW(addr, addrlen);
 
     return socket(AF_UNIX, SOCK_STREAM, 0);
 }
