@@ -47,6 +47,7 @@ int contactform_database_helper_create(int* s, pid_t* pid)
     {
         /* close the child socket endpoint. */
         close(socks[0]);
+        socks[0] = -1;
 
         /* return the parent socket endpoint. */
         *s = socks[1];
@@ -56,6 +57,7 @@ int contactform_database_helper_create(int* s, pid_t* pid)
         goto done;
     }
 
+#ifndef CBMC
     /* child? */
     if (0 == *pid)
     {
@@ -70,16 +72,29 @@ int contactform_database_helper_create(int* s, pid_t* pid)
         /* we never return from here. */
         contactform_database_helper_entry(socks[0]);
     }
+#endif
 
     /* If we make it here, fork failed, so report the error. */
     retval = ERROR_CONTACTFORM_FORK;
     goto cleanup_socks;
 
 cleanup_socks:
-    close(socks[0]);
-    close(socks[1]);
+    if (socks[0] >= 0)
+    {
+        close(socks[0]);
+    }
+    if (socks[1] >= 0)
+    {
+        close(socks[1]);
+    }
 
 done:
+    if (STATUS_SUCCESS != retval)
+    {
+        *s = -1;
+        *pid = -1;
+    }
+
     MODEL_CONTRACT_CHECK_POSTCONDITIONS(
         contactform_database_helper_create, retval, s, pid);
 
