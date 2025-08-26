@@ -173,7 +173,7 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
         /* on success... */
         if (STATUS_SUCCESS == retval)
         {
-            MODEL_ASSERT(prop_is_valid_unix_desc(*s));
+            MODEL_ASSERT(prop_is_open_fd(*s));
             MODEL_ASSERT(prop_is_valid_unix_pid(*pid));
         }
         /* on failure... */
