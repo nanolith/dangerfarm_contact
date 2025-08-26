@@ -1,4 +1,6 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <errno.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 #include "unix_shadow.h"

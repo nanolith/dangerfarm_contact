@@ -1,3 +1,4 @@
+#include <dangerfarm_contact/cbmc/model_assert.h>
 #include <unistd.h>
 
 int main(int argc, char* argv[])
