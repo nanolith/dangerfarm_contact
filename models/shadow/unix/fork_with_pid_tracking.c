@@ -1,4 +1,5 @@
 #include <errno.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "unix_shadow.h"
@@ -39,14 +40,14 @@ pid_t fork(void)
         }
 
         /* if the pid is already taken, this is an error. */
-        if (NULL == __pid_shadow_list[retval - 1].desc)
+        if (NULL != __pid_shadow_list[retval - 1].desc)
         {
             errno = ENOMEM;
             return -1;
         }
 
         /* reserve this pid so we can track that it is freed. */
-        __pid_shadow_list[retval - 1].desc = strdup("a");
+        __pid_shadow_list[retval - 1].desc = malloc(1);
         if (NULL == __pid_shadow_list[retval - 1].desc)
         {
             errno = ENOMEM;
