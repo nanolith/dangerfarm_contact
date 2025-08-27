@@ -54,6 +54,11 @@ cleanup_tmp:
     }
 
 done:
+    if (STATUS_SUCCESS != retval)
+    {
+        *ctx = NULL;
+    }
+
     MODEL_CONTRACT_CHECK_POSTCONDITIONS(
         contactform_context_create, retval, ctx);
 
