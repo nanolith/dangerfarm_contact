@@ -1,3 +1,4 @@
+ADD_SUBDIRECTORY(contactform_context_child_cleanup)
 ADD_SUBDIRECTORY(contactform_database_helper_create)
 ADD_SUBDIRECTORY(prop_valid_contactform_context)
 ADD_SUBDIRECTORY(prop_valid_contactform_key)
