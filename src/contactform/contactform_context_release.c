@@ -1,5 +1,6 @@
 #include <dangerfarm_contact/status_codes.h>
 #include <signal.h>
+#include <stdlib.h>
 #include <sys/wait.h>
 
 #include "contactform_internal.h"
@@ -67,6 +68,9 @@ int contactform_context_release(contactform_context* ctx)
     {
         khttp_free(&ctx->req);
     } 
+
+    /* release ctx. */
+    free(ctx);
 
     MODEL_CONTRACT_CHECK_POSTCONDITIONS(contactform_context_release, retval);
 
