@@ -116,7 +116,7 @@ MODEL_CONTRACT_POSTCONDITIONS_BEGIN(
         else
         {
             /* ctx is NULL. */
-            MODEL_ASSERT(NULL == ctx);
+            MODEL_ASSERT(NULL == *ctx);
         }
 MODEL_CONTRACT_POSTCONDITIONS_END(contactform_context_create)
 
